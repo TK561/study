@@ -492,31 +492,41 @@ class handler(BaseHTTPRequestHandler):
                             <text x="70" y="74" fill="#666">90</text>
                         </g>
 
-                        <!-- データバー -->
+                        <!-- データバー（影付き3D効果） -->
                         <!-- 単純用語: 90% -->
-                        <rect x="100" y="70" width="80" height="180" fill="#4caf50" opacity="0.8"/>
-                        <text x="140" y="270" text-anchor="middle" font-size="10" fill="#333">単純用語</text>
-                        <text x="140" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">90%</text>
+                        <rect x="102" y="72" width="76" height="176" fill="#388e3c" opacity="0.3"/>
+                        <rect x="100" y="70" width="76" height="176" fill="#4caf50" stroke="#2e7d32" stroke-width="2"/>
+                        <text x="138" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">単純用語</text>
+                        <text x="138" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#2e7d32">90%</text>
+                        <text x="138" y="50" text-anchor="middle" font-size="9" fill="#2e7d32">優秀</text>
 
                         <!-- 地理的用語: 75% -->
-                        <rect x="200" y="100" width="80" height="150" fill="#ff9800" opacity="0.8"/>
-                        <text x="240" y="270" text-anchor="middle" font-size="10" fill="#333">地理的用語</text>
-                        <text x="240" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">75%</text>
+                        <rect x="202" y="102" width="76" height="146" fill="#f57c00" opacity="0.3"/>
+                        <rect x="200" y="100" width="76" height="146" fill="#ff9800" stroke="#e65100" stroke-width="2"/>
+                        <text x="238" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">地理的用語</text>
+                        <text x="238" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">75%</text>
+                        <text x="238" y="80" text-anchor="middle" font-size="9" fill="#e65100">良好</text>
 
                         <!-- 文化固有: 70% -->
-                        <rect x="300" y="110" width="80" height="140" fill="#2196f3" opacity="0.8"/>
-                        <text x="340" y="270" text-anchor="middle" font-size="10" fill="#333">文化固有</text>
-                        <text x="340" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">70%</text>
+                        <rect x="302" y="112" width="76" height="136" fill="#1976d2" opacity="0.3"/>
+                        <rect x="300" y="110" width="76" height="136" fill="#2196f3" stroke="#1565c0" stroke-width="2"/>
+                        <text x="338" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">文化固有</text>
+                        <text x="338" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565c0">70%</text>
+                        <text x="338" y="90" text-anchor="middle" font-size="9" fill="#1565c0">普通</text>
 
                         <!-- 複合記述: 50% -->
-                        <rect x="400" y="150" width="80" height="100" fill="#9c27b0" opacity="0.8"/>
-                        <text x="440" y="270" text-anchor="middle" font-size="10" fill="#333">複合記述</text>
-                        <text x="440" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">50%</text>
+                        <rect x="402" y="152" width="76" height="96" fill="#7b1fa2" opacity="0.3"/>
+                        <rect x="400" y="150" width="76" height="96" fill="#9c27b0" stroke="#6a1b9a" stroke-width="2"/>
+                        <text x="438" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">複合記述</text>
+                        <text x="438" y="140" text-anchor="middle" font-size="13" font-weight="bold" fill="#6a1b9a">50%</text>
+                        <text x="438" y="130" text-anchor="middle" font-size="9" fill="#6a1b9a">課題あり</text>
 
                         <!-- 現代用語: 42.9% -->
-                        <rect x="500" y="164" width="80" height="86" fill="#f44336" opacity="0.8"/>
-                        <text x="540" y="270" text-anchor="middle" font-size="10" fill="#333">現代用語</text>
-                        <text x="540" y="154" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">43%</text>
+                        <rect x="502" y="166" width="76" height="82" fill="#c62828" opacity="0.3"/>
+                        <rect x="500" y="164" width="76" height="82" fill="#f44336" stroke="#c62828" stroke-width="2"/>
+                        <text x="538" y="275" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">現代用語</text>
+                        <text x="538" y="154" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">43%</text>
+                        <text x="538" y="144" text-anchor="middle" font-size="9" fill="#c62828">要改善</text>
 
                         <!-- 平均線 -->
                         <line x1="80" y1="174" x2="720" y2="174" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
@@ -631,25 +641,39 @@ class handler(BaseHTTPRequestHandler):
                         <text x="70" y="175" fill="#666">30</text>
                     </g>
                     
+                    <!-- 飽和線（30%の横線） -->
+                    <line x1="80" y1="170" x2="720" y2="170" stroke="#ff5722" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
+                    <text x="650" y="164" font-size="11" fill="#ff5722" font-weight="bold">理論最大値: 30%</text>
+                    
+                    <!-- 実測飽和線（29.8%の横線） -->
+                    <line x1="400" y1="172" x2="720" y2="172" stroke="#e65100" stroke-width="2" stroke-dasharray="4,2" opacity="0.8"/>
+                    <text x="550" y="166" font-size="10" fill="#e65100" font-weight="bold">実測飽和: 29.8%</text>
+                    
                     <!-- 理論曲線 f(x) = 30(1-e^(-0.15x)) -->
                     <path d="M 160,224 Q 200,200 240,180 Q 280,165 320,155 Q 360,148 400,142 Q 480,135 560,131 Q 640,129 720,128" 
-                          fill="none" stroke="#667eea" stroke-width="3"/>
+                          fill="none" stroke="#667eea" stroke-width="4" opacity="0.8"/>
                     
-                    <!-- 実測データポイント -->
+                    <!-- 実測データポイントと値表示 -->
                     <!-- 8カテゴリ: 21.0% -->
-                    <circle cx="160" cy="224" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <circle cx="160" cy="224" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
+                    <text x="160" y="210" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">21.0%</text>
                     
                     <!-- 16カテゴリ: 27.3% -->
-                    <circle cx="240" cy="186" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <circle cx="240" cy="186" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
+                    <text x="240" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">27.3%</text>
                     
                     <!-- 24カテゴリ: 29.2% -->
-                    <circle cx="320" cy="175" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <circle cx="320" cy="175" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
+                    <text x="320" y="161" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">29.2%</text>
                     
                     <!-- 32カテゴリ: 29.8% (飽和点) -->
-                    <circle cx="400" cy="172" r="8" fill="#ff5722" stroke="white" stroke-width="3"/>
+                    <circle cx="400" cy="172" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
+                    <text x="400" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">29.8%</text>
+                    <text x="400" y="145" text-anchor="middle" font-size="10" font-weight="bold" fill="#d32f2f">飽和点</text>
                     
                     <!-- 64カテゴリ: 30.0% -->
-                    <circle cx="720" cy="170" r="6" fill="#ff9800" stroke="white" stroke-width="2"/>
+                    <circle cx="720" cy="170" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
+                    <text x="720" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">30.0%</text>
                     
                     <!-- 飽和領域の表示 -->
                     <rect x="400" y="120" width="320" height="50" fill="#ffeb3b" fill-opacity="0.2" stroke="#ff9800" stroke-width="1" stroke-dasharray="5,5"/>
