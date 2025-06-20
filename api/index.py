@@ -607,70 +607,113 @@ class handler(BaseHTTPRequestHandler):
                     
                     <!-- X軸目盛り -->
                     <g stroke="#666" font-size="12" text-anchor="middle">
+                        <line x1="80" y1="350" x2="80" y2="355" stroke-width="1"/>
+                        <text x="80" y="370" fill="#666">0</text>
+                        
                         <line x1="160" y1="350" x2="160" y2="355" stroke-width="1"/>
-                        <text x="160" y="370" fill="#666">16</text>
+                        <text x="160" y="370" fill="#666">20</text>
                         
                         <line x1="240" y1="350" x2="240" y2="355" stroke-width="1"/>
-                        <text x="240" y="370" fill="#666">30</text>
+                        <text x="240" y="370" fill="#666">40</text>
                         
                         <line x1="320" y1="350" x2="320" y2="355" stroke-width="1"/>
-                        <text x="320" y="370" fill="#666">50</text>
+                        <text x="320" y="370" fill="#666">60</text>
                         
                         <line x1="400" y1="350" x2="400" y2="355" stroke-width="1"/>
-                        <text x="400" y="370" fill="#666">70</text>
+                        <text x="400" y="370" fill="#666">80</text>
+                        
+                        <line x1="480" y1="350" x2="480" y2="355" stroke-width="1"/>
+                        <text x="480" y="370" fill="#666">100</text>
                         
                         <line x1="560" y1="350" x2="560" y2="355" stroke-width="1"/>
-                        <text x="560" y="370" fill="#666">94</text>
-                        
-                        <line x1="720" y1="350" x2="720" y2="355" stroke-width="1"/>
-                        <text x="720" y="370" fill="#666">120</text>
+                        <text x="560" y="370" fill="#666">120</text>
                     </g>
                     
                     <!-- Y軸目盛り -->
                     <g stroke="#666" font-size="12" text-anchor="end">
                         <line x1="75" y1="350" x2="80" y2="350" stroke-width="1"/>
-                        <text x="70" y="355" fill="#666">70</text>
+                        <text x="70" y="355" fill="#666">60</text>
+                        
+                        <line x1="75" y1="320" x2="80" y2="320" stroke-width="1"/>
+                        <text x="70" y="325" fill="#666">65</text>
                         
                         <line x1="75" y1="290" x2="80" y2="290" stroke-width="1"/>
-                        <text x="70" y="295" fill="#666">80</text>
+                        <text x="70" y="295" fill="#666">70</text>
+                        
+                        <line x1="75" y1="260" x2="80" y2="260" stroke-width="1"/>
+                        <text x="70" y="265" fill="#666">75</text>
                         
                         <line x1="75" y1="230" x2="80" y2="230" stroke-width="1"/>
-                        <text x="70" y="235" fill="#666">90</text>
+                        <text x="70" y="235" fill="#666">80</text>
+                        
+                        <line x1="75" y1="200" x2="80" y2="200" stroke-width="1"/>
+                        <text x="70" y="205" fill="#666">85</text>
                         
                         <line x1="75" y1="170" x2="80" y2="170" stroke-width="1"/>
-                        <text x="70" y="175" fill="#666">95</text>
+                        <text x="70" y="175" fill="#666">90</text>
+                        
+                        <line x1="75" y1="140" x2="80" y2="140" stroke-width="1"/>
+                        <text x="70" y="145" fill="#666">95</text>
+                        
+                        <line x1="75" y1="110" x2="80" y2="110" stroke-width="1"/>
+                        <text x="70" y="115" fill="#666">100</text>
                     </g>
                     
                     <!-- 理論飽和線（95%精度） -->
-                    <line x1="80" y1="170" x2="720" y2="170" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
-                    <text x="580" y="164" font-size="11" fill="#667eea" font-weight="bold">理論飽和レベル</text>
+                    <line x1="80" y1="140" x2="560" y2="140" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
+                    <text x="450" y="134" font-size="11" fill="#667eea" font-weight="bold">理論飽和レベル</text>
                     <!-- 交点の値表示（左端） -->
-                    <text x="50" y="175" font-size="10" fill="#667eea" font-weight="bold">95%</text>
+                    <text x="50" y="145" font-size="10" fill="#667eea" font-weight="bold">95%</text>
                     
                     <!-- 理論曲線（サンプル数 vs 精度） -->
-                    <path d="M 160,320 Q 200,280 240,230 Q 320,180 400,175 Q 480,172 560,171 Q 640,170 720,170" 
+                    <path d="M 80,350 Q 120,280 160,230 Q 200,180 240,160 Q 280,150 320,145 Q 360,142 400,141 Q 440,140 480,140 Q 520,140 560,140" 
                           fill="none" stroke="#667eea" stroke-width="4" opacity="0.8"/>
                     
                     <!-- 実測曲線（実際のデータに基づく） -->
-                    <path d="M 160,320 Q 200,250 240,230 Q 400,280 560,280" 
+                    <path d="M 93,320 L 133,218 L 173,170 L 213,165 L 253,170 L 293,175 L 333,175 L 373,180 L 413,185 L 453,200 L 493,210 L 533,215" 
                           fill="none" stroke="#ff5722" stroke-width="3" opacity="0.9" stroke-dasharray="6,3"/>
                     
                     <!-- 実測データポイントと値表示 -->
+                    <!-- 8サンプル: 66.6% -->
+                    <circle cx="93" cy="320" r="6" fill="#e91e63" stroke="white" stroke-width="2"/>
+                    <text x="93" y="310" text-anchor="middle" font-size="10" font-weight="bold" fill="#c2185b">66.6%</text>
+                    <text x="93" y="340" text-anchor="middle" font-size="8" fill="#666">8</text>
+                    
                     <!-- 16サンプル: 82.8% -->
-                    <circle cx="160" cy="320" r="8" fill="#4caf50" stroke="white" stroke-width="3"/>
-                    <text x="160" y="306" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">82.8%</text>
-                    <text x="160" y="340" text-anchor="middle" font-size="9" fill="#666">16サンプル</text>
+                    <circle cx="133" cy="218" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
+                    <text x="133" y="208" text-anchor="middle" font-size="10" font-weight="bold" fill="#2e7d32">82.8%</text>
+                    <text x="133" y="240" text-anchor="middle" font-size="8" fill="#666">16</text>
+                    
+                    <!-- 24サンプル: 87.5% -->
+                    <circle cx="173" cy="170" r="7" fill="#2196f3" stroke="white" stroke-width="3"/>
+                    <text x="173" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#1565c0">87.5%</text>
+                    <text x="173" y="190" text-anchor="middle" font-size="8" fill="#666">24</text>
                     
                     <!-- 30サンプル: 91.2% -->
-                    <circle cx="240" cy="230" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
-                    <text x="240" y="216" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">91.2%</text>
-                    <text x="240" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#d32f2f">最適値</text>
-                    <text x="240" y="250" text-anchor="middle" font-size="9" fill="#666">30サンプル</text>
+                    <circle cx="213" cy="165" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
+                    <text x="213" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">91.2%</text>
+                    <text x="213" y="135" text-anchor="middle" font-size="9" font-weight="bold" fill="#d32f2f">最適値</text>
+                    <text x="213" y="185" text-anchor="middle" font-size="8" fill="#666">30</text>
+                    
+                    <!-- 40サンプル: 88.2% -->
+                    <circle cx="253" cy="170" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
+                    <text x="253" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#e65100">88.2%</text>
+                    <text x="253" y="190" text-anchor="middle" font-size="8" fill="#666">40</text>
+                    
+                    <!-- 60サンプル: 87.8% -->
+                    <circle cx="333" cy="175" r="7" fill="#9c27b0" stroke="white" stroke-width="3"/>
+                    <text x="333" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#7b1fa2">87.8%</text>
+                    <text x="333" y="195" text-anchor="middle" font-size="8" fill="#666">60</text>
                     
                     <!-- 94サンプル: 89.4% -->
-                    <circle cx="560" cy="280" r="8" fill="#ff9800" stroke="white" stroke-width="3"/>
-                    <text x="560" y="266" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">89.4%</text>
-                    <text x="560" y="300" text-anchor="middle" font-size="9" fill="#666">94サンプル</text>
+                    <circle cx="453" cy="200" r="7" fill="#607d8b" stroke="white" stroke-width="3"/>
+                    <text x="453" y="190" text-anchor="middle" font-size="10" font-weight="bold" fill="#455a64">89.4%</text>
+                    <text x="453" y="220" text-anchor="middle" font-size="8" fill="#666">94</text>
+                    
+                    <!-- 120サンプル: 91.0% -->
+                    <circle cx="533" cy="215" r="7" fill="#795548" stroke="white" stroke-width="3"/>
+                    <text x="533" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#5d4037">91.0%</text>
+                    <text x="533" y="235" text-anchor="middle" font-size="8" fill="#666">120</text>
                     
                     
                     <!-- 凡例 -->
