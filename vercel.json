@@ -8,6 +8,12 @@
     },
     "api/status.py": {
       "runtime": "python3.9"
+    },
+    "api/hello.py": {
+      "runtime": "python3.9"
+    },
+    "api/test.py": {
+      "runtime": "python3.9"
     }
   }
 }
