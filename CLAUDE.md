@@ -47,6 +47,19 @@ Verified: [検証済み/要検証]
 - **Git**: バージョン管理
 - **VS Code/Cursor**: Claude Code 統合開発環境
 
+### ⏰ 自動作業整理システム（NEW!）
+- **1時間毎自動まとめ**: Claude Code起動時に自動開始
+- **セッションログ**: `session_logs/`フォルダに自動保存
+- **活動追跡**: Git操作、ファイル変更を自動検出
+
+```python
+# 使用方法
+python start_hourly_system.py  # 手動起動
+from start_hourly_system import get_current_system
+system = get_current_system()
+system.manual_summary()  # 手動まとめ
+```
+
 ### 推奨パッケージ
 ```python
 # 機械学習・画像処理
