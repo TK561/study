@@ -381,5 +381,40 @@ def stable_training_setup():
 
 **🚀 Claude Code を活用した効率的で高品質な研究開発を実現しましょう！**
 
+## 🤖 GitHub Actions CI/CD Integration (NEW!)
+
+### 自動化システム概要
+完全自動化されたGitHub Actions + Vercel + Claude Code統合システム
+
+#### ワークフロー
+1. **`vercel-deploy.yml`**: プッシュ時の自動デプロイ
+2. **`claude-autofix.yml`**: エラー時の自動修正
+3. **`monitoring.yml`**: 30分毎の監視
+
+#### 必要なシークレット
+```bash
+# GitHub Repositoryの設定で追加
+VERCEL_TOKEN=your_vercel_token
+VERCEL_ORG_ID=your_org_id  
+VERCEL_PROJECT_ID=prj_gm8o7yYpKf4fEf1ydU5oQwZGH5dV
+```
+
+#### 自動修正機能
+- Vercel設定エラー → 自動修正
+- Python関数エラー → 自動修正  
+- デプロイ失敗 → GitHub Issue作成 → 自動修正
+- 監視アラート → 自動復旧
+
+#### 使用方法
+```bash
+# 手動で自動修正をトリガー
+gh workflow run claude-autofix.yml -f error_type=deployment_failure
+
+# 監視状況確認
+gh run list --workflow=monitoring.yml
+```
+
+---
+
 *Generated with Claude Code - Research Project Guidelines*
-*Last Updated: 2024-01-15*
+*Last Updated: 2025-06-20 (GitHub Actions Integration Added)*
