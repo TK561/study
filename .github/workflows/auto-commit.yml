@@ -1,0 +1,86 @@
+name: Auto Commit & Deploy
+
+# Claude Code で変更されたファイルの自動処理
+on:
+  schedule:
+    # 毎日午前9時（UTC）に実行
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    inputs:
+      commit_message:
+        description: 'Custom commit message'
+        required: false
+        default: 'Auto-update from Claude Code'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  auto-commit:
+    name: Auto Commit Changes
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: 🔧 Configure Git
+      run: |
+        git config user.name "Claude Code Bot"
+        git config user.email "claude-code-bot@noreply.github.com"
+    
+    - name: 📊 Check for Changes
+      id: changes
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "Files with changes:"
+          git status --porcelain
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "No changes detected"
+        fi
+    
+    - name: 📝 Auto Commit
+      if: steps.changes.outputs.changes == 'true'
+      run: |
+        # カスタムメッセージまたはデフォルトメッセージ
+        if [ -n "${{ github.event.inputs.commit_message }}" ]; then
+          COMMIT_MSG="${{ github.event.inputs.commit_message }}"
+        else
+          COMMIT_MSG="Auto-update: $(date +'%Y-%m-%d %H:%M:%S')"
+        fi
+        
+        git add .
+        git commit -m "$COMMIT_MSG
+
+🤖 Automated commit from GitHub Actions
+🚀 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+    
+    - name: 🚀 Push Changes
+      if: steps.changes.outputs.changes == 'true'
+      run: |
+        git push origin ${{ github.ref_name }}
+    
+    - name: ✅ Success Notification
+      if: steps.changes.outputs.changes == 'true'
+      run: |
+        echo "✅ Successfully committed and pushed changes!"
+        echo "## Auto Commit Results" >> $GITHUB_STEP_SUMMARY
+        echo "- Changes detected: Yes" >> $GITHUB_STEP_SUMMARY
+        echo "- Commit pushed: Yes" >> $GITHUB_STEP_SUMMARY
+        echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+    
+    - name: ℹ️ No Changes
+      if: steps.changes.outputs.changes == 'false'
+      run: |
+        echo "ℹ️ No changes to commit"
+        echo "## Auto Commit Results" >> $GITHUB_STEP_SUMMARY
+        echo "- Changes detected: No" >> $GITHUB_STEP_SUMMARY
+        echo "- Repository is up to date" >> $GITHUB_STEP_SUMMARY

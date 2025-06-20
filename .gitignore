@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Config
+config.py
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Data
+*.csv
+*.pkl
+data/raw/
+models/

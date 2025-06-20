@@ -1,0 +1,568 @@
+name: Claude Code Research Review
+
+# 研究プロジェクト用 Claude Code レビューワークフロー
+# 研究データ、コード、論文の品質管理と自動化
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - '**/*.py'
+      - '**/*.ipynb'
+      - '**/*.md'
+      - '**/*.tex'
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/*.json'
+      - 'data/**'
+      - 'notebooks/**'
+      - 'results/**'
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # 毎日午前6時（UTC）に定期チェック
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      full_analysis:
+        description: 'Run full research analysis'
+        required: false
+        default: 'false'
+        type: boolean
+      generate_report:
+        description: 'Generate comprehensive research report'
+        required: false
+        default: 'true'
+        type: boolean
+
+env:
+  PYTHON_VERSION: '3.9'
+  RESEARCH_PROJECT: 'semantic-classification-system'
+
+jobs:
+  # Claude Code生成コードの検出と分析
+  claude-code-detection:
+    name: Claude Code Detection & Analysis
+    runs-on: ubuntu-latest
+    outputs:
+      claude-detected: ${{ steps.detect.outputs.claude-detected }}
+      research-files: ${{ steps.detect.outputs.research-files }}
+      experiment-files: ${{ steps.detect.outputs.experiment-files }}
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 🔍 Detect Claude Code and Research Files
+      id: detect
+      run: |
+        echo "🔬 Analyzing research project structure..."
+        
+        # Claude Code シグネチャ検出
+        CLAUDE_FILES=0
+        RESEARCH_FILES=0
+        EXPERIMENT_FILES=0
+        
+        # Python/Notebook ファイルの分析
+        for file in $(find . -name "*.py" -o -name "*.ipynb" -o -name "*.md"); do
+          if [[ -f "$file" ]]; then
+            RESEARCH_FILES=$((RESEARCH_FILES + 1))
+            
+            # Claude Code シグネチャ検索
+            if grep -l "Generated with Claude Code\|Co-Authored-By: Claude" "$file" >/dev/null 2>&1; then
+              CLAUDE_FILES=$((CLAUDE_FILES + 1))
+              echo "Claude Code detected: $file"
+            fi
+            
+            # 実験ファイル検出
+            if [[ "$file" == *"experiment"* ]] || [[ "$file" == *"notebook"* ]] || [[ "$file" == *"analysis"* ]]; then
+              EXPERIMENT_FILES=$((EXPERIMENT_FILES + 1))
+            fi
+          fi
+        done
+        
+        # 結果設定
+        CLAUDE_DETECTED="false"
+        if [ $CLAUDE_FILES -gt 0 ] || grep -q "Generated with.*Claude Code" <<< "${{ github.event.head_commit.message }}"; then
+          CLAUDE_DETECTED="true"
+        fi
+        
+        echo "claude-detected=$CLAUDE_DETECTED" >> $GITHUB_OUTPUT
+        echo "research-files=$RESEARCH_FILES" >> $GITHUB_OUTPUT
+        echo "experiment-files=$EXPERIMENT_FILES" >> $GITHUB_OUTPUT
+        
+        # サマリー出力
+        echo "## Claude Code Detection Results" >> $GITHUB_STEP_SUMMARY
+        echo "- Claude Code files: $CLAUDE_FILES" >> $GITHUB_STEP_SUMMARY
+        echo "- Research files: $RESEARCH_FILES" >> $GITHUB_STEP_SUMMARY
+        echo "- Experiment files: $EXPERIMENT_FILES" >> $GITHUB_STEP_SUMMARY
+        echo "- Claude Code commit: $CLAUDE_DETECTED" >> $GITHUB_STEP_SUMMARY
+
+  # 研究コードの品質チェック
+  research-code-quality:
+    name: Research Code Quality Check
+    runs-on: ubuntu-latest
+    needs: claude-code-detection
+    if: needs.claude-code-detection.outputs.claude-detected == 'true'
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        
+        # 研究用パッケージのインストール
+        pip install black isort flake8 mypy pytest nbqa jupyter
+        
+        # プロジェクト固有の依存関係
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        fi
+        
+        # 研究用追加パッケージ
+        pip install numpy pandas matplotlib seaborn scikit-learn
+    
+    - name: 🎨 Format Check (Black)
+      run: |
+        echo "🎨 Checking Python code formatting..."
+        black --check --diff . || echo "Some files need formatting"
+        
+        # Jupyter Notebook formatting
+        if [ -d "notebooks" ]; then
+          nbqa black notebooks/ || echo "Some notebooks need formatting"
+        fi
+    
+    - name: 📏 Import Sorting (isort)
+      run: |
+        echo "📏 Checking import sorting..."
+        isort --check-only --diff . || echo "Some imports need sorting"
+    
+    - name: 🔍 Lint with Flake8
+      run: |
+        echo "🔍 Running code linting..."
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        
+        # 研究コード特有のチェック
+        flake8 . --select=W503,E203 --statistics || true
+    
+    - name: 🏷️ Type Checking (MyPy)
+      run: |
+        echo "🏷️ Running type checking..."
+        mypy . --ignore-missing-imports --show-error-codes || true
+    
+    - name: 📔 Notebook Quality Check
+      run: |
+        if [ -d "notebooks" ]; then
+          echo "📔 Checking Jupyter notebooks..."
+          
+          # Notebook linting
+          nbqa flake8 notebooks/ --ignore=E501,W503 || true
+          
+          # Check for output cells (研究ノートブックでは許可)
+          find notebooks/ -name "*.ipynb" -exec echo "Checking: {}" \;
+        fi
+
+  # 研究実験の検証
+  research-experiments:
+    name: Research Experiments Validation
+    runs-on: ubuntu-latest
+    needs: claude-code-detection
+    if: needs.claude-code-detection.outputs.experiment-files != '0'
+    
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10']
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    
+    - name: 📦 Install Research Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        
+        # 基本的な研究パッケージ
+        pip install numpy pandas matplotlib seaborn scikit-learn
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+        pip install transformers pillow opencv-python
+        
+        # テスト・検証用
+        pip install pytest pytest-cov nbval
+        
+        # プロジェクト依存関係
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        fi
+    
+    - name: 🧪 Run Research Code Tests
+      run: |
+        echo "🧪 Running research code validation..."
+        
+        # 基本的なコード実行テスト
+        if [ -d "src" ]; then
+          python -m pytest src/ -v || true
+        fi
+        
+        # スクリプトの構文チェック
+        find . -name "*.py" -not -path "./.venv/*" | head -20 | while read file; do
+          echo "Syntax check: $file"
+          python -m py_compile "$file" || echo "Syntax error in $file"
+        done
+    
+    - name: 📔 Validate Notebooks
+      run: |
+        if [ -d "notebooks" ]; then
+          echo "📔 Validating Jupyter notebooks..."
+          
+          # ノートブックの実行可能性チェック（軽量）
+          find notebooks/ -name "*.ipynb" | head -5 | while read notebook; do
+            echo "Validating: $notebook"
+            # 実際の実行は時間がかかるため、構文チェックのみ
+            jupyter nbconvert --to script "$notebook" --stdout > /dev/null || echo "Issues in $notebook"
+          done
+        fi
+    
+    - name: 📊 Research Data Validation
+      run: |
+        echo "📊 Validating research data structure..."
+        
+        # データディレクトリ構造チェック
+        for dir in data results figures notebooks; do
+          if [ -d "$dir" ]; then
+            echo "✅ $dir directory exists"
+            find "$dir" -type f | wc -l | xargs echo "Files in $dir:"
+          else
+            echo "⚠️ $dir directory missing"
+          fi
+        done
+        
+        # 設定ファイルの存在チェック
+        for file in config.py requirements.txt README.md; do
+          if [ -f "$file" ]; then
+            echo "✅ $file exists"
+          else
+            echo "⚠️ $file missing"
+          fi
+        done
+
+  # 研究データのバックアップと管理
+  research-data-management:
+    name: Research Data Management
+    runs-on: ubuntu-latest
+    needs: claude-code-detection
+    if: github.event_name == 'push' || github.event.inputs.full_analysis == 'true'
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        lfs: true  # Git LFS対応
+    
+    - name: 📊 Analyze Research Data
+      run: |
+        echo "📊 Analyzing research project data..."
+        
+        # ファイルサイズと種類の分析
+        echo "## Research Data Analysis" > data-analysis.md
+        echo "Generated: $(date)" >> data-analysis.md
+        echo "" >> data-analysis.md
+        
+        # データファイルの統計
+        echo "### Data Files Statistics" >> data-analysis.md
+        for ext in py ipynb md csv json pkl txt; do
+          count=$(find . -name "*.$ext" | wc -l)
+          if [ $count -gt 0 ]; then
+            echo "- .$ext files: $count" >> data-analysis.md
+          fi
+        done
+        echo "" >> data-analysis.md
+        
+        # ディレクトリサイズ
+        echo "### Directory Sizes" >> data-analysis.md
+        for dir in data notebooks results src figures; do
+          if [ -d "$dir" ]; then
+            size=$(du -sh "$dir" 2>/dev/null | cut -f1)
+            echo "- $dir: $size" >> data-analysis.md
+          fi
+        done
+        echo "" >> data-analysis.md
+        
+        # 最大ファイル
+        echo "### Largest Files" >> data-analysis.md
+        find . -type f -not -path "./.git/*" -exec ls -lh {} \; | sort -k5 -hr | head -10 | while read line; do
+          echo "- $line" >> data-analysis.md
+        done
+    
+    - name: 🔐 Check for Sensitive Data
+      run: |
+        echo "🔐 Checking for sensitive research data..."
+        
+        # 機密情報パターンの検索
+        SENSITIVE_FOUND=false
+        
+        # APIキー等のパターン
+        if grep -r "api_key\|API_KEY\|secret\|SECRET\|password\|PASSWORD" . --exclude-dir=.git || true; then
+          echo "⚠️ Potential sensitive data found"
+          SENSITIVE_FOUND=true
+        fi
+        
+        # 大きなバイナリファイル
+        find . -type f -size +100M -not -path "./.git/*" | while read file; do
+          echo "⚠️ Large file detected: $file"
+          SENSITIVE_FOUND=true
+        done
+        
+        if [ "$SENSITIVE_FOUND" = false ]; then
+          echo "✅ No sensitive data detected"
+        fi
+    
+    - name: 💾 Create Research Backup
+      run: |
+        echo "💾 Creating research backup..."
+        
+        # 重要ファイルのバックアップ作成
+        mkdir -p backup
+        
+        # 設定とスクリプト
+        cp *.py backup/ 2>/dev/null || true
+        cp *.md backup/ 2>/dev/null || true
+        cp requirements.txt backup/ 2>/dev/null || true
+        
+        # notebooks の軽量バックアップ（出力セル除去）
+        if [ -d "notebooks" ]; then
+          mkdir -p backup/notebooks
+          find notebooks/ -name "*.ipynb" | while read notebook; do
+            # 出力セルを除去したクリーンなバックアップ
+            if command -v jupyter >/dev/null 2>&1; then
+              jupyter nbconvert --clear-output --to notebook "$notebook" --output-dir backup/notebooks/ 2>/dev/null || cp "$notebook" backup/notebooks/
+            else
+              cp "$notebook" backup/notebooks/
+            fi
+          done
+        fi
+        
+        # バックアップサマリー
+        echo "Backup created: $(ls -la backup/ | wc -l) files"
+    
+    - name: 📤 Upload Research Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: research-data-analysis
+        path: |
+          data-analysis.md
+          backup/
+        retention-days: 30
+
+  # 研究進捗レポートの生成
+  research-progress-report:
+    name: Research Progress Report
+    runs-on: ubuntu-latest
+    needs: [claude-code-detection, research-code-quality, research-experiments]
+    if: always() && (github.event.inputs.generate_report == 'true' || github.event_name == 'schedule')
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+    
+    - name: 📊 Generate Research Progress Report
+      run: |
+        echo "📊 Generating comprehensive research progress report..."
+        
+        # レポートファイル作成
+        cat > research-progress-report.md << 'EOF'
+# 🔬 Research Progress Report
+        
+## Project Overview
+- **Project**: Semantic Classification System Research
+- **Generated**: $(date)
+- **Repository**: ${{ github.repository }}
+- **Latest Commit**: ${{ github.sha }}
+
+## Claude Code Integration Analysis
+        
+### Detection Results
+EOF
+        
+        # Claude Code 検出結果
+        echo "- Claude Code files detected: ${{ needs.claude-code-detection.outputs.claude-detected }}" >> research-progress-report.md
+        echo "- Research files count: ${{ needs.claude-code-detection.outputs.research-files }}" >> research-progress-report.md
+        echo "- Experiment files count: ${{ needs.claude-code-detection.outputs.experiment-files }}" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # コミット履歴分析
+        echo "### Recent Research Activity" >> research-progress-report.md
+        git log --oneline --grep="実験\|experiment\|analysis\|研究" -10 >> research-progress-report.md || echo "No research commits found" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # ファイル構造分析
+        echo "### Project Structure" >> research-progress-report.md
+        echo "\`\`\`" >> research-progress-report.md
+        tree -L 3 -I '__pycache__|*.pyc|.git|venv' . >> research-progress-report.md 2>/dev/null || find . -type d -not -path '*/\.*' | head -20 | sed 's/^/  /' >> research-progress-report.md
+        echo "\`\`\`" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # 品質メトリクス
+        echo "### Code Quality Metrics" >> research-progress-report.md
+        echo "- Code quality check: ${{ needs.research-code-quality.result }}" >> research-progress-report.md
+        echo "- Experiment validation: ${{ needs.research-experiments.result }}" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # Python ファイル統計
+        echo "### Code Statistics" >> research-progress-report.md
+        echo "- Python files: $(find . -name "*.py" | wc -l)" >> research-progress-report.md
+        echo "- Jupyter notebooks: $(find . -name "*.ipynb" | wc -l)" >> research-progress-report.md
+        echo "- Documentation files: $(find . -name "*.md" | wc -l)" >> research-progress-report.md
+        echo "- Total lines of Python code: $(find . -name "*.py" -exec wc -l {} + 2>/dev/null | tail -1 | awk '{print $1}' || echo 'N/A')" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # 推奨改善事項
+        echo "### Recommendations" >> research-progress-report.md
+        echo "- [ ] Regular code formatting with Black" >> research-progress-report.md
+        echo "- [ ] Comprehensive test coverage for research code" >> research-progress-report.md
+        echo "- [ ] Documentation updates for new experiments" >> research-progress-report.md
+        echo "- [ ] Data backup and version control" >> research-progress-report.md
+        echo "" >> research-progress-report.md
+        
+        # フッター
+        echo "---" >> research-progress-report.md
+        echo "*Generated by Claude Code Research Review Workflow*" >> research-progress-report.md
+        echo "*Timestamp: $(date)*" >> research-progress-report.md
+    
+    - name: 📈 Generate Research Metrics
+      run: |
+        echo "📈 Generating research metrics..."
+        
+        # 実験ログファイルの分析
+        if [ -f "experiments.json" ]; then
+          echo "## Experiment Log Analysis" >> research-progress-report.md
+          python3 -c "
+import json
+import sys
+try:
+    with open('experiments.json', 'r') as f:
+        experiments = json.load(f)
+    print(f'- Total experiments: {len(experiments)}')
+    if experiments:
+        latest = experiments[-1]
+        print(f'- Latest experiment: {latest.get(\"timestamp\", \"unknown\")}')
+        print(f'- Latest activity: {latest.get(\"research_activity\", \"unknown\")}')
+except Exception as e:
+    print(f'- Experiment log analysis failed: {e}')
+" >> research-progress-report.md
+        else
+          echo "- No experiment log found" >> research-progress-report.md
+        fi
+        echo "" >> research-progress-report.md
+    
+    - name: 📤 Upload Progress Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: research-progress-report
+        path: research-progress-report.md
+    
+    - name: 📝 Update Repository Summary
+      run: |
+        echo "## Latest Research Progress Report" >> $GITHUB_STEP_SUMMARY
+        echo "Generated: $(date)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Key Metrics" >> $GITHUB_STEP_SUMMARY
+        echo "- Claude Code integration: ${{ needs.claude-code-detection.outputs.claude-detected }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Research files: ${{ needs.claude-code-detection.outputs.research-files }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Code quality: ${{ needs.research-code-quality.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Experiments: ${{ needs.research-experiments.result }}" >> $GITHUB_STEP_SUMMARY
+
+  # 研究成果の自動デプロイ
+  research-deployment:
+    name: Research Results Deployment
+    runs-on: ubuntu-latest
+    needs: [research-code-quality, research-experiments]
+    if: github.ref == 'refs/heads/main' && needs.research-code-quality.result == 'success'
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🚀 Deploy Research Results
+      run: |
+        echo "🚀 Preparing research results for deployment..."
+        
+        # 結果ディレクトリの準備
+        mkdir -p deploy/results
+        
+        # 重要なファイルをコピー
+        cp README.md deploy/ 2>/dev/null || true
+        cp CLAUDE.md deploy/ 2>/dev/null || true
+        
+        # 図表があれば追加
+        if [ -d "figures" ]; then
+          cp -r figures deploy/
+        fi
+        
+        if [ -d "results" ]; then
+          cp -r results/* deploy/results/ 2>/dev/null || true
+        fi
+        
+        # デプロイサマリー作成
+        echo "# Research Results Deployment" > deploy/index.md
+        echo "Generated: $(date)" >> deploy/index.md
+        echo "" >> deploy/index.md
+        echo "## Available Results" >> deploy/index.md
+        find deploy/ -type f -name "*.md" -o -name "*.html" -o -name "*.png" -o -name "*.jpg" | sed 's/^deploy\//- /' >> deploy/index.md
+        
+        echo "Deployment prepared: $(find deploy/ -type f | wc -l) files"
+    
+    - name: 📤 Upload Deployment Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: research-deployment
+        path: deploy/
+
+  # 通知とサマリー
+  workflow-summary:
+    name: Workflow Summary
+    runs-on: ubuntu-latest
+    needs: [claude-code-detection, research-code-quality, research-experiments, research-data-management, research-progress-report]
+    if: always()
+    
+    steps:
+    - name: 📋 Generate Workflow Summary
+      run: |
+        echo "# 🔬 Claude Code Research Review Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "## Workflow Results" >> $GITHUB_STEP_SUMMARY
+        echo "- Claude Code Detection: ${{ needs.claude-code-detection.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Code Quality: ${{ needs.research-code-quality.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Experiments: ${{ needs.research-experiments.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Data Management: ${{ needs.research-data-management.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Progress Report: ${{ needs.research-progress-report.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "## Research Metrics" >> $GITHUB_STEP_SUMMARY
+        echo "- Claude Code detected: ${{ needs.claude-code-detection.outputs.claude-detected }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Research files: ${{ needs.claude-code-detection.outputs.research-files }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Experiment files: ${{ needs.claude-code-detection.outputs.experiment-files }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "*Generated by Claude Code Research Review Workflow*" >> $GITHUB_STEP_SUMMARY

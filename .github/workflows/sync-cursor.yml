@@ -1,0 +1,363 @@
+name: Sync with Cursor IDE
+
+# Cursor IDE との同期を支援するワークフロー
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  prepare-cursor-env:
+    name: Prepare Cursor Development Environment
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+    
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        fi
+        
+        # Cursor IDE 用の開発ツールをインストール
+        pip install black isort flake8 mypy pytest
+    
+    - name: 🔧 Generate Cursor Configuration
+      run: |
+        # .vscode/settings.json の生成（Cursor用）
+        mkdir -p .vscode
+        cat > .vscode/settings.json << 'EOF'
+{
+    "python.defaultInterpreterPath": "./venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length=88"],
+    "python.sortImports.args": ["--profile", "black"],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "files.associations": {
+        "*.py": "python"
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "cursor.ai.enabled": true,
+    "cursor.ai.model": "claude-3-sonnet",
+    "cursor.ai.autoCompletion": true
+}
+EOF
+        
+        # .vscode/launch.json の生成
+        cat > .vscode/launch.json << 'EOF'
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Main Module",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/semantic_classification_system.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
+EOF
+        
+        # .vscode/tasks.json の更新（既存のものに追加）
+        if [ ! -f .vscode/tasks.json ]; then
+          cat > .vscode/tasks.json << 'EOF'
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Format with Black",
+            "type": "shell",
+            "command": "black",
+            "args": ["${file}"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Sort Imports",
+            "type": "shell",
+            "command": "isort",
+            "args": ["${file}"],
+            "group": "build"
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "pytest",
+            "args": ["-v"],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Type Check",
+            "type": "shell",
+            "command": "mypy",
+            "args": ["${file}"],
+            "group": "build"
+        }
+    ]
+}
+EOF
+        fi
+    
+    - name: 📋 Generate Development Guide
+      run: |
+        cat > CURSOR_SETUP.md << 'EOF'
+# Cursor IDE Development Setup
+
+## 🚀 Quick Start
+
+1. **Clone Repository**:
+   ```bash
+   git clone ${{ github.server_url }}/${{ github.repository }}.git
+   cd ${{ github.repository }}
+   ```
+
+2. **Setup Virtual Environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate     # Windows
+   ```
+
+3. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Open in Cursor**:
+   ```bash
+   cursor .
+   ```
+
+## 🔧 Cursor Configuration
+
+The following VS Code/Cursor configurations are automatically set up:
+
+### Settings (`.vscode/settings.json`)
+- Python interpreter path
+- Linting with Flake8
+- Formatting with Black
+- Import sorting with isort
+- Auto-format on save
+- Cursor AI integration
+
+### Tasks (`.vscode/tasks.json`)
+- Format with Black: `Ctrl+Shift+P` → `Tasks: Run Task` → `Format with Black`
+- Sort Imports: `Ctrl+Shift+P` → `Tasks: Run Task` → `Sort Imports`
+- Run Tests: `Ctrl+Shift+P` → `Tasks: Run Task` → `Run Tests`
+- Type Check: `Ctrl+Shift+P` → `Tasks: Run Task` → `Type Check`
+
+### Debug Configuration (`.vscode/launch.json`)
+- Debug current Python file: `F5`
+- Debug main module: `Ctrl+Shift+P` → `Debug: Select and Start Debugging`
+
+## 🤖 Cursor AI Features
+
+This project is optimized for Cursor AI development:
+
+1. **Claude Integration**: Code generated with Claude Code is marked for easy identification
+2. **AI Autocompletion**: Enhanced with project context
+3. **Smart Suggestions**: AI-powered code improvements
+4. **Documentation**: AI-assisted documentation generation
+
+## 📝 Development Workflow
+
+1. **Make Changes**: Edit files in Cursor with AI assistance
+2. **Format Code**: Use `Format with Black` task or save (auto-format)
+3. **Run Tests**: Use `Run Tests` task to verify changes
+4. **Commit**: Use Git Auto Manager or manual commit
+5. **Push**: Changes automatically trigger CI/CD pipeline
+
+## 🔍 Available Commands
+
+### Git Auto Manager
+```bash
+# Setup Git with Personal Access Token
+python auto_git_manager.py --setup
+
+# Auto commit and push
+python auto_git_manager.py --auto-commit
+
+# Check Git status
+python auto_git_manager.py --status
+```
+
+### Development Tools
+```bash
+# Format code
+black .
+
+# Sort imports
+isort .
+
+# Lint code
+flake8 .
+
+# Type checking
+mypy .
+
+# Run tests
+pytest -v
+```
+
+## 🎯 Project Structure
+
+```
+${{ github.repository }}/
+├── semantic_classification_system.py  # Main application
+├── requirements.txt                   # Dependencies
+├── README.md                         # Project documentation
+├── auto_git_manager.py               # Git automation
+├── .github/workflows/                # CI/CD pipelines
+├── .vscode/                          # IDE configuration
+└── output/                           # Generated results
+```
+
+## 🤝 Contributing
+
+1. Make changes using Cursor AI assistance
+2. Ensure code is formatted and tested
+3. Use descriptive commit messages
+4. All commits are automatically enhanced with Claude Code signatures
+
+---
+
+**Generated by GitHub Actions for Cursor IDE optimization**
+EOF
+    
+    - name: 🎨 Auto-format Code
+      run: |
+        # コードの自動フォーマット
+        find . -name "*.py" -not -path "./.venv/*" -not -path "./venv/*" | head -20 | while read file; do
+          echo "Formatting: $file"
+          black "$file" 2>/dev/null || echo "Could not format $file"
+          isort "$file" 2>/dev/null || echo "Could not sort imports in $file"
+        done
+    
+    - name: 📊 Generate Environment Report
+      run: |
+        echo "# Cursor Development Environment Report" > cursor-env-report.md
+        echo "Generated: $(date)" >> cursor-env-report.md
+        echo "" >> cursor-env-report.md
+        
+        echo "## Python Environment" >> cursor-env-report.md
+        echo "- Python version: $(python --version)" >> cursor-env-report.md
+        echo "- Pip version: $(pip --version)" >> cursor-env-report.md
+        echo "" >> cursor-env-report.md
+        
+        echo "## Installed Packages" >> cursor-env-report.md
+        if [ -f requirements.txt ]; then
+          echo "Dependencies from requirements.txt:" >> cursor-env-report.md
+          echo "\`\`\`" >> cursor-env-report.md
+          cat requirements.txt >> cursor-env-report.md
+          echo "\`\`\`" >> cursor-env-report.md
+        fi
+        echo "" >> cursor-env-report.md
+        
+        echo "## VS Code/Cursor Configuration" >> cursor-env-report.md
+        echo "- Settings: ✅ Generated" >> cursor-env-report.md
+        echo "- Tasks: ✅ Generated" >> cursor-env-report.md
+        echo "- Launch configs: ✅ Generated" >> cursor-env-report.md
+        echo "- Cursor AI: ✅ Enabled" >> cursor-env-report.md
+        echo "" >> cursor-env-report.md
+        
+        echo "## Quick Start Commands" >> cursor-env-report.md
+        echo "\`\`\`bash" >> cursor-env-report.md
+        echo "# Clone and setup" >> cursor-env-report.md
+        echo "git clone ${{ github.server_url }}/${{ github.repository }}.git" >> cursor-env-report.md
+        echo "cd $(basename ${{ github.repository }})" >> cursor-env-report.md
+        echo "python -m venv venv && source venv/bin/activate" >> cursor-env-report.md
+        echo "pip install -r requirements.txt" >> cursor-env-report.md
+        echo "cursor ." >> cursor-env-report.md
+        echo "\`\`\`" >> cursor-env-report.md
+    
+    - name: 📤 Upload Cursor Configuration
+      uses: actions/upload-artifact@v3
+      with:
+        name: cursor-ide-config
+        path: |
+          .vscode/
+          CURSOR_SETUP.md
+          cursor-env-report.md
+    
+    - name: 💾 Commit Configuration Files
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        
+        git add .vscode/ CURSOR_SETUP.md cursor-env-report.md
+        
+        if ! git diff --staged --quiet; then
+          git commit -m "Add Cursor IDE configuration
+
+🎯 Optimized for Cursor development environment
+🚀 Generated with [Claude Code](https://claude.ai/code)
+
+Features:
+- VS Code/Cursor settings
+- Debug configuration
+- Development tasks
+- AI integration setup
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+          git push
+        else
+          echo "No configuration changes to commit"
+        fi
+    
+    - name: ✅ Setup Complete
+      run: |
+        echo "🎉 Cursor IDE environment setup complete!"
+        echo ""
+        echo "## Next Steps:"
+        echo "1. Clone the repository"
+        echo "2. Run: python -m venv venv && source venv/bin/activate"
+        echo "3. Run: pip install -r requirements.txt"
+        echo "4. Open in Cursor: cursor ."
+        echo ""
+        echo "## Features Available:"
+        echo "✅ Python development environment"
+        echo "✅ Auto-formatting (Black, isort)"
+        echo "✅ Linting (Flake8)"
+        echo "✅ Type checking (MyPy)"
+        echo "✅ Testing framework (PyTest)"
+        echo "✅ Git automation"
+        echo "✅ Cursor AI integration"
+        
+        echo "## Cursor Setup Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- Configuration files: Generated" >> $GITHUB_STEP_SUMMARY
+        echo "- Development tools: Configured" >> $GITHUB_STEP_SUMMARY
+        echo "- AI integration: Enabled" >> $GITHUB_STEP_SUMMARY
+        echo "- Setup guide: Created" >> $GITHUB_STEP_SUMMARY
