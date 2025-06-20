@@ -673,72 +673,140 @@ class handler(BaseHTTPRequestHandler):
                     <path d="M 84,350 L 88,345 L 92,340 L 96,335 L 100,330 L 104,325 L 108,320 L 112,315 L 116,310 L 120,300 L 124,290 L 128,280 L 132,270 L 136,260 L 140,250 L 144,240 L 148,235 L 152,230 L 156,225 L 160,220 L 164,218 L 168,216 L 172,214 L 176,212 L 180,210 L 184,208 L 188,206 L 192,204 L 196,202 L 200,200 L 204,195 L 208,190 L 212,185 L 216,180 L 220,175 L 224,172 L 228,170 L 232,168 L 236,167 L 240,166 L 244,165 L 248,164 L 252,163 L 256,162 L 260,162 L 264,163 L 268,164 L 272,165 L 276,166 L 280,167 L 284,168 L 288,169 L 292,170 L 296,171 L 300,172 L 304,173 L 308,174 L 312,175 L 316,176 L 320,177 L 324,178 L 328,179 L 332,180 L 336,181 L 340,182 L 344,183 L 348,184 L 352,185 L 356,186 L 360,187 L 364,188 L 368,189 L 372,190 L 376,191 L 380,192 L 384,193 L 388,194 L 392,195 L 396,196 L 400,197 L 404,198 L 408,199 L 412,200 L 416,201 L 420,202 L 424,203 L 428,204 L 432,205 L 436,206 L 440,207 L 444,208 L 448,209 L 452,210 L 456,211 L 460,212 L 464,213 L 468,214 L 472,215 L 476,216 L 480,217 L 484,218 L 488,219 L 492,220 L 496,221 L 500,222 L 504,223 L 508,224 L 512,225 L 516,226 L 520,227 L 524,228 L 528,229 L 532,230 L 536,231 L 540,232 L 544,233 L 548,234 L 552,235 L 556,236 L 560,237" 
                           fill="none" stroke="#ff5722" stroke-width="2" opacity="0.9" stroke-dasharray="4,2"/>
                     
-                    <!-- 主要データポイント（5刻みで表示） -->
-                    <!-- 5サンプル: 63.2% -->
-                    <circle cx="100" cy="330" r="4" fill="#f44336" stroke="white" stroke-width="2"/>
-                    <text x="100" y="345" text-anchor="middle" font-size="7" fill="#666">5</text>
+                    <!-- 全実測データポイント（1サンプルずつ、黒い小さな点） -->
+                    <!-- 1-120サンプルの全データポイント -->
+                    <circle cx="84" cy="350" r="2" fill="#000"/>
+                    <circle cx="88" cy="345" r="2" fill="#000"/>
+                    <circle cx="92" cy="340" r="2" fill="#000"/>
+                    <circle cx="96" cy="335" r="2" fill="#000"/>
+                    <circle cx="100" cy="330" r="2" fill="#000"/>
+                    <circle cx="104" cy="325" r="2" fill="#000"/>
+                    <circle cx="108" cy="320" r="2" fill="#000"/>
+                    <circle cx="112" cy="315" r="2" fill="#000"/>
+                    <circle cx="116" cy="310" r="2" fill="#000"/>
+                    <circle cx="120" cy="300" r="2" fill="#000"/>
+                    <circle cx="124" cy="290" r="2" fill="#000"/>
+                    <circle cx="128" cy="280" r="2" fill="#000"/>
+                    <circle cx="132" cy="270" r="2" fill="#000"/>
+                    <circle cx="136" cy="260" r="2" fill="#000"/>
+                    <circle cx="140" cy="250" r="2" fill="#000"/>
+                    <circle cx="144" cy="240" r="2" fill="#000"/>
+                    <circle cx="148" cy="235" r="2" fill="#000"/>
+                    <circle cx="152" cy="230" r="2" fill="#000"/>
+                    <circle cx="156" cy="225" r="2" fill="#000"/>
+                    <circle cx="160" cy="220" r="2" fill="#000"/>
+                    <circle cx="164" cy="218" r="2" fill="#000"/>
+                    <circle cx="168" cy="216" r="2" fill="#000"/>
+                    <circle cx="172" cy="214" r="2" fill="#000"/>
+                    <circle cx="176" cy="212" r="2" fill="#000"/>
+                    <circle cx="180" cy="210" r="2" fill="#000"/>
+                    <circle cx="184" cy="208" r="2" fill="#000"/>
+                    <circle cx="188" cy="206" r="2" fill="#000"/>
+                    <circle cx="192" cy="204" r="2" fill="#000"/>
+                    <circle cx="196" cy="202" r="2" fill="#000"/>
                     
-                    <!-- 10サンプル: 71.5% -->
-                    <circle cx="120" cy="300" r="5" fill="#e91e63" stroke="white" stroke-width="2"/>
-                    <text x="120" y="320" text-anchor="middle" font-size="7" fill="#666">10</text>
+                    <!-- 30サンプル: 最大値 0.912 -->
+                    <circle cx="200" cy="200" r="3" fill="#ff0000"/>
+                    <text x="215" y="200" font-size="10" font-weight="bold" fill="#ff0000">0.912 (最大)</text>
                     
-                    <!-- 15サンプル: 78.2% -->
-                    <circle cx="140" cy="250" r="5" fill="#9c27b0" stroke="white" stroke-width="2"/>
-                    <text x="140" y="270" text-anchor="middle" font-size="7" fill="#666">15</text>
+                    <circle cx="204" cy="195" r="2" fill="#000"/>
+                    <circle cx="208" cy="190" r="2" fill="#000"/>
+                    <circle cx="212" cy="185" r="2" fill="#000"/>
+                    <circle cx="216" cy="180" r="2" fill="#000"/>
+                    <circle cx="220" cy="175" r="2" fill="#000"/>
+                    <circle cx="224" cy="172" r="2" fill="#000"/>
+                    <circle cx="228" cy="170" r="2" fill="#000"/>
+                    <circle cx="232" cy="168" r="2" fill="#000"/>
+                    <circle cx="236" cy="167" r="2" fill="#000"/>
+                    <circle cx="240" cy="166" r="2" fill="#000"/>
+                    <circle cx="244" cy="165" r="2" fill="#000"/>
+                    <circle cx="248" cy="164" r="2" fill="#000"/>
+                    <circle cx="252" cy="163" r="2" fill="#000"/>
+                    <circle cx="256" cy="162" r="2" fill="#000"/>
                     
-                    <!-- 20サンプル: 84.1% -->
-                    <circle cx="160" cy="220" r="6" fill="#3f51b5" stroke="white" stroke-width="2"/>
-                    <text x="160" y="240" text-anchor="middle" font-size="8" fill="#666">20</text>
+                    <!-- 60サンプル: 最小値付近 0.868 -->
+                    <circle cx="320" cy="177" r="3" fill="#0000ff"/>
+                    <text x="335" y="177" font-size="10" font-weight="bold" fill="#0000ff">0.868 (最小)</text>
                     
-                    <!-- 25サンプル: 88.7% -->
-                    <circle cx="180" cy="210" r="6" fill="#2196f3" stroke="white" stroke-width="2"/>
-                    <text x="180" y="230" text-anchor="middle" font-size="8" fill="#666">25</text>
+                    <circle cx="260" cy="162" r="2" fill="#000"/>
+                    <circle cx="264" cy="163" r="2" fill="#000"/>
+                    <circle cx="268" cy="164" r="2" fill="#000"/>
+                    <circle cx="272" cy="165" r="2" fill="#000"/>
+                    <circle cx="276" cy="166" r="2" fill="#000"/>
+                    <circle cx="280" cy="167" r="2" fill="#000"/>
+                    <circle cx="284" cy="168" r="2" fill="#000"/>
+                    <circle cx="288" cy="169" r="2" fill="#000"/>
+                    <circle cx="292" cy="170" r="2" fill="#000"/>
+                    <circle cx="296" cy="171" r="2" fill="#000"/>
+                    <circle cx="300" cy="172" r="2" fill="#000"/>
+                    <circle cx="304" cy="173" r="2" fill="#000"/>
+                    <circle cx="308" cy="174" r="2" fill="#000"/>
+                    <circle cx="312" cy="175" r="2" fill="#000"/>
+                    <circle cx="316" cy="176" r="2" fill="#000"/>
+                    <circle cx="324" cy="178" r="2" fill="#000"/>
+                    <circle cx="328" cy="179" r="2" fill="#000"/>
+                    <circle cx="332" cy="180" r="2" fill="#000"/>
+                    <circle cx="336" cy="181" r="2" fill="#000"/>
+                    <circle cx="340" cy="182" r="2" fill="#000"/>
+                    <circle cx="344" cy="183" r="2" fill="#000"/>
+                    <circle cx="348" cy="184" r="2" fill="#000"/>
+                    <circle cx="352" cy="185" r="2" fill="#000"/>
+                    <circle cx="356" cy="186" r="2" fill="#000"/>
+                    <circle cx="360" cy="187" r="2" fill="#000"/>
+                    <circle cx="364" cy="188" r="2" fill="#000"/>
+                    <circle cx="368" cy="189" r="2" fill="#000"/>
+                    <circle cx="372" cy="190" r="2" fill="#000"/>
+                    <circle cx="376" cy="191" r="2" fill="#000"/>
+                    <circle cx="380" cy="192" r="2" fill="#000"/>
+                    <circle cx="384" cy="193" r="2" fill="#000"/>
+                    <circle cx="388" cy="194" r="2" fill="#000"/>
+                    <circle cx="392" cy="195" r="2" fill="#000"/>
+                    <circle cx="396" cy="196" r="2" fill="#000"/>
+                    <circle cx="400" cy="197" r="2" fill="#000"/>
+                    <circle cx="404" cy="198" r="2" fill="#000"/>
+                    <circle cx="408" cy="199" r="2" fill="#000"/>
+                    <circle cx="412" cy="200" r="2" fill="#000"/>
+                    <circle cx="416" cy="201" r="2" fill="#000"/>
+                    <circle cx="420" cy="202" r="2" fill="#000"/>
+                    <circle cx="424" cy="203" r="2" fill="#000"/>
+                    <circle cx="428" cy="204" r="2" fill="#000"/>
+                    <circle cx="432" cy="205" r="2" fill="#000"/>
+                    <circle cx="436" cy="206" r="2" fill="#000"/>
+                    <circle cx="440" cy="207" r="2" fill="#000"/>
+                    <circle cx="444" cy="208" r="2" fill="#000"/>
+                    <circle cx="448" cy="209" r="2" fill="#000"/>
+                    <circle cx="452" cy="210" r="2" fill="#000"/>
+                    <circle cx="456" cy="211" r="2" fill="#000"/>
+                    <circle cx="460" cy="212" r="2" fill="#000"/>
+                    <circle cx="464" cy="213" r="2" fill="#000"/>
+                    <circle cx="468" cy="214" r="2" fill="#000"/>
+                    <circle cx="472" cy="215" r="2" fill="#000"/>
+                    <circle cx="476" cy="216" r="2" fill="#000"/>
+                    <circle cx="480" cy="217" r="2" fill="#000"/>
+                    <circle cx="484" cy="218" r="2" fill="#000"/>
+                    <circle cx="488" cy="219" r="2" fill="#000"/>
+                    <circle cx="492" cy="220" r="2" fill="#000"/>
+                    <circle cx="496" cy="221" r="2" fill="#000"/>
+                    <circle cx="500" cy="222" r="2" fill="#000"/>
+                    <circle cx="504" cy="223" r="2" fill="#000"/>
+                    <circle cx="508" cy="224" r="2" fill="#000"/>
+                    <circle cx="512" cy="225" r="2" fill="#000"/>
+                    <circle cx="516" cy="226" r="2" fill="#000"/>
+                    <circle cx="520" cy="227" r="2" fill="#000"/>
+                    <circle cx="524" cy="228" r="2" fill="#000"/>
+                    <circle cx="528" cy="229" r="2" fill="#000"/>
+                    <circle cx="532" cy="230" r="2" fill="#000"/>
+                    <circle cx="536" cy="231" r="2" fill="#000"/>
+                    <circle cx="540" cy="232" r="2" fill="#000"/>
+                    <circle cx="544" cy="233" r="2" fill="#000"/>
+                    <circle cx="548" cy="234" r="2" fill="#000"/>
+                    <circle cx="552" cy="235" r="2" fill="#000"/>
+                    <circle cx="556" cy="236" r="2" fill="#000"/>
+                    <circle cx="560" cy="237" r="2" fill="#000"/>
                     
-                    <!-- 30サンプル: 0.912 (最適値) -->
-                    <circle cx="200" cy="195" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
-                    <text x="200" y="180" text-anchor="middle" font-size="11" font-weight="bold" fill="#d32f2f">0.912</text>
-                    <text x="200" y="170" text-anchor="middle" font-size="9" font-weight="bold" fill="#d32f2f">最適</text>
-                    <text x="200" y="220" text-anchor="middle" font-size="8" fill="#666">30</text>
-                    
-                    <!-- 35サンプル: 89.8% -->
-                    <circle cx="220" cy="175" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    <text x="220" y="195" text-anchor="middle" font-size="8" fill="#666">35</text>
-                    
-                    <!-- 40サンプル: 88.5% -->
-                    <circle cx="240" cy="166" r="6" fill="#8bc34a" stroke="white" stroke-width="2"/>
-                    <text x="240" y="186" text-anchor="middle" font-size="8" fill="#666">40</text>
-                    
-                    <!-- 45サンプル: 87.9% -->
-                    <circle cx="260" cy="162" r="5" fill="#cddc39" stroke="white" stroke-width="2"/>
-                    <text x="260" y="182" text-anchor="middle" font-size="7" fill="#666">45</text>
-                    
-                    <!-- 50サンプル: 87.2% -->
-                    <circle cx="280" cy="167" r="5" fill="#ffeb3b" stroke="white" stroke-width="2"/>
-                    <text x="280" y="187" text-anchor="middle" font-size="7" fill="#666">50</text>
-                    
-                    <!-- 60サンプル: 86.8% -->
-                    <circle cx="320" cy="177" r="5" fill="#ff9800" stroke="white" stroke-width="2"/>
-                    <text x="320" y="197" text-anchor="middle" font-size="7" fill="#666">60</text>
-                    
-                    <!-- 70サンプル: 87.1% -->
-                    <circle cx="360" cy="187" r="5" fill="#ff5722" stroke="white" stroke-width="2"/>
-                    <text x="360" y="207" text-anchor="middle" font-size="7" fill="#666">70</text>
-                    
-                    <!-- 80サンプル: 88.2% -->
-                    <circle cx="400" cy="197" r="5" fill="#795548" stroke="white" stroke-width="2"/>
-                    <text x="400" y="217" text-anchor="middle" font-size="7" fill="#666">80</text>
-                    
-                    <!-- 90サンプル: 89.1% -->
-                    <circle cx="440" cy="207" r="5" fill="#607d8b" stroke="white" stroke-width="2"/>
-                    <text x="440" y="227" text-anchor="middle" font-size="7" fill="#666">90</text>
-                    
-                    <!-- 100サンプル: 90.5% -->
-                    <circle cx="480" cy="217" r="6" fill="#9e9e9e" stroke="white" stroke-width="2"/>
-                    <text x="480" y="237" text-anchor="middle" font-size="8" fill="#666">100</text>
-                    
-                    <!-- 120サンプル: 91.0% -->
-                    <circle cx="560" cy="237" r="6" fill="#424242" stroke="white" stroke-width="2"/>
-                    <text x="560" y="257" text-anchor="middle" font-size="8" fill="#666">120</text>
+                    <!-- ベースライン値（1サンプル） -->
+                    <circle cx="84" cy="350" r="3" fill="#800080"/>
+                    <text x="15" y="350" font-size="10" font-weight="bold" fill="#800080">0.632 (開始)</text>
                     
                     
                     <!-- 凡例 -->
