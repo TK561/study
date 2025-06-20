@@ -1,12 +1,11 @@
-from http.server import BaseHTTPRequestHandler
-
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/html; charset=utf-8')
-        self.end_headers()
-        
-        html = '''<!DOCTYPE html>
+def handler(request):
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache'
+        },
+        'body': '''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -156,101 +155,6 @@ class handler(BaseHTTPRequestHandler):
             margin: 5px 0;
             font-size: 0.95rem;
         }
-        .saturation-analysis {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-        .saturation-analysis h3 {
-            color: #e65100;
-            margin-top: 0;
-            font-size: 1.4rem;
-        }
-        .phase-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .phase-table th {
-            background: #ff9800;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-        }
-        .phase-table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-        .phase-table tr:nth-child(even) {
-            background: #fff8e1;
-        }
-        .phase-table tr:hover {
-            background: #ffe0b2;
-        }
-        .recommendation {
-            background: #e1f5fe;
-            border: 2px solid #0288d1;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .recommendation h3 {
-            color: #01579b;
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-        .recommendation p {
-            color: #0277bd;
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .tech-tag {
-            background: #667eea;
-            color: white;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        .card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .card h3 {
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 50px;
-            color: #666;
-        }
-        .footer p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-        }
         .experimental-details {
             background: #f8f9fa;
             padding: 30px;
@@ -269,6 +173,17 @@ class handler(BaseHTTPRequestHandler):
             color: #667eea;
             margin-bottom: 20px;
             font-size: 1.2rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 50px;
+            color: #666;
+        }
+        .footer p {
+            margin: 5px 0;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -456,50 +371,7 @@ class handler(BaseHTTPRequestHandler):
             </div>
 
             <div class="experiment-section">
-                <h4>実験3: WordNet処理能力分析</h4>
-                <p><strong>平均成功率:</strong> 65.4% | <strong>最高:</strong> 単純用語 90% | <strong>最低:</strong> 現代用語 43%</p>
-                <div style="background: #ffebee; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f44336;">
-                    <h5 style="margin-top: 0; color: #c62828;">主な課題</h5>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.9rem;">
-                        <div><strong>現代用語:</strong> laptop, solar panel</div>
-                        <div><strong>複合記述:</strong> vintage sports car</div>
-                        <div><strong>文化固有:</strong> samurai, taco</div>
-                        <div><strong>地理的:</strong> chinese wall</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="experiment-section">
-                <h4>実験4: Cohen's Power Analysis詳細検証</h4>
-                <div style="margin: 20px 0;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; border-left: 4px solid #4caf50;">
-                            <h5 style="margin-top: 0; color: #2e7d32;">統計的検出力分析</h5>
-                            <p><strong>効果サイズ (Cohen's d):</strong> 0.85 (大)</p>
-                            <p><strong>α水準:</strong> 0.05</p>
-                            <p><strong>検出力 (1-β):</strong> 0.80</p>
-                            <p><strong>必要サンプル数:</strong> 30/カテゴリ</p>
-                        </div>
-                        <div style="background: #fff3e0; padding: 20px; border-radius: 8px; border-left: 4px solid #ff9800;">
-                            <h5 style="margin-top: 0; color: #e65100;">サンプル数分析</h5>
-                            <p><strong>現状サンプル:</strong> 30/カテゴリ</p>
-                            <p><strong>総サンプル数:</strong> 240</p>
-                            <p><strong>統計的有意性:</strong> p < 0.001</p>
-                            <p><strong>信頼区間:</strong> ±5.2%</p>
-                        </div>
-                        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; border-left: 4px solid #2196f3;">
-                            <h5 style="margin-top: 0; color: #1565c0;">検証結果</h5>
-                            <p><strong>仮説:</strong> 対立仮説採択</p>
-                            <p><strong>統計的結論:</strong> 高度有意</p>
-                            <p><strong>実用的意義:</strong> 大きな改善効果</p>
-                            <p><strong>追試可能性:</strong> 十分なサンプル</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="experiment-section">
-                <h4>実験5: 全補強実験総括</h4>
+                <h4>実験3: 全補強実験総括</h4>
                 <div style="background: #e8f5e9; padding: 25px; border-radius: 8px; border-left: 4px solid #4caf50; margin: 20px 0;">
                     <h5 style="margin-top: 0; color: #2e7d32;">✅ 5つの補強実験完了 - 学術発表準備完了</h5>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin: 15px 0;">
@@ -527,135 +399,9 @@ class handler(BaseHTTPRequestHandler):
                     
                     <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 6px;">
                         <h6 style="margin-top: 0; color: #1b5e20;">研究強度総合評価</h6>
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                <span style="font-size: 0.9rem;">統計的厳密性</span>
-                                <span style="font-weight: bold; color: #4caf50;">95%</span>
-                            </div>
-                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                <div style="width: 95%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                            </div>
-                        </div>
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                <span style="font-size: 0.9rem;">実証的根拠</span>
-                                <span style="font-weight: bold; color: #4caf50;">92%</span>
-                            </div>
-                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                <div style="width: 92%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                            </div>
-                        </div>
-                        <div style="margin: 10px 0;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                <span style="font-size: 0.9rem;">学術的価値</span>
-                                <span style="font-weight: bold; color: #4caf50;">90%</span>
-                            </div>
-                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                <div style="width: 90%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                            </div>
-                        </div>
+                        <p style="font-size: 0.9rem; margin: 5px 0;"><strong>統計的厳密性:</strong> 95% | <strong>実証的根拠:</strong> 92% | <strong>学術的価値:</strong> 90%</p>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="saturation-analysis">
-            <h3>飽和点分析結果</h3>
-            <table class="phase-table">
-                <tr>
-                    <th>Phase</th>
-                    <th>カテゴリ数</th>
-                    <th>総改善率</th>
-                    <th>限界効用</th>
-                    <th>統計的有意性</th>
-                    <th>推奨度</th>
-                </tr>
-                <tr>
-                    <td>Baseline</td>
-                    <td>8</td>
-                    <td>21.0%</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>現状</td>
-                </tr>
-                <tr style="background: #c8e6c9;">
-                    <td><strong>Phase 1</strong></td>
-                    <td><strong>16</strong></td>
-                    <td><strong>27.3%</strong></td>
-                    <td><strong>0.440%</strong></td>
-                    <td><strong>あり</strong></td>
-                    <td><strong>最推奨</strong></td>
-                </tr>
-                <tr>
-                    <td>Phase 2</td>
-                    <td>24</td>
-                    <td>29.2%</td>
-                    <td>0.133%</td>
-                    <td>あり</td>
-                    <td>推奨</td>
-                </tr>
-                <tr>
-                    <td>Phase 3</td>
-                    <td>32</td>
-                    <td>29.8%</td>
-                    <td>0.040%</td>
-                    <td>なし</td>
-                    <td>非推奨</td>
-                </tr>
-                <tr>
-                    <td>Phase 6</td>
-                    <td>64</td>
-                    <td>30.0%</td>
-                    <td>0.000%</td>
-                    <td>なし</td>
-                    <td>飽和</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="recommendation">
-            <h3>実装推奨事項</h3>
-            <p><strong>即時実施:</strong> Phase 1（16カテゴリ、480サンプル）</p>
-            <p>期待改善率: +10.6% | ROI: 最高 | 実施期間: 2-3週間</p>
-            <p>Medical, Sports, Art, Technology等の重要カテゴリを追加</p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>検証済みデータセット</h3>
-                <p><strong>全カテゴリで十分なデータ確保可能:</strong></p>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>LFW: 13,233サンプル (Person)</li>
-                    <li>ImageNet: 180,000サンプル (Animal)</li>
-                    <li>Food-101: 101,000サンプル (Food)</li>
-                    <li>Places365: 1,803,460サンプル (Landscape)</li>
-                    <li>その他4カテゴリも充足</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>技術スタック</h3>
-                <div class="tech-stack">
-                    <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">CLIP</span>
-                    <span class="tech-tag">YOLOv8</span>
-                    <span class="tech-tag">SAM</span>
-                    <span class="tech-tag">BLIP</span>
-                    <span class="tech-tag">WordNet</span>
-                    <span class="tech-tag">Cohen's d</span>
-                    <span class="tech-tag">Claude Code</span>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>研究成果物</h3>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>Cohen's Power Analysis実装</li>
-                    <li>飽和点モデル: f(x) = 30(1-e^(-0.15x))</li>
-                    <li>16データセット選択根拠</li>
-                    <li>統計的検証プロトコル</li>
-                    <li>752サンプル実験計画</li>
-                </ul>
             </div>
         </div>
 
@@ -667,5 +413,4 @@ class handler(BaseHTTPRequestHandler):
     </div>
 </body>
 </html>'''
-        
-        self.wfile.write(html.encode('utf-8'))
+    }
