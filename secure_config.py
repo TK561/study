@@ -25,6 +25,9 @@ GITHUB_EMAIL = os.getenv('GITHUB_EMAIL', '')
 # Claude API設定
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY', '')
 
+# Vercel設定
+VERCEL_PROJECT_ID = os.getenv('VERCEL_PROJECT_ID', '')
+
 # 研究プロジェクト設定
 PROJECT_NAME = "意味カテゴリに基づく画像分類システム"
 RESEARCH_INSTITUTION = os.getenv('RESEARCH_INSTITUTION', '')

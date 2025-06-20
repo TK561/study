@@ -1,22 +1,7 @@
 {
-  "builds": [
-    {
-      "src": "streamlit_app.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "streamlit_app.py"
-    }
-  ],
-  "env": {
-    "PYTHONPATH": "."
-  },
   "functions": {
-    "streamlit_app.py": {
-      "maxDuration": 60
+    "api/index.py": {
+      "runtime": "python3.9"
     }
   }
 }
