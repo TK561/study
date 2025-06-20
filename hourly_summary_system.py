@@ -169,6 +169,41 @@ class HourlySummarySystem:
         
         return activities if activities else ["通常作業"]
     
+    def send_notification(self, summary: Dict[str, Any]):
+        """通知を送信"""
+        try:
+            # Windows notification
+            if os.name == 'nt':
+                import subprocess
+                notification_title = "1時間毎作業まとめ"
+                notification_text = f"作業時間: {summary['duration_hours']:.1f}時間\\n主な活動: {', '.join(summary['activities'])}"
+                
+                # PowerShell command for Windows toast notification
+                ps_command = f'''
+                Add-Type -AssemblyName System.Windows.Forms
+                [System.Windows.Forms.MessageBox]::Show("{notification_text}", "{notification_title}", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                '''
+                
+                subprocess.run(['powershell', '-Command', ps_command], 
+                             capture_output=True, text=True)
+            
+            # Console notification (always available)
+            print("\\n🔔 NOTIFICATION: 1時間毎まとめが更新されました")
+            print(f"⏰ 時刻: {summary['summary_time'][:19]}")
+            print(f"📊 活動: {', '.join(summary['activities'])}")
+            print("📄 詳細は統合レポートを確認してください\\n")
+            
+            # Sound notification (if available)
+            try:
+                if os.name == 'nt':
+                    import winsound
+                    winsound.Beep(800, 200)  # frequency, duration
+            except ImportError:
+                pass
+                
+        except Exception as e:
+            print(f"通知送信エラー: {e}")
+    
     def generate_consolidated_report(self, session_data: Dict[str, Any], output_file: Path):
         """統合レポートを生成（全記録をまとめる）"""
         session_start = datetime.datetime.fromisoformat(session_data['session_start'])
@@ -287,6 +322,9 @@ class HourlySummarySystem:
         
         print("="*50)
         print("次の1時間も継続します\n")
+        
+        # Send notification
+        self.send_notification(summary)
     
     def start_hourly_timer(self):
         """1時間タイマーを開始"""
