@@ -600,7 +600,7 @@ class handler(BaseHTTPRequestHandler):
                     <line x1="80" y1="350" x2="80" y2="50" stroke="#333" stroke-width="2"/>
                     
                     <!-- X軸ラベル -->
-                    <text x="400" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">カテゴリ数</text>
+                    <text x="400" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">精度 (%)</text>
                     
                     <!-- Y軸ラベル -->
                     <text x="25" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" transform="rotate(-90, 25, 200)">改善率 (%)</text>
@@ -608,22 +608,22 @@ class handler(BaseHTTPRequestHandler):
                     <!-- X軸目盛り -->
                     <g stroke="#666" font-size="12" text-anchor="middle">
                         <line x1="160" y1="350" x2="160" y2="355" stroke-width="1"/>
-                        <text x="160" y="370" fill="#666">8</text>
+                        <text x="160" y="370" fill="#666">70</text>
                         
                         <line x1="240" y1="350" x2="240" y2="355" stroke-width="1"/>
-                        <text x="240" y="370" fill="#666">16</text>
+                        <text x="240" y="370" fill="#666">75</text>
                         
                         <line x1="320" y1="350" x2="320" y2="355" stroke-width="1"/>
-                        <text x="320" y="370" fill="#666">24</text>
+                        <text x="320" y="370" fill="#666">80</text>
                         
                         <line x1="400" y1="350" x2="400" y2="355" stroke-width="1"/>
-                        <text x="400" y="370" fill="#666">32</text>
+                        <text x="400" y="370" fill="#666">85</text>
                         
                         <line x1="560" y1="350" x2="560" y2="355" stroke-width="1"/>
-                        <text x="560" y="370" fill="#666">48</text>
+                        <text x="560" y="370" fill="#666">90</text>
                         
                         <line x1="720" y1="350" x2="720" y2="355" stroke-width="1"/>
-                        <text x="720" y="370" fill="#666">64</text>
+                        <text x="720" y="370" fill="#666">95</text>
                     </g>
                     
                     <!-- Y軸目盛り -->
@@ -641,35 +641,32 @@ class handler(BaseHTTPRequestHandler):
                         <text x="70" y="175" fill="#666">30</text>
                     </g>
                     
-                    <!-- 飽和線（青い曲線が平坦になる位置に合わせた横線） -->
-                    <line x1="400" y1="128" x2="720" y2="128" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.9"/>
+                    <!-- 飽和線（左端まで延長、交点の値を表示） -->
+                    <line x1="80" y1="128" x2="720" y2="128" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.9"/>
                     <text x="580" y="122" font-size="11" fill="#667eea" font-weight="bold">理論飽和レベル</text>
+                    <!-- 交点の値表示（左端） -->
+                    <text x="50" y="133" font-size="10" fill="#667eea" font-weight="bold">30.0%</text>
                     
-                    <!-- 理論曲線 f(x) = 30(1-e^(-0.15x)) -->
-                    <path d="M 160,224 Q 200,200 240,180 Q 280,165 320,155 Q 360,148 400,142 Q 480,135 560,131 Q 640,129 720,128" 
+                    <!-- 理論曲線 精度 vs 改善率 -->
+                    <path d="M 130,224 Q 180,200 240,180 Q 300,165 360,155 Q 420,148 480,142 Q 540,135 600,131 Q 660,129 720,128" 
                           fill="none" stroke="#667eea" stroke-width="4" opacity="0.8"/>
                     
                     <!-- 実測データポイントと値表示 -->
-                    <!-- 8カテゴリ: 21.0% -->
-                    <circle cx="160" cy="224" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
-                    <text x="160" y="210" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">21.0%</text>
+                    <!-- ベースライン: 66.6% → 改善率21.0% -->
+                    <circle cx="130" cy="224" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
+                    <text x="130" y="210" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">21.0%</text>
+                    <text x="130" y="245" text-anchor="middle" font-size="9" fill="#666">66.6%</text>
                     
-                    <!-- 16カテゴリ: 27.3% -->
-                    <circle cx="240" cy="186" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
-                    <text x="240" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">27.3%</text>
+                    <!-- 特化手法: 83.9% → 改善率25.9% -->
+                    <circle cx="560" cy="186" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
+                    <text x="560" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">25.9%</text>
+                    <text x="560" y="200" text-anchor="middle" font-size="10" font-weight="bold" fill="#d32f2f">実測値</text>
+                    <text x="560" y="245" text-anchor="middle" font-size="9" fill="#666">83.9%</text>
                     
-                    <!-- 24カテゴリ: 29.2% -->
-                    <circle cx="320" cy="175" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
-                    <text x="320" y="161" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">29.2%</text>
-                    
-                    <!-- 32カテゴリ: 29.8% (飽和点) -->
-                    <circle cx="400" cy="172" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
-                    <text x="400" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">29.8%</text>
-                    <text x="400" y="145" text-anchor="middle" font-size="10" font-weight="bold" fill="#d32f2f">飽和点</text>
-                    
-                    <!-- 64カテゴリ: 30.0% -->
-                    <circle cx="720" cy="170" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
-                    <text x="720" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">30.0%</text>
+                    <!-- 理論最大: 95.0% → 改善率30.0% -->
+                    <circle cx="720" cy="128" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
+                    <text x="720" y="114" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">30.0%</text>
+                    <text x="720" y="245" text-anchor="middle" font-size="9" fill="#666">95.0%</text>
                     
                     
                     <!-- 凡例 -->
@@ -697,7 +694,7 @@ class handler(BaseHTTPRequestHandler):
                     </g>
                     
                     <!-- タイトル -->
-                    <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">飽和点発見: カテゴリ数と性能改善率の関係</text>
+                    <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">精度と改善率の関係: 飽和点分析</text>
                 </svg>
             </div>
             
