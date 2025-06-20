@@ -115,20 +115,33 @@ class HourlySummarySystem:
             "activities": self.detect_activities(current_git_status)
         }
         
-        # セッションログに追加
-        with open(self.current_session, 'r', encoding='utf-8') as f:
-            session_data = json.load(f)
-        
-        session_data["summaries"].append(summary)
-        
-        with open(self.current_session, 'w', encoding='utf-8') as f:
-            json.dump(session_data, f, indent=2, ensure_ascii=False)
+        # セッション全体の統合サマリーを生成
+        self.update_consolidated_summary(summary)
         
         # まとめ表示
         self.display_summary(summary)
         
         # 次回のための更新
         self.last_summary = now
+    
+    def update_consolidated_summary(self, new_summary: Dict[str, Any]):
+        """統合サマリーファイルを更新（記録をまとめる形式）"""
+        # 統合サマリーファイルパス
+        consolidated_file = self.session_log / "consolidated_work_summary.md"
+        
+        # セッション情報を読み込み
+        with open(self.current_session, 'r', encoding='utf-8') as f:
+            session_data = json.load(f)
+        
+        # 全サマリーを統合
+        session_data["summaries"].append(new_summary)
+        
+        # セッションファイルも更新
+        with open(self.current_session, 'w', encoding='utf-8') as f:
+            json.dump(session_data, f, indent=2, ensure_ascii=False)
+        
+        # Markdownで統合レポートを生成
+        self.generate_consolidated_report(session_data, consolidated_file)
     
     def detect_activities(self, git_status: Dict[str, Any]) -> List[str]:
         """活動を検出"""
@@ -155,6 +168,99 @@ class HourlySummarySystem:
             activities.append("ファイル変更中")
         
         return activities if activities else ["通常作業"]
+    
+    def generate_consolidated_report(self, session_data: Dict[str, Any], output_file: Path):
+        """統合レポートを生成（全記録をまとめる）"""
+        session_start = datetime.datetime.fromisoformat(session_data['session_start'])
+        now = datetime.datetime.now()
+        total_duration = now - session_start
+        
+        # 全活動を集計
+        all_activities = []
+        total_commits = 0
+        file_changes = []
+        
+        for summary in session_data['summaries']:
+            all_activities.extend(summary['activities'])
+            if 'recent_commits' in summary['git_status']:
+                total_commits += len([c for c in summary['git_status']['recent_commits'] if c.strip()])
+        
+        # 活動集計
+        activity_counts = {}
+        for activity in all_activities:
+            activity_counts[activity] = activity_counts.get(activity, 0) + 1
+        
+        # 最新状態
+        latest_summary = session_data['summaries'][-1] if session_data['summaries'] else {}
+        latest_files = latest_summary.get('file_count', {})
+        initial_files = session_data.get('initial_file_count', {})
+        
+        # Markdownレポート生成
+        report = f"""# 🔄 作業統合レポート
+
+**生成日時**: {now.strftime('%Y-%m-%d %H:%M:%S')}  
+**セッション開始**: {session_start.strftime('%Y-%m-%d %H:%M:%S')}  
+**総作業時間**: {total_duration.total_seconds()/3600:.1f}時間
+
+## 📊 全体サマリー
+
+### 🎯 主要活動
+"""
+        
+        for activity, count in sorted(activity_counts.items(), key=lambda x: x[1], reverse=True):
+            report += f"- **{activity}**: {count}回\n"
+        
+        report += f"""
+### 📁 ファイル変更状況
+- **Python**: {initial_files.get('python_files', 0)} → {latest_files.get('python_files', 0)}
+- **Markdown**: {initial_files.get('markdown_files', 0)} → {latest_files.get('markdown_files', 0)}
+- **総ファイル数**: {initial_files.get('total_files', 0)} → {latest_files.get('total_files', 0)}
+
+### 📝 Git活動
+- **コミット数**: 約{total_commits}回
+- **現在ブランチ**: {latest_summary.get('git_status', {}).get('branch', 'unknown')}
+
+## ⏰ 時系列記録
+
+"""
+        
+        for i, summary in enumerate(session_data['summaries'], 1):
+            summary_time = datetime.datetime.fromisoformat(summary['summary_time'])
+            report += f"""### {i}. {summary_time.strftime('%H:%M')} の記録
+- **活動**: {', '.join(summary['activities'])}
+- **作業時間**: {summary['duration_hours']:.1f}時間
+- **ファイル数**: {summary['file_count']['total_files']}個
+
+"""
+        
+        # 最新のGit状況
+        if latest_summary.get('git_status'):
+            git_status = latest_summary['git_status']
+            if git_status.get('recent_commits') and git_status['recent_commits'][0]:
+                report += f"""## 📋 最新Git状況
+
+**最新コミット**:
+```
+{git_status['recent_commits'][0]}
+```
+
+"""
+        
+        report += f"""## 🎉 セッション完了
+
+**合計作業時間**: {total_duration.total_seconds()/3600:.1f}時間  
+**まとめ回数**: {len(session_data['summaries'])}回  
+**記録ファイル**: `{self.current_session.name}`
+
+---
+*自動生成: {now.strftime('%Y-%m-%d %H:%M:%S')} | 1時間毎作業整理システム*
+"""
+        
+        # ファイルに保存
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(report)
+        
+        print(f"📄 統合レポート更新: {output_file.name}")
     
     def display_summary(self, summary: Dict[str, Any]):
         """まとめを表示"""
