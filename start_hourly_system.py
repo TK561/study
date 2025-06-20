@@ -16,28 +16,28 @@ try:
     
     def start_system():
         """システムを開始"""
-        print("🚀 Claude Code セッション開始")
-        print("⏰ 1時間毎作業整理システムを起動中...")
+        print("Claude Code セッション開始")
+        print("1時間毎作業整理システムを起動中...")
         
         # システム初期化
         system = HourlySummarySystem()
         
         print("""
-✅ 整理システムが開始されました！
+整理システムが開始されました
 
-📋 機能:
-- 🕐 1時間毎に自動で作業をまとめます
-- 📊 Git活動、ファイル変更を追跡
-- 📝 セッションログを自動保存
+機能:
+- 1時間毎に自動で作業をまとめます
+- Git活動、ファイル変更を追跡
+- セッションログを自動保存
 
-💡 使用方法:
+使用方法:
 - Python環境で以下を実行:
   >>> from start_hourly_system import get_current_system
   >>> system = get_current_system()
   >>> system.manual_summary()  # 手動まとめ
   >>> print(system.get_session_report())  # レポート表示
 
-🎯 このシステムはバックグラウンドで動作し続けます
+このシステムはバックグラウンドで動作し続けます
 """)
         
         return system
@@ -60,30 +60,30 @@ try:
         try:
             system = get_current_system()
             while True:
-                cmd = input("\n📋 (m:手動まとめ / r:レポート / s:ステータス / q:終了): ").strip().lower()
+                cmd = input("\n(m:手動まとめ / r:レポート / s:ステータス / q:終了): ").strip().lower()
                 
                 if cmd == 'm':
                     system.manual_summary()
                 elif cmd == 'r':
                     print(system.get_session_report())
                 elif cmd == 's':
-                    print(f"⏰ セッション継続中 - 次回まとめ: {system.last_summary.strftime('%H:%M:%S')}から1時間後")
+                    print(f"セッション継続中 - 次回まとめ: {system.last_summary.strftime('%H:%M:%S')}から1時間後")
                 elif cmd == 'q':
-                    print("👋 セッションを終了します")
+                    print("セッションを終了します")
                     break
                 else:
-                    print("❓ 無効なコマンド: m(まとめ) / r(レポート) / s(ステータス) / q(終了)")
+                    print("無効なコマンド: m(まとめ) / r(レポート) / s(ステータス) / q(終了)")
                     
         except KeyboardInterrupt:
-            print("\n👋 セッションを終了します")
+            print("\nセッションを終了します")
     
     else:
         # インポート時に自動起動
         get_current_system()
 
 except ImportError as e:
-    print(f"❌ システム起動エラー: {e}")
-    print("💡 必要な依存関係がインストールされていない可能性があります")
+    print(f"システム起動エラー: {e}")
+    print("必要な依存関係がインストールされていない可能性があります")
 except Exception as e:
-    print(f"❌ 予期しないエラー: {e}")
-    print("💡 システムログを確認してください")
+    print(f"予期しないエラー: {e}")
+    print("システムログを確認してください")

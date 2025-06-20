@@ -196,31 +196,31 @@ class HourlySummarySystem:
         initial_files = session_data.get('initial_file_count', {})
         
         # Markdownレポート生成
-        report = f"""# 🔄 作業統合レポート
+        report = f"""# 作業統合レポート
 
 **生成日時**: {now.strftime('%Y-%m-%d %H:%M:%S')}  
 **セッション開始**: {session_start.strftime('%Y-%m-%d %H:%M:%S')}  
 **総作業時間**: {total_duration.total_seconds()/3600:.1f}時間
 
-## 📊 全体サマリー
+## 全体サマリー
 
-### 🎯 主要活動
+### 主要活動
 """
         
         for activity, count in sorted(activity_counts.items(), key=lambda x: x[1], reverse=True):
             report += f"- **{activity}**: {count}回\n"
         
         report += f"""
-### 📁 ファイル変更状況
+### ファイル変更状況
 - **Python**: {initial_files.get('python_files', 0)} → {latest_files.get('python_files', 0)}
 - **Markdown**: {initial_files.get('markdown_files', 0)} → {latest_files.get('markdown_files', 0)}
 - **総ファイル数**: {initial_files.get('total_files', 0)} → {latest_files.get('total_files', 0)}
 
-### 📝 Git活動
+### Git活動
 - **コミット数**: 約{total_commits}回
 - **現在ブランチ**: {latest_summary.get('git_status', {}).get('branch', 'unknown')}
 
-## ⏰ 時系列記録
+## 時系列記録
 
 """
         
@@ -237,7 +237,7 @@ class HourlySummarySystem:
         if latest_summary.get('git_status'):
             git_status = latest_summary['git_status']
             if git_status.get('recent_commits') and git_status['recent_commits'][0]:
-                report += f"""## 📋 最新Git状況
+                report += f"""## 最新Git状況
 
 **最新コミット**:
 ```
@@ -246,7 +246,7 @@ class HourlySummarySystem:
 
 """
         
-        report += f"""## 🎉 セッション完了
+        report += f"""## セッション完了
 
 **合計作業時間**: {total_duration.total_seconds()/3600:.1f}時間  
 **まとめ回数**: {len(session_data['summaries'])}回  
@@ -260,33 +260,33 @@ class HourlySummarySystem:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(report)
         
-        print(f"📄 統合レポート更新: {output_file.name}")
+        print(f"統合レポート更新: {output_file.name}")
     
     def display_summary(self, summary: Dict[str, Any]):
         """まとめを表示"""
         print("\n" + "="*50)
-        print(f"⏰ 1時間毎のまとめ - {summary['summary_time'][:19]}")
+        print(f"1時間毎のまとめ - {summary['summary_time'][:19]}")
         print("="*50)
         
-        print(f"📊 作業時間: {summary['duration_hours']:.1f}時間")
-        print(f"🎯 主な活動: {', '.join(summary['activities'])}")
+        print(f"作業時間: {summary['duration_hours']:.1f}時間")
+        print(f"主な活動: {', '.join(summary['activities'])}")
         
         git_info = summary['git_status']
         if 'recent_commits' in git_info and git_info['recent_commits'][0]:
-            print(f"📝 最新コミット: {git_info['recent_commits'][0]}")
+            print(f"最新コミット: {git_info['recent_commits'][0]}")
         
         file_count = summary['file_count']
-        print(f"📁 ファイル数: Python({file_count['python_files']}) / "
+        print(f"ファイル数: Python({file_count['python_files']}) / "
               f"Markdown({file_count['markdown_files']}) / "
               f"合計({file_count['total_files']})")
         
         if git_info.get('status'):
-            print(f"🔄 変更中のファイル: {len(git_info['status'].split())}")
+            print(f"変更中のファイル: {len(git_info['status'].split())}")
         else:
-            print("✅ 作業ディレクトリ: クリーン")
+            print("作業ディレクトリ: クリーン")
         
         print("="*50)
-        print("💡 次の1時間も頑張りましょう！\n")
+        print("次の1時間も継続します\n")
     
     def start_hourly_timer(self):
         """1時間タイマーを開始"""
@@ -297,11 +297,11 @@ class HourlySummarySystem:
         
         timer_thread = threading.Thread(target=timer_loop, daemon=True)
         timer_thread.start()
-        print("⏰ 1時間毎の整理タイマーを開始しました")
+        print("1時間毎の整理タイマーを開始しました")
     
     def manual_summary(self):
         """手動でまとめを生成"""
-        print("📋 手動まとめを生成中...")
+        print("手動まとめを生成中...")
         self.generate_hourly_summary()
     
     def get_session_report(self) -> str:
@@ -314,17 +314,17 @@ class HourlySummarySystem:
                             datetime.datetime.fromisoformat(session_data['session_start']))
             
             report = f"""
-📊 セッションレポート
+セッションレポート
 {'='*40}
-🕐 開始時刻: {session_data['session_start'][:19]}
-⏱️ 経過時間: {total_duration.total_seconds()/3600:.1f}時間
-📝 まとめ回数: {len(session_data['summaries'])}回
+開始時刻: {session_data['session_start'][:19]}
+経過時間: {total_duration.total_seconds()/3600:.1f}時間
+まとめ回数: {len(session_data['summaries'])}回
 
-📁 プロジェクト状況:
+プロジェクト状況:
 - 初期ファイル数: {session_data['initial_file_count']['total_files']}
 - 現在ファイル数: {self.count_files()['total_files']}
 
-🎯 主な活動:
+主な活動:
 """
             
             all_activities = []
@@ -346,19 +346,19 @@ class HourlySummarySystem:
 
 def main():
     """メイン関数"""
-    print("🚀 1時間毎作業整理システムを開始します")
+    print("1時間毎作業整理システムを開始します")
     
     # システム初期化
     summary_system = HourlySummarySystem()
     
     # 使用方法を表示
     print("""
-🎯 使用方法:
+使用方法:
 - 自動: 1時間毎に自動でまとめが表示されます
 - 手動: summary_system.manual_summary() で即座にまとめ生成
 - レポート: summary_system.get_session_report() でセッション全体を確認
 
-💡 このシステムはバックグラウンドで動作し続けます
+このシステムはバックグラウンドで動作し続けます
 """)
     
     return summary_system
@@ -369,17 +369,17 @@ if __name__ == "__main__":
     # 対話モード
     try:
         while True:
-            cmd = input("\n📋 コマンド (m:手動まとめ / r:レポート / q:終了): ").strip().lower()
+            cmd = input("\nコマンド (m:手動まとめ / r:レポート / q:終了): ").strip().lower()
             
             if cmd == 'm':
                 system.manual_summary()
             elif cmd == 'r':
                 print(system.get_session_report())
             elif cmd == 'q':
-                print("👋 セッションを終了します")
+                print("セッションを終了します")
                 break
             else:
-                print("❓ 無効なコマンドです")
+                print("無効なコマンドです")
                 
     except KeyboardInterrupt:
-        print("\n👋 セッションを終了します")
+        print("\nセッションを終了します")
