@@ -641,13 +641,9 @@ class handler(BaseHTTPRequestHandler):
                         <text x="70" y="175" fill="#666">30</text>
                     </g>
                     
-                    <!-- 飽和線（30%の横線） -->
-                    <line x1="80" y1="170" x2="720" y2="170" stroke="#ff5722" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
-                    <text x="650" y="164" font-size="11" fill="#ff5722" font-weight="bold">理論最大値: 30%</text>
-                    
-                    <!-- 実測飽和線（29.8%の横線） -->
-                    <line x1="400" y1="172" x2="720" y2="172" stroke="#e65100" stroke-width="2" stroke-dasharray="4,2" opacity="0.8"/>
-                    <text x="550" y="166" font-size="10" fill="#e65100" font-weight="bold">実測飽和: 29.8%</text>
+                    <!-- 飽和線（青い曲線が平坦になる位置に合わせた横線） -->
+                    <line x1="400" y1="128" x2="720" y2="128" stroke="#667eea" stroke-width="2" stroke-dasharray="8,4" opacity="0.9"/>
+                    <text x="580" y="122" font-size="11" fill="#667eea" font-weight="bold">理論飽和レベル</text>
                     
                     <!-- 理論曲線 f(x) = 30(1-e^(-0.15x)) -->
                     <path d="M 160,224 Q 200,200 240,180 Q 280,165 320,155 Q 360,148 400,142 Q 480,135 560,131 Q 640,129 720,128" 
@@ -675,15 +671,6 @@ class handler(BaseHTTPRequestHandler):
                     <circle cx="720" cy="170" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
                     <text x="720" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">30.0%</text>
                     
-                    <!-- 飽和領域の表示 -->
-                    <rect x="400" y="120" width="320" height="50" fill="#ffeb3b" fill-opacity="0.2" stroke="#ff9800" stroke-width="1" stroke-dasharray="5,5"/>
-                    <text x="560" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">飽和領域</text>
-                    <text x="560" y="155" text-anchor="middle" font-size="10" fill="#e65100">32カテゴリ以降</text>
-                    
-                    <!-- 最適範囲のハイライト -->
-                    <rect x="240" y="180" width="80" height="170" fill="#4caf50" fill-opacity="0.1" stroke="#4caf50" stroke-width="2" stroke-dasharray="3,3"/>
-                    <text x="280" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">最適範囲</text>
-                    <text x="280" y="285" text-anchor="middle" font-size="10" fill="#2e7d32">16-24カテゴリ</text>
                     
                     <!-- 凡例 -->
                     <g transform="translate(550, 70)">
