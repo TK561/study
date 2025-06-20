@@ -252,9 +252,9 @@ def generate_optimal_category_report():
     diminishing = analyzer.analyze_diminishing_returns()
     
     report = f"""
-# 📊 ImageNet-1000分析による最適特化データセット数調査
+#  ImageNet-1000分析による最適特化データセット数調査
 
-## 🎯 **調査概要**
+##  **調査概要**
 
 **調査日**: {datetime.now().strftime('%Y年%m月%d日 %H:%M')}  
 **根拠**: ImageNet-1000クラス分布の定量分析  
@@ -262,7 +262,7 @@ def generate_optimal_category_report():
 
 ---
 
-## 📈 **ImageNet-1000のパレート分布分析**
+##  **ImageNet-1000のパレート分布分析**
 
 ### **80/20の法則（パレートの法則）の適用**
 
@@ -300,7 +300,7 @@ def generate_optimal_category_report():
 
 ---
 
-## 📊 **カテゴリ数別効率性分析**
+##  **カテゴリ数別効率性分析**
 
 ### **5つの候補シナリオ比較**
 
@@ -331,7 +331,7 @@ def generate_optimal_category_report():
 
 ---
 
-## 📉 **収穫逓減分析**
+##  **収穫逓減分析**
 
 ### **カテゴリ追加による限界効用**
 
@@ -354,7 +354,7 @@ def generate_optimal_category_report():
 
 ---
 
-## 🎯 **ImageNet分析による最適解**
+##  **ImageNet分析による最適解**
 
 ### **定量的結論**
 
@@ -386,7 +386,7 @@ ROI最大: {efficiency['optimal_count']}カテゴリ
     report += f"""
 ---
 
-## 🏆 **最終推奨: {best_count}カテゴリが最適**
+##  **最終推奨: {best_count}カテゴリが最適**
 
 ### **ImageNet-1000分析による科学的根拠**
 
@@ -407,7 +407,7 @@ ROI最大: {efficiency['optimal_count']}カテゴリ
 
 ---
 
-## 📋 **{best_count}カテゴリ推奨構成**
+##  **{best_count}カテゴリ推奨構成**
 
 ### **ImageNet主要カテゴリベース**
 
@@ -429,7 +429,7 @@ ImageNetカバレッジ: {recommended_config['imagenet_coverage']}/1000 ({(recom
 
 ---
 
-## 🔬 **科学的妥当性**
+##  **科学的妥当性**
 
 ### **ImageNet-1000による客観的検証**
 
@@ -452,7 +452,7 @@ ImageNetカバレッジ: {recommended_config['imagenet_coverage']}/1000 ({(recom
     return report
 
 if __name__ == "__main__":
-    print("📊 ImageNet-1000最適カテゴリ数分析中...")
+    print(" ImageNet-1000最適カテゴリ数分析中...")
     
     # 分析実行
     analyzer = ImageNetOptimalCategoryAnalysis()
@@ -465,14 +465,14 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/IMAGENET_OPTIMAL_CATEGORY_ANALYSIS.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ ImageNet最適カテゴリ数分析完了")
-    print("📋 レポート保存: IMAGENET_OPTIMAL_CATEGORY_ANALYSIS.md")
+    print(" ImageNet最適カテゴリ数分析完了")
+    print(" レポート保存: IMAGENET_OPTIMAL_CATEGORY_ANALYSIS.md")
     
     # 結果要約
     best_roi = max(efficiency['efficiency_by_count'].values(), key=lambda x: x['roi'])
     best_count = efficiency['optimal_count']
     
-    print(f"\n🎯 分析結果:")
+    print(f"\n 分析結果:")
     print(f"   最適カテゴリ数: {best_count}カテゴリ")
     print(f"   ROI: {best_roi['roi']:.3f} (最高効率)")
     print(f"   カバレッジ: {best_roi['coverage_percentage']:.1f}%")

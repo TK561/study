@@ -2,7 +2,7 @@
 
 このディレクトリには、Claude Code で作成されたプロジェクトを自動化するためのGitHub Actionsワークフローが含まれています。
 
-## 📁 ワークフローファイル
+##  ワークフローファイル
 
 ### 1. `claude.yml` - メインワークフロー
 **目的**: Claude Code で生成されたコードの包括的な品質管理
@@ -14,11 +14,11 @@
 
 **機能**:
 - 🎨 **コード品質チェック**: Black, isort, Flake8, MyPy
-- 🧪 **テスト実行**: PyTest (Python 3.8-3.11)
+-  **テスト実行**: PyTest (Python 3.8-3.11)
 - 🔒 **セキュリティスキャン**: Bandit, Safety
 - 📚 **ドキュメント生成**: Sphinx, MkDocs
-- 📊 **プロジェクト分析**: 統計レポート生成
-- 🔍 **Claude Code検出**: AI生成コードの自動識別
+-  **プロジェクト分析**: 統計レポート生成
+-  **Claude Code検出**: AI生成コードの自動識別
 
 ### 2. `auto-commit.yml` - 自動コミット
 **目的**: 定期的な自動コミット・プッシュ
@@ -28,9 +28,9 @@
 - 手動実行
 
 **機能**:
-- 📝 **変更検出**: 未コミットファイルの自動検出
-- 🤖 **自動コミット**: Claude Code署名付きコミット
-- 🚀 **自動プッシュ**: リモートリポジトリへの自動同期
+-  **変更検出**: 未コミットファイルの自動検出
+-  **自動コミット**: Claude Code署名付きコミット
+-  **自動プッシュ**: リモートリポジトリへの自動同期
 
 ### 3. `sync-cursor.yml` - Cursor IDE連携
 **目的**: Cursor IDE開発環境の最適化
@@ -41,12 +41,12 @@
 - 手動実行
 
 **機能**:
-- ⚙️ **VS Code/Cursor設定生成**: settings.json, tasks.json, launch.json
-- 🎯 **開発環境構築**: Python環境とツール設定
+-  **VS Code/Cursor設定生成**: settings.json, tasks.json, launch.json
+-  **開発環境構築**: Python環境とツール設定
 - 📖 **セットアップガイド生成**: CURSOR_SETUP.md
-- 🤖 **AI統合設定**: Cursor AI機能の有効化
+-  **AI統合設定**: Cursor AI機能の有効化
 
-## 🔧 セットアップ手順
+##  セットアップ手順
 
 ### 1. リポジトリ準備
 
@@ -66,10 +66,10 @@ GitHub リポジトリの Settings → Secrets and variables → Actions で以�
 ### 3. 権限設定
 
 Settings → Actions → General で以下を有効化:
-- ✅ "Allow GitHub Actions to create and approve pull requests"
-- ✅ "Allow GitHub Actions to approve pull requests"
+-  "Allow GitHub Actions to create and approve pull requests"
+-  "Allow GitHub Actions to approve pull requests"
 
-## 🎯 ワークフロー実行パターン
+##  ワークフロー実行パターン
 
 ### 自動実行
 1. **コード変更時**: `claude.yml` が自動実行
@@ -81,7 +81,7 @@ Settings → Actions → General で以下を有効化:
 2. ワークフローを選択
 3. "Run workflow" ボタンクリック
 
-## 📊 生成されるアーティファクト
+##  生成されるアーティファクト
 
 ### コード品質レポート
 - `code-quality-report`: Lint、フォーマット結果
@@ -96,7 +96,7 @@ Settings → Actions → General で以下を有効化:
 - `cursor-ide-config`: VS Code/Cursor設定ファイル
 - セットアップガイド
 
-## 🚀 Claude Code 特別機能
+##  Claude Code 特別機能
 
 ### 1. AI生成コード検出
 コミットメッセージや ファイル内容から Claude Code で生成されたコードを自動検出:
@@ -111,8 +111,8 @@ Settings → Actions → General で以下を有効化:
 すべての自動コミットに Claude Code 署名を追加:
 
 ```
-🚀 Generated with [Claude Code](https://claude.ai/code)
-📅 Auto-committed: 2024-01-15 14:30:25
+ Generated with [Claude Code](https://claude.ai/code)
+ Auto-committed: 2024-01-15 14:30:25
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 ```
@@ -122,7 +122,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 - Python プロジェクト特化の最適化
 - AI生成コード特有のパターン検出
 
-## 📈 使用統計とモニタリング
+##  使用統計とモニタリング
 
 ### ワークフロー実行状況
 - Actions タブで実行履歴確認
@@ -134,7 +134,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 - セキュリティ問題の検出履歴
 - テストカバレッジの推移
 
-## 🔧 カスタマイズ方法
+##  カスタマイズ方法
 
 ### 1. Python バージョン変更
 ```yaml
@@ -187,14 +187,14 @@ schedule:
 2. 各ジョブのログを展開して詳細確認
 3. アーティファクトから詳細レポートダウンロード
 
-## 🎉 成功事例
+##  成功事例
 
 このワークフローシステムにより:
-- ✅ **コード品質**: 自動的に高品質なコードを維持
-- ✅ **開発効率**: Cursor IDE との完璧な統合
-- ✅ **自動化**: 手動作業の大幅削減
-- ✅ **AI活用**: Claude Code の能力を最大限活用
+-  **コード品質**: 自動的に高品質なコードを維持
+-  **開発効率**: Cursor IDE との完璧な統合
+-  **自動化**: 手動作業の大幅削減
+-  **AI活用**: Claude Code の能力を最大限活用
 
 ---
 
-**🚀 Claude Code + GitHub Actions + Cursor IDE = 最強の開発環境**
+** Claude Code + GitHub Actions + Cursor IDE = 最強の開発環境**

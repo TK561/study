@@ -167,9 +167,9 @@ def generate_imagenet_rationale_report():
     coverage = rationale.calculate_imagenet_coverage()
     
     report = f"""
-# 📊 ImageNet-1000分類体系に基づく16カテゴリ選択根拠
+#  ImageNet-1000分類体系に基づく16カテゴリ選択根拠
 
-## 🎯 **単一明確な根拠**
+##  **単一明確な根拠**
 
 **根拠**: **ImageNet-1000分類体系**（Deng et al. 2009, CVPR）  
 **選択理由**: 計算機視覚分野で最も権威ある標準分類体系  
@@ -193,7 +193,7 @@ def generate_imagenet_rationale_report():
 
 ---
 
-## 📊 **我々の16カテゴリのImageNet-1000カバレッジ分析**
+##  **我々の16カテゴリのImageNet-1000カバレッジ分析**
 
 ### **Core 8カテゴリ**
 
@@ -227,7 +227,7 @@ def generate_imagenet_rationale_report():
 
 ---
 
-## 🎯 **選択根拠の明確性**
+##  **選択根拠の明確性**
 
 ### **16カテゴリ選択の論理**
 
@@ -259,7 +259,7 @@ ImageNetで不足または欠如している重要分野:
 
 ---
 
-## 📈 **ImageNet分析による必然性**
+##  **ImageNet分析による必然性**
 
 ### **我々の16カテゴリ選択の客観的妥当性**
 
@@ -299,7 +299,7 @@ Location系統:
 
 ---
 
-## 🏆 **ImageNet基準による選択の権威性**
+##  **ImageNet基準による選択の権威性**
 
 ### **なぜImageNetが唯一の根拠として十分か**
 
@@ -320,7 +320,7 @@ Location系統:
 
 ---
 
-## 📋 **結論: 単一明確な選択根拠**
+##  **結論: 単一明確な選択根拠**
 
 ### **16カテゴリ選択の必然性**
 
@@ -352,7 +352,7 @@ Location系統:
     return report
 
 if __name__ == "__main__":
-    print("📊 ImageNet-1000に基づく単一明確根拠分析中...")
+    print(" ImageNet-1000に基づく単一明確根拠分析中...")
     
     # レポート生成
     report = generate_imagenet_rationale_report()
@@ -361,14 +361,14 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/IMAGENET_BASED_RATIONALE.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ ImageNet基準根拠分析完了")
-    print("📋 レポート保存: IMAGENET_BASED_RATIONALE.md")
+    print(" ImageNet基準根拠分析完了")
+    print(" レポート保存: IMAGENET_BASED_RATIONALE.md")
     
     # 要約表示
     rationale = ImageNetBasedRationale()
     coverage = rationale.calculate_imagenet_coverage()
     
-    print(f"\n🎯 ImageNet基準選択根拠:")
+    print(f"\n ImageNet基準選択根拠:")
     print(f"   根拠: ImageNet-1000分類体系（CVPR 2009, 15,000+ citations）")
     print(f"   Core 8カテゴリ: {coverage['core_8_coverage']['classes']}/1000クラス ({coverage['core_8_coverage']['percentage']:.1f}%)")
     print(f"   Additional 8カテゴリ: ImageNet不足分野の戦略的補完")

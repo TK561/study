@@ -2,13 +2,13 @@
 
 Claude Code を使用した研究プロジェクトの開発・管理ガイドライン
 
-## 📋 プロジェクト概要
+## プロジェクト概要
 
 **プロジェクト名**: 意味カテゴリに基づく画像分類システム  
 **研究目的**: WordNetベースの意味カテゴリ分析を用いた特化型画像分類手法の性能評価  
 **開発手法**: Claude Code を活用したAI支援研究開発  
 
-## 🚀 **自動初期化システム (NEW!)**
+## 自動初期化システム (NEW!)
 
 ### **Claude Code起動時の自動実行**
 ```bash
@@ -17,10 +17,10 @@ python .claude_code_init.py
 ```
 
 #### **自動で実行される機能**
-- ✅ **1時間毎レポートシステム自動起動**
-- ✅ **プロジェクト検出・環境設定**  
-- ✅ **セッション管理開始**
-- ✅ **Git活動追跡開始**
+- 1時間毎レポートシステム自動起動
+- プロジェクト検出・環境設定  
+- セッション管理開始
+- Git活動追跡開始
 
 #### **動作確認**
 ```bash
@@ -32,7 +32,7 @@ python scripts/enhanced_hourly_daemon.py --daemon  # 起動
 python scripts/enhanced_hourly_daemon.py --stop    # 停止
 ```
 
-## ⏰ **1時間毎自動レポート機能**
+## 1時間毎自動レポート機能
 
 ### **完全自動実行**
 - **トリガー**: Claude Code起動時
@@ -41,12 +41,12 @@ python scripts/enhanced_hourly_daemon.py --stop    # 停止
 - **ログ保存**: `session_logs/session_YYYYMMDD_HHMMSS.json`
 
 ### **レポート内容**
-- 📁 **ファイル変更追跡**: 新規作成・更新ファイル一覧
-- 📊 **Git活動記録**: コミット・ブランチ状況
-- ⏱️ **作業時間計測**: セッション開始からの経過時間
-- 📋 **進捗サマリー**: 完了タスクと次のステップ
+- ファイル変更追跡: 新規作成・更新ファイル一覧
+- Git活動記録: コミット・ブランチ状況
+- 作業時間計測: セッション開始からの経過時間
+- 進捗サマリー: 完了タスクと次のステップ
 
-## 🎯 Claude Code 活用方針
+## Claude Code 活用方針
 
 ### 1. 基本原則
 - **透明性**: すべてのAI生成コードに適切な署名とコメントを付与
@@ -77,7 +77,7 @@ Verified: [検証済み/要検証]
 - API ドキュメントの生成
 - 研究レポートの構造化
 
-## 🔧 開発環境設定
+##  開発環境設定
 
 ### 必要なツール
 - **Python 3.8+**: 主要開発言語
@@ -113,7 +113,7 @@ flake8>=4.0.0
 pytest>=7.0.0
 ```
 
-## 📁 プロジェクト構造
+##  プロジェクト構造
 
 ```
 research-project/
@@ -143,7 +143,7 @@ research-project/
 └── .claude_code_init.py   # 自動初期化スクリプト
 ```
 
-## 🧪 実験管理ガイドライン
+##  実験管理ガイドライン
 
 ### 1. 実験設計
 - **仮説の明確化**: 各実験の目的と期待される結果を記載
@@ -187,7 +187,7 @@ def run_experiment(config):
 - **手動ログ**: 重要な発見や問題点の記録
 - **自動セッションログ**: 1時間毎の進捗自動記録
 
-## 📊 データ管理
+##  データ管理
 
 ### 1. データの分類
 - **Raw Data**: 変更不可の元データ
@@ -224,7 +224,7 @@ def process_data(raw_data_path, output_path):
 - 実験結果との対応関係を明確化
 - データの整合性チェック
 
-## 🔍 品質保証
+##  品質保証
 
 ### 1. コード品質
 ```python
@@ -253,7 +253,7 @@ def quality_check_template():
 - コードレビューの実施
 - 実験結果の相互検証
 
-## 📝 ドキュメント管理
+##  ドキュメント管理
 
 ### 1. コード文書化
 ```python
@@ -291,7 +291,7 @@ def semantic_classification(image_path: str, model_config: dict) -> dict:
 - 図表の自動生成コード
 - 参考文献管理
 
-## 🚀 デプロイメント・共有
+##  デプロイメント・共有
 
 ### 1. モデル共有
 ```python
@@ -344,7 +344,7 @@ def save_model_for_sharing(model, metadata: dict, output_path: str):
 - 実験設計の相談
 - 結果解釈の支援
 
-## 📈 成果評価
+##  成果評価
 
 ### 1. 定量的評価
 - 分類精度の改善度
@@ -361,7 +361,7 @@ def save_model_for_sharing(model, metadata: dict, output_path: str):
 - 実用的価値
 - 再現可能性
 
-## 🔧 トラブルシューティング
+##  トラブルシューティング
 
 ### よくある問題と解決策
 
@@ -408,9 +408,9 @@ def stable_training_setup():
 
 ---
 
-**🚀 Claude Code を活用した効率的で高品質な研究開発を実現しましょう！**
+** Claude Code を活用した効率的で高品質な研究開発を実現しましょう！**
 
-## 🤖 GitHub Actions CI/CD Integration
+##  GitHub Actions CI/CD Integration
 
 ### 自動化システム概要
 完全自動化されたGitHub Actions + Vercel + Claude Code統合システム

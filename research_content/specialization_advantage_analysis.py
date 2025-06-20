@@ -321,9 +321,9 @@ def generate_specialization_analysis_report():
     optimal_analysis = analyzer.evaluate_optimal_for_specialization()
     
     report = f"""
-# 📊 特化カテゴリの優位性実現分析: 5カテゴリで大丈夫？
+#  特化カテゴリの優位性実現分析: 5カテゴリで大丈夫？
 
-## 🎯 **重要な問題提起**
+##  **重要な問題提起**
 
 **質問**: 特化カテゴリーの優位性について調べていますが5つで大丈夫？  
 **答え**: **NO - 5カテゴリでは特化優位性を実現できません**
@@ -333,7 +333,7 @@ def generate_specialization_analysis_report():
 
 ---
 
-## ⚠️ **5カテゴリの致命的問題**
+##  **5カテゴリの致命的問題**
 
 ### **特化優位性の破綻**
 
@@ -355,17 +355,17 @@ def generate_specialization_analysis_report():
 
 | カテゴリ | 意味的一貫性 | 特化スコア | 判定 |
 |---------|-------------|-----------|------|
-| Animal | 0.45 | 4.0/10 | ❌ 閾値未達 |
-| Artifact | 0.30 | 2.0/10 | ❌ 完全破綻 |
-| Plant | 0.70 | 6.0/10 | ⚠️ ギリギリ |
-| Food | 0.75 | 7.0/10 | ✅ 合格 |
-| Location | 0.80 | 8.0/10 | ✅ 良好 |
+| Animal | 0.45 | 4.0/10 |  閾値未達 |
+| Artifact | 0.30 | 2.0/10 |  完全破綻 |
+| Plant | 0.70 | 6.0/10 |  ギリギリ |
+| Food | 0.75 | 7.0/10 |  合格 |
+| Location | 0.80 | 8.0/10 |  良好 |
 
 **結果**: 5カテゴリ中2つだけが特化効果を発揮（成功率40%）
 
 ---
 
-## 📊 **特化優位性の定量分析**
+##  **特化優位性の定量分析**
 
 ### **特化効果を発揮する最小要件**
 
@@ -380,21 +380,21 @@ def generate_specialization_analysis_report():
 
 #### **現在8カテゴリの閾値達成状況**
 ```
-Person: 0.95 ✅ (優秀)
-Furniture: 0.85 ✅ (良好)
-Landscape: 0.80 ✅ (良好)
-Food: 0.75 ✅ (合格)
-Vehicle: 0.75 ✅ (合格)
-Plant: 0.70 ✅ (ギリギリ合格)
-Technology: 0.55 ❌ (閾値未達)
-Animal: 0.45 ❌ (大幅未達)
+Person: 0.95  (優秀)
+Furniture: 0.85  (良好)
+Landscape: 0.80  (良好)
+Food: 0.75  (合格)
+Vehicle: 0.75  (合格)
+Plant: 0.70  (ギリギリ合格)
+Technology: 0.55  (閾値未達)
+Animal: 0.45  (大幅未達)
 
 合格率: 6/8 = 75% (特化効果部分的実現)
 ```
 
 ---
 
-## 📉 **5カテゴリへの削減による損失計算**
+##  **5カテゴリへの削減による損失計算**
 
 ### **特化優位性の定量的損失**
 
@@ -415,7 +415,7 @@ Animal: 0.45 ❌ (大幅未達)
 
 ---
 
-## 🔬 **実証的証拠: 現在の失敗ケース分析**
+##  **実証的証拠: 現在の失敗ケース分析**
 
 ### **既存8カテゴリでも起きている特化失敗**
 
@@ -438,14 +438,14 @@ Animal: 0.45 ❌ (大幅未達)
 
 ---
 
-## 🎯 **特化優位性を実現する最適解**
+##  **特化優位性を実現する最適解**
 
 ### **カテゴリ数別特化効果評価**
 
 """
     
     for categories, data in optimal_analysis['analysis_by_count'].items():
-        status = "✅" if data['specialization_score'] >= 7.0 else "⚠️" if data['specialization_score'] >= 6.0 else "❌"
+        status = "" if data['specialization_score'] >= 7.0 else "" if data['specialization_score'] >= 6.0 else ""
         report += f"""
 #### **{categories}**
 {status} **特化スコア**: {data['specialization_score']}/10  
@@ -463,7 +463,7 @@ Animal: 0.45 ❌ (大幅未達)
 
 ---
 
-## 🏆 **最終結論: 特化優位性の観点から**
+##  **最終結論: 特化優位性の観点から**
 
 ### **5カテゴリは不適切**
 
@@ -498,7 +498,7 @@ Vehicle → Land Vehicle, Air/Sea Vehicle (2分割)
 
 ---
 
-## 📋 **特化優位性実現のためのアクションプラン**
+##  **特化優位性実現のためのアクションプラン**
 
 ### **段階的実装**
 
@@ -525,7 +525,7 @@ Vehicle → Land Vehicle, Air/Sea Vehicle (2分割)
     return report
 
 if __name__ == "__main__":
-    print("📊 特化優位性分析中...")
+    print(" 特化優位性分析中...")
     
     # 分析実行
     analyzer = SpecializationAdvantageAnalysis()
@@ -538,13 +538,13 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/SPECIALIZATION_ADVANTAGE_ANALYSIS.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ 特化優位性分析完了")
-    print("📋 レポート保存: SPECIALIZATION_ADVANTAGE_ANALYSIS.md")
+    print(" 特化優位性分析完了")
+    print(" レポート保存: SPECIALIZATION_ADVANTAGE_ANALYSIS.md")
     
     # 重要な結論
-    print(f"\n🎯 特化優位性分析結果:")
-    print(f"   5カテゴリ: 特化スコア5.4/10 → ❌ 不適切")
-    print(f"   8カテゴリ: 特化スコア7.4/10 → ⚠️ 部分的")  
-    print(f"   12カテゴリ: 特化スコア8.1/10 → ✅ 最適")
+    print(f"\n 特化優位性分析結果:")
+    print(f"   5カテゴリ: 特化スコア5.4/10 →  不適切")
+    print(f"   8カテゴリ: 特化スコア7.4/10 →  部分的")  
+    print(f"   12カテゴリ: 特化スコア8.1/10 →  最適")
     print(f"   結論: 5カテゴリでは特化優位性を実現不可能")
     print(f"   推奨: {optimal_analysis['threshold_analysis']['recommended']}")

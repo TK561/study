@@ -49,11 +49,11 @@ GITHUB_TOKEN=automatic (provided by GitHub)
 ## Auto-Fix Features
 
 ### Common Issues Resolved:
-- ✅ Vercel configuration errors
-- ✅ Python function format issues  
-- ✅ Runtime specification problems
-- ✅ Simple syntax errors
-- ✅ Dependencies conflicts
+-  Vercel configuration errors
+-  Python function format issues  
+-  Runtime specification problems
+-  Simple syntax errors
+-  Dependencies conflicts
 
 ### Manual Review Required:
 - Complex logic errors
@@ -96,4 +96,4 @@ If auto-fix fails:
 4. Contact system administrator if needed
 
 ---
-🤖 **Powered by Claude Code GitHub Actions Integration**
+ **Powered by Claude Code GitHub Actions Integration**

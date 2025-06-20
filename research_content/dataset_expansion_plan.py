@@ -260,7 +260,7 @@ class AcademicDatasetCollector:
             'start_time': datetime.now().isoformat()
         }
         
-        print(f"🔍 Collecting {target_count} samples for {category}...")
+        print(f" Collecting {target_count} samples for {category}...")
         
         # Here you would implement actual data collection logic
         # This is a template structure
@@ -294,25 +294,25 @@ class AcademicDatasetCollector:
     
     def execute_phase1_collection(self):
         """Execute Phase 1: Minimum academic standard (30 per category)"""
-        print("🚀 Starting Phase 1: Minimum Academic Standard Collection")
+        print(" Starting Phase 1: Minimum Academic Standard Collection")
         
         results = {}
         for category in self.categories:
             collected = self.collect_category_samples(category, 30)
             results[category] = collected
-            print(f"✅ {category}: {collected}/30 samples collected")
+            print(f" {category}: {collected}/30 samples collected")
         
         return results
     
     def execute_phase2_collection(self):
         """Execute Phase 2: Optimal statistical power (94 per category)"""
-        print("🚀 Starting Phase 2: Optimal Statistical Power Collection")
+        print(" Starting Phase 2: Optimal Statistical Power Collection")
         
         results = {}
         for category in self.categories:
             collected = self.collect_category_samples(category, 94)
             results[category] = collected
-            print(f"✅ {category}: {collected}/94 samples collected")
+            print(f" {category}: {collected}/94 samples collected")
         
         return results
 
@@ -321,7 +321,7 @@ if __name__ == "__main__":
     collector.setup_directory_structure()
     
     # Execute collection phases
-    print("📊 Academic Dataset Collection System")
+    print(" Academic Dataset Collection System")
     print("=" * 50)
     
     # Phase 1
@@ -330,7 +330,7 @@ if __name__ == "__main__":
     # Phase 2
     phase2_results = collector.execute_phase2_collection()
     
-    print("\\n✅ Collection completed successfully!")
+    print("\\n Collection completed successfully!")
 '''
         
         return script_content
@@ -388,9 +388,9 @@ def generate_expansion_report():
     qa_plan = planner.generate_quality_assurance_plan()
     
     report = f"""
-# 📊 学術基準データセット拡張実装計画
+#  学術基準データセット拡張実装計画
 
-## 🎯 **計画概要**
+##  **計画概要**
 
 **策定日**: {datetime.now().strftime('%Y年%m月%d日 %H:%M')}  
 **目的**: Cohen's Power Analysisに基づく学術基準752サンプルデータセット構築  
@@ -398,7 +398,7 @@ def generate_expansion_report():
 
 ---
 
-## 📈 **拡張要件詳細**
+##  **拡張要件詳細**
 
 ### **Phase 1: 最小学術基準達成**
 ```
@@ -428,7 +428,7 @@ def generate_expansion_report():
 
 ---
 
-## 🗓️ **実装タイムライン**
+## 🗓 **実装タイムライン**
 
 """
     
@@ -444,14 +444,14 @@ def generate_expansion_report():
     report += f"""
 ---
 
-## 📁 **カテゴリ別拡張計画**
+##  **カテゴリ別拡張計画**
 
 ### **詳細拡張戦略**
 
 """
     
     for category, info in planner.category_info.items():
-        success_indicator = "🟢" if info['success_rate'] == 100.0 else "🟡" if info['success_rate'] >= 50.0 else "🔴"
+        success_indicator = "" if info['success_rate'] == 100.0 else "🟡" if info['success_rate'] >= 50.0 else ""
         priority = "高優先度" if info['success_rate'] < 100.0 else "標準"
         
         report += f"""
@@ -468,7 +468,7 @@ def generate_expansion_report():
     report += f"""
 ---
 
-## 🔧 **技術実装計画**
+##  **技術実装計画**
 
 ### **自動データ収集システム**
 
@@ -505,7 +505,7 @@ AcademicDatasetCollector/
 
 ---
 
-## 📊 **品質保証体系**
+##  **品質保証体系**
 
 ### **自動品質チェック**
 """
@@ -556,7 +556,7 @@ AcademicDatasetCollector/
 
 ---
 
-## 🎯 **期待される成果**
+##  **期待される成果**
 
 ### **統計的信頼性の向上**
 ```
@@ -596,7 +596,7 @@ Phase 2後の検出力: 0.80（学術基準達成）
 
 ---
 
-## 📋 **成功指標・KPI**
+##  **成功指標・KPI**
 
 ### **収集完了指標**
 - [ ] Phase 1: 240サンプル収集完了（各カテゴリ30）
@@ -629,7 +629,7 @@ Phase 2後の検出力: 0.80（学術基準達成）
     return report, collection_script
 
 if __name__ == "__main__":
-    print("📊 学術基準データセット拡張計画生成中...")
+    print(" 学術基準データセット拡張計画生成中...")
     
     # レポート生成
     report, script = generate_expansion_report()
@@ -642,15 +642,15 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/automated_dataset_collector.py', 'w', encoding='utf-8') as f:
         f.write(script)
     
-    print("✅ データセット拡張計画完了")
-    print("📋 レポート保存: DATASET_EXPANSION_PLAN.md")
-    print("🤖 収集スクリプト保存: automated_dataset_collector.py")
+    print(" データセット拡張計画完了")
+    print(" レポート保存: DATASET_EXPANSION_PLAN.md")
+    print(" 収集スクリプト保存: automated_dataset_collector.py")
     
     # 要約表示
     planner = DatasetExpansionPlan()
     requirements = planner.calculate_expansion_requirements()
     
-    print(f"\n🎯 拡張計画要約:")
+    print(f"\n 拡張計画要約:")
     print(f"   現在: {planner.current_samples}サンプル")
     print(f"   Phase 1目標: {requirements['phase1']['total_target']}サンプル")
     print(f"   Phase 2目標: {requirements['phase2']['total_target']}サンプル")

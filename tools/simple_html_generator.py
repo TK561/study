@@ -140,7 +140,7 @@ def create_simple_html():
 <body>
     <div class="container">
         <div class="header-info">
-            <h1>📋 研究プロジェクトまとめ</h1>
+            <h1> 研究プロジェクトまとめ</h1>
             <p><strong>WordNetベースの意味カテゴリ分析を用いた特化型画像分類システム</strong></p>
             <p>生成日時: {current_date}</p>
         </div>"""
@@ -165,7 +165,7 @@ def create_simple_html():
         
         # ヘッダー処理
         if line.startswith('# '):
-            if line != '# 📋 研究プロジェクトまとめ':  # タイトルは既に表示済み
+            if line != '#  研究プロジェクトまとめ':  # タイトルは既に表示済み
                 html_content += f"\n        <h1>{line[2:]}</h1>"
         elif line.startswith('## '):
             if in_list:
@@ -239,7 +239,7 @@ def create_simple_html():
     html_content += f"""
         
         <div class="footer">
-            <p>🤖 Generated with Claude Code - AI支援研究開発プロジェクト</p>
+            <p> Generated with Claude Code - AI支援研究開発プロジェクト</p>
             <p>© 2025 Research Project</p>
         </div>
     </div>

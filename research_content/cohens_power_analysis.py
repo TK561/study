@@ -152,15 +152,15 @@ def generate_sample_size_report():
     results = analyzer.current_study_analysis()
     
     report = f"""
-# 📊 Cohen's Power Analysis - 学術基準サンプル数計算レポート
+#  Cohen's Power Analysis - 学術基準サンプル数計算レポート
 
-## 🎯 **分析概要**
+##  **分析概要**
 
 **実施日**: {datetime.now().strftime('%Y年%m月%d日 %H:%M')}  
 **目的**: 学術的に信頼性のある統計的根拠を確立するための必要サンプル数算出  
 **手法**: Cohen's Power Analysis（コーエンの検出力分析）  
 
-## 📈 **現在の研究状況**
+##  **現在の研究状況**
 
 ### **現在のサンプル構成**
 - **総サンプル数**: 16
@@ -171,7 +171,7 @@ def generate_sample_size_report():
 
 ---
 
-## 🔬 **Cohen's Power Analysis結果**
+##  **Cohen's Power Analysis結果**
 
 ### **必要サンプル数計算結果**
 
@@ -197,19 +197,19 @@ def generate_sample_size_report():
     report += f"""
 ---
 
-## 🎯 **推奨サンプル構成（学術基準）**
+##  **推奨サンプル構成（学術基準）**
 
 ### **推奨シナリオ**: Statistical Power = 0.80, α = 0.05, Effect Size = Medium
 
 #### **必要サンプル数詳細**
 
 ```
-📊 比較実験用サンプル数
+ 比較実験用サンプル数
 ├── 現在のサンプル: 16
 ├── 必要サンプル: {recommended['n_total_comparison']}
 └── 追加必要数: {recommended['shortage_total']}
 
-📊 カテゴリ別分析用サンプル数  
+ カテゴリ別分析用サンプル数  
 ├── 現在（カテゴリ毎）: 2
 ├── 必要（カテゴリ毎）: {recommended['n_per_category']}
 ├── 8カテゴリ合計必要数: {recommended['n_total_categories']}
@@ -224,7 +224,7 @@ def generate_sample_size_report():
 
 ---
 
-## 📋 **データセット拡張計画**
+##  **データセット拡張計画**
 
 ### **Phase 1: 緊急拡張（学術最小基準）**
 
@@ -258,7 +258,7 @@ def generate_sample_size_report():
 
 ---
 
-## 🔬 **実験設計の改善要件**
+##  **実験設計の改善要件**
 
 ### **1. 比較実験の実装**
 
@@ -298,7 +298,7 @@ K値: 5 (5-fold交差検証)
 
 ---
 
-## 📊 **統計的有意性確保の計画**
+##  **統計的有意性確保の計画**
 
 ### **必要な統計テスト**
 
@@ -327,7 +327,7 @@ K値: 5 (5-fold交差検証)
 
 ---
 
-## 🚀 **実装ロードマップ**
+##  **実装ロードマップ**
 
 ### **Week 1-2: データ収集拡張**
 - [ ] 各カテゴリ30サンプル収集完了
@@ -351,23 +351,23 @@ K値: 5 (5-fold交差検証)
 
 ---
 
-## 📋 **品質保証チェックリスト**
+##  **品質保証チェックリスト**
 
-### **統計的要件** ✅/❌
+### **統計的要件** /
 - [ ] サンプル数 ≥ 240（カテゴリ毎30以上）
 - [ ] 統計的検出力 ≥ 0.80
 - [ ] 有意水準 α ≤ 0.05
 - [ ] 効果量計算・報告済み
 - [ ] 信頼区間算出・報告済み
 
-### **実験設計要件** ✅/❌
+### **実験設計要件** /
 - [ ] 対照群との比較実験実施
 - [ ] ランダム化・盲検化実施
 - [ ] 交差検証による汎化性能評価
 - [ ] 複数回実験による再現性確認
 - [ ] バイアス源の特定・統制
 
-### **報告要件** ✅/❌
+### **報告要件** /
 - [ ] 実験条件の詳細記録
 - [ ] 統計手法の正当化
 - [ ] 限界・制約の明示
@@ -376,7 +376,7 @@ K値: 5 (5-fold交差検証)
 
 ---
 
-## 🎯 **期待される成果**
+##  **期待される成果**
 
 ### **統計的信頼性の向上**
 ```
@@ -407,7 +407,7 @@ if __name__ == "__main__":
     # Cohen's Power Analysis実行
     analyzer = CohensPowerAnalysis()
     
-    print("🔬 Cohen's Power Analysis実行中...")
+    print(" Cohen's Power Analysis実行中...")
     
     # レポート生成
     report = generate_sample_size_report()
@@ -416,14 +416,14 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/COHENS_POWER_ANALYSIS_REPORT.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ Cohen's Power Analysis完了")
-    print("📋 レポート保存: COHENS_POWER_ANALYSIS_REPORT.md")
+    print(" Cohen's Power Analysis完了")
+    print(" レポート保存: COHENS_POWER_ANALYSIS_REPORT.md")
     
     # 主要結果の表示
     results = analyzer.current_study_analysis()
     recommended = results[0]
     
-    print(f"\n🎯 推奨サンプル構成:")
+    print(f"\n 推奨サンプル構成:")
     print(f"   現在: 16サンプル")
     print(f"   必要: {recommended['n_total_categories']}サンプル")
     print(f"   追加: {recommended['n_total_categories'] - 16}サンプル")

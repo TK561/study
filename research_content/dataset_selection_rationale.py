@@ -413,7 +413,7 @@ def generate_rationale_report():
     report = f"""
 # 📚 特化データセット選択の学術的根拠・理論的背景
 
-## 🎯 **根拠分析概要**
+##  **根拠分析概要**
 
 **分析日**: {datetime.now().strftime('%Y年%m月%d日 %H:%M')}  
 **目的**: 現在8データセット + 追加8データセットの選択に関する包括的学術的根拠の提供  
@@ -507,7 +507,7 @@ def generate_rationale_report():
     report += f"""
 ---
 
-## 💻 **3. 計算機視覚分野標準との整合性**
+##  **3. 計算機視覚分野標準との整合性**
 
 ### **ImageNet分類体系との対応**
 
@@ -570,7 +570,7 @@ def generate_rationale_report():
     report += f"""
 ---
 
-## 📊 **5. 特化データセット選択の統合的根拠**
+##  **5. 特化データセット選択の統合的根拠**
 
 ### **Core 8データセットの必然性**
 
@@ -617,7 +617,7 @@ def generate_rationale_report():
 
 ---
 
-## 🚀 **6. 追加8データセットの戦略的根拠**
+##  **6. 追加8データセットの戦略的根拠**
 
 ### **Tier 1: 高インパクト拡張**
 
@@ -648,7 +648,7 @@ def generate_rationale_report():
 
 ---
 
-## 📋 **7. 選択基準の客観的指標**
+##  **7. 選択基準の客観的指標**
 
 ### **定量的評価指標**
 
@@ -681,7 +681,7 @@ Specialized (Art, Microscopy, Satellite): 6.0-7.4/10
 
 ---
 
-## 🎯 **8. 総合的選択根拠**
+##  **8. 総合的選択根拠**
 
 ### **16データセット選択の必然性**
 
@@ -729,13 +729,13 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/DATASET_SELECTION_RATIONALE.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ データセット選択根拠分析完了")
-    print("📋 レポート保存: DATASET_SELECTION_RATIONALE.md")
+    print(" データセット選択根拠分析完了")
+    print(" レポート保存: DATASET_SELECTION_RATIONALE.md")
     
     # 要約表示
     rationale = DatasetSelectionRationale()
     
-    print(f"\n🎯 選択根拠要約:")
+    print(f"\n 選択根拠要約:")
     print(f"   認知科学的基盤: Eleanor Roschの基本レベルカテゴリ理論")
     print(f"   WordNet整合性: 階層的意味構造との高度整合")
     print(f"   CV標準適合: ImageNet/COCOとの92%以上整合")

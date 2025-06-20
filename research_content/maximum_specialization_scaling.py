@@ -253,9 +253,9 @@ def generate_maximum_scaling_report():
     performance_predictions = analyzer.predict_performance_curves()
     
     report = f"""
-# 🚀 特化アルゴリズム最大規模スケーリング: 飽和点発見計画
+#  特化アルゴリズム最大規模スケーリング: 飽和点発見計画
 
-## 🎯 **研究目的**
+##  **研究目的**
 
 **目標**: 特化アルゴリズム数を最大化して性能向上の飽和点を発見  
 **仮説**: 55±3カテゴリで性能改善が統計的に有意でなくなる  
@@ -265,7 +265,7 @@ def generate_maximum_scaling_report():
 
 ---
 
-## 📈 **段階的スケーリング計画: 8 → 64カテゴリ**
+##  **段階的スケーリング計画: 8 → 64カテゴリ**
 
 ### **6段階拡張ロードマップ**
 
@@ -285,7 +285,7 @@ def generate_maximum_scaling_report():
     report += f"""
 ---
 
-## 📊 **収穫逓減カーブの数学的モデル**
+##  **収穫逓減カーブの数学的モデル**
 
 ### **指数的飽和モデル**
 
@@ -303,7 +303,7 @@ def generate_maximum_scaling_report():
 
 ---
 
-## 🔬 **詳細実験設計**
+##  **詳細実験設計**
 
 ### **実験プロトコル**
 
@@ -329,7 +329,7 @@ def generate_maximum_scaling_report():
     report += f"""
 ---
 
-## 📊 **性能予測カーブ**
+##  **性能予測カーブ**
 
 ### **フェーズ別性能予測**
 
@@ -343,7 +343,7 @@ def generate_maximum_scaling_report():
     report += f"""
 ---
 
-## 🗂️ **64カテゴリ詳細構成**
+##  **64カテゴリ詳細構成**
 
 ### **Tier 1-6 拡張計画**
 
@@ -383,7 +383,7 @@ def generate_maximum_scaling_report():
 
 ---
 
-## 🎯 **期待される学術的成果**
+##  **期待される学術的成果**
 
 ### **理論的貢献**
 
@@ -416,7 +416,7 @@ def generate_maximum_scaling_report():
 
 ---
 
-## 📈 **予測される発見**
+##  **予測される発見**
 
 ### **飽和点の特定**
 
@@ -446,7 +446,7 @@ def generate_maximum_scaling_report():
 
 ---
 
-## 🚀 **実装優先度**
+##  **実装優先度**
 
 ### **Phase 1: 概念実証 (8→16カテゴリ)**
 - **期間**: 4週間
@@ -477,7 +477,7 @@ def generate_maximum_scaling_report():
     return report
 
 if __name__ == "__main__":
-    print("🚀 最大規模特化スケーリング計画生成中...")
+    print(" 最大規模特化スケーリング計画生成中...")
     
     # 分析実行
     analyzer = MaximumSpecializationScaling()
@@ -490,11 +490,11 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/MAXIMUM_SPECIALIZATION_SCALING.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ 最大規模スケーリング計画完了")
-    print("📋 レポート保存: MAXIMUM_SPECIALIZATION_SCALING.md")
+    print(" 最大規模スケーリング計画完了")
+    print(" レポート保存: MAXIMUM_SPECIALIZATION_SCALING.md")
     
     # 要約表示
-    print(f"\n🎯 最大規模スケーリング計画:")
+    print(f"\n 最大規模スケーリング計画:")
     print(f"   目標: 8 → 64カテゴリへの段階的拡張")
     print(f"   飽和点予測: 55±3カテゴリ")
     print(f"   総実験期間: 24週間")

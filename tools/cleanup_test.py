@@ -49,10 +49,10 @@ def test_file_cleanup():
             for error in cleanup_results['errors']:
                 print(f"  - {error}")
         
-        print("\n✅ ファイル整理テスト完了")
+        print("\n ファイル整理テスト完了")
         
     except Exception as e:
-        print(f"❌ テストエラー: {e}")
+        print(f" テストエラー: {e}")
     
     finally:
         # 残っているテストファイルをクリーンアップ

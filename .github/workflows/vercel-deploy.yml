@@ -35,14 +35,14 @@ jobs:
       run: |
         DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
         echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
-        echo "✅ Research project deployed to: $DEPLOYMENT_URL"
+        echo " Research project deployed to: $DEPLOYMENT_URL"
         
     - name: Test Deployment
       run: |
         sleep 20
         RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" ${{ steps.deploy.outputs.deployment_url }})
         if [ "$RESPONSE" = "200" ]; then
-          echo "✅ Deployment successful - HTTP $RESPONSE"
+          echo " Deployment successful - HTTP $RESPONSE"
         else
-          echo "⚠️ Deployment check returned HTTP $RESPONSE"
+          echo " Deployment check returned HTTP $RESPONSE"
         fi

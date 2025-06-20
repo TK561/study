@@ -2,7 +2,7 @@
 
 学術研究用の画像分類システムです。YOLO物体検出、SAMセグメンテーション、CLIP分類を統合し、意味カテゴリに基づいて最適な分類アプローチを自動選択します。
 
-## 🎯 主な機能
+##  主な機能
 
 - **画像キャプション自動生成**: BLIP(Bootstrapping Language-Image Pre-training)を使用
 - **意味カテゴリ自動判定**: WordNetを活用した意味論的分析
@@ -12,7 +12,7 @@
 - **性能比較**: 汎用アプローチとの定量的性能比較
 - **統計分析・可視化**: 実験結果の詳細分析とグラフ生成
 
-## 🛠️ 技術スタック
+##  技術スタック
 
 ### 深層学習フレームワーク
 - **PyTorch**: 深層学習の基盤フレームワーク
@@ -31,13 +31,13 @@
 - **Matplotlib**: グラフ作成
 - **OpenCV**: 画像処理
 
-## 📋 必要な環境
+##  必要な環境
 
 - Python 3.8以上
 - CUDA対応GPU（推奨、CPUでも動作可能）
 - メモリ: 8GB以上推奨
 
-## 🚀 インストール方法
+##  インストール方法
 
 1. **リポジトリのクローン**
 ```bash
@@ -62,7 +62,7 @@ pip install -r requirements.txt
 - YOLOv8モデル: 初回実行時に自動ダウンロード
 - SAMモデル: `models/sam_vit_b.pth`に配置（オプション）
 
-## 💻 使用方法
+##  使用方法
 
 ### GUIモードで実行
 ```bash
@@ -79,7 +79,7 @@ python semantic_classification_system.py
 6. **分類実験**: 汎用vs特化アプローチの性能比較
 7. **結果分析・可視化**: 統計分析とグラフ生成
 
-## 📊 対応カテゴリと特化アプローチ
+##  対応カテゴリと特化アプローチ
 
 | カテゴリ | 特化アプローチ | 対象ラベル例 |
 |---------|---------------|-------------|
@@ -92,7 +92,7 @@ python semantic_classification_system.py
 | furniture | Object-specialized Classification | chair, table, sofa |
 | plant | Plant-specialized Classification | tree, flower, garden |
 
-## 📁 出力ファイル
+##  出力ファイル
 
 ### 画像処理結果
 - `output/masks/`: セグメンテーションマスク画像
@@ -103,7 +103,7 @@ python semantic_classification_system.py
 - `results/summary_results.json`: 統計サマリー
 - `results/graphs/`: 可視化グラフ（改善率分布、カテゴリ別性能等）
 
-## 🔬 実験設計
+##  実験設計
 
 本システムは以下の研究仮説を検証します：
 
@@ -114,7 +114,7 @@ python semantic_classification_system.py
 - **カテゴリ別性能**: 意味カテゴリごとの改善度分析
 - **統計的有意性**: 改善効果の統計的検証
 
-## 🎛️ システム設定
+## 🎛 システム設定
 
 ### モデル設定
 ```python
@@ -170,7 +170,7 @@ study/
 - [SAM: Segment Anything](https://github.com/facebookresearch/segment-anything)
 - [WordNet: NLTK](https://www.nltk.org/howto/wordnet.html)
 
-## 📄 ライセンス
+##  ライセンス
 
 本プロジェクトは教育・研究目的で作成されたオリジナル実装です。使用しているオープンソースライブラリはそれぞれのライセンスに従います。
 

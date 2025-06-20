@@ -86,7 +86,7 @@ class AcademicDatasetCollector:
             'start_time': datetime.now().isoformat()
         }
         
-        print(f"🔍 Collecting {target_count} samples for {category}...")
+        print(f" Collecting {target_count} samples for {category}...")
         
         # Here you would implement actual data collection logic
         # This is a template structure
@@ -120,25 +120,25 @@ class AcademicDatasetCollector:
     
     def execute_phase1_collection(self):
         """Execute Phase 1: Minimum academic standard (30 per category)"""
-        print("🚀 Starting Phase 1: Minimum Academic Standard Collection")
+        print(" Starting Phase 1: Minimum Academic Standard Collection")
         
         results = {}
         for category in self.categories:
             collected = self.collect_category_samples(category, 30)
             results[category] = collected
-            print(f"✅ {category}: {collected}/30 samples collected")
+            print(f" {category}: {collected}/30 samples collected")
         
         return results
     
     def execute_phase2_collection(self):
         """Execute Phase 2: Optimal statistical power (94 per category)"""
-        print("🚀 Starting Phase 2: Optimal Statistical Power Collection")
+        print(" Starting Phase 2: Optimal Statistical Power Collection")
         
         results = {}
         for category in self.categories:
             collected = self.collect_category_samples(category, 94)
             results[category] = collected
-            print(f"✅ {category}: {collected}/94 samples collected")
+            print(f" {category}: {collected}/94 samples collected")
         
         return results
 
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     collector.setup_directory_structure()
     
     # Execute collection phases
-    print("📊 Academic Dataset Collection System")
+    print(" Academic Dataset Collection System")
     print("=" * 50)
     
     # Phase 1
@@ -156,4 +156,4 @@ if __name__ == "__main__":
     # Phase 2
     phase2_results = collector.execute_phase2_collection()
     
-    print("\n✅ Collection completed successfully!")
+    print("\n Collection completed successfully!")

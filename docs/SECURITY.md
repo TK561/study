@@ -1,6 +1,6 @@
 # 🔒 セキュリティガイド
 
-## ⚠️ 重要な安全対策
+##  重要な安全対策
 
 ### 🚨 APIキーの保護
 
@@ -10,7 +10,7 @@
 - `secrets.json` - 機密情報ファイル
 - `credentials.json` - 認証情報ファイル
 
-### ✅ 安全な設定方法
+###  安全な設定方法
 
 #### 1. 環境変数を使用（推奨）
 ```bash
@@ -28,7 +28,7 @@ ANTHROPIC_API_KEY=sk-ant-your_key_here
 from secure_config import GITHUB_TOKEN, ANTHROPIC_API_KEY
 ```
 
-### 🛡️ .gitignore 設定
+###  .gitignore 設定
 
 以下のパターンが `.gitignore` に含まれています：
 ```
@@ -43,7 +43,7 @@ api_keys.txt
 private_*
 ```
 
-### 🔍 漏洩チェック方法
+###  漏洩チェック方法
 
 #### 1. コミット前チェック
 ```bash
@@ -81,14 +81,14 @@ git push --force-with-lease origin main
 - `.env` ファイルに安全に保存
 - 公開されていないことを確認
 
-### 🎯 ベストプラクティス
+###  ベストプラクティス
 
 #### 1. 設定ファイルの分離
 ```
-✅ .env.example     - テンプレート（コミット可）
-✅ secure_config.py - セキュア読み込み（コミット可）
-❌ .env            - 実際の値（コミット禁止）
-❌ config.py       - 生値含む（コミット禁止）
+ .env.example     - テンプレート（コミット可）
+ secure_config.py - セキュア読み込み（コミット可）
+ .env            - 実際の値（コミット禁止）
+ config.py       - 生値含む（コミット禁止）
 ```
 
 #### 2. 環境別設定
@@ -121,15 +121,15 @@ env:
 ### 🔐 チームでの共有
 
 #### 安全な共有方法
-- ✅ 1Password、Bitwarden等のパスワードマネージャー
-- ✅ 暗号化されたプライベートチャット
-- ✅ 社内のセキュアな認証情報管理システム
+-  1Password、Bitwarden等のパスワードマネージャー
+-  暗号化されたプライベートチャット
+-  社内のセキュアな認証情報管理システム
 
 #### 危険な共有方法
-- ❌ メール
-- ❌ Slack/Discord等のチャット
-- ❌ GitHub Issues/PRのコメント
-- ❌ Google Docs/Sheets
+-  メール
+-  Slack/Discord等のチャット
+-  GitHub Issues/PRのコメント
+-  Google Docs/Sheets
 
 ### 📞 インシデント報告
 
@@ -142,4 +142,4 @@ APIキーが漏洩した場合：
 
 ---
 
-**🛡️ セキュリティは最優先事項です。疑問があれば、常に安全な方法を選択してください。**
+** セキュリティは最優先事項です。疑問があれば、常に安全な方法を選択してください。**

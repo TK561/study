@@ -289,9 +289,9 @@ def generate_strong_rationale_report():
     specialization_effect = rationale.analyze_dataset_specialization_effect()
     
     report = f"""
-# 📊 特化データセット選択の実証的・定量的根拠
+#  特化データセット選択の実証的・定量的根拠
 
-## 🎯 **実証分析概要**
+##  **実証分析概要**
 
 **分析日**: {datetime.now().strftime('%Y年%m月%d日 %H:%M')}  
 **根拠タイプ**: 実測データに基づく定量的分析  
@@ -299,7 +299,7 @@ def generate_strong_rationale_report():
 
 ---
 
-## 📈 **1. 現在の性能ギャップの実証的分析**
+##  **1. 現在の性能ギャップの実証的分析**
 
 ### **実際の分類性能データ**
 
@@ -342,7 +342,7 @@ def generate_strong_rationale_report():
 
 ---
 
-## 🔍 **2. データセット特化効果の定量分析**
+##  **2. データセット特化効果の定量分析**
 
 ### **特化度スコアと性能の相関分析**
 
@@ -404,7 +404,7 @@ def generate_strong_rationale_report():
     report += f"""
 ---
 
-## 🎯 **4. 実証的根拠による追加データセット必要性**
+##  **4. 実証的根拠による追加データセット必要性**
 
 ### **実測失敗ケースに基づく拡張根拠**
 
@@ -425,7 +425,7 @@ def generate_strong_rationale_report():
     report += f"""
 ---
 
-## 📊 **5. データ規模と特化効果の実証分析**
+##  **5. データ規模と特化効果の実証分析**
 
 ### **規模 vs 特化度 vs 性能の関係**
 
@@ -448,7 +448,7 @@ OpenBuildings (Building): 1B構造 → 構造のみ → 50%性能
 
 ---
 
-## 🔬 **6. 失敗パターンの言語学的分析**
+##  **6. 失敗パターンの言語学的分析**
 
 ### **語彙認識失敗の具体的パターン**
 
@@ -471,7 +471,7 @@ OpenBuildings (Building): 1B構造 → 構造のみ → 50%性能
 
 ---
 
-## 💡 **7. 定量的改善予測**
+##  **7. 定量的改善予測**
 
 ### **追加データセットによる性能向上予測**
 
@@ -509,7 +509,7 @@ OpenBuildings (Building): 1B構造 → 構造のみ → 50%性能
 
 ---
 
-## 📋 **8. 実証的結論**
+##  **8. 実証的結論**
 
 ### **データに基づく必然的選択根拠**
 
@@ -542,7 +542,7 @@ OpenBuildings (Building): 1B構造 → 構造のみ → 50%性能
     return report
 
 if __name__ == "__main__":
-    print("📊 実証的データセット選択根拠分析中...")
+    print(" 実証的データセット選択根拠分析中...")
     
     # レポート生成
     report = generate_strong_rationale_report()
@@ -551,13 +551,13 @@ if __name__ == "__main__":
     with open('/mnt/c/Desktop/Research/STRONG_DATASET_RATIONALE.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print("✅ 実証的根拠分析完了")
-    print("📋 レポート保存: STRONG_DATASET_RATIONALE.md")
+    print(" 実証的根拠分析完了")
+    print(" レポート保存: STRONG_DATASET_RATIONALE.md")
     
     # 定量的要約表示
     rationale = StrongDatasetRationale()
     
-    print(f"\n🎯 実証的根拠要約:")
+    print(f"\n 実証的根拠要約:")
     print(f"   現在性能: 完全成功5/8カテゴリ、不完全3/8カテゴリ")
     print(f"   特化度-性能相関: r=0.85+ (強い正相関)")
     print(f"   語彙ギャップ: 9,900+ synsets未カバー")

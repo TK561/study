@@ -287,21 +287,21 @@ class handler(BaseHTTPRequestHandler):
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 意味カテゴリに基づく統合画像分類システム</h1>
+            <h1> 意味カテゴリに基づく統合画像分類システム</h1>
             <p class="subtitle">WordNetベースの意味論的分析による特化型画像分類アプローチ</p>
             <div class="status" role="status" aria-live="polite">
-                <span aria-label="システム状態">✅ システム稼働中</span> - Claude Code AI支援研究開発
+                <span aria-label="システム状態"> システム稼働中</span> - Claude Code AI支援研究開発
             </div>
         </div>
 
         <div class="research-objectives">
-            <h3>🔬 研究目的・仮説</h3>
+            <h3> 研究目的・仮説</h3>
             <p><strong>仮説:</strong> 「画像の意味内容に応じて特化された分類アプローチを選択することで、汎用的なアプローチよりも高い分類精度を達成できる」</p>
             <p><strong>目標:</strong> 8つの意味カテゴリ（person, animal, food, landscape, building, furniture, vehicle, plant）で特化型データセットを活用した性能向上を実証</p>
         </div>
 
         <div class="experimental-results">
-            <h3>📊 実験結果サマリー</h3>
+            <h3> 実験結果サマリー</h3>
             <div class="performance-metrics">
                 <div class="metric">
                     <div class="metric-value">81.2%</div>
@@ -324,7 +324,7 @@ class handler(BaseHTTPRequestHandler):
 
         <div class="grid">
             <div class="card">
-                <h3>🛠️ 技術スタック</h3>
+                <h3> 技術スタック</h3>
                 <div class="tech-stack">
                     <span class="tech-tag">PyTorch</span>
                     <span class="tech-tag">CLIP</span>
@@ -346,7 +346,7 @@ class handler(BaseHTTPRequestHandler):
             </div>
 
             <div class="card">
-                <h3>📈 主要機能</h3>
+                <h3> 主要機能</h3>
                 <ul>
                     <li><strong>意味論的分析:</strong> WordNet階層による自動カテゴリ判定</li>
                     <li><strong>動的データセット選択:</strong> カテゴリに応じた最適データセット自動選択</li>
@@ -357,20 +357,20 @@ class handler(BaseHTTPRequestHandler):
             </div>
 
             <div class="card">
-                <h3>🤖 自動化システム</h3>
+                <h3> 自動化システム</h3>
                 <ul>
-                    <li>GitHub Actions自動デプロイ ✅</li>
-                    <li>Claude Code自動修正 ✅</li>
-                    <li>30分毎ヘルスチェック ✅</li>
-                    <li>1時間毎作業整理システム ✅</li>
-                    <li>Vercel自動デプロイ ✅</li>
-                    <li>実験ログ自動記録 ✅</li>
+                    <li>GitHub Actions自動デプロイ </li>
+                    <li>Claude Code自動修正 </li>
+                    <li>30分毎ヘルスチェック </li>
+                    <li>1時間毎作業整理システム </li>
+                    <li>Vercel自動デプロイ </li>
+                    <li>実験ログ自動記録 </li>
                 </ul>
                 <p><strong>CI/CD統合:</strong> 完全自動化されたGitHub Actions + Vercel統合システム</p>
             </div>
 
             <div class="card">
-                <h3>📊 実験設計</h3>
+                <h3> 実験設計</h3>
                 <p><strong>評価指標:</strong></p>
                 <ul>
                     <li>確信度改善率 (特化 vs 汎用)</li>
@@ -383,45 +383,45 @@ class handler(BaseHTTPRequestHandler):
         </div>
 
         <div class="card">
-            <h3>🗄️ 統合専門データセット (8カテゴリ)</h3>
+            <h3> 統合専門データセット (8カテゴリ)</h3>
             <div class="datasets">
                 <div class="dataset">
-                    <h4>👤 PERSON: LFW</h4>
+                    <h4> PERSON: LFW</h4>
                     <div class="dataset-meta">顔認識・人物識別特化 | 13,000+ images | 2007年</div>
                     <p>自然環境での顔認識に特化。COCOの汎用人物分類に対し、個体識別・表情認識で大幅な精度向上</p>
                 </div>
                 <div class="dataset">
-                    <h4>🐾 ANIMAL: ImageNet</h4>
+                    <h4> ANIMAL: ImageNet</h4>
                     <div class="dataset-meta">動物分類・行動認識特化 | 1.2M+ images | 2009年</div>
                     <p>1000+動物種の大規模分類。COCOの基本動物分類に対し、種の細分化と行動パターンで優位性</p>
                 </div>
                 <div class="dataset">
-                    <h4>🍕 FOOD: Food-101</h4>
+                    <h4> FOOD: Food-101</h4>
                     <div class="dataset-meta">料理・食材認識特化 | 101,000 images | 2014年</div>
                     <p>101種類の料理カテゴリ。調理法・盛り付け・文化的特徴に特化し、料理認識で大幅な性能向上</p>
                 </div>
                 <div class="dataset">
-                    <h4>🏔️ LANDSCAPE: Places365</h4>
+                    <h4> LANDSCAPE: Places365</h4>
                     <div class="dataset-meta">シーン・環境認識特化 | 10M+ images | 2017年</div>
                     <p>365の場所・環境カテゴリ。環境の文脈・季節・時間を理解し、景観分析で圧倒的優位性</p>
                 </div>
                 <div class="dataset">
-                    <h4>🏢 BUILDING: OpenBuildings</h4>
+                    <h4> BUILDING: OpenBuildings</h4>
                     <div class="dataset-meta">建築物・構造物認識特化 | 1B+ footprints | 2021年</div>
                     <p>建築様式・構造に特化。文化的・歴史的建築の理解で高精度を実現</p>
                 </div>
                 <div class="dataset">
-                    <h4>🪑 FURNITURE: Objects365</h4>
+                    <h4> FURNITURE: Objects365</h4>
                     <div class="dataset-meta">家具・日用品認識特化 | 2M+ instances | 2019年</div>
                     <p>365物体カテゴリから家具特化。機能・配置・デザインで室内環境理解に優位性</p>
                 </div>
                 <div class="dataset">
-                    <h4>🚗 VEHICLE: Pascal VOC</h4>
+                    <h4> VEHICLE: Pascal VOC</h4>
                     <div class="dataset-meta">車両・交通手段認識特化 | Vehicle subset | 2012年</div>
                     <p>交通環境・動的認識に特化。自動運転等の実用分野で高い価値</p>
                 </div>
                 <div class="dataset">
-                    <h4>🌱 PLANT: PlantVillage</h4>
+                    <h4> PLANT: PlantVillage</h4>
                     <div class="dataset-meta">植物・農作物認識特化 | 50,000+ images | 2016年</div>
                     <p>健康状態・病気診断に特化。農業・生態学分野で実用的価値が高い</p>
                 </div>
@@ -429,7 +429,7 @@ class handler(BaseHTTPRequestHandler):
         </div>
 
         <div class="card">
-            <h3>📊 システム処理フローチャート</h3>
+            <h3> システム処理フローチャート</h3>
             <div class="flowchart-container" style="margin: 20px 0; overflow-x: auto;">
                 <svg width="100%" height="800" viewBox="0 0 1200 800" style="background: linear-gradient(to bottom, #f8f9fa, #ffffff); border: 1px solid #e1e4e8; border-radius: 12px; padding: 30px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));">
                     
@@ -602,7 +602,7 @@ class handler(BaseHTTPRequestHandler):
                 </svg>
             </div>
             <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 5px;">
-                <h4>🔄 処理フロー詳細説明</h4>
+                <h4> 処理フロー詳細説明</h4>
                 <ol>
                     <li><strong>画像入力:</strong> ユーザーが単一または複数画像を選択</li>
                     <li><strong>BLIP キャプション生成:</strong> 画像内容を自然言語で記述</li>
@@ -612,15 +612,15 @@ class handler(BaseHTTPRequestHandler):
                     <li><strong>特化型分類:</strong> 選択されたデータセットによる特化分類と汎用アプローチとの性能比較分析</li>
                 </ol>
                 <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 3px;">
-                    <strong>📊 性能結果:</strong> 分類精度 81.2% | 確信度改善率 +15.3% | 処理時間 平均0.8秒 | テストケース 16/16完了
+                    <strong> 性能結果:</strong> 分類精度 81.2% | 確信度改善率 +15.3% | 処理時間 平均0.8秒 | テストケース 16/16完了
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>🤖 <strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト</p>
+            <p> <strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト</p>
             <p>📧 プロジェクト: prj_gm8o7yYpKf4fEf1ydU5oQwZGH5dV | GitHub Actions統合システム</p>
-            <p>🔬 <strong>学術的価値:</strong> 意味論ベース動的データセット選択による分類精度向上の実証</p>
+            <p> <strong>学術的価値:</strong> 意味論ベース動的データセット選択による分類精度向上の実証</p>
         </div>
     </div>
 </body>
