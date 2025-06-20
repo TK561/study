@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 import json
-from datetime import datetime
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -10,8 +9,7 @@ class handler(BaseHTTPRequestHandler):
         
         status_data = {
             "status": "running",
-            "timestamp": datetime.now().isoformat(),
-            "project": "研究プロジェクト管理システム",
+            "project": "Research Project Management System",
             "vercel_deployment": True,
             "features": {
                 "hourly_summary": True,
@@ -29,7 +27,6 @@ class handler(BaseHTTPRequestHandler):
             "system": {
                 "uptime": "operational",
                 "deployment_status": "successful",
-                "last_update": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 "platform": "Vercel Serverless"
             }
         }
