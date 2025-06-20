@@ -311,140 +311,160 @@ class handler(BaseHTTPRequestHandler):
         <div class="card">
             <h3>📊 システム処理フローチャート</h3>
             <div class="flowchart-container">
-                <svg width="100%" height="600" viewBox="0 0 1000 600" style="background: #f8f9fa; border-radius: 10px; padding: 20px;">
-                    <!-- 入力 -->
-                    <rect x="450" y="20" width="100" height="40" rx="20" fill="#4CAF50" stroke="#333" stroke-width="2"/>
-                    <text x="500" y="45" text-anchor="middle" fill="white" font-weight="bold">画像入力</text>
+                <svg width="100%" height="700" viewBox="0 0 1000 700" style="background: white; border: 2px solid #ddd; border-radius: 10px; padding: 20px;">
+                    
+                    <!-- 開始 -->
+                    <ellipse cx="500" cy="50" rx="60" ry="25" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="57" text-anchor="middle" fill="black" font-size="14" font-weight="bold">開始</text>
                     
                     <!-- Arrow 1 -->
-                    <path d="M500 70 L500 90" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <path d="M500 75 L500 105" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
                     
-                    <!-- BLIP処理 -->
-                    <rect x="430" y="100" width="140" height="40" rx="10" fill="#2196F3" stroke="#333" stroke-width="2"/>
-                    <text x="500" y="125" text-anchor="middle" fill="white" font-weight="bold">BLIP キャプション生成</text>
+                    <!-- 画像入力 -->
+                    <rect x="430" y="110" width="140" height="50" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="130" text-anchor="middle" fill="black" font-size="12" font-weight="bold">画像入力</text>
+                    <text x="500" y="145" text-anchor="middle" fill="black" font-size="10">(ユーザー選択)</text>
                     
                     <!-- Arrow 2 -->
-                    <path d="M500 150 L500 170" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <path d="M500 160 L500 185" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- BLIP処理 -->
+                    <rect x="420" y="190" width="160" height="50" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="210" text-anchor="middle" fill="black" font-size="12" font-weight="bold">BLIP</text>
+                    <text x="500" y="225" text-anchor="middle" fill="black" font-size="10">キャプション自動生成</text>
+                    
+                    <!-- Arrow 3 -->
+                    <path d="M500 240 L500 265" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
                     
                     <!-- WordNet処理 -->
-                    <rect x="420" y="180" width="160" height="40" rx="10" fill="#9C27B0" stroke="#333" stroke-width="2"/>
-                    <text x="500" y="205" text-anchor="middle" fill="white" font-weight="bold">WordNet 意味カテゴリ判定</text>
+                    <rect x="410" y="270" width="180" height="50" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="290" text-anchor="middle" fill="black" font-size="12" font-weight="bold">WordNet</text>
+                    <text x="500" y="305" text-anchor="middle" fill="black" font-size="10">意味カテゴリ自動判定</text>
                     
-                    <!-- 分岐点 -->
-                    <circle cx="500" cy="260" r="15" fill="#FF9800" stroke="#333" stroke-width="2"/>
-                    <text x="520" y="265" font-size="12" font-weight="bold">分岐</text>
+                    <!-- Arrow 4 -->
+                    <path d="M500 320 L500 345" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
                     
-                    <!-- 分岐線 -->
-                    <path d="M500 240 L500 245" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                    <path d="M485 260 L150 260 L150 320" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                    <path d="M515 260 L850 260 L850 320" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                    <path d="M500 275 L500 300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- 判定分岐 -->
+                    <polygon points="500,350 540,380 500,410 460,380" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="375" text-anchor="middle" fill="black" font-size="10" font-weight="bold">カテゴリ</text>
+                    <text x="500" y="390" text-anchor="middle" fill="black" font-size="10">判定分岐</text>
                     
                     <!-- 8つの専門データセット -->
-                    <g transform="translate(50, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#E91E63" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">👤 LFW</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">PERSON</text>
+                    <g transform="translate(70, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">PERSON</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">LFW Dataset</text>
+                        <!-- 分岐線 -->
+                        <path d="M460 380 L115 380 L115 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(170, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#3F51B5" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🐾 ImageNet</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">ANIMAL</text>
+                    <g transform="translate(180, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">ANIMAL</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">ImageNet</text>
+                        <!-- 分岐線 -->
+                        <path d="M470 370 L225 370 L225 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(290, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#FF5722" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🍕 Food-101</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">FOOD</text>
+                    <g transform="translate(290, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">FOOD</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">Food-101</text>
+                        <!-- 分岐線 -->
+                        <path d="M480 360 L335 360 L335 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(410, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#4CAF50" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🏔️ Places365</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">LANDSCAPE</text>
+                    <g transform="translate(400, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">LANDSCAPE</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">Places365</text>
+                        <!-- 分岐線 -->
+                        <path d="M490 350 L445 350 L445 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(530, 330)">
-                        <rect x="0" y="0" width="120" height="30" rx="5" fill="#795548" stroke="#333"/>
-                        <text x="60" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🏢 OpenBuildings</text>
-                        <text x="60" y="-10" text-anchor="middle" font-size="8">BUILDING</text>
+                    <g transform="translate(510, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">BUILDING</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">OpenBuildings</text>
+                        <!-- 分岐線 -->
+                        <path d="M510 350 L555 350 L555 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(670, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#607D8B" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🪑 Objects365</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">FURNITURE</text>
+                    <g transform="translate(620, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">FURNITURE</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">Objects365</text>
+                        <!-- 分岐線 -->
+                        <path d="M520 360 L665 360 L665 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(790, 330)">
-                        <rect x="0" y="0" width="100" height="30" rx="5" fill="#9E9E9E" stroke="#333"/>
-                        <text x="50" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">🚗 Pascal VOC</text>
-                        <text x="50" y="-10" text-anchor="middle" font-size="8">VEHICLE</text>
+                    <g transform="translate(730, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">VEHICLE</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">Pascal VOC</text>
+                        <!-- 分岐線 -->
+                        <path d="M530 370 L775 370 L775 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <g transform="translate(910, 330)">
-                        <rect x="0" y="0" width="80" height="30" rx="5" fill="#8BC34A" stroke="#333"/>
-                        <text x="40" y="20" text-anchor="middle" fill="white" font-size="9" font-weight="bold">🌱 PlantVillage</text>
-                        <text x="40" y="-10" text-anchor="middle" font-size="8">PLANT</text>
+                    <g transform="translate(840, 450)">
+                        <rect x="0" y="0" width="90" height="40" fill="none" stroke="black" stroke-width="1"/>
+                        <text x="45" y="15" text-anchor="middle" fill="black" font-size="10" font-weight="bold">PLANT</text>
+                        <text x="45" y="28" text-anchor="middle" fill="black" font-size="8">PlantVillage</text>
+                        <!-- 分岐線 -->
+                        <path d="M540 380 L885 380 L885 450" stroke="black" stroke-width="1" marker-end="url(#arrowhead)"/>
                     </g>
                     
-                    <!-- 統合処理 -->
-                    <path d="M100 380 L100 420 L500 420" stroke="#333" stroke-width="2"/>
-                    <path d="M220 380 L220 420" stroke="#333" stroke-width="2"/>
-                    <path d="M340 380 L340 420" stroke="#333" stroke-width="2"/>
-                    <path d="M460 380 L460 420" stroke="#333" stroke-width="2"/>
-                    <path d="M590 380 L590 420" stroke="#333" stroke-width="2"/>
-                    <path d="M720 380 L720 420" stroke="#333" stroke-width="2"/>
-                    <path d="M840 380 L840 420" stroke="#333" stroke-width="2"/>
-                    <path d="M950 380 L950 420 L500 420" stroke="#333" stroke-width="2"/>
+                    <!-- 統合処理へ収束 -->
+                    <path d="M115 490 L115 520 L500 520" stroke="black" stroke-width="1"/>
+                    <path d="M225 490 L225 520" stroke="black" stroke-width="1"/>
+                    <path d="M335 490 L335 520" stroke="black" stroke-width="1"/>
+                    <path d="M445 490 L445 520" stroke="black" stroke-width="1"/>
+                    <path d="M555 490 L555 520" stroke="black" stroke-width="1"/>
+                    <path d="M665 490 L665 520" stroke="black" stroke-width="1"/>
+                    <path d="M775 490 L775 520" stroke="black" stroke-width="1"/>
+                    <path d="M885 490 L885 520 L500 520" stroke="black" stroke-width="1"/>
+                    
+                    <!-- Arrow 5 -->
+                    <path d="M500 520 L500 540" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
                     
                     <!-- YOLO + SAM 処理 -->
-                    <rect x="420" y="440" width="160" height="40" rx="10" fill="#FF9800" stroke="#333" stroke-width="2"/>
-                    <text x="500" y="465" text-anchor="middle" fill="white" font-weight="bold">YOLO + SAM 統合処理</text>
+                    <rect x="410" y="545" width="180" height="50" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="565" text-anchor="middle" fill="black" font-size="12" font-weight="bold">YOLO + SAM</text>
+                    <text x="500" y="580" text-anchor="middle" fill="black" font-size="10">物体検出・セグメンテーション</text>
                     
-                    <!-- Arrow -->
-                    <path d="M500 430 L500 440" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-                    <path d="M500 490 L500 510" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- Arrow 6 -->
+                    <path d="M500 595 L500 620" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
                     
                     <!-- 最終結果 -->
-                    <rect x="400" y="520" width="200" height="40" rx="20" fill="#4CAF50" stroke="#333" stroke-width="2"/>
-                    <text x="500" y="545" text-anchor="middle" fill="white" font-weight="bold">特化型分類結果 + 性能比較</text>
+                    <rect x="380" y="625" width="240" height="50" fill="none" stroke="black" stroke-width="2"/>
+                    <text x="500" y="645" text-anchor="middle" fill="black" font-size="12" font-weight="bold">特化型分類結果</text>
+                    <text x="500" y="660" text-anchor="middle" fill="black" font-size="10">汎用アプローチとの性能比較分析</text>
                     
                     <!-- Arrow definitions -->
                     <defs>
                         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+                            <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
                         </marker>
                     </defs>
                     
-                    <!-- 説明テキスト -->
-                    <text x="20" y="20" font-size="14" font-weight="bold" fill="#333">📊 意味カテゴリベース画像分類システム - 処理フロー</text>
-                    <text x="20" y="40" font-size="12" fill="#666">1. 画像入力 → 2. キャプション生成 → 3. 意味カテゴリ判定 → 4. 最適データセット選択 → 5. 統合処理 → 6. 結果出力</text>
-                    
-                    <!-- 性能比較 -->
-                    <g transform="translate(750, 60)">
-                        <rect x="0" y="0" width="200" height="120" rx="10" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
-                        <text x="100" y="20" text-anchor="middle" font-weight="bold" fill="#1976D2">性能比較分析</text>
-                        <text x="10" y="40" font-size="12" fill="#333">• 汎用 vs 特化アプローチ</text>
-                        <text x="10" y="55" font-size="12" fill="#333">• 確信度改善率: 平均+15.3%</text>
-                        <text x="10" y="70" font-size="12" fill="#333">• 分類精度: 81.2%</text>
-                        <text x="10" y="85" font-size="12" fill="#333">• 処理時間: 平均0.8秒</text>
-                        <text x="10" y="100" font-size="12" fill="#333">• テストケース: 16/16</text>
-                    </g>
+                    <!-- タイトル -->
+                    <text x="500" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="black">意味カテゴリベース画像分類システム 処理フロー</text>
                     
                 </svg>
             </div>
-            <div style="margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 5px;">
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #ddd; border-radius: 5px;">
                 <h4>🔄 処理フロー詳細説明</h4>
                 <ol>
                     <li><strong>画像入力:</strong> ユーザーが単一または複数画像を選択</li>
                     <li><strong>BLIP キャプション生成:</strong> 画像内容を自然言語で記述</li>
                     <li><strong>WordNet 意味カテゴリ判定:</strong> キャプションから8つの意味カテゴリを自動判定</li>
-                    <li><strong>最適データセット選択:</strong> カテゴリに応じて専門データセットを動的選択</li>
+                    <li><strong>カテゴリ分岐:</strong> 判定結果に基づき8つの専門データセットから最適なものを動的選択</li>
                     <li><strong>YOLO + SAM 統合処理:</strong> 物体検出とセグメンテーションの並列実行</li>
-                    <li><strong>特化型分類 + 性能比較:</strong> 特化アプローチと汎用アプローチの定量的比較分析</li>
+                    <li><strong>特化型分類:</strong> 選択されたデータセットによる特化分類と汎用アプローチとの性能比較分析</li>
                 </ol>
+                <div style="margin-top: 15px; padding: 10px; background: white; border-radius: 3px;">
+                    <strong>📊 性能結果:</strong> 分類精度 81.2% | 確信度改善率 +15.3% | 処理時間 平均0.8秒 | テストケース 16/16完了
+                </div>
             </div>
         </div>
 
