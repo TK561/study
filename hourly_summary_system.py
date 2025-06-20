@@ -115,6 +115,10 @@ class HourlySummarySystem:
             "activities": self.detect_activities(current_git_status)
         }
         
+        # ファイル整理を実行
+        cleanup_results = self.perform_file_cleanup()
+        summary["cleanup_results"] = cleanup_results
+        
         # セッション全体の統合サマリーを生成
         self.update_consolidated_summary(summary)
         
@@ -169,6 +173,171 @@ class HourlySummarySystem:
         
         return activities if activities else ["通常作業"]
     
+    def perform_file_cleanup(self):
+        """自動ファイル整理を実行"""
+        cleanup_results = {
+            "cleaned_files": [],
+            "deleted_files": [],
+            "organized_folders": [],
+            "errors": []
+        }
+        
+        try:
+            # 1. 一時ファイルの削除
+            temp_patterns = [
+                "*.tmp", "*.temp", "*.bak", "*.backup", 
+                "*~", ".DS_Store", "Thumbs.db", "desktop.ini"
+            ]
+            
+            for pattern in temp_patterns:
+                deleted_files = self.clean_files_by_pattern(pattern)
+                cleanup_results["deleted_files"].extend(deleted_files)
+            
+            # 2. ログファイルの古いもの削除 (7日以上前)
+            old_logs = self.clean_old_session_logs()
+            cleanup_results["deleted_files"].extend(old_logs)
+            
+            # 3. __pycache__ フォルダの削除
+            pycache_dirs = self.clean_pycache_directories()
+            cleanup_results["deleted_files"].extend(pycache_dirs)
+            
+            # 4. 空フォルダの削除
+            empty_dirs = self.remove_empty_directories()
+            cleanup_results["deleted_files"].extend(empty_dirs)
+            
+            # 5. Git作業ディレクトリのクリーンアップ
+            if self.should_auto_commit():
+                commit_result = self.auto_commit_changes()
+                cleanup_results["git_operations"] = commit_result
+            
+            print(f"ファイル整理完了: {len(cleanup_results['deleted_files'])}個のファイル/フォルダを処理")
+            
+        except Exception as e:
+            cleanup_results["errors"].append(f"整理エラー: {str(e)}")
+            print(f"ファイル整理エラー: {e}")
+        
+        return cleanup_results
+    
+    def clean_files_by_pattern(self, pattern: str) -> List[str]:
+        """パターンマッチでファイルを削除"""
+        deleted_files = []
+        try:
+            import glob
+            files_to_delete = glob.glob(str(self.project_root / "**" / pattern), recursive=True)
+            
+            for file_path in files_to_delete:
+                try:
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+                        deleted_files.append(file_path)
+                except Exception as e:
+                    print(f"ファイル削除エラー {file_path}: {e}")
+                    
+        except Exception as e:
+            print(f"パターン削除エラー {pattern}: {e}")
+            
+        return deleted_files
+    
+    def clean_old_session_logs(self, days_old: int = 7) -> List[str]:
+        """古いセッションログを削除"""
+        deleted_files = []
+        try:
+            if not self.session_log.exists():
+                return deleted_files
+                
+            cutoff_time = datetime.datetime.now() - datetime.timedelta(days=days_old)
+            
+            for log_file in self.session_log.glob("session_*.json"):
+                try:
+                    if log_file.stat().st_mtime < cutoff_time.timestamp():
+                        log_file.unlink()
+                        deleted_files.append(str(log_file))
+                except Exception as e:
+                    print(f"ログ削除エラー {log_file}: {e}")
+                    
+        except Exception as e:
+            print(f"ログ整理エラー: {e}")
+            
+        return deleted_files
+    
+    def clean_pycache_directories(self) -> List[str]:
+        """__pycache__ディレクトリを削除"""
+        deleted_dirs = []
+        try:
+            import shutil
+            for pycache_dir in self.project_root.glob("**/__pycache__"):
+                try:
+                    if pycache_dir.is_dir():
+                        shutil.rmtree(pycache_dir)
+                        deleted_dirs.append(str(pycache_dir))
+                except Exception as e:
+                    print(f"pycache削除エラー {pycache_dir}: {e}")
+                    
+        except Exception as e:
+            print(f"pycache整理エラー: {e}")
+            
+        return deleted_dirs
+    
+    def remove_empty_directories(self) -> List[str]:
+        """空のディレクトリを削除"""
+        deleted_dirs = []
+        try:
+            # セッションログなどの重要フォルダは除外
+            excluded_dirs = {"session_logs", ".git", ".env", "api"}
+            
+            for root, dirs, files in os.walk(self.project_root, topdown=False):
+                for dir_name in dirs:
+                    dir_path = Path(root) / dir_name
+                    
+                    if (dir_name not in excluded_dirs and 
+                        dir_path.is_dir() and 
+                        not any(dir_path.iterdir())):
+                        try:
+                            dir_path.rmdir()
+                            deleted_dirs.append(str(dir_path))
+                        except Exception as e:
+                            print(f"空フォルダ削除エラー {dir_path}: {e}")
+                            
+        except Exception as e:
+            print(f"空フォルダ整理エラー: {e}")
+            
+        return deleted_dirs
+    
+    def should_auto_commit(self) -> bool:
+        """自動コミットが必要かチェック"""
+        try:
+            # Gitステータスで変更があるかチェック
+            git_status = self.get_git_status()
+            return bool(git_status.get("status", "").strip())
+        except:
+            return False
+    
+    def auto_commit_changes(self) -> Dict[str, Any]:
+        """変更を自動コミット"""
+        try:
+            os.chdir(self.project_root)
+            
+            # Git add
+            add_result = subprocess.run(['git', 'add', '.'], 
+                                      capture_output=True, text=True)
+            
+            if add_result.returncode != 0:
+                return {"success": False, "error": add_result.stderr}
+            
+            # Commit message
+            commit_msg = f"Auto cleanup and organize files - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+            
+            commit_result = subprocess.run(['git', 'commit', '-m', commit_msg], 
+                                         capture_output=True, text=True)
+            
+            if commit_result.returncode == 0:
+                return {"success": True, "message": commit_msg}
+            else:
+                return {"success": False, "error": commit_result.stderr}
+                
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+    
     def send_notification(self, summary: Dict[str, Any]):
         """ターミナル通知を送信"""
         try:
@@ -219,6 +388,10 @@ class HourlySummarySystem:
         # 簡単な進捗サマリー
         self.print_progress_summary(summary)
         
+        # ファイル整理結果の表示
+        if "cleanup_results" in summary:
+            self.print_cleanup_summary(summary["cleanup_results"])
+        
         print("📄 詳細は session_logs/consolidated_work_summary.md を確認")
         print("🔔" * 60)
         print("                  次の1時間も頑張りましょう！")
@@ -259,6 +432,27 @@ class HourlySummarySystem:
             print("   💡 推奨: 変更をコミットして進捗を保存")
         else:
             print("   💡 推奨: 新しいタスクの開始準備完了")
+    
+    def print_cleanup_summary(self, cleanup_results: Dict[str, Any]):
+        """ファイル整理結果のサマリーを表示"""
+        print("\n🧹 ファイル整理結果:")
+        
+        deleted_count = len(cleanup_results.get("deleted_files", []))
+        if deleted_count > 0:
+            print(f"   🗑️ {deleted_count}個のファイル/フォルダを削除")
+        
+        if cleanup_results.get("git_operations"):
+            git_ops = cleanup_results["git_operations"]
+            if git_ops.get("success"):
+                print("   📝 変更を自動コミット完了")
+            else:
+                print(f"   ⚠️ コミットエラー: {git_ops.get('error', 'Unknown')}")
+        
+        if cleanup_results.get("errors"):
+            print(f"   ❌ エラー: {len(cleanup_results['errors'])}件")
+        
+        if deleted_count == 0 and not cleanup_results.get("errors"):
+            print("   ✨ プロジェクトは既にクリーンです")
     
     def generate_consolidated_report(self, session_data: Dict[str, Any], output_file: Path):
         """統合レポートを生成（全記録をまとめる）"""
