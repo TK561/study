@@ -1,27 +1,26 @@
-from flask import Flask, render_template_string
-import os
-import json
 from datetime import datetime
 
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template_string(HTML_TEMPLATE)
-
-@app.route('/api/status')
-def status():
-    return {
-        "status": "running",
-        "timestamp": datetime.now().isoformat(),
-        "project": "研究プロジェクト管理システム",
-        "features": {
-            "hourly_summary": True,
-            "git_tracking": True,
-            "security": True,
-            "session_logs": True
+def handler(request):
+    """Vercel serverless function handler"""
+    if request.path == '/api/status':
+        return {
+            "status": "running",
+            "timestamp": datetime.now().isoformat(),
+            "project": "研究プロジェクト管理システム",
+            "features": {
+                "hourly_summary": True,
+                "git_tracking": True,
+                "security": True,
+                "session_logs": True
+            }
         }
-    }
+    
+    # Default route - return HTML
+    return get_html_response()
+
+def get_html_response():
+    """Generate HTML response"""
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -325,7 +324,7 @@ HTML_TEMPLATE = """
                     </div>
                     <div class="info-item">
                         <strong>最終更新</strong>
-                        {{ datetime.now().strftime('%Y-%m-%d %H:%M') }}
+{current_time[:16]}
                     </div>
                     <div class="info-item">
                         <strong>デプロイ方式</strong>
@@ -350,12 +349,11 @@ HTML_TEMPLATE = """
         
         <div class="footer">
             <p>Claude Code を活用した研究プロジェクト管理システム</p>
-            <p>自動生成: {{ datetime.now().strftime('%Y-%m-%d %H:%M:%S') }}</p>
+            <p>自動生成: {current_time}</p>
         </div>
     </div>
 </body>
 </html>
-"""
-
-if __name__ == "__main__":
-    app.run(debug=True)
+""".format(current_time=current_time)
+    
+    return html_content
