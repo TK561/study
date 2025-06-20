@@ -4,9 +4,15 @@ __pycache__/
 .venv/
 venv/
 
-# Config
+# Sensitive Configuration Files (NEVER COMMIT)
 config.py
 .env
+*.env
+.env.*
+secrets.json
+credentials.json
+api_keys.txt
+private_*
 
 # IDE
 .vscode/
