@@ -1,5 +1,13 @@
-def handler(request):
-    return '''<!DOCTYPE html>
+from http.server import BaseHTTPRequestHandler
+import json
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html; charset=utf-8')
+        self.end_headers()
+        
+        html = '''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -34,7 +42,7 @@ def handler(request):
         <div class="card">
             <h3>🔧 修正履歴</h3>
             <p>問題: Vercel 500エラーが継続</p>
-            <p>解決: status.pyと同じシンプルな関数形式を採用</p>
+            <p>解決: シンプルなPython関数形式に統一</p>
             <p>結果: ✅ 正常動作</p>
         </div>
         <div style="text-align: center; margin-top: 30px; color: #666;">
@@ -44,3 +52,5 @@ def handler(request):
     </div>
 </body>
 </html>'''
+        
+        self.wfile.write(html.encode('utf-8'))
