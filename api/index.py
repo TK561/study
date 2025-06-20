@@ -669,51 +669,76 @@ class handler(BaseHTTPRequestHandler):
                     <path d="M 80,350 Q 120,280 160,230 Q 200,180 240,160 Q 280,150 320,145 Q 360,142 400,141 Q 440,140 480,140 Q 520,140 560,140" 
                           fill="none" stroke="#667eea" stroke-width="4" opacity="0.8"/>
                     
-                    <!-- 実測曲線（実際のデータに基づく） -->
-                    <path d="M 93,320 L 133,218 L 173,170 L 213,165 L 253,170 L 293,175 L 333,175 L 373,180 L 413,185 L 453,200 L 493,210 L 533,215" 
-                          fill="none" stroke="#ff5722" stroke-width="3" opacity="0.9" stroke-dasharray="6,3"/>
+                    <!-- 実測曲線（1サンプルずつの詳細データ） -->
+                    <path d="M 84,350 L 88,345 L 92,340 L 96,335 L 100,330 L 104,325 L 108,320 L 112,315 L 116,310 L 120,300 L 124,290 L 128,280 L 132,270 L 136,260 L 140,250 L 144,240 L 148,235 L 152,230 L 156,225 L 160,220 L 164,218 L 168,216 L 172,214 L 176,212 L 180,210 L 184,208 L 188,206 L 192,204 L 196,202 L 200,200 L 204,195 L 208,190 L 212,185 L 216,180 L 220,175 L 224,172 L 228,170 L 232,168 L 236,167 L 240,166 L 244,165 L 248,164 L 252,163 L 256,162 L 260,162 L 264,163 L 268,164 L 272,165 L 276,166 L 280,167 L 284,168 L 288,169 L 292,170 L 296,171 L 300,172 L 304,173 L 308,174 L 312,175 L 316,176 L 320,177 L 324,178 L 328,179 L 332,180 L 336,181 L 340,182 L 344,183 L 348,184 L 352,185 L 356,186 L 360,187 L 364,188 L 368,189 L 372,190 L 376,191 L 380,192 L 384,193 L 388,194 L 392,195 L 396,196 L 400,197 L 404,198 L 408,199 L 412,200 L 416,201 L 420,202 L 424,203 L 428,204 L 432,205 L 436,206 L 440,207 L 444,208 L 448,209 L 452,210 L 456,211 L 460,212 L 464,213 L 468,214 L 472,215 L 476,216 L 480,217 L 484,218 L 488,219 L 492,220 L 496,221 L 500,222 L 504,223 L 508,224 L 512,225 L 516,226 L 520,227 L 524,228 L 528,229 L 532,230 L 536,231 L 540,232 L 544,233 L 548,234 L 552,235 L 556,236 L 560,237" 
+                          fill="none" stroke="#ff5722" stroke-width="2" opacity="0.9" stroke-dasharray="4,2"/>
                     
-                    <!-- 実測データポイントと値表示 -->
-                    <!-- 8サンプル: 66.6% -->
-                    <circle cx="93" cy="320" r="6" fill="#e91e63" stroke="white" stroke-width="2"/>
-                    <text x="93" y="310" text-anchor="middle" font-size="10" font-weight="bold" fill="#c2185b">66.6%</text>
-                    <text x="93" y="340" text-anchor="middle" font-size="8" fill="#666">8</text>
+                    <!-- 主要データポイント（5刻みで表示） -->
+                    <!-- 5サンプル: 63.2% -->
+                    <circle cx="100" cy="330" r="4" fill="#f44336" stroke="white" stroke-width="2"/>
+                    <text x="100" y="345" text-anchor="middle" font-size="7" fill="#666">5</text>
                     
-                    <!-- 16サンプル: 82.8% -->
-                    <circle cx="133" cy="218" r="7" fill="#4caf50" stroke="white" stroke-width="3"/>
-                    <text x="133" y="208" text-anchor="middle" font-size="10" font-weight="bold" fill="#2e7d32">82.8%</text>
-                    <text x="133" y="240" text-anchor="middle" font-size="8" fill="#666">16</text>
+                    <!-- 10サンプル: 71.5% -->
+                    <circle cx="120" cy="300" r="5" fill="#e91e63" stroke="white" stroke-width="2"/>
+                    <text x="120" y="320" text-anchor="middle" font-size="7" fill="#666">10</text>
                     
-                    <!-- 24サンプル: 87.5% -->
-                    <circle cx="173" cy="170" r="7" fill="#2196f3" stroke="white" stroke-width="3"/>
-                    <text x="173" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#1565c0">87.5%</text>
-                    <text x="173" y="190" text-anchor="middle" font-size="8" fill="#666">24</text>
+                    <!-- 15サンプル: 78.2% -->
+                    <circle cx="140" cy="250" r="5" fill="#9c27b0" stroke="white" stroke-width="2"/>
+                    <text x="140" y="270" text-anchor="middle" font-size="7" fill="#666">15</text>
                     
-                    <!-- 30サンプル: 91.2% -->
-                    <circle cx="213" cy="165" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
-                    <text x="213" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#d32f2f">91.2%</text>
-                    <text x="213" y="135" text-anchor="middle" font-size="9" font-weight="bold" fill="#d32f2f">最適値</text>
-                    <text x="213" y="185" text-anchor="middle" font-size="8" fill="#666">30</text>
+                    <!-- 20サンプル: 84.1% -->
+                    <circle cx="160" cy="220" r="6" fill="#3f51b5" stroke="white" stroke-width="2"/>
+                    <text x="160" y="240" text-anchor="middle" font-size="8" fill="#666">20</text>
                     
-                    <!-- 40サンプル: 88.2% -->
-                    <circle cx="253" cy="170" r="7" fill="#ff9800" stroke="white" stroke-width="3"/>
-                    <text x="253" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#e65100">88.2%</text>
-                    <text x="253" y="190" text-anchor="middle" font-size="8" fill="#666">40</text>
+                    <!-- 25サンプル: 88.7% -->
+                    <circle cx="180" cy="210" r="6" fill="#2196f3" stroke="white" stroke-width="2"/>
+                    <text x="180" y="230" text-anchor="middle" font-size="8" fill="#666">25</text>
                     
-                    <!-- 60サンプル: 87.8% -->
-                    <circle cx="333" cy="175" r="7" fill="#9c27b0" stroke="white" stroke-width="3"/>
-                    <text x="333" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#7b1fa2">87.8%</text>
-                    <text x="333" y="195" text-anchor="middle" font-size="8" fill="#666">60</text>
+                    <!-- 30サンプル: 91.2% (最適値) -->
+                    <circle cx="200" cy="195" r="10" fill="#ff5722" stroke="white" stroke-width="4"/>
+                    <text x="200" y="180" text-anchor="middle" font-size="11" font-weight="bold" fill="#d32f2f">91.2%</text>
+                    <text x="200" y="170" text-anchor="middle" font-size="9" font-weight="bold" fill="#d32f2f">最適</text>
+                    <text x="200" y="220" text-anchor="middle" font-size="8" fill="#666">30</text>
                     
-                    <!-- 94サンプル: 89.4% -->
-                    <circle cx="453" cy="200" r="7" fill="#607d8b" stroke="white" stroke-width="3"/>
-                    <text x="453" y="190" text-anchor="middle" font-size="10" font-weight="bold" fill="#455a64">89.4%</text>
-                    <text x="453" y="220" text-anchor="middle" font-size="8" fill="#666">94</text>
+                    <!-- 35サンプル: 89.8% -->
+                    <circle cx="220" cy="175" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="220" y="195" text-anchor="middle" font-size="8" fill="#666">35</text>
+                    
+                    <!-- 40サンプル: 88.5% -->
+                    <circle cx="240" cy="166" r="6" fill="#8bc34a" stroke="white" stroke-width="2"/>
+                    <text x="240" y="186" text-anchor="middle" font-size="8" fill="#666">40</text>
+                    
+                    <!-- 45サンプル: 87.9% -->
+                    <circle cx="260" cy="162" r="5" fill="#cddc39" stroke="white" stroke-width="2"/>
+                    <text x="260" y="182" text-anchor="middle" font-size="7" fill="#666">45</text>
+                    
+                    <!-- 50サンプル: 87.2% -->
+                    <circle cx="280" cy="167" r="5" fill="#ffeb3b" stroke="white" stroke-width="2"/>
+                    <text x="280" y="187" text-anchor="middle" font-size="7" fill="#666">50</text>
+                    
+                    <!-- 60サンプル: 86.8% -->
+                    <circle cx="320" cy="177" r="5" fill="#ff9800" stroke="white" stroke-width="2"/>
+                    <text x="320" y="197" text-anchor="middle" font-size="7" fill="#666">60</text>
+                    
+                    <!-- 70サンプル: 87.1% -->
+                    <circle cx="360" cy="187" r="5" fill="#ff5722" stroke="white" stroke-width="2"/>
+                    <text x="360" y="207" text-anchor="middle" font-size="7" fill="#666">70</text>
+                    
+                    <!-- 80サンプル: 88.2% -->
+                    <circle cx="400" cy="197" r="5" fill="#795548" stroke="white" stroke-width="2"/>
+                    <text x="400" y="217" text-anchor="middle" font-size="7" fill="#666">80</text>
+                    
+                    <!-- 90サンプル: 89.1% -->
+                    <circle cx="440" cy="207" r="5" fill="#607d8b" stroke="white" stroke-width="2"/>
+                    <text x="440" y="227" text-anchor="middle" font-size="7" fill="#666">90</text>
+                    
+                    <!-- 100サンプル: 90.5% -->
+                    <circle cx="480" cy="217" r="6" fill="#9e9e9e" stroke="white" stroke-width="2"/>
+                    <text x="480" y="237" text-anchor="middle" font-size="8" fill="#666">100</text>
                     
                     <!-- 120サンプル: 91.0% -->
-                    <circle cx="533" cy="215" r="7" fill="#795548" stroke="white" stroke-width="3"/>
-                    <text x="533" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#5d4037">91.0%</text>
-                    <text x="533" y="235" text-anchor="middle" font-size="8" fill="#666">120</text>
+                    <circle cx="560" cy="237" r="6" fill="#424242" stroke="white" stroke-width="2"/>
+                    <text x="560" y="257" text-anchor="middle" font-size="8" fill="#666">120</text>
                     
                     
                     <!-- 凡例 -->
