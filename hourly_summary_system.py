@@ -170,28 +170,10 @@ class HourlySummarySystem:
         return activities if activities else ["通常作業"]
     
     def send_notification(self, summary: Dict[str, Any]):
-        """通知を送信"""
+        """ターミナル通知を送信"""
         try:
-            # Windows notification
-            if os.name == 'nt':
-                import subprocess
-                notification_title = "1時間毎作業まとめ"
-                notification_text = f"作業時間: {summary['duration_hours']:.1f}時間\\n主な活動: {', '.join(summary['activities'])}"
-                
-                # PowerShell command for Windows toast notification
-                ps_command = f'''
-                Add-Type -AssemblyName System.Windows.Forms
-                [System.Windows.Forms.MessageBox]::Show("{notification_text}", "{notification_title}", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
-                '''
-                
-                subprocess.run(['powershell', '-Command', ps_command], 
-                             capture_output=True, text=True)
-            
-            # Console notification (always available)
-            print("\\n🔔 NOTIFICATION: 1時間毎まとめが更新されました")
-            print(f"⏰ 時刻: {summary['summary_time'][:19]}")
-            print(f"📊 活動: {', '.join(summary['activities'])}")
-            print("📄 詳細は統合レポートを確認してください\\n")
+            # Terminal notification with detailed summary
+            self.print_terminal_notification(summary)
             
             # Sound notification (if available)
             try:
@@ -203,6 +185,80 @@ class HourlySummarySystem:
                 
         except Exception as e:
             print(f"通知送信エラー: {e}")
+    
+    def print_terminal_notification(self, summary: Dict[str, Any]):
+        """ターミナル上に詳細な通知を表示"""
+        print("\n" + "🔔" * 60)
+        print("                    1時間毎作業まとめ通知")
+        print("🔔" * 60)
+        
+        # 基本情報
+        print(f"⏰ 時刻: {summary['summary_time'][:19]}")
+        print(f"⌛ 作業時間: {summary['duration_hours']:.1f}時間")
+        print(f"🎯 主な活動: {', '.join(summary['activities'])}")
+        
+        # Git情報
+        git_info = summary['git_status']
+        if 'recent_commits' in git_info and git_info['recent_commits'] and git_info['recent_commits'][0]:
+            print(f"📝 最新コミット: {git_info['recent_commits'][0][:60]}...")
+        
+        # ファイル状況
+        file_count = summary['file_count']
+        print(f"📁 ファイル状況:")
+        print(f"   • Python: {file_count['python_files']}個")
+        print(f"   • Markdown: {file_count['markdown_files']}個") 
+        print(f"   • 合計: {file_count['total_files']}個")
+        
+        # 変更状況
+        if git_info.get('status'):
+            changed_files = len(git_info['status'].strip().split('\n')) if git_info['status'].strip() else 0
+            print(f"🔄 変更中のファイル: {changed_files}個")
+        else:
+            print("✅ 作業ディレクトリ: クリーン")
+        
+        # 簡単な進捗サマリー
+        self.print_progress_summary(summary)
+        
+        print("📄 詳細は session_logs/consolidated_work_summary.md を確認")
+        print("🔔" * 60)
+        print("                  次の1時間も頑張りましょう！")
+        print("🔔" * 60 + "\n")
+    
+    def print_progress_summary(self, summary: Dict[str, Any]):
+        """進捗の簡単なサマリーを表示"""
+        activities = summary['activities']
+        duration = summary['duration_hours']
+        
+        print("\n📊 この1時間のまとめ:")
+        
+        # 活動の分析
+        if "セキュリティ強化" in activities:
+            print("   🔒 セキュリティ対策を実施")
+        if "ファイル整理" in activities:
+            print("   🧹 プロジェクト整理を実行")
+        if "新機能追加" in activities:
+            print("   ✨ 新機能の開発を実施")
+        if "バグ修正" in activities:
+            print("   🐛 バグ修正を実行")
+        if "アップデート" in activities:
+            print("   ⬆️ システムアップデートを実施")
+        if "ファイル変更中" in activities:
+            print("   📝 ファイルの編集作業中")
+        
+        # 作業効率の評価
+        if duration >= 0.8:
+            print("   ⚡ 高い作業効率を維持")
+        elif duration >= 0.5:
+            print("   📈 順調な作業ペース")
+        else:
+            print("   🔧 準備・設定作業中心")
+        
+        # 次のアクションの提案
+        git_info = summary['git_status']
+        if git_info.get('status'):
+            print("   💡 推奨: 変更をコミットして進捗を保存")
+        else:
+            print("   💡 推奨: 新しいタスクの開始準備完了")
     
     def generate_consolidated_report(self, session_data: Dict[str, Any], output_file: Path):
         """統合レポートを生成（全記録をまとめる）"""
