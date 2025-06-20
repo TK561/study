@@ -1,1 +1,1 @@
-Flask==2.3.3
+# No external dependencies required for basic functionality
