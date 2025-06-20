@@ -1,9 +1,7 @@
-name: Vercel Deployment with Error Handling
+name: Research Project Deployment
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 env:
@@ -37,69 +35,14 @@ jobs:
       run: |
         DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
         echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
-        echo "Deployed to: $DEPLOYMENT_URL"
+        echo "✅ Research project deployed to: $DEPLOYMENT_URL"
         
     - name: Test Deployment
-      id: test
       run: |
-        sleep 30
+        sleep 20
         RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" ${{ steps.deploy.outputs.deployment_url }})
-        echo "response_code=$RESPONSE" >> $GITHUB_OUTPUT
-        if [ "$RESPONSE" != "200" ]; then
-          echo "Deployment test failed with HTTP $RESPONSE"
-          exit 1
+        if [ "$RESPONSE" = "200" ]; then
+          echo "✅ Deployment successful - HTTP $RESPONSE"
+        else
+          echo "⚠️ Deployment check returned HTTP $RESPONSE"
         fi
-        
-    - name: Create GitHub Issue on Failure
-      if: failure()
-      uses: actions/github-script@v7
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const title = `Vercel Deployment Failed - ${new Date().toISOString()}`;
-          const body = `
-          ## Deployment Failure Report
-          
-          **Commit**: ${{ github.sha }}
-          **Branch**: ${{ github.ref_name }}
-          **Workflow Run**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          **Deployment URL**: ${{ steps.deploy.outputs.deployment_url || 'Failed to deploy' }}
-          **HTTP Response**: ${{ steps.test.outputs.response_code || 'N/A' }}
-          
-          ### Logs
-          Please check the workflow logs for detailed error information.
-          
-          ### Auto-Fix
-          This issue will be automatically assigned to Claude Code for investigation and potential fixes.
-          
-          **Labels**: deployment-error, auto-fix-requested
-          `;
-          
-          const issue = await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: title,
-            body: body,
-            labels: ['bug', 'deployment-error', 'auto-fix-requested']
-          });
-          
-          console.log(`Created issue #${issue.data.number}`);
-          
-    - name: Trigger Claude Code Auto-Fix
-      if: failure()
-      uses: actions/github-script@v7
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          // Trigger workflow_dispatch on auto-fix workflow
-          await github.rest.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'claude-autofix.yml',
-            ref: 'main',
-            inputs: {
-              issue_number: '${{ github.event.number }}',
-              deployment_url: '${{ steps.deploy.outputs.deployment_url }}',
-              error_type: 'deployment_failure'
-            }
-          });

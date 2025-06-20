@@ -26,3 +26,13 @@ private_*
 *.pkl
 data/raw/
 models/
+
+# System Management (Hourly System - Local Only)
+system_management/
+session_logs/
+scripts/
+.claude_code_init.py
+*HOURLY*
+*QUICK*
+test_*.py
+test_*.sh
