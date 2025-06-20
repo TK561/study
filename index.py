@@ -1,10 +1,9 @@
 from http.server import BaseHTTPRequestHandler
-import json
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
-        self.send_header('Content-type', 'text/html; charset=utf-8')
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
         
         html = '''<!DOCTYPE html>
@@ -252,6 +251,25 @@ class handler(BaseHTTPRequestHandler):
             margin: 5px 0;
             font-size: 0.9rem;
         }
+        .experimental-details {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .experimental-details h3 {
+            color: #333;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+        .experiment-section {
+            margin-bottom: 40px;
+        }
+        .experiment-section h4 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -311,106 +329,6 @@ class handler(BaseHTTPRequestHandler):
                     <div class="metric-value">0.80</div>
                     <div class="metric-label">統計的検出力<br><small>(Cohen's Power)</small></div>
                 </div>
-            </div>
-        </div>
-
-        <div class="saturation-analysis">
-            <h3>飽和点分析結果</h3>
-            <table class="phase-table">
-                <tr>
-                    <th>Phase</th>
-                    <th>カテゴリ数</th>
-                    <th>総改善率</th>
-                    <th>限界効用</th>
-                    <th>統計的有意性</th>
-                    <th>推奨度</th>
-                </tr>
-                <tr>
-                    <td>Baseline</td>
-                    <td>8</td>
-                    <td>21.0%</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>現状</td>
-                </tr>
-                <tr style="background: #c8e6c9;">
-                    <td><strong>Phase 1</strong></td>
-                    <td><strong>16</strong></td>
-                    <td><strong>27.3%</strong></td>
-                    <td><strong>0.440%</strong></td>
-                    <td><strong>あり</strong></td>
-                    <td><strong>最推奨</strong></td>
-                </tr>
-                <tr>
-                    <td>Phase 2</td>
-                    <td>24</td>
-                    <td>29.2%</td>
-                    <td>0.133%</td>
-                    <td>あり</td>
-                    <td>推奨</td>
-                </tr>
-                <tr>
-                    <td>Phase 3</td>
-                    <td>32</td>
-                    <td>29.8%</td>
-                    <td>0.040%</td>
-                    <td>なし</td>
-                    <td>非推奨</td>
-                </tr>
-                <tr>
-                    <td>Phase 6</td>
-                    <td>64</td>
-                    <td>30.0%</td>
-                    <td>0.000%</td>
-                    <td>なし</td>
-                    <td>飽和</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="recommendation">
-            <h3>実装推奨事項</h3>
-            <p><strong>即時実施:</strong> Phase 1（16カテゴリ、480サンプル）</p>
-            <p>期待改善率: +10.6% | ROI: 最高 | 実施期間: 2-3週間</p>
-            <p>Medical, Sports, Art, Technology等の重要カテゴリを追加</p>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>検証済みデータセット</h3>
-                <p><strong>全カテゴリで十分なデータ確保可能:</strong></p>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>LFW: 13,233サンプル (Person)</li>
-                    <li>ImageNet: 180,000サンプル (Animal)</li>
-                    <li>Food-101: 101,000サンプル (Food)</li>
-                    <li>Places365: 1,803,460サンプル (Landscape)</li>
-                    <li>その他4カテゴリも充足</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>技術スタック</h3>
-                <div class="tech-stack">
-                    <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">CLIP</span>
-                    <span class="tech-tag">YOLOv8</span>
-                    <span class="tech-tag">SAM</span>
-                    <span class="tech-tag">BLIP</span>
-                    <span class="tech-tag">WordNet</span>
-                    <span class="tech-tag">Cohen's d</span>
-                    <span class="tech-tag">Claude Code</span>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>研究成果物</h3>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>Cohen's Power Analysis実装</li>
-                    <li>飽和点モデル: f(x) = 30(1-e^(-0.15x))</li>
-                    <li>16データセット選択根拠</li>
-                    <li>統計的検証プロトコル</li>
-                    <li>752サンプル実験計画</li>
-                </ul>
             </div>
         </div>
 
@@ -539,78 +457,9 @@ class handler(BaseHTTPRequestHandler):
 
             <div class="experiment-section">
                 <h4>実験3: WordNet処理能力分析</h4>
-                <div style="margin: 20px 0;">
-                    <svg width="100%" height="300" viewBox="0 0 800 300" style="background: white; border: 1px solid #ddd; border-radius: 8px;">
-                        <!-- 背景グリッド -->
-                        <defs>
-                            <pattern id="wordnet-grid" width="40" height="30" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 30" fill="none" stroke="#f5f5f5" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#wordnet-grid)" />
-                        
-                        <!-- 軸 -->
-                        <line x1="80" y1="250" x2="720" y2="250" stroke="#333" stroke-width="2"/>
-                        <line x1="80" y1="250" x2="80" y2="50" stroke="#333" stroke-width="2"/>
-                        
-                        <!-- Y軸ラベル -->
-                        <text x="25" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#333" transform="rotate(-90, 25, 150)">成功率 (%)</text>
-                        
-                        <!-- Y軸目盛り -->
-                        <g stroke="#666" font-size="10" text-anchor="end">
-                            <line x1="75" y1="250" x2="80" y2="250" stroke-width="1"/>
-                            <text x="70" y="254" fill="#666">0</text>
-                            
-                            <line x1="75" y1="200" x2="80" y2="200" stroke-width="1"/>
-                            <text x="70" y="204" fill="#666">25</text>
-                            
-                            <line x1="75" y1="150" x2="80" y2="150" stroke-width="1"/>
-                            <text x="70" y="154" fill="#666">50</text>
-                            
-                            <line x1="75" y1="100" x2="80" y2="100" stroke-width="1"/>
-                            <text x="70" y="104" fill="#666">75</text>
-                            
-                            <line x1="75" y1="70" x2="80" y2="70" stroke-width="1"/>
-                            <text x="70" y="74" fill="#666">90</text>
-                        </g>
-                        
-                        <!-- データバー -->
-                        <!-- 単純用語: 90% -->
-                        <rect x="100" y="70" width="80" height="180" fill="#4caf50" opacity="0.8"/>
-                        <text x="140" y="270" text-anchor="middle" font-size="10" fill="#333">単純用語</text>
-                        <text x="140" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">90%</text>
-                        
-                        <!-- 地理的用語: 75% -->
-                        <rect x="200" y="100" width="80" height="150" fill="#ff9800" opacity="0.8"/>
-                        <text x="240" y="270" text-anchor="middle" font-size="10" fill="#333">地理的用語</text>
-                        <text x="240" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">75%</text>
-                        
-                        <!-- 文化固有: 70% -->
-                        <rect x="300" y="110" width="80" height="140" fill="#2196f3" opacity="0.8"/>
-                        <text x="340" y="270" text-anchor="middle" font-size="10" fill="#333">文化固有</text>
-                        <text x="340" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">70%</text>
-                        
-                        <!-- 複合記述: 50% -->
-                        <rect x="400" y="150" width="80" height="100" fill="#9c27b0" opacity="0.8"/>
-                        <text x="440" y="270" text-anchor="middle" font-size="10" fill="#333">複合記述</text>
-                        <text x="440" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">50%</text>
-                        
-                        <!-- 現代用語: 42.9% -->
-                        <rect x="500" y="164" width="80" height="86" fill="#f44336" opacity="0.8"/>
-                        <text x="540" y="270" text-anchor="middle" font-size="10" fill="#333">現代用語</text>
-                        <text x="540" y="154" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">43%</text>
-                        
-                        <!-- 平均線 -->
-                        <line x1="80" y1="174" x2="720" y2="174" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,5"/>
-                        <text x="650" y="170" font-size="11" fill="#ff5722" font-weight="bold">平均: 65.4%</text>
-                        
-                        <!-- タイトル -->
-                        <text x="400" y="30" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">WordNet処理成功率 (用語カテゴリ別)</text>
-                    </svg>
-                </div>
-                
+                <p><strong>平均成功率:</strong> 65.4% | <strong>最高:</strong> 単純用語 90% | <strong>最低:</strong> 現代用語 43%</p>
                 <div style="background: #ffebee; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f44336;">
-                    <h5 style="margin-top: 0; color: #c62828;">主な失敗例</h5>
+                    <h5 style="margin-top: 0; color: #c62828;">主な課題</h5>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.9rem;">
                         <div><strong>現代用語:</strong> laptop, solar panel</div>
                         <div><strong>複合記述:</strong> vintage sports car</div>
@@ -619,7 +468,7 @@ class handler(BaseHTTPRequestHandler):
                     </div>
                 </div>
             </div>
-            
+
             <div class="experiment-section">
                 <h4>実験4: Cohen's Power Analysis詳細検証</h4>
                 <div style="margin: 20px 0;">
@@ -645,63 +494,6 @@ class handler(BaseHTTPRequestHandler):
                             <p><strong>実用的意義:</strong> 大きな改善効果</p>
                             <p><strong>追試可能性:</strong> 十分なサンプル</p>
                         </div>
-                    </div>
-                    
-                    <div style="margin: 20px 0;">
-                        <svg width="100%" height="250" viewBox="0 0 800 250" style="background: white; border: 1px solid #ddd; border-radius: 8px;">
-                            <!-- Power分析グラフ -->
-                            <defs>
-                                <pattern id="power-grid" width="40" height="25" patternUnits="userSpaceOnUse">
-                                    <path d="M 40 0 L 0 0 0 25" fill="none" stroke="#f5f5f5" stroke-width="1"/>
-                                </pattern>
-                            </defs>
-                            <rect width="100%" height="100%" fill="url(#power-grid)" />
-
-                            <!-- 軸 -->
-                            <line x1="80" y1="200" x2="720" y2="200" stroke="#333" stroke-width="2"/>
-                            <line x1="80" y1="200" x2="80" y2="50" stroke="#333" stroke-width="2"/>
-
-                            <!-- X軸目盛り -->
-                            <g stroke="#666" font-size="10" text-anchor="middle">
-                                <line x1="160" y1="200" x2="160" y2="205" stroke-width="1"/>
-                                <text x="160" y="218" fill="#666">10</text>
-                                <line x1="280" y1="200" x2="280" y2="205" stroke-width="1"/>
-                                <text x="280" y="218" fill="#666">30</text>
-                                <line x1="400" y1="200" x2="400" y2="205" stroke-width="1"/>
-                                <text x="400" y="218" fill="#666">50</text>
-                                <line x1="520" y1="200" x2="520" y2="205" stroke-width="1"/>
-                                <text x="520" y="218" fill="#666">75</text>
-                            </g>
-
-                            <!-- Y軸目盛り -->
-                            <g stroke="#666" font-size="10" text-anchor="end">
-                                <line x1="75" y1="200" x2="80" y2="200" stroke-width="1"/>
-                                <text x="70" y="204" fill="#666">0.0</text>
-                                <line x1="75" y1="140" x2="80" y2="140" stroke-width="1"/>
-                                <text x="70" y="144" fill="#666">0.5</text>
-                                <line x1="75" y1="80" x2="80" y2="80" stroke-width="1"/>
-                                <text x="70" y="84" fill="#666">0.8</text>
-                                <line x1="75" y1="65" x2="80" y2="65" stroke-width="1"/>
-                                <text x="70" y="69" fill="#666">0.9</text>
-                            </g>
-
-                            <!-- Power曲線 -->
-                            <path d="M 80,200 Q 160,160 240,100 Q 320,70 400,60 Q 480,55 560,53" 
-                                  fill="none" stroke="#2196f3" stroke-width="3"/>
-
-                            <!-- 0.8基準線 -->
-                            <line x1="80" y1="80" x2="720" y2="80" stroke="#ff9800" stroke-width="2" stroke-dasharray="5,5"/>
-                            <text x="600" y="76" font-size="11" fill="#ff9800" font-weight="bold">Power = 0.8</text>
-
-                            <!-- 現在点 -->
-                            <circle cx="280" cy="88" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                            <text x="280" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">30サンプル</text>
-
-                            <!-- ラベル -->
-                            <text x="400" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">統計的検出力曲線</text>
-                            <text x="400" y="235" text-anchor="middle" font-size="12" fill="#333">サンプル数/カテゴリ</text>
-                            <text x="25" y="125" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90, 25, 125)">検出力</text>
-                        </svg>
                     </div>
                 </div>
             </div>
@@ -735,37 +527,31 @@ class handler(BaseHTTPRequestHandler):
                     
                     <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 6px;">
                         <h6 style="margin-top: 0; color: #1b5e20;">研究強度総合評価</h6>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center; margin: 10px 0;">
-                            <div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                    <span style="font-size: 0.9rem;">統計的厳密性</span>
-                                    <span style="font-weight: bold; color: #4caf50;">95%</span>
-                                </div>
-                                <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                    <div style="width: 95%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                                </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="font-size: 0.9rem;">統計的厳密性</span>
+                                <span style="font-weight: bold; color: #4caf50;">95%</span>
+                            </div>
+                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
+                                <div style="width: 95%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
                             </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center; margin: 10px 0;">
-                            <div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                    <span style="font-size: 0.9rem;">実証的根拠</span>
-                                    <span style="font-weight: bold; color: #4caf50;">92%</span>
-                                </div>
-                                <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                    <div style="width: 92%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                                </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="font-size: 0.9rem;">実証的根拠</span>
+                                <span style="font-weight: bold; color: #4caf50;">92%</span>
+                            </div>
+                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
+                                <div style="width: 92%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
                             </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center; margin: 10px 0;">
-                            <div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
-                                    <span style="font-size: 0.9rem;">学術的価値</span>
-                                    <span style="font-weight: bold; color: #4caf50;">90%</span>
-                                </div>
-                                <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
-                                    <div style="width: 90%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
-                                </div>
+                        <div style="margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="font-size: 0.9rem;">学術的価値</span>
+                                <span style="font-weight: bold; color: #4caf50;">90%</span>
+                            </div>
+                            <div style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 3px;">
+                                <div style="width: 90%; height: 100%; background: #4caf50; border-radius: 3px;"></div>
                             </div>
                         </div>
                     </div>
@@ -774,170 +560,102 @@ class handler(BaseHTTPRequestHandler):
         </div>
 
         <div class="saturation-analysis">
-            <h3>飽和点グラフ: カテゴリ数 vs 性能改善率</h3>
-            <div style="width: 100%; height: 400px; margin: 20px 0; position: relative;">
-                <svg width="100%" height="400" viewBox="0 0 800 400" style="background: white; border: 1px solid #ddd; border-radius: 8px;">
-                    <!-- グリッド線 -->
-                    <defs>
-                        <pattern id="grid" width="40" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="1"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                    
-                    <!-- 軸 -->
-                    <line x1="80" y1="350" x2="720" y2="350" stroke="#333" stroke-width="2"/>
-                    <line x1="80" y1="350" x2="80" y2="50" stroke="#333" stroke-width="2"/>
-                    
-                    <!-- X軸ラベル -->
-                    <text x="400" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">カテゴリ数</text>
-                    
-                    <!-- Y軸ラベル -->
-                    <text x="25" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" transform="rotate(-90, 25, 200)">改善率 (%)</text>
-                    
-                    <!-- X軸目盛り -->
-                    <g stroke="#666" font-size="12" text-anchor="middle">
-                        <line x1="80" y1="350" x2="80" y2="355" stroke-width="1"/>
-                        <text x="80" y="370" fill="#666">0</text>
-                        
-                        <line x1="160" y1="350" x2="160" y2="355" stroke-width="1"/>
-                        <text x="160" y="370" fill="#666">8</text>
-                        
-                        <line x1="240" y1="350" x2="240" y2="355" stroke-width="1"/>
-                        <text x="240" y="370" fill="#666">16</text>
-                        
-                        <line x1="320" y1="350" x2="320" y2="355" stroke-width="1"/>
-                        <text x="320" y="370" fill="#666">24</text>
-                        
-                        <line x1="400" y1="350" x2="400" y2="355" stroke-width="1"/>
-                        <text x="400" y="370" fill="#666">32</text>
-                        
-                        <line x1="480" y1="350" x2="480" y2="355" stroke-width="1"/>
-                        <text x="480" y="370" fill="#666">40</text>
-                        
-                        <line x1="560" y1="350" x2="560" y2="355" stroke-width="1"/>
-                        <text x="560" y="370" fill="#666">48</text>
-                        
-                        <line x1="640" y1="350" x2="640" y2="355" stroke-width="1"/>
-                        <text x="640" y="370" fill="#666">56</text>
-                        
-                        <line x1="720" y1="350" x2="720" y2="355" stroke-width="1"/>
-                        <text x="720" y="370" fill="#666">64</text>
-                    </g>
-                    
-                    <!-- Y軸目盛り -->
-                    <g stroke="#666" font-size="12" text-anchor="end">
-                        <line x1="75" y1="350" x2="80" y2="350" stroke-width="1"/>
-                        <text x="70" y="355" fill="#666">0</text>
-                        
-                        <line x1="75" y1="290" x2="80" y2="290" stroke-width="1"/>
-                        <text x="70" y="295" fill="#666">10</text>
-                        
-                        <line x1="75" y1="230" x2="80" y2="230" stroke-width="1"/>
-                        <text x="70" y="235" fill="#666">20</text>
-                        
-                        <line x1="75" y1="170" x2="80" y2="170" stroke-width="1"/>
-                        <text x="70" y="175" fill="#666">30</text>
-                        
-                        <line x1="75" y1="110" x2="80" y2="110" stroke-width="1"/>
-                        <text x="70" y="115" fill="#666">40</text>
-                    </g>
-                    
-                    <!-- 理論曲線 f(x) = 30(1-e^(-0.15x)) -->
-                    <path d="M 80,350 
-                             Q 120,320 160,240
-                             Q 200,200 240,180
-                             Q 280,165 320,155
-                             Q 360,148 400,142
-                             Q 440,138 480,135
-                             Q 520,133 560,131
-                             Q 600,130 640,129
-                             Q 680,128 720,128" 
-                          fill="none" stroke="#667eea" stroke-width="3"/>
-                    
-                    <!-- 実測データポイント -->
-                    <!-- 8カテゴリ: 19.7% -->
-                    <circle cx="160" cy="232" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    
-                    <!-- 12カテゴリ: 23.2% -->
-                    <circle cx="200" cy="211" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    
-                    <!-- 16カテゴリ: 26.5% -->
-                    <circle cx="240" cy="191" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    
-                    <!-- 20カテゴリ: 27.2% -->
-                    <circle cx="280" cy="187" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    
-                    <!-- 24カテゴリ: 30.5% -->
-                    <circle cx="320" cy="167" r="6" fill="#4caf50" stroke="white" stroke-width="2"/>
-                    
-                    <!-- 32カテゴリ: 31.2% (飽和点) -->
-                    <circle cx="400" cy="163" r="8" fill="#ff5722" stroke="white" stroke-width="3"/>
-                    
-                    <!-- 飽和領域の表示 -->
-                    <rect x="400" y="120" width="320" height="50" fill="#ffeb3b" fill-opacity="0.2" stroke="#ff9800" stroke-width="1" stroke-dasharray="5,5"/>
-                    <text x="560" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">飽和領域</text>
-                    <text x="560" y="155" text-anchor="middle" font-size="10" fill="#e65100">32カテゴリ以降</text>
-                    
-                    <!-- 凡例 -->
-                    <g transform="translate(550, 70)">
-                        <rect x="0" y="0" width="150" height="70" fill="white" stroke="#ddd" stroke-width="1" rx="5"/>
-                        
-                        <!-- 理論曲線 -->
-                        <line x1="10" y1="15" x2="30" y2="15" stroke="#667eea" stroke-width="3"/>
-                        <text x="35" y="19" font-size="11" fill="#333">理論モデル</text>
-                        
-                        <!-- 実測点 -->
-                        <circle cx="20" cy="30" r="4" fill="#4caf50" stroke="white" stroke-width="1"/>
-                        <text x="35" y="34" font-size="11" fill="#333">実測データ</text>
-                        
-                        <!-- 飽和点 -->
-                        <circle cx="20" cy="45" r="5" fill="#ff5722" stroke="white" stroke-width="2"/>
-                        <text x="35" y="49" font-size="11" fill="#333">飽和点</text>
-                        
-                        <!-- 最適範囲 -->
-                        <rect x="10" y="55" width="15" height="8" fill="#4caf50" fill-opacity="0.3"/>
-                        <text x="35" y="63" font-size="11" fill="#333">最適範囲</text>
-                    </g>
-                    
-                    <!-- 最適範囲のハイライト -->
-                    <rect x="240" y="180" width="80" height="170" fill="#4caf50" fill-opacity="0.1" stroke="#4caf50" stroke-width="2" stroke-dasharray="3,3"/>
-                    <text x="280" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">最適範囲</text>
-                    <text x="280" y="285" text-anchor="middle" font-size="10" fill="#2e7d32">16-24カテゴリ</text>
-                    
-                    <!-- 数式表示 -->
-                    <g transform="translate(100, 80)">
-                        <rect x="0" y="0" width="200" height="40" fill="white" fill-opacity="0.9" stroke="#667eea" stroke-width="1" rx="5"/>
-                        <text x="100" y="18" text-anchor="middle" font-size="12" font-weight="bold" fill="#667eea">飽和モデル</text>
-                        <text x="100" y="32" text-anchor="middle" font-size="11" fill="#333">f(x) = 30(1 - e^(-0.15x))</text>
-                    </g>
-                    
-                    <!-- Phase表示 -->
-                    <g font-size="10" fill="#666">
-                        <text x="160" y="40" text-anchor="middle">Baseline</text>
-                        <text x="240" y="40" text-anchor="middle">Phase 1</text>
-                        <text x="320" y="40" text-anchor="middle">Phase 2</text>
-                        <text x="400" y="40" text-anchor="middle">飽和開始</text>
-                    </g>
-                </svg>
+            <h3>飽和点分析結果</h3>
+            <table class="phase-table">
+                <tr>
+                    <th>Phase</th>
+                    <th>カテゴリ数</th>
+                    <th>総改善率</th>
+                    <th>限界効用</th>
+                    <th>統計的有意性</th>
+                    <th>推奨度</th>
+                </tr>
+                <tr>
+                    <td>Baseline</td>
+                    <td>8</td>
+                    <td>21.0%</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>現状</td>
+                </tr>
+                <tr style="background: #c8e6c9;">
+                    <td><strong>Phase 1</strong></td>
+                    <td><strong>16</strong></td>
+                    <td><strong>27.3%</strong></td>
+                    <td><strong>0.440%</strong></td>
+                    <td><strong>あり</strong></td>
+                    <td><strong>最推奨</strong></td>
+                </tr>
+                <tr>
+                    <td>Phase 2</td>
+                    <td>24</td>
+                    <td>29.2%</td>
+                    <td>0.133%</td>
+                    <td>あり</td>
+                    <td>推奨</td>
+                </tr>
+                <tr>
+                    <td>Phase 3</td>
+                    <td>32</td>
+                    <td>29.8%</td>
+                    <td>0.040%</td>
+                    <td>なし</td>
+                    <td>非推奨</td>
+                </tr>
+                <tr>
+                    <td>Phase 6</td>
+                    <td>64</td>
+                    <td>30.0%</td>
+                    <td>0.000%</td>
+                    <td>なし</td>
+                    <td>飽和</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="recommendation">
+            <h3>実装推奨事項</h3>
+            <p><strong>即時実施:</strong> Phase 1（16カテゴリ、480サンプル）</p>
+            <p>期待改善率: +10.6% | ROI: 最高 | 実施期間: 2-3週間</p>
+            <p>Medical, Sports, Art, Technology等の重要カテゴリを追加</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>検証済みデータセット</h3>
+                <p><strong>全カテゴリで十分なデータ確保可能:</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>LFW: 13,233サンプル (Person)</li>
+                    <li>ImageNet: 180,000サンプル (Animal)</li>
+                    <li>Food-101: 101,000サンプル (Food)</li>
+                    <li>Places365: 1,803,460サンプル (Landscape)</li>
+                    <li>その他4カテゴリも充足</li>
+                </ul>
             </div>
             
-            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                <h4>グラフ解析結果</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 10px;">
-                    <div>
-                        <strong>理論モデル:</strong> f(x) = 30(1 - e^(-0.15x))<br>
-                        <strong>実測適合度:</strong> R² = 0.92 (高い適合性)
-                    </div>
-                    <div>
-                        <strong>飽和点:</strong> 32カテゴリ<br>
-                        <strong>最適範囲:</strong> 16-24カテゴリ (ROI最大)
-                    </div>
-                    <div>
-                        <strong>最大改善率:</strong> 31.2% (32カテゴリ時)<br>
-                        <strong>限界効用:</strong> 32カテゴリ以降で急激低下
-                    </div>
+            <div class="card">
+                <h3>技術スタック</h3>
+                <div class="tech-stack">
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">CLIP</span>
+                    <span class="tech-tag">YOLOv8</span>
+                    <span class="tech-tag">SAM</span>
+                    <span class="tech-tag">BLIP</span>
+                    <span class="tech-tag">WordNet</span>
+                    <span class="tech-tag">Cohen's d</span>
+                    <span class="tech-tag">Claude Code</span>
                 </div>
+            </div>
+            
+            <div class="card">
+                <h3>研究成果物</h3>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Cohen's Power Analysis実装</li>
+                    <li>飽和点モデル: f(x) = 30(1-e^(-0.15x))</li>
+                    <li>16データセット選択根拠</li>
+                    <li>統計的検証プロトコル</li>
+                    <li>752サンプル実験計画</li>
+                </ul>
             </div>
         </div>
 
