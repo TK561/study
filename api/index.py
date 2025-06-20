@@ -1,10 +1,11 @@
-def handler(request):
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'text/html; charset=utf-8'
-        },
-        'body': '''<!DOCTYPE html>
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    try:
+        return '''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -20,20 +21,30 @@ def handler(request):
 <body>
     <div class="container">
         <h1>Research Project Management System</h1>
-        <div class="status">Status: Active</div>
+        <div class="status">Status: Active - Vercel Deployment</div>
         <div class="card">
             <h3>Project Overview</h3>
             <p>WordNet-based semantic category analysis for image classification</p>
+            <p><strong>Development:</strong> Claude Code AI-assisted</p>
         </div>
         <div class="card">
             <h3>Features</h3>
             <ul>
-                <li>Hourly work organization</li>
-                <li>Git monitoring</li>
+                <li>Hourly work organization system</li>
+                <li>Git activity monitoring</li>
                 <li>Security management</li>
+                <li>Session logs</li>
             </ul>
+        </div>
+        <div class="card">
+            <h3>Security</h3>
+            <p>All API keys and project IDs are securely managed</p>
         </div>
     </div>
 </body>
 </html>'''
-    }
+    except Exception as e:
+        return f'Error: {str(e)}', 500
+
+if __name__ == '__main__':
+    app.run()
