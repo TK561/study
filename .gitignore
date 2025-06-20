@@ -36,3 +36,4 @@ scripts/
 *QUICK*
 test_*.py
 test_*.sh
+.vercel
