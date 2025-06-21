@@ -15,43 +15,12 @@ Claude Code を使用した研究プロジェクトの開発・管理ガイド�
 **研究目的**: WordNetベースの意味カテゴリ分析を用いた特化型画像分類手法の性能評価  
 **開発手法**: Claude Code を活用したAI支援研究開発  
 
-## 自動初期化システム (NEW!)
+## プロジェクト環境設定
 
-### **Claude Code起動時の自動実行**
-```bash
-# Claude Code起動時に自動実行される
-python .claude_code_init.py
-```
-
-#### **自動で実行される機能**
-- 1時間毎レポートシステム自動起動
-- プロジェクト検出・環境設定  
-- セッション管理開始
-- Git活動追跡開始
-
-#### **動作確認**
-```bash
-# システム状態確認
-cat session_logs/current_session.json
-
-# デーモン制御
-python scripts/enhanced_hourly_daemon.py --daemon  # 起動
-python scripts/enhanced_hourly_daemon.py --stop    # 停止
-```
-
-## 1時間毎自動レポート機能
-
-### **完全自動実行**
-- **トリガー**: Claude Code起動時
-- **実行間隔**: 1時間毎
-- **動作方式**: バックグラウンドデーモン
-- **ログ保存**: `session_logs/session_YYYYMMDD_HHMMSS.json`
-
-### **レポート内容**
-- ファイル変更追跡: 新規作成・更新ファイル一覧
-- Git活動記録: コミット・ブランチ状況
-- 作業時間計測: セッション開始からの経過時間
-- 進捗サマリー: 完了タスクと次のステップ
+### **シンプルな環境構成**
+- **Git管理**: 手動コミット・プッシュ
+- **Vercel連携**: GitHub自動デプロイ
+- **設定管理**: CLAUDE.md中心の構成
 
 ## Claude Code 活用方針
 
@@ -213,7 +182,7 @@ def run_experiment(config):
 - **MLflow**: 実験パラメータとメトリクスの追跡
 - **Weights & Biases**: リアルタイム実験監視
 - **手動ログ**: 重要な発見や問題点の記録
-- **自動セッションログ**: 1時間毎の進捗自動記録
+- **Git履歴**: コミットベースの進捗管理
 
 ##  データ管理
 
@@ -312,7 +281,7 @@ def semantic_classification(image_path: str, model_config: dict) -> dict:
 - 日々の研究進捗をMarkdownで記録
 - 実験結果の解釈と考察
 - 問題点と解決策の文書化
-- **自動生成**: 1時間毎の進捗記録
+- **手動記録**: 必要に応じたセッションサマリー
 
 ### 3. 論文作成支援
 - LaTeX テンプレートの準備
