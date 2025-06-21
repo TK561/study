@@ -32,3 +32,46 @@ logs/
 *.tmp
 temp/
 tmp/
+
+# 環境変数・認証情報
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+
+# APIキー・シークレット
+*.key
+*.pem
+*.cert
+secrets/
+credentials/
+config/secrets/
+
+# Vercel
+.vercel/
+.vercel_build_output/
+
+# セッションデータ
+session_logs/
+hourly_system/session_logs/
+
+# 個人情報・機密データ
+private/
+confidential/
+sensitive/
+
+# データベース
+*.db
+*.sqlite
+*.sqlite3
+database/
+
+# バックアップ
+*.bak
+*.backup
+backup/
+
+# Claude Code関連
+.claude_code_init.py
+.claude/
