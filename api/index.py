@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from datetime import datetime, timezone, timedelta
+import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -7,10 +8,18 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
         
-        # ページ内容の最終更新日時
-        # 重要: ページの内容を変更した際は、この日時を手動で更新してください
-        # フォーマット: 'YYYY年MM月DD日 HH:MM:SS JST'
-        last_updated = '2025年06月21日 19:30:00 JST'  # カテゴリ数vs性能グラフを追加
+        # ファイルの最終更新時刻を取得（内容変更時の実際の時刻）
+        JST = timezone(timedelta(hours=+9))
+        file_path = os.path.abspath(__file__)
+        file_mtime = os.path.getmtime(file_path)
+        file_update_time = datetime.fromtimestamp(file_mtime, JST)
+        
+        last_updated = file_update_time.strftime('%Y年%m月%d日 %H:%M:%S JST')
+        
+        # Vercel環境の場合、コミット情報を追加
+        git_commit_sha = os.environ.get('VERCEL_GIT_COMMIT_SHA', '')
+        if git_commit_sha:
+            last_updated += f' (Commit: {git_commit_sha[:7]})'
         
         html = '''<!DOCTYPE html>
 <html>
