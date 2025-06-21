@@ -1,10 +1,15 @@
 from http.server import BaseHTTPRequestHandler
+from datetime import datetime, timezone, timedelta
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
+        
+        # 日本時間で最終更新日時を取得
+        JST = timezone(timedelta(hours=+9))
+        last_updated = datetime.now(JST).strftime('%Y年%m月%d日 %H:%M:%S JST')
         
         html = '''<!DOCTYPE html>
 <html>
@@ -277,7 +282,7 @@ class handler(BaseHTTPRequestHandler):
         <div class="header">
             <h1>意味カテゴリに基づく統合画像分類システム</h1>
             <p class="subtitle">Cohen's Power Analysis & 飽和点発見実験 完了レポート</p>
-            <div class="status">研究完了 - 2025年6月20日 最終更新</div>
+            <div class="status">研究完了 - ''' + last_updated + '''</div>
         </div>
 
         <div class="research-objectives">
@@ -1089,9 +1094,10 @@ class handler(BaseHTTPRequestHandler):
         </div>
 
         <div class="footer">
-            <p><strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト (2025-06-21更新)</p>
+            <p><strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト</p>
             <p>研究プロジェクト: 意味論的画像分類の特化手法による性能向上の定量的検証</p>
             <p><strong>結論:</strong> 16カテゴリ実装により10.6%の精度向上が統計的に保証される</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">最終更新: ''' + last_updated + '''</p>
         </div>
     </div>
 </body>
