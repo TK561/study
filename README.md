@@ -180,4 +180,4 @@ study/
 
 ## 📞 サポート
 
-技術的な質問や問題については、Issueを作成してください。
+技術的な質問や問題については、Issueを作成してください。# Vercel deployment test
