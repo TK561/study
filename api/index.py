@@ -1089,7 +1089,7 @@ class handler(BaseHTTPRequestHandler):
         </div>
 
         <div class="footer">
-            <p><strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト</p>
+            <p><strong>Generated with Claude Code</strong> - AI支援研究開発プロジェクト (2025-06-21更新)</p>
             <p>研究プロジェクト: 意味論的画像分類の特化手法による性能向上の定量的検証</p>
             <p><strong>結論:</strong> 16カテゴリ実装により10.6%の精度向上が統計的に保証される</p>
         </div>
