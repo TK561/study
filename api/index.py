@@ -22,7 +22,7 @@ def handler(request):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>意味カテゴリ画像分類システム - 研究成果</title>
+    <title>意味カテゴリ画像分類システム - 研究成果 [v2024.6.21]</title>
     <style>
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -84,6 +84,7 @@ def handler(request):
             <h1>意味カテゴリに基づく画像分類システム</h1>
             <p>WordNetとCLIPを活用した特化型分類の研究成果</p>
             <p style="font-size: 0.9rem;">最終更新: {last_updated}</p>
+            <p style="font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px; display: inline-block;">✅ 新バージョン v2024.6.21</p>
         </div>
 
         <div class="graph-section">
