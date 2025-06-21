@@ -7,9 +7,10 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
         
-        # 日本時間で最終更新日時を取得
-        JST = timezone(timedelta(hours=+9))
-        last_updated = datetime.now(JST).strftime('%Y年%m月%d日 %H:%M:%S JST')
+        # ページ内容の最終更新日時
+        # 重要: ページの内容を変更した際は、この日時を手動で更新してください
+        # フォーマット: 'YYYY年MM月DD日 HH:MM:SS JST'
+        last_updated = '2025年06月21日 19:30:00 JST'  # カテゴリ数vs性能グラフを追加
         
         html = '''<!DOCTYPE html>
 <html>
