@@ -1,27 +1,21 @@
-from http.server import BaseHTTPRequestHandler
 from datetime import datetime, timezone, timedelta
 import os
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/html; charset=utf-8')
-        self.end_headers()
-        
-        # ファイルの最終更新時刻を取得（内容変更時の実際の時刻）
-        JST = timezone(timedelta(hours=+9))
-        file_path = os.path.abspath(__file__)
-        file_mtime = os.path.getmtime(file_path)
-        file_update_time = datetime.fromtimestamp(file_mtime, JST)
-        
-        last_updated = file_update_time.strftime('%Y年%m月%d日 %H:%M:%S JST')
-        
-        # Vercel環境の場合、コミット情報を追加
-        git_commit_sha = os.environ.get('VERCEL_GIT_COMMIT_SHA', '')
-        if git_commit_sha:
-            last_updated += f' (Commit: {git_commit_sha[:7]})'
-        
-        html = '''<!DOCTYPE html>
+def handler(request):
+    # ファイルの最終更新時刻を取得（内容変更時の実際の時刻）
+    JST = timezone(timedelta(hours=+9))
+    file_path = os.path.abspath(__file__)
+    file_mtime = os.path.getmtime(file_path)
+    file_update_time = datetime.fromtimestamp(file_mtime, JST)
+    
+    last_updated = file_update_time.strftime('%Y年%m月%d日 %H:%M:%S JST')
+    
+    # Vercel環境の場合、コミット情報を追加
+    git_commit_sha = os.environ.get('VERCEL_GIT_COMMIT_SHA', '')
+    if git_commit_sha:
+        last_updated += f' (Commit: {git_commit_sha[:7]})'
+    
+    html = '''<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -1112,5 +1106,12 @@ class handler(BaseHTTPRequestHandler):
     </div>
 </body>
 </html>'''
-        
-        self.wfile.write(html.encode('utf-8'))
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache'
+        },
+        'body': html
+    }
