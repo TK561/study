@@ -1,9 +1,13 @@
-def handler(request):
-    """
-    Vercel用のシンプルなPython APIハンドラー - 完全新規作成
-    """
-    
-    html = '''<!DOCTYPE html>
+from http.server import BaseHTTPRequestHandler
+
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+        self.end_headers()
+        
+        html = '''<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -146,11 +150,5 @@ def handler(request):
 </body>
 </html>'''
 
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'text/html; charset=utf-8',
-            'Cache-Control': 'no-cache, no-store, must-revalidate'
-        },
-        'body': html
-    }
+        
+        self.wfile.write(html.encode('utf-8'))
