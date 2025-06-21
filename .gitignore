@@ -1,39 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # Python
 __pycache__/
 *.py[cod]
-.venv/
+*$py.class
+*.so
+.Python
+env/
 venv/
-
-# Sensitive Configuration Files (NEVER COMMIT)
-config.py
-.env
-*.env
-.env.*
-secrets.json
-credentials.json
-api_keys.txt
-private_*
+ENV/
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Logs
 *.log
+logs/
 
-# Data
-*.csv
-*.pkl
-data/raw/
-models/
-
-# System Management (Hourly System - Local Only)
-system_management/
-session_logs/
-scripts/
-.claude_code_init.py
-*HOURLY*
-*QUICK*
-test_*.py
-test_*.sh
-.vercel
+# Temporary files
+*.tmp
+temp/
+tmp/

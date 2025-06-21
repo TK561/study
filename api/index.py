@@ -856,6 +856,139 @@ class handler(BaseHTTPRequestHandler):
                 </div>
             </div>
             
+            <h3>カテゴリ数と精度向上の関係</h3>
+            <div style="width: 100%; height: 400px; margin: 20px 0; position: relative;">
+                <svg width="100%" height="400" viewBox="0 0 800 400" style="background: white; border: 1px solid #ddd; border-radius: 8px;">
+                    <!-- グリッド線 -->
+                    <defs>
+                        <pattern id="grid2" width="50" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 50 0 L 0 0 0 40" fill="none" stroke="#f0f0f0" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid2)" />
+                    
+                    <!-- 軸 -->
+                    <line x1="80" y1="350" x2="720" y2="350" stroke="#333" stroke-width="2"/>
+                    <line x1="80" y1="350" x2="80" y2="50" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- X軸ラベル -->
+                    <text x="400" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">特化カテゴリ数</text>
+                    
+                    <!-- Y軸ラベル -->
+                    <text x="25" y="200" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" transform="rotate(-90, 25, 200)">精度向上率 (%)</text>
+                    
+                    <!-- X軸目盛り -->
+                    <g stroke="#666" font-size="12" text-anchor="middle">
+                        <line x1="80" y1="350" x2="80" y2="355" stroke-width="1"/>
+                        <text x="80" y="370" fill="#666">0</text>
+                        
+                        <line x1="180" y1="350" x2="180" y2="355" stroke-width="1"/>
+                        <text x="180" y="370" fill="#666">8</text>
+                        
+                        <line x1="280" y1="350" x2="280" y2="355" stroke-width="1"/>
+                        <text x="280" y="370" fill="#666">16</text>
+                        
+                        <line x1="380" y1="350" x2="380" y2="355" stroke-width="1"/>
+                        <text x="380" y="370" fill="#666">24</text>
+                        
+                        <line x1="480" y1="350" x2="480" y2="355" stroke-width="1"/>
+                        <text x="480" y="370" fill="#666">32</text>
+                        
+                        <line x1="580" y1="350" x2="580" y2="355" stroke-width="1"/>
+                        <text x="580" y="370" fill="#666">40</text>
+                        
+                        <line x1="680" y1="350" x2="680" y2="355" stroke-width="1"/>
+                        <text x="680" y="370" fill="#666">48</text>
+                    </g>
+                    
+                    <!-- Y軸目盛り -->
+                    <g stroke="#666" font-size="12" text-anchor="end">
+                        <line x1="75" y1="350" x2="80" y2="350" stroke-width="1"/>
+                        <text x="70" y="355" fill="#666">0</text>
+                        
+                        <line x1="75" y1="310" x2="80" y2="310" stroke-width="1"/>
+                        <text x="70" y="315" fill="#666">5</text>
+                        
+                        <line x1="75" y1="270" x2="80" y2="270" stroke-width="1"/>
+                        <text x="70" y="275" fill="#666">10</text>
+                        
+                        <line x1="75" y1="230" x2="80" y2="230" stroke-width="1"/>
+                        <text x="70" y="235" fill="#666">15</text>
+                        
+                        <line x1="75" y1="190" x2="80" y2="190" stroke-width="1"/>
+                        <text x="70" y="195" fill="#666">20</text>
+                        
+                        <line x1="75" y1="150" x2="80" y2="150" stroke-width="1"/>
+                        <text x="70" y="155" fill="#666">25</text>
+                        
+                        <line x1="75" y1="110" x2="80" y2="110" stroke-width="1"/>
+                        <text x="70" y="115" fill="#666">30</text>
+                    </g>
+                    
+                    <!-- 理論的上限線 -->
+                    <line x1="80" y1="110" x2="720" y2="110" stroke="#e91e63" stroke-width="2" stroke-dasharray="8,4" opacity="0.7"/>
+                    <text x="650" y="105" font-size="11" fill="#e91e63" font-weight="bold">理論的上限 30%</text>
+                    
+                    <!-- 実測データ曲線 -->
+                    <path d="M 80,350 L 180,230 L 280,166 L 380,138 L 480,122 L 580,114 L 680,110" 
+                          fill="none" stroke="#4caf50" stroke-width="3"/>
+                    
+                    <!-- データポイント -->
+                    <circle cx="80" cy="350" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="80" y="340" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">0%</text>
+                    
+                    <circle cx="180" cy="230" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="180" y="220" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">21%</text>
+                    
+                    <!-- 最適点（16カテゴリ） -->
+                    <circle cx="280" cy="166" r="8" fill="#ff5722" stroke="white" stroke-width="3"/>
+                    <text x="280" y="156" text-anchor="middle" font-size="12" fill="#ff5722" font-weight="bold">27.3%</text>
+                    <text x="280" y="145" text-anchor="middle" font-size="11" fill="#ff5722">最適点</text>
+                    
+                    <circle cx="380" cy="138" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="380" y="128" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">29.2%</text>
+                    
+                    <circle cx="480" cy="122" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="480" y="112" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">29.8%</text>
+                    
+                    <circle cx="580" cy="114" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="580" y="104" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">29.95%</text>
+                    
+                    <circle cx="680" cy="110" r="5" fill="#4caf50" stroke="white" stroke-width="2"/>
+                    <text x="680" y="100" text-anchor="middle" font-size="10" fill="#2e7d32" font-weight="bold">30%</text>
+                    
+                    <!-- 限界効用の注釈 -->
+                    <g transform="translate(350, 250)">
+                        <rect x="0" y="0" width="200" height="80" fill="white" fill-opacity="0.95" stroke="#ff9800" stroke-width="2" rx="5"/>
+                        <text x="100" y="20" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">限界効用分析</text>
+                        <text x="10" y="40" font-size="11" fill="#333">8→16: +6.3% (高効率)</text>
+                        <text x="10" y="55" font-size="11" fill="#333">16→24: +1.9% (低効率)</text>
+                        <text x="10" y="70" font-size="11" fill="#333">24→32: +0.6% (非効率)</text>
+                    </g>
+                    
+                    <!-- タイトル -->
+                    <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">特化カテゴリ数による精度向上の飽和曲線</text>
+                </svg>
+            </div>
+            
+            <div style="margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+                <h4 style="margin-top: 0;">グラフの解釈</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div>
+                        <h5 style="color: #ff5722; margin: 10px 0;">横軸：特化カテゴリ数</h5>
+                        <p style="margin: 5px 0;">WordNetから選択された特化カテゴリの数。各カテゴリは意味的に近い画像群を表す（例：犬種、車種、航空機種など）。</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #4caf50; margin: 10px 0;">縦軸：精度向上率</h5>
+                        <p style="margin: 5px 0;">ベースライン（汎用1000カテゴリ）からの精度向上率。16カテゴリで27.3%の向上を達成。</p>
+                    </div>
+                    <div>
+                        <h5 style="color: #ff9800; margin: 10px 0;">最適点の意味</h5>
+                        <p style="margin: 5px 0;">16カテゴリが費用対効果の最適点。これ以上増やしても向上率は頭打ちになる。</p>
+                    </div>
+                </div>
+            </div>
+            
             <h3>飽和点分析データ</h3>
             <table class="phase-table">
                 <tr>

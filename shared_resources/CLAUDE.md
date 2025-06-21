@@ -2,6 +2,13 @@
 
 Claude Code を使用した研究プロジェクトの開発・管理ガイドライン
 
+## 言語設定
+
+**優先言語**: 日本語
+- Claude Codeとの対話は日本語で行います
+- エラーメッセージ、説明、コメントも日本語で記述します
+- 技術用語は必要に応じて英語を併記します
+
 ## プロジェクト概要
 
 **プロジェクト名**: 意味カテゴリに基づく画像分類システム  
@@ -60,11 +67,32 @@ python scripts/enhanced_hourly_daemon.py --stop    # 停止
 ```python
 # Claude Code で生成されたコードには以下の署名を追加
 """
-Generated with Claude Code
-Date: YYYY-MM-DD
-Purpose: [目的の説明]
-Verified: [検証済み/要検証]
+Claude Code により生成
+生成日: YYYY-MM-DD
+目的: [目的の説明]
+検証状態: [検証済み/要検証]
 """
+```
+
+#### 日本語コメントの推奨形式
+```python
+def process_data(data):
+    """
+    データ処理関数
+    
+    引数:
+        data: 処理対象のデータ
+    
+    戻り値:
+        処理済みデータ
+    """
+    # ステップ1: データの検証
+    validate_data(data)
+    
+    # ステップ2: 前処理の実行
+    processed = preprocess(data)
+    
+    return processed
 ```
 
 #### 実験ノートブック
@@ -323,6 +351,21 @@ def save_model_for_sharing(model, metadata: dict, output_path: str):
 
 ## 🤝 Claude Code とのコラボレーション
 
+### Claude Code 日本語対応設定
+Claude Codeは以下の設定により日本語で対話します：
+
+1. **初回起動時の指示**
+   - このCLAUDE.mdファイルを読み込み、日本語での応答を開始
+   - エラーメッセージや説明も日本語で提供
+
+2. **コード内コメント**
+   - すべてのコメントは日本語で記述
+   - 変数名・関数名は英語（日本語コメント付き）
+
+3. **ドキュメント生成**
+   - README、レポート、説明文書は日本語で作成
+   - 技術仕様書は日英併記
+
 ### 1. 効果的な質問の仕方
 ```
 良い例:
@@ -445,5 +488,14 @@ gh run list --workflow=monitoring.yml
 
 ---
 
-*Generated with Claude Code - Research Project Guidelines*  
-*Last Updated: 2025-06-20 (Auto-Initialization System Added)*
+## 重要: Claude Code 日本語設定
+
+このプロジェクトでは、Claude Codeは**日本語**で対話します。
+- すべての応答、説明、エラーメッセージは日本語
+- コード内のコメントも日本語で記述
+- 技術用語は必要に応じて英語併記
+
+---
+
+*Claude Code により生成 - 研究プロジェクトガイドライン*  
+*最終更新日: 2025-06-21 (日本語対応設定追加)*
