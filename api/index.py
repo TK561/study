@@ -85,7 +85,7 @@ class handler(BaseHTTPRequestHandler):
         <div class="header">
             <h1>🔬 意味カテゴリ画像分類システム</h1>
             <p>WordNet + CLIP による特化型分類の研究成果</p>
-            <span class="badge">手順テスト実行中</span>
+            <span class="badge">手順確認完了</span>
         </div>
 
         <div class="section">
