@@ -1,2 +1,0 @@
-# Python requirements for Vercel deployment
-# No external dependencies needed for this simple project

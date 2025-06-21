@@ -1,14 +1,16 @@
 from http.server import BaseHTTPRequestHandler
+import datetime
+import os
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/html; charset=utf-8')
-        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
-        self.end_headers()
-        
-        html = '''<!DOCTYPE html>
+def handler(request):
+    # 固定タイムスタンプ（デプロイ時に設定）
+    fixed_timestamp = "2025年06月21日 21:34 JST"
+    deploy_id = "20250621-2134"
+    
+    html = '''<!DOCTYPE html>
 <html lang="ja">
+<!-- Build Time: ''' + fixed_timestamp + ''' -->
+<!-- Deploy ID: ''' + deploy_id + ''' -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,6 +88,9 @@ class handler(BaseHTTPRequestHandler):
             <h1>🔬 意味カテゴリ画像分類システム</h1>
             <p>WordNet + CLIP による特化型分類の研究成果</p>
             <span class="badge">手順確認完了</span>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #fff; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 5px;">
+                📅 最終更新: <span id="lastUpdate">''' + fixed_timestamp + '''</span>
+            </div>
         </div>
 
         <div class="section">
@@ -325,8 +330,46 @@ class handler(BaseHTTPRequestHandler):
             <p><strong>結論:</strong> 16カテゴリ実装により27.3%の精度向上を実現</p>
         </div>
     </div>
+    
+    <script>
+        // 最終更新日時の動的取得
+        function getLastDeployTime() {
+            // 現在の日時を JST で取得
+            const now = new Date();
+            const jstOffset = 9 * 60; // JST は UTC+9
+            const jst = new Date(now.getTime() + (jstOffset * 60 * 1000));
+            
+            const year = jst.getFullYear();
+            const month = String(jst.getMonth() + 1).padStart(2, '0');
+            const day = String(jst.getDate()).padStart(2, '0');
+            const hours = String(jst.getHours()).padStart(2, '0');
+            const minutes = String(jst.getMinutes()).padStart(2, '0');
+            
+            return `${year}年${month}月${day}日 ${hours}:${minutes} JST`;
+        }
+        
+        // ページロード時に最終更新日時を設定
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            if (lastUpdateElement) {
+                lastUpdateElement.textContent = getLastDeployTime();
+            }
+        });
+        
+        // デプロイ識別用タイムスタンプ（開発者確認用）
+        console.log('🚀 Deploy Timestamp:', new Date().toISOString());
+        console.log('📅 JST Display Time:', getLastDeployTime());
+    </script>
 </body>
 </html>'''
-
-        
-        self.wfile.write(html.encode('utf-8'))
+    
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'X-Deploy-Time': fixed_timestamp
+        },
+        'body': html
+    }
