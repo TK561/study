@@ -81,7 +81,7 @@ def handler(request):
         <div class="header">
             <h1>🔬 意味カテゴリ画像分類システム</h1>
             <p>WordNet + CLIP による特化型分類の研究成果</p>
-            <span class="badge">NEW VERSION</span>
+            <span class="badge">AUTO DEPLOY</span>
         </div>
 
         <div class="section">
