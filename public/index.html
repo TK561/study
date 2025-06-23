@@ -206,32 +206,20 @@
     </div>
     
     <script>
-        // 最終更新日時の動的取得
-        function getLastDeployTime() {
-            const now = new Date();
-            const jstOffset = 9 * 60;
-            const jst = new Date(now.getTime() + (jstOffset * 60 * 1000));
-            
-            const year = jst.getFullYear();
-            const month = String(jst.getMonth() + 1).padStart(2, '0');
-            const day = String(jst.getDate()).padStart(2, '0');
-            const hours = String(jst.getHours()).padStart(2, '0');
-            const minutes = String(jst.getMinutes()).padStart(2, '0');
-            
-            return `${year}年${month}月${day}日 ${hours}:${minutes} JST`;
-        }
+        // 固定の最終更新日時
+        const LAST_UPDATE = '2024年12月23日';
         
         // ページロード時に最終更新日時を設定
         document.addEventListener('DOMContentLoaded', function() {
             const lastUpdateElement = document.getElementById('lastUpdate');
             if (lastUpdateElement) {
-                lastUpdateElement.textContent = getLastDeployTime();
+                lastUpdateElement.textContent = LAST_UPDATE;
             }
         });
         
         // デプロイ識別用タイムスタンプ（開発者確認用）
         console.log('🚀 Deploy Timestamp:', new Date().toISOString());
-        console.log('📅 JST Display Time:', getLastDeployTime());
+        console.log('📅 Last Update:', LAST_UPDATE);
     </script>
 </body>
 </html>
