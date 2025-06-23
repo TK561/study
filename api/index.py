@@ -1,13 +1,10 @@
-from http.server import BaseHTTPRequestHandler
-import json
-
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        # 固定タイムスタンプ（デプロイ時に設定）
-        fixed_timestamp = "2025年06月22日 01:17 JST"
-        deploy_id = "20250622-0117"
-        
-        html = f'''<!DOCTYPE html>
+def handler(request):
+    """Vercel serverless function handler"""
+    # 固定タイムスタンプ（デプロイ時に設定）
+    fixed_timestamp = "2025年06月22日 01:17 JST"
+    deploy_id = "20250622-0117"
+    
+    html = f'''<!DOCTYPE html>
 <html lang="ja">
 <!-- Build Time: {fixed_timestamp} -->
 <!-- Deploy ID: {deploy_id} -->
@@ -244,10 +241,13 @@ class handler(BaseHTTPRequestHandler):
     </script>
 </body>
 </html>'''
-        
-        self.send_response(200)
-        self.send_header('Content-Type', 'text/html; charset=utf-8')
-        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
-        self.send_header('X-Deploy-Time', fixed_timestamp)
-        self.end_headers()
-        self.wfile.write(html.encode('utf-8'))
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'X-Deploy-Time': fixed_timestamp
+        },
+        'body': html
+    }
