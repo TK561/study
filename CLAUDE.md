@@ -46,6 +46,35 @@ python3 vercel_fix_assistant.py --rollback 20241223_171500
 - `.vercel_backups/` に保存
 - ロールバック機能搭載
 
+### 🚀 Vercel × Gemini AI統合システム
+**最高のユーザー満足度を実現する包括的なデプロイメントシステム**
+
+#### 🎯 スマートデプロイ
+```bash
+# AI支援付きデプロイ（推奨）
+python3 vercel_unified_system.py deploy
+```
+
+#### 🧠 AI機能
+- Gemini AIによる成功率予測
+- 自動最適化提案
+- ユーザー満足度追跡
+- 学習型エラー修復
+
+#### 📊 統合ダッシュボード
+```bash
+python3 vercel_unified_system.py dashboard
+```
+
+#### 🔧 主要機能
+1. **環境診断**: 健全性スコア自動計算
+2. **AI分析**: Geminiによる詳細分析
+3. **自動最適化**: 構成の自動調整
+4. **インテリジェントバックアップ**: 失敗時自動復元
+5. **満足度追跡**: フィードバック収集と改善
+
+詳細は `VERCEL_INTEGRATION_GUIDE.md` を参照
+
 ## 自動復元機能
 Claude Code起動時に前回のセッションを自動的に検出・復元します。
 
