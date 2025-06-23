@@ -1,0 +1,26 @@
+{
+  "updates": [
+    {
+      "date": "2024-12-23T17:18:03",
+      "version": "静的HTMLサイト v1.0",
+      "deployId": "dpl_2Ee1cSjgWJmNiRrQtQCPuqEpf9Ed",
+      "url": "https://study-research-final.vercel.app",
+      "changes": [
+        "Python APIハンドラーから静的HTMLサイトに移行",
+        "BaseHTTPRequestHandler TypeErrorを解決",
+        "最終更新日時を2024年12月23日 17:15に修正"
+      ],
+      "files": [
+        "public/index.html",
+        "vercel.json"
+      ],
+      "status": "success"
+    }
+  ],
+  "metadata": {
+    "projectId": "prj_yt8CeSOyuRcskyogkyA9KTfV6L1C",
+    "projectName": "study-research-final",
+    "currentVersion": "静的HTMLサイト v1.0",
+    "lastUpdate": "2024-12-23T17:18:03"
+  }
+}

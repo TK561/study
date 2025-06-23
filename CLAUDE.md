@@ -6,6 +6,20 @@
 詳細は以下を参照：
 - `VERCEL_STATIC_DEPLOYMENT_GUIDE.md` - 静的サイトデプロイガイド
 - `VERCEL_ERROR_KNOWLEDGE_BASE.md` - エラー対策集
+- `VERCEL_UPDATE_HISTORY.json` - 更新履歴（自動保存）
+
+### Vercel更新履歴の自動保存
+デプロイ時に自動的に以下の情報が保存されます：
+- バージョン番号
+- デプロイID
+- 変更内容
+- 更新ファイル
+- デプロイ時刻
+
+履歴確認方法：
+```bash
+python3 vercel_update_tracker.py
+```
 
 ## 自動復元機能
 Claude Code起動時に前回のセッションを自動的に検出・復元します。

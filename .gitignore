@@ -75,3 +75,9 @@ backup/
 # Claude Code関連
 .claude_code_init.py
 .claude/
+.claude_sessions/
+.claude_master/
+.workflow_analytics/
+
+# Vercel更新履歴は保持
+!VERCEL_UPDATE_HISTORY.json

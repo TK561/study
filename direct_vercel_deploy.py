@@ -81,12 +81,41 @@ def deploy_to_vercel():
             print(f"🆔 デプロイID: {deployment_id}")
             print(f"🌐 プレビューURL: https://{deployment_url}")
             print(f"🌐 本番URL: https://study-research-final.vercel.app")
-            print(f"📅 デプロイ時刻: {datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}")
+            
+            deploy_time = datetime.now()
+            deploy_time_str = deploy_time.strftime('%Y年%m月%d日 %H:%M:%S')
+            print(f"📅 デプロイ時刻: {deploy_time_str}")
             
             # ナビゲーション確認
             if 'ディスカッション記録' in html_content:
                 print("✅ ナビゲーションメニュー確認済み")
                 print("🔗 ディスカッションサイトリンク統合済み")
+            
+            # 更新履歴を記録
+            try:
+                from vercel_update_tracker import VercelUpdateTracker
+                tracker = VercelUpdateTracker()
+                
+                # 変更内容を自動検出
+                changes = ["Vercel APIを使用したデプロイ"]
+                if 'ディスカッション記録' in html_content:
+                    changes.append("ナビゲーションメニュー確認")
+                
+                version = f"v{deploy_time.strftime('%Y%m%d_%H%M%S')}"
+                
+                tracker.add_update(
+                    version=version,
+                    deploy_id=deployment_id,
+                    url=f"https://{deployment_url}",
+                    changes=changes,
+                    files=["index.html", "vercel.json"],
+                    status="success",
+                    project_id=VERCEL_PROJECT_ID,
+                    project_name="study-research-final"
+                )
+                print("📝 更新履歴を記録しました")
+            except Exception as e:
+                print(f"⚠️ 履歴記録エラー: {e}")
             
             return True
             
