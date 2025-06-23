@@ -21,6 +21,31 @@
 python3 vercel_update_tracker.py
 ```
 
+### Vercelデプロイメント管理
+成功パターンの記録と失敗時の修正：
+
+#### 📊 成功パターン記録
+- `VERCEL_SUCCESS_PATTERNS.json` - 成功したデプロイの再現情報
+- 成功理由と再現手順を自動記録
+- 類似パターンの検索機能
+
+#### 🔧 エラー時の自動修正
+```bash
+# 対話的修正
+python3 vercel_fix_assistant.py
+
+# 静的HTMLに即座修正
+python3 vercel_fix_assistant.py --fix static_html
+
+# バックアップから復元
+python3 vercel_fix_assistant.py --rollback 20241223_171500
+```
+
+#### 💾 自動バックアップ
+- デプロイ前に自動バックアップ作成
+- `.vercel_backups/` に保存
+- ロールバック機能搭載
+
 ## 自動復元機能
 Claude Code起動時に前回のセッションを自動的に検出・復元します。
 

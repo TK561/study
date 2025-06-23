@@ -81,3 +81,8 @@ backup/
 
 # Vercel更新履歴は保持
 !VERCEL_UPDATE_HISTORY.json
+!VERCEL_SUCCESS_PATTERNS.json
+!VERCEL_FIX_HISTORY.json
+
+# バックアップディレクトリ
+.vercel_backups/

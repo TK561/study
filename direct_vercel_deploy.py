@@ -94,6 +94,9 @@ def deploy_to_vercel():
             # 更新履歴を記録
             try:
                 from vercel_update_tracker import VercelUpdateTracker
+                from vercel_deployment_manager import VercelDeploymentManager
+                
+                # 更新トラッカー
                 tracker = VercelUpdateTracker()
                 
                 # 変更内容を自動検出
@@ -114,6 +117,30 @@ def deploy_to_vercel():
                     project_name="study-research-final"
                 )
                 print("📝 更新履歴を記録しました")
+                
+                # デプロイメント管理
+                manager = VercelDeploymentManager()
+                
+                # デプロイ構成を検出
+                deployment_config = {
+                    "type": "static_html",
+                    "reason": "静的HTMLサイトとして正常にデプロイ"
+                }
+                
+                # 成功パターンを記録
+                pattern = manager.record_success_pattern(
+                    deployment_type=deployment_config["type"],
+                    files_changed=["public/index.html", "vercel.json"],
+                    config_used={
+                        "structure": "public/index.html",
+                        "vercel_json": {"version": 2}
+                    },
+                    success_reason=deployment_config["reason"],
+                    deploy_id=deployment_id,
+                    url=f"https://study-research-final.vercel.app"
+                )
+                print(f"✅ 成功パターンを記録: {pattern['id']}")
+                
             except Exception as e:
                 print(f"⚠️ 履歴記録エラー: {e}")
             

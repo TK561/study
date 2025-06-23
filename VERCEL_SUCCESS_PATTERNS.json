@@ -1,0 +1,35 @@
+{
+  "patterns": [
+    {
+      "id": "pattern_20241223_171800",
+      "timestamp": "2024-12-23T17:18:00",
+      "deployment_type": "static_html",
+      "files_changed": ["public/index.html", "vercel.json"],
+      "config": {
+        "structure": "public/index.html",
+        "vercel_json": {"version": 2},
+        "no_api": true
+      },
+      "success_reason": "Python APIを削除し、静的HTMLサイトとして配置することでBaseHTTPRequestHandlerエラーを回避",
+      "deploy_id": "dpl_2Ee1cSjgWJmNiRrQtQCPuqEpf9Ed",
+      "url": "https://study-research-final.vercel.app",
+      "reproduction_steps": [
+        "1. 静的HTMLファイルを準備 (public/index.html)",
+        "2. vercel.jsonを最小構成に設定",
+        "3. python3 direct_vercel_deploy.py を実行",
+        "4. 変更ファイル: public/index.html, vercel.json"
+      ]
+    }
+  ],
+  "metadata": {
+    "last_success": "2024-12-23T17:18:00",
+    "total_successes": 1,
+    "common_issues": [
+      {
+        "issue": "BaseHTTPRequestHandler TypeError",
+        "frequency": 3,
+        "solution": "静的HTMLサイトに移行"
+      }
+    ]
+  }
+}
