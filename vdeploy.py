@@ -14,7 +14,7 @@ def deploy():
     print("🚀 Vercel デプロイ中...")
     
     # 基本設定
-    token = "WkO3OyNzgZDXHpRwRgA5GDnL"
+    token = "A0FAzBEt0OgzeI7zaqs1J0MD"
     
     # vercel.json確認・作成
     if not Path("vercel.json").exists():

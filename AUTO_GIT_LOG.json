@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2025-06-23T18:08:16.314920",
+    "event_type": "SYNC",
+    "message": "同期サイクル開始",
+    "status": "info",
+    "details": null
+  },
+  {
+    "timestamp": "2025-06-23T18:08:18.315173",
+    "event_type": "PULL",
+    "message": "プル対象なし",
+    "status": "info",
+    "details": null
+  }
+]

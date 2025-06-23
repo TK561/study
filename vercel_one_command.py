@@ -36,7 +36,7 @@ def get_vercel_token():
             pass
     
     # デフォルトトークン
-    return "WkO3OyNzgZDXHpRwRgA5GDnL"
+    return "A0FAzBEt0OgzeI7zaqs1J0MD"
 
 def ensure_files():
     """必要なファイルを確認・作成"""

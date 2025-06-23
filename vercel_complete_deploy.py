@@ -40,7 +40,7 @@ class VercelCompleteDeployment:
                 pass
                 
         # デフォルトトークン（既存設定から）
-        return "WkO3OyNzgZDXHpRwRgA5GDnL"
+        return "A0FAzBEt0OgzeI7zaqs1J0MD"
     
     def load_config(self) -> Dict:
         """設定を読み込み"""
