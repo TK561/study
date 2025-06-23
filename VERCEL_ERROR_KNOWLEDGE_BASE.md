@@ -2,6 +2,56 @@
 
 ## 📋 発生したエラーと解決方法
 
+### Error 4: BaseHTTPRequestHandler TypeError (最終解決)
+**発生日時**: 2025年6月23日 17:00頃
+
+**エラー内容**:
+```
+Traceback (most recent call last):
+File "/var/task/vc__handler__python.py", line 213, in <module>
+if not issubclass(base, BaseHTTPRequestHandler):
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: issubclass() arg 1 must be a class
+```
+
+**根本原因**:
+- Vercel Python Runtimeが`BaseHTTPRequestHandler`クラス形式をサポートしなくなった
+- 新しいVercel Python Runtimeは異なる関数シグネチャを要求
+
+**最終解決方法**:
+1. **Python APIを完全に放棄し、静的HTMLに移行**
+2. **`api/`ディレクトリを削除**
+3. **`public/index.html`として静的ファイル配置**
+4. **`vercel.json`を最小構成に変更**
+
+**実装手順**:
+```bash
+# 1. APIディレクトリ削除
+rm -rf api/
+
+# 2. 静的HTMLファイル作成
+mkdir -p public
+# public/index.html にHTMLコンテンツを配置
+
+# 3. vercel.json簡素化
+{
+  "version": 2
+}
+
+# 4. デプロイ
+git add -A
+git commit -m "静的HTMLサイトに移行"
+git push origin main
+```
+
+**メリット**:
+- Python Runtimeの問題を完全回避
+- より高速な配信
+- エラーリスクの最小化
+- メンテナンスの簡素化
+
+## 📋 発生したエラーと解決方法
+
 ### Error 1: Vercel Functions 形式エラー (再発)
 **発生日時**: 2025年6月22日 01:15頃 **※再発エラー**
 
@@ -261,7 +311,8 @@ python3 auto_vercel_token_deploy.py
 
 | 日時 | エラータイプ | 解決時間 | 使用ツール | 状態 |
 |------|-------------|----------|-----------|------|
-| 2025/06/22 01:15 | Vercel Functions形式エラー(再発) | 10分 | 完全書き換え+quick_vercel_fix.py | ✅解決 |
+| 2025/06/23 17:00 | BaseHTTPRequestHandler TypeError | 10分 | 静的HTML移行 | ✅完全解決 |
+| 2025/06/22 01:15 | Vercel Functions形式エラー(再発) | 10分 | 完全書き換え+quick_vercel_fix.py | ❌失敗 |
 | 2025/06/22 01:00 | Vercel Functions形式エラー | 15分 | quick_vercel_fix.py | ⚠️再発 |
 | 2025/06/22 00:45 | API形式エラー | 10分 | direct_vercel_deploy.py | ✅解決 |
 | 2025/06/22 00:30 | GitHub Push Protection | 20分 | Token API切り替え | ✅解決 |

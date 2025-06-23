@@ -1,5 +1,12 @@
 # Claude Code 設定ファイル
 
+## 🚨 Vercelデプロイメント重要事項
+**Python APIハンドラーは使用しないでください。静的HTMLサイトとしてデプロイしてください。**
+
+詳細は以下を参照：
+- `VERCEL_STATIC_DEPLOYMENT_GUIDE.md` - 静的サイトデプロイガイド
+- `VERCEL_ERROR_KNOWLEDGE_BASE.md` - エラー対策集
+
 ## 自動復元機能
 Claude Code起動時に前回のセッションを自動的に検出・復元します。
 
