@@ -1,0 +1,26 @@
+{
+  "session_id": "20250621_232244",
+  "start_time": "2025-06-21T23:22:44.016825",
+  "last_updated": "2025-06-21T23:22:44.021194",
+  "actions": [
+    {
+      "timestamp": "2025-06-21T23:22:44.015019",
+      "type": "file_operation",
+      "details": {
+        "operation": "create",
+        "file_path": "/test/sample.py",
+        "timestamp": "2025-06-21T23:22:44.014987",
+        "content": "print('hello')"
+      }
+    },
+    {
+      "timestamp": "2025-06-21T23:22:44.021194",
+      "type": "command_execution",
+      "details": {
+        "command": "git status",
+        "timestamp": "2025-06-21T23:22:44.021173",
+        "output": "nothing to commit"
+      }
+    }
+  ]
+}

@@ -1,21 +1,13 @@
-from datetime import datetime
-
-def handler(request):
-    """Vercel Python Runtime 3.9+ compatible handler"""
-    # 固定タイムスタンプ（デプロイ時に設定）
-    fixed_timestamp = "2025年06月22日 01:17 JST"
-    deploy_id = "20250622-0117"
-    
-    html = f'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
-<!-- Build Time: {fixed_timestamp} -->
-<!-- Deploy ID: {deploy_id} -->
+<!-- Build Time: 2025年06月22日 01:17 JST -->
+<!-- Deploy ID: 20250622-0117 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>研究成果 - 意味カテゴリ画像分類システム</title>
     <style>
-        body {{
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             margin: 0;
             padding: 20px;
@@ -23,33 +15,33 @@ def handler(request):
             min-height: 100vh;
             color: #333;
             line-height: 1.7;
-        }}
-        .container {{
+        }
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }}
-        .header {{
+        }
+        .header {
             text-align: center;
             margin-bottom: 40px;
             padding: 30px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border-radius: 10px;
-        }}
-        .header h1 {{
+        }
+        .header h1 {
             margin: 0 0 15px 0;
             font-size: 2.4rem;
             letter-spacing: -0.5px;
-        }}
-        .nav-menu {{
+        }
+        .nav-menu {
             margin: 20px 0;
             text-align: center;
-        }}
-        .nav-menu a {{
+        }
+        .nav-menu a {
             display: inline-block;
             margin: 0 15px;
             padding: 10px 20px;
@@ -59,42 +51,42 @@ def handler(request):
             border-radius: 25px;
             transition: all 0.3s ease;
             font-weight: 500;
-        }}
-        .nav-menu a:hover {{
+        }
+        .nav-menu a:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-        }}
-        .section {{
+        }
+        .section {
             margin: 35px 0;
             padding: 30px;
             background: #f8f9fa;
             border-radius: 12px;
             border-left: 6px solid #667eea;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }}
-        .section h3 {{
+        }
+        .section h3 {
             color: #667eea;
             margin: 0 0 25px 0;
             font-size: 1.5rem;
             font-weight: 600;
             border-bottom: 2px solid #e3f2fd;
             padding-bottom: 10px;
-        }}
-        .result-box {{
+        }
+        .result-box {
             background: #e8f5e8;
             border: 2px solid #4caf50;
             padding: 25px;
             border-radius: 12px;
             margin: 25px 0;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }}
-        .result-box h4 {{
+        }
+        .result-box h4 {
             margin: 0 0 20px 0;
             color: #2e7d32;
             font-size: 1.2rem;
             font-weight: 600;
-        }}
-        .badge {{
+        }
+        .badge {
             display: inline-block;
             background: #ff5722;
             color: white;
@@ -102,8 +94,8 @@ def handler(request):
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: bold;
-        }}
-        .footer {{
+        }
+        .footer {
             text-align: center;
             margin-top: 30px;
             padding: 15px;
@@ -111,7 +103,7 @@ def handler(request):
             border-radius: 8px;
             font-size: 0.9rem;
             color: #666;
-        }}
+        }
     </style>
 </head>
 <body>
@@ -127,7 +119,7 @@ def handler(request):
             </div>
             <span class="badge">ナビゲーション統合完了</span>
             <div style="margin-top: 10px; font-size: 0.9rem; color: #fff; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 5px;">
-                📅 最終更新: <span id="lastUpdate">{fixed_timestamp}</span>
+                📅 最終更新: <span id="lastUpdate">2025年06月22日 01:17 JST</span>
             </div>
         </div>
 
@@ -215,7 +207,7 @@ def handler(request):
     
     <script>
         // 最終更新日時の動的取得
-        function getLastDeployTime() {{
+        function getLastDeployTime() {
             const now = new Date();
             const jstOffset = 9 * 60;
             const jst = new Date(now.getTime() + (jstOffset * 60 * 1000));
@@ -226,33 +218,20 @@ def handler(request):
             const hours = String(jst.getHours()).padStart(2, '0');
             const minutes = String(jst.getMinutes()).padStart(2, '0');
             
-            return `${{year}}年${{month}}月${{day}}日 ${{hours}}:${{minutes}} JST`;
-        }}
+            return `${year}年${month}月${day}日 ${hours}:${minutes} JST`;
+        }
         
         // ページロード時に最終更新日時を設定
-        document.addEventListener('DOMContentLoaded', function() {{
+        document.addEventListener('DOMContentLoaded', function() {
             const lastUpdateElement = document.getElementById('lastUpdate');
-            if (lastUpdateElement) {{
+            if (lastUpdateElement) {
                 lastUpdateElement.textContent = getLastDeployTime();
-            }}
-        }});
+            }
+        });
         
         // デプロイ識別用タイムスタンプ（開発者確認用）
         console.log('🚀 Deploy Timestamp:', new Date().toISOString());
         console.log('📅 JST Display Time:', getLastDeployTime());
     </script>
 </body>
-</html>'''
-    
-    return {
-        "statusCode": 200,
-        "headers": {
-            "Content-Type": "text/html; charset=utf-8",
-            "Cache-Control": "no-cache, no-store, must-revalidate",
-            "X-Deploy-Time": fixed_timestamp
-        },
-        "body": html
-    }
-
-# Vercel expects this exact export pattern
-app = handler
+</html>

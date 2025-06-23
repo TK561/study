@@ -1,0 +1,48 @@
+[
+  {
+    "timestamp": "2025-06-22T00:24:35.375540",
+    "action_type": "file_create",
+    "details": {
+      "file": "test1.py"
+    },
+    "day_of_week": "Sunday",
+    "hour": 0
+  },
+  {
+    "timestamp": "2025-06-22T00:24:35.484399",
+    "action_type": "file_edit",
+    "details": {
+      "file": "test1.py"
+    },
+    "day_of_week": "Sunday",
+    "hour": 0
+  },
+  {
+    "timestamp": "2025-06-22T00:24:35.605999",
+    "action_type": "consultation",
+    "details": {
+      "query": "テスト相談"
+    },
+    "day_of_week": "Sunday",
+    "hour": 0
+  },
+  {
+    "timestamp": "2025-06-22T00:24:35.721971",
+    "action_type": "file_create",
+    "details": {
+      "file": "test2.py"
+    },
+    "day_of_week": "Sunday",
+    "hour": 0
+  },
+  {
+    "timestamp": "2025-06-22T00:26:21.969499",
+    "action_type": "intelligent_assist",
+    "details": {
+      "query": "作成したシステムの統合効果を評価してください",
+      "result_type": "implementation"
+    },
+    "day_of_week": "Sunday",
+    "hour": 0
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "research-discussion-record",
+  "version": "1.0.0",
+  "description": "Weekly discussion record for semantic category-based image classification research",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step required for static site'",
+    "start": "echo 'Static site - deploy to Vercel'"
+  },
+  "keywords": [
+    "research",
+    "discussion",
+    "image-classification",
+    "wordnet",
+    "academic"
+  ],
+  "author": "Research Team",
+  "license": "MIT"
+}
