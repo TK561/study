@@ -1,5 +1,7 @@
+from datetime import datetime
+
 def handler(request):
-    """Vercel serverless function handler"""
+    """Vercel Python Runtime 3.9+ compatible handler"""
     # 固定タイムスタンプ（デプロイ時に設定）
     fixed_timestamp = "2025年06月22日 01:17 JST"
     deploy_id = "20250622-0117"
@@ -243,11 +245,14 @@ def handler(request):
 </html>'''
     
     return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'text/html; charset=utf-8',
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'X-Deploy-Time': fixed_timestamp
+        "statusCode": 200,
+        "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "X-Deploy-Time": fixed_timestamp
         },
-        'body': html
+        "body": html
     }
+
+# Vercel expects this exact export pattern
+app = handler
