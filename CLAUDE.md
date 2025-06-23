@@ -75,6 +75,43 @@ python3 vercel_unified_system.py dashboard
 
 詳細は `VERCEL_INTEGRATION_GUIDE.md` を参照
 
+### 🔄 完全自動化システム
+**Vercel関連の操作を検出して自動実行**
+
+#### 🎯 包括的セットアップ
+```bash
+# ワンコマンドで全機能セットアップ
+python3 vercel_smart_integration.py setup
+```
+
+#### 👁️ 自動監視機能
+```bash
+# 自動監視開始
+python3 vercel_auto_trigger.py start
+
+# または短縮コマンド（セットアップ後）
+vst
+```
+
+#### 🔧 自動実行トリガー
+- **ファイル変更検出**: HTML, CSS, JS, JSON等の変更
+- **コマンド監視**: vercel, git push, npm run等の実行
+- **Git hooks**: push時の自動デプロイ
+- **エラー検出**: 失敗時の自動修復
+
+#### 🎮 便利なエイリアス（セットアップ後）
+```bash
+vsd  # スマートデプロイ
+vss  # システム状態確認
+vsf  # 自動修復
+vst  # 自動監視開始
+```
+
+#### 💡 VS Code統合
+- Ctrl+Shift+V, Ctrl+Shift+D: スマートデプロイ
+- Ctrl+Shift+V, Ctrl+Shift+S: システム状態
+- タスクパネルから直接実行可能
+
 ## 自動復元機能
 Claude Code起動時に前回のセッションを自動的に検出・復元します。
 
