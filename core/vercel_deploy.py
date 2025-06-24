@@ -11,6 +11,18 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+# HTML自動更新システムのインポート
+try:
+    from .html_auto_updater import HTMLAutoUpdater
+    HTML_UPDATER_AVAILABLE = True
+except ImportError:
+    try:
+        from html_auto_updater import HTMLAutoUpdater
+        HTML_UPDATER_AVAILABLE = True
+    except ImportError:
+        HTML_UPDATER_AVAILABLE = False
+        print("📝 Note: HTML自動更新機能は利用できません")
+
 class VercelDeploymentSystem:
     def __init__(self):
         self.project_root = Path.cwd()
@@ -18,18 +30,43 @@ class VercelDeploymentSystem:
         self.log_dir = self.project_root / "logs" / "deployment"
         self.ensure_directories()
         
+        # HTML自動更新システムを初期化
+        if HTML_UPDATER_AVAILABLE:
+            self.html_updater = HTMLAutoUpdater()
+        else:
+            self.html_updater = None
+        
     def ensure_directories(self):
         """必要なディレクトリを作成"""
         self.log_dir.mkdir(parents=True, exist_ok=True)
         (self.project_root / "config").mkdir(exist_ok=True)
         
-    def deploy(self, mode="auto"):
+    def deploy(self, mode="auto", auto_update_html=True):
         """
         Vercelにデプロイ
         mode: "auto", "manual", "api"
+        auto_update_html: HTML自動更新を実行するか
         """
         print("🚀 Vercel統合デプロイメントシステム")
         print("="*50)
+        
+        # HTML自動更新実行
+        if auto_update_html and self.html_updater:
+            print("\n🔄 HTML自動更新を実行中...")
+            update_results = self.html_updater.update_all_html_files()
+            
+            if update_results["success"] and update_results["updated_files"]:
+                print("✅ HTML更新完了")
+                for file_info in update_results["updated_files"]:
+                    print(f"📄 {Path(file_info['file']).name}")
+                    for change in file_info["changes"]:
+                        print(f"  - {change}")
+            elif update_results["errors"]:
+                print("⚠️ HTML更新でエラーが発生しましたが、デプロイを続行します")
+                for error in update_results["errors"]:
+                    print(f"  - {error}")
+            else:
+                print("ℹ️ HTML更新対象ファイルが見つかりませんでした")
         
         # デプロイ前チェック
         if not self.pre_deploy_check():
@@ -158,11 +195,15 @@ def main():
     # コマンドライン引数でモードを指定
     mode = sys.argv[1] if len(sys.argv) > 1 else "auto"
     
+    # HTML更新オプション
+    auto_update_html = "--no-update" not in sys.argv
+    
     if mode not in ["auto", "api", "manual"]:
-        print("使用方法: python vercel_deploy.py [auto|api|manual]")
+        print("使用方法: python vercel_deploy.py [auto|api|manual] [--no-update]")
+        print("  --no-update: HTML自動更新をスキップ")
         sys.exit(1)
         
-    success = system.deploy(mode)
+    success = system.deploy(mode, auto_update_html=auto_update_html)
     sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
