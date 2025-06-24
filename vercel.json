@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": ".",
-  "installCommand": "npm install",
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "buildCommand": "echo 'Building static site'",
+  "outputDirectory": "public"
 }
