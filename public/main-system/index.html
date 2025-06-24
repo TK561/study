@@ -214,10 +214,6 @@
                 <a href="#analysis">分析</a>
                 <a href="/discussion-site/" target="_blank">📋 ディスカッション記録</a>
             </div>
-            <span class="badge">ディスカッションサイト統合完了</span>
-            <div style="margin-top: 10px; font-size: 0.9rem; color: #fff; background: rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 5px;">
-                📅 最終更新: <span id="lastUpdate">2025年6月24日</span>
-            </div>
         </div>
 
         <!-- タブコンテナ -->
@@ -506,16 +502,6 @@
     </div>
     
     <script>
-        // 動的な最終更新日時
-        function getCurrentDateTime() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth() + 1;
-            const date = now.getDate();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            return `${year}年${month}月${date}日 ${hours}:${minutes}`;
-        }
         
         // タブ機能
         function showTab(tabId) {
@@ -563,12 +549,6 @@
         
         // ページロード時の処理
         document.addEventListener('DOMContentLoaded', function() {
-            // 最終更新日時を設定
-            const lastUpdateElement = document.getElementById('lastUpdate');
-            if (lastUpdateElement) {
-                lastUpdateElement.textContent = getCurrentDateTime();
-            }
-            
             // URLハッシュに基づいてタブを表示
             const hash = window.location.hash.substr(1);
             if (hash && document.getElementById(hash)) {
@@ -1204,7 +1184,6 @@
         
         // デプロイ識別用タイムスタンプ（開発者確認用）
         console.log('🚀 Deploy Timestamp:', new Date().toISOString());
-        console.log('📅 Last Update:', getCurrentDateTime());
         console.log('📋 Tab System: Enabled');
         console.log('⌨️ Shortcuts: Ctrl+1-6 for tabs');
         console.log('📈 Research Progress Chart: Ready');
