@@ -286,6 +286,23 @@
                             <li><strong>評価データセット:</strong> ImageNet, CIFAR-100, Pascal VOC</li>
                             <li><strong>処理時間:</strong> 平均 2.3秒/画像</li>
                         </ul>
+                        <div class="chart-container">
+                            <canvas id="experiment1Chart" width="600" height="300"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #667eea;"></span>
+                                <span>ImageNet</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ff6b35;"></span>
+                                <span>CIFAR-100</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #00b894;"></span>
+                                <span>Pascal VOC</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="result-box">
@@ -297,6 +314,19 @@
                             <li><strong>Cohen's d:</strong> 1.2 (大きな効果サイズ)</li>
                             <li><strong>処理時間:</strong> 平均 1.8秒/画像 (23%高速化)</li>
                         </ul>
+                        <div class="chart-container">
+                            <canvas id="experiment2Chart" width="600" height="300"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #667eea;"></span>
+                                <span>確信度 (%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ff6b35;"></span>
+                                <span>最適解 (16カテゴリ)</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="result-box">
@@ -306,6 +336,19 @@
                             <li><strong>32カテゴリ:</strong> 84.7% (処理時間: 2.8秒)</li>
                             <li><strong>64カテゴリ:</strong> 79.2% (処理時間: 4.1秒)</li>
                         </ul>
+                        <div class="chart-container">
+                            <canvas id="experiment3Chart" width="600" height="300"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #667eea;"></span>
+                                <span>確信度 (%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #ff6b35;"></span>
+                                <span>処理時間 (秒)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -503,6 +546,9 @@
             if (tabId === 'results') {
                 setTimeout(() => {
                     drawResearchProgressChart();
+                    drawExperiment1Chart();
+                    drawExperiment2Chart();
+                    drawExperiment3Chart();
                 }, 100);
             }
         }
@@ -524,6 +570,9 @@
             // グラフを描画（少し遅延させてDOMの準備を待つ）
             setTimeout(() => {
                 drawResearchProgressChart();
+                drawExperiment1Chart();
+                drawExperiment2Chart();
+                drawExperiment3Chart();
             }, 100);
             
             // タブのキーボード操作（Ctrl+1-6）
@@ -546,6 +595,361 @@
                 showTab(hash);
             }
         });
+        
+        // 実験1グラフの描画（ベースライン確立）
+        function drawExperiment1Chart() {
+            const canvas = document.getElementById('experiment1Chart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // データセット別の確信度データ
+            const datasets = [
+                {name: 'ImageNet', accuracy: 68.4, confidence: 72.1, color: '#667eea'},
+                {name: 'CIFAR-100', accuracy: 65.8, confidence: 69.3, color: '#ff6b35'},
+                {name: 'Pascal VOC', accuracy: 71.2, confidence: 74.8, color: '#00b894'}
+            ];
+            
+            drawBarChart(ctx, width, height, datasets, 'データセット別確信度 - 実験1: ベースライン確立');
+        }
+        
+        // 実験2グラフの描画（カテゴリ数最適化）
+        function drawExperiment2Chart() {
+            const canvas = document.getElementById('experiment2Chart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // カテゴリ数別の確信度データ
+            const categories = [
+                {label: '4カテゴリ', accuracy: 78.5, confidence: 81.2},
+                {label: '8カテゴリ', accuracy: 82.3, confidence: 84.7},
+                {label: '16カテゴリ', accuracy: 87.1, confidence: 89.4, optimal: true},
+                {label: '32カテゴリ', accuracy: 84.7, confidence: 86.9},
+                {label: '64カテゴリ', accuracy: 79.2, confidence: 81.8}
+            ];
+            
+            drawLineChart(ctx, width, height, categories, 'カテゴリ数最適化 - 実験2: 確信度の変化', '#667eea');
+        }
+        
+        // 実験3グラフの描画（比較分析）
+        function drawExperiment3Chart() {
+            const canvas = document.getElementById('experiment3Chart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // 確信度と処理時間の関係
+            const data = [
+                {label: '8カテゴリ', confidence: 84.7, processingTime: 1.2},
+                {label: '16カテゴリ', confidence: 89.4, processingTime: 1.8},
+                {label: '32カテゴリ', confidence: 86.9, processingTime: 2.8},
+                {label: '64カテゴリ', confidence: 81.8, processingTime: 4.1}
+            ];
+            
+            drawDualAxisChart(ctx, width, height, data, '確信度 vs 処理時間 - 実験3: 比較分析');
+        }
+        
+        // 汎用バーチャート描画関数
+        function drawBarChart(ctx, width, height, datasets, title) {
+            const margin = {top: 50, right: 50, bottom: 80, left: 70};
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // 背景
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, width, height);
+            
+            // グリッド線
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            // 横線
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(width - margin.right, y);
+                ctx.stroke();
+            }
+            
+            // Y軸ラベル
+            ctx.fillStyle = '#666';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                const value = 100 - (i * 10);
+                ctx.fillText(value + '%', margin.left - 10, y + 4);
+            }
+            
+            // バーの描画
+            const barWidth = chartWidth / datasets.length * 0.7;
+            const barSpacing = chartWidth / datasets.length;
+            
+            datasets.forEach((dataset, i) => {
+                const x = margin.left + (i * barSpacing) + (barSpacing - barWidth) / 2;
+                const barHeight = (dataset.confidence / 100) * chartHeight;
+                const y = margin.top + chartHeight - barHeight;
+                
+                // バー
+                ctx.fillStyle = dataset.color;
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // バーの上に値を表示
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(dataset.confidence + '%', x + barWidth/2, y - 5);
+                
+                // X軸ラベル
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Arial';
+                ctx.fillText(dataset.name, x + barWidth/2, height - margin.bottom + 20);
+            });
+            
+            // 軸の描画
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, height - margin.bottom);
+            ctx.lineTo(width - margin.right, height - margin.bottom);
+            ctx.stroke();
+            
+            // タイトル
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(title, width / 2, 25);
+        }
+        
+        // 汎用ラインチャート描画関数
+        function drawLineChart(ctx, width, height, data, title, color) {
+            const margin = {top: 50, right: 50, bottom: 80, left: 70};
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // 背景
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, width, height);
+            
+            // グリッド線とラベル
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(width - margin.right, y);
+                ctx.stroke();
+                
+                // Y軸ラベル
+                ctx.fillStyle = '#666';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'right';
+                const value = 100 - (i * 10);
+                ctx.fillText(value + '%', margin.left - 10, y + 4);
+            }
+            
+            // データ線の描画
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            data.forEach((point, i) => {
+                const x = margin.left + (i * chartWidth / (data.length - 1));
+                const y = margin.top + chartHeight - (point.confidence / 100 * chartHeight);
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // データポイントの描画
+            data.forEach((point, i) => {
+                const x = margin.left + (i * chartWidth / (data.length - 1));
+                const y = margin.top + chartHeight - (point.confidence / 100 * chartHeight);
+                
+                // 最適解を強調
+                if (point.optimal) {
+                    ctx.fillStyle = '#ff6b35';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 8, 0, 2 * Math.PI);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = '#ff6b35';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 12, 0, 2 * Math.PI);
+                    ctx.stroke();
+                } else {
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+                
+                // 値を表示
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 11px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(point.confidence + '%', x, y - 15);
+                
+                // X軸ラベル
+                ctx.fillStyle = '#666';
+                ctx.font = '10px Arial';
+                ctx.fillText(point.label, x, height - margin.bottom + 20);
+            });
+            
+            // 軸の描画
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, height - margin.bottom);
+            ctx.lineTo(width - margin.right, height - margin.bottom);
+            ctx.stroke();
+            
+            // タイトル
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(title, width / 2, 25);
+        }
+        
+        // デュアル軸チャート描画関数
+        function drawDualAxisChart(ctx, width, height, data, title) {
+            const margin = {top: 50, right: 70, bottom: 80, left: 70};
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // 背景
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, width, height);
+            
+            // 左軸（確信度）のグリッド線
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(width - margin.right, y);
+                ctx.stroke();
+                
+                // 左Y軸ラベル（確信度）
+                ctx.fillStyle = '#667eea';
+                ctx.font = '11px Arial';
+                ctx.textAlign = 'right';
+                const value = 100 - (i * 10);
+                ctx.fillText(value + '%', margin.left - 10, y + 4);
+            }
+            
+            // 右Y軸ラベル（処理時間）
+            ctx.fillStyle = '#ff6b35';
+            ctx.textAlign = 'left';
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                const value = (5 - (i * 0.5)).toFixed(1);
+                ctx.fillText(value + 's', width - margin.right + 10, y + 4);
+            }
+            
+            // 確信度ライン
+            ctx.strokeStyle = '#667eea';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            data.forEach((point, i) => {
+                const x = margin.left + (i * chartWidth / (data.length - 1));
+                const y = margin.top + chartHeight - (point.confidence / 100 * chartHeight);
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // 処理時間ライン
+            ctx.strokeStyle = '#ff6b35';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            data.forEach((point, i) => {
+                const x = margin.left + (i * chartWidth / (data.length - 1));
+                const y = margin.top + chartHeight - (point.processingTime / 5 * chartHeight);
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // データポイント
+            data.forEach((point, i) => {
+                const x = margin.left + (i * chartWidth / (data.length - 1));
+                
+                // 確信度ポイント
+                const yConf = margin.top + chartHeight - (point.confidence / 100 * chartHeight);
+                ctx.fillStyle = '#667eea';
+                ctx.beginPath();
+                ctx.arc(x, yConf, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // 処理時間ポイント
+                const yTime = margin.top + chartHeight - (point.processingTime / 5 * chartHeight);
+                ctx.fillStyle = '#ff6b35';
+                ctx.beginPath();
+                ctx.arc(x, yTime, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // X軸ラベル
+                ctx.fillStyle = '#666';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(point.label, x, height - margin.bottom + 20);
+            });
+            
+            // 軸の描画
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, height - margin.bottom);
+            ctx.lineTo(width - margin.right, height - margin.bottom);
+            ctx.lineTo(width - margin.right, margin.top);
+            ctx.stroke();
+            
+            // タイトル
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(title, width / 2, 25);
+        }
         
         // 研究進展グラフの描画
         function drawResearchProgressChart() {
@@ -722,6 +1126,7 @@
         console.log('📋 Tab System: Enabled');
         console.log('⌨️ Shortcuts: Ctrl+1-6 for tabs');
         console.log('📈 Research Progress Chart: Ready');
+        console.log('📊 Experiment Charts: Ready (1, 2, 3)');
     </script>
 </body>
 </html>
