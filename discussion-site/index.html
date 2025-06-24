@@ -69,6 +69,81 @@
             transform: translateY(-2px);
         }
 
+        /* タブシステム */
+        .tab-container {
+            margin: 30px 0;
+        }
+        .tab-nav {
+            display: flex;
+            border-bottom: 3px solid #667eea;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            min-width: 150px;
+        }
+        .tab-button:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-box {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .result-box h4 {
+            margin: 0 0 20px 0;
+            color: #2e7d32;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .section {
+            margin: 35px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .section h3 {
+            color: #667eea;
+            margin: 0 0 25px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid #e3f2fd;
+            padding-bottom: 10px;
+        }
+
         .main-content {
             background: rgba(255, 255, 255, 0.95);
             padding: 40px;
@@ -322,9 +397,48 @@
                 </div>
             </div>
 
-            <h2 id="timeline">📅 ディスカッション詳細記録</h2>
-            
-            <div class="discussion-timeline">
+            <!-- タブナビゲーション -->
+            <div class="tab-container">
+                <div class="tab-nav">
+                    <button class="tab-button active" onclick="showTab('overview-tab')">📋 研究概要</button>
+                    <button class="tab-button" onclick="showTab('timeline')">📅 ディスカッション記録</button>
+                    <button class="tab-button" onclick="showTab('analysis')">🔧 技術分析</button>
+                    <button class="tab-button" onclick="showTab('summary')">📊 成果サマリー</button>
+                </div>
+
+                <!-- 研究概要タブ -->
+                <div id="overview-tab" class="tab-content active">
+                    <div class="research-overview">
+                        <h2>🔬 研究テーマの変遷</h2>
+                        <p><strong>意味カテゴリベース分類システムの開発</strong></p>
+                        <p>画像認識 → 意味理解 → 最適データセット選択 → 特化分類のパイプライン構築</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">13</div>
+                            <div class="stat-label">ディスカッション回数</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">15ヶ月</div>
+                            <div class="stat-label">研究期間</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">5段階</div>
+                            <div class="stat-label">技術発展フェーズ</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">81.2%</div>
+                            <div class="stat-label">最終精度</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ディスカッション記録タブ -->
+                <div id="timeline" class="tab-content">
+                    <h2>📅 ディスカッション詳細記録</h2>
+                    
+                    <div class="discussion-timeline">
                 <div class="discussion-item phase-highlight phase-1">
                     <div class="discussion-header">
                         <div class="discussion-title">第0回 - 基礎環境構築</div>
@@ -508,7 +622,12 @@
                 </div>
             </div>
 
-            <div class="technical-analysis" id="analysis">
+                </div>
+            </div>
+
+            <!-- 技術分析タブ -->
+            <div id="analysis" class="tab-content">
+                <div class="technical-analysis">
                 <h3>🔧 技術的発展の5段階</h3>
                 <div class="phase-grid">
                     <div class="phase-card">
@@ -533,16 +652,99 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 成果サマリータブ -->
+            <div id="summary" class="tab-content">
+                <div class="section">
+                    <h3>🎯 研究の学術的価値</h3>
+                    <div class="result-box">
+                        <h4>独創性</h4>
+                        <p>WordNetベース意味カテゴリ分析の画像分類への応用</p>
+                    </div>
+                    <div class="result-box">
+                        <h4>実証性</h4>
+                        <p>13段階の段階的開発による堅牢性確保</p>
+                    </div>
+                    <div class="result-box">
+                        <h4>実用性</h4>
+                        <p>エンドツーエンド自動処理システムの完成</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
         <div class="footer">
-            <h3>🎯 研究の学術的価値</h3>
-            <p><strong>独創性</strong>: WordNetベース意味カテゴリ分析の画像分類への応用</p>
-            <p><strong>実証性</strong>: 13段階の段階的開発による堅牢性確保</p>
-            <p><strong>実用性</strong>: エンドツーエンド自動処理システムの完成</p>
-            <br>
             <p><em>記録日: 2025年6月22日 | 生成: Claude Code システム</em></p>
         </div>
     </div>
+
+    <script>
+        // タブ機能
+        function showTab(tabId) {
+            // 全てのタブコンテンツを非表示
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 全てのタブボタンを非アクティブ
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // 対応するボタンをアクティブ化
+            const activeButton = Array.from(tabButtons).find(button => 
+                button.getAttribute('onclick').includes(tabId)
+            );
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+            
+            // URL更新
+            if (history.pushState) {
+                history.pushState(null, null, '#' + tabId);
+            }
+        }
+        
+        // ページロード時の処理
+        document.addEventListener('DOMContentLoaded', function() {
+            // URLハッシュに基づいてタブを表示
+            const hash = window.location.hash.substr(1);
+            if (hash && document.getElementById(hash)) {
+                showTab(hash);
+            }
+            
+            // タブのキーボード操作（Ctrl+1-4）
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key >= '1' && e.key <= '4') {
+                    e.preventDefault();
+                    const tabIds = ['overview-tab', 'timeline', 'analysis', 'summary'];
+                    const index = parseInt(e.key) - 1;
+                    if (tabIds[index]) {
+                        showTab(tabIds[index]);
+                    }
+                }
+            });
+        });
+        
+        // ブラウザバック/フォワード対応
+        window.addEventListener('popstate', function() {
+            const hash = window.location.hash.substr(1);
+            if (hash && document.getElementById(hash)) {
+                showTab(hash);
+            }
+        });
+        
+        console.log('📋 Discussion Site: Tab System Enabled');
+        console.log('⌨️ Shortcuts: Ctrl+1-4 for tabs');
+    </script>
 </body>
 </html>
