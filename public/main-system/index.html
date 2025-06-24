@@ -148,6 +148,59 @@
             font-size: 0.9rem;
             color: #666;
         }
+        
+        /* グラフスタイル */
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+        
+        #researchProgressChart {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                padding: 15px;
+            }
+            
+            .chart-legend {
+                gap: 15px;
+            }
+            
+            .legend-item {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -201,6 +254,28 @@
 
             <!-- 実験結果タブ -->
             <div id="results" class="tab-content">
+                <!-- 研究進展グラフ -->
+                <div class="section">
+                    <h3>📈 研究進展の軌跡</h3>
+                    <div class="chart-container">
+                        <canvas id="researchProgressChart" width="800" height="400"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #667eea;"></span>
+                            <span>精度向上 (%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #ff6b35;"></span>
+                            <span>技術的複雑度</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #00b894;"></span>
+                            <span>実用化レベル</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section">
                     <h3>🔬 実験結果詳細</h3>
                     
@@ -423,6 +498,13 @@
             if (history.pushState) {
                 history.pushState(null, null, '#' + tabId);
             }
+            
+            // 実験結果タブが表示された時にグラフを再描画
+            if (tabId === 'results') {
+                setTimeout(() => {
+                    drawResearchProgressChart();
+                }, 100);
+            }
         }
         
         // ページロード時の処理
@@ -438,6 +520,11 @@
             if (hash && document.getElementById(hash)) {
                 showTab(hash);
             }
+            
+            // グラフを描画（少し遅延させてDOMの準備を待つ）
+            setTimeout(() => {
+                drawResearchProgressChart();
+            }, 100);
             
             // タブのキーボード操作（Ctrl+1-6）
             document.addEventListener('keydown', function(e) {
@@ -460,11 +547,181 @@
             }
         });
         
+        // 研究進展グラフの描画
+        function drawResearchProgressChart() {
+            const canvas = document.getElementById('researchProgressChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // キャンバスをクリア
+            ctx.clearRect(0, 0, width, height);
+            
+            // ディスカッションデータ（ディスカッション記録から抽出）
+            const discussions = [
+                {phase: 0, title: '基礎環境構築', accuracy: 30, complexity: 20, practical: 10},
+                {phase: 1, title: '画像処理基盤', accuracy: 45, complexity: 35, practical: 25},
+                {phase: 2, title: '半自動化機能', accuracy: 52, complexity: 40, practical: 35},
+                {phase: 3, title: 'マルチモデル統合', accuracy: 58, complexity: 55, practical: 40},
+                {phase: 4, title: 'システム統合', accuracy: 62, complexity: 60, practical: 45},
+                {phase: 5, title: '安定性向上', accuracy: 68, complexity: 65, practical: 55},
+                {phase: 6, title: 'AI統合ブレークスルー', accuracy: 75, complexity: 75, practical: 65},
+                {phase: 7, title: '完全自動化', accuracy: 80, complexity: 80, practical: 75},
+                {phase: 8, title: '信頼度システム課題', accuracy: 81, complexity: 82, practical: 75},
+                {phase: 9, title: '特化データセット完成', accuracy: 85, complexity: 85, practical: 85},
+                {phase: 10, title: 'アルゴリズム安定化', accuracy: 86, complexity: 87, practical: 88},
+                {phase: 11, title: 'フィードバック機構', accuracy: 87, complexity: 90, practical: 90},
+                {phase: 12, title: '実用化準備', accuracy: 87.1, complexity: 92, practical: 95}
+            ];
+            
+            // グラフエリアの設定
+            const margin = {top: 40, right: 50, bottom: 60, left: 60};
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            // スケール設定
+            const xScale = (i) => margin.left + (i * chartWidth / (discussions.length - 1));
+            const yScale = (value) => margin.top + chartHeight - (value * chartHeight / 100);
+            
+            // グリッド線を描画
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            
+            // 横線（Y軸グリッド）
+            for (let i = 0; i <= 10; i++) {
+                const y = margin.top + (i * chartHeight / 10);
+                ctx.beginPath();
+                ctx.moveTo(margin.left, y);
+                ctx.lineTo(width - margin.right, y);
+                ctx.stroke();
+                
+                // Y軸ラベル
+                ctx.fillStyle = '#666';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText((100 - i * 10) + '%', margin.left - 10, y + 4);
+            }
+            
+            // 縦線（X軸グリッド）
+            discussions.forEach((d, i) => {
+                if (i % 2 === 0) {
+                    const x = xScale(i);
+                    ctx.beginPath();
+                    ctx.moveTo(x, margin.top);
+                    ctx.lineTo(x, height - margin.bottom);
+                    ctx.stroke();
+                }
+            });
+            
+            // 軸の描画
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            
+            // X軸
+            ctx.beginPath();
+            ctx.moveTo(margin.left, height - margin.bottom);
+            ctx.lineTo(width - margin.right, height - margin.bottom);
+            ctx.stroke();
+            
+            // Y軸
+            ctx.beginPath();
+            ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, height - margin.bottom);
+            ctx.stroke();
+            
+            // データ線の描画
+            const drawLine = (data, color, lineWidth = 3) => {
+                ctx.strokeStyle = color;
+                ctx.lineWidth = lineWidth;
+                ctx.beginPath();
+                
+                discussions.forEach((d, i) => {
+                    const x = xScale(i);
+                    const y = yScale(data(d));
+                    
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+                
+                ctx.stroke();
+                
+                // データポイントの描画
+                discussions.forEach((d, i) => {
+                    const x = xScale(i);
+                    const y = yScale(data(d));
+                    
+                    ctx.fillStyle = color;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, 2 * Math.PI);
+                    ctx.fill();
+                    
+                    // 重要なマイルストーンを強調
+                    if (i === 6 || i === 9 || i === 11) {
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.arc(x, y, 8, 0, 2 * Math.PI);
+                        ctx.stroke();
+                    }
+                });
+            };
+            
+            // 3つの指標を描画
+            drawLine(d => d.accuracy, '#667eea');      // 精度向上
+            drawLine(d => d.complexity, '#ff6b35');    // 技術的複雑度
+            drawLine(d => d.practical, '#00b894');     // 実用化レベル
+            
+            // X軸ラベル（ディスカッション回数）
+            ctx.fillStyle = '#333';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            
+            discussions.forEach((d, i) => {
+                if (i % 2 === 0) {
+                    const x = xScale(i);
+                    ctx.fillText(`第${d.phase}回`, x, height - margin.bottom + 20);
+                }
+            });
+            
+            // タイトル
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('研究進展の軌跡 - 13回のディスカッション', width / 2, 25);
+            
+            // 重要なマイルストーンに注釈
+            const milestones = [
+                {index: 6, text: 'AI統合\nブレークスルー', color: '#667eea'},
+                {index: 9, text: '特化データセット\n完成', color: '#ff6b35'},
+                {index: 11, text: 'フィードバック\n機構導入', color: '#00b894'}
+            ];
+            
+            milestones.forEach(milestone => {
+                const x = xScale(milestone.index);
+                const y = yScale(discussions[milestone.index].accuracy) - 30;
+                
+                ctx.fillStyle = milestone.color;
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                
+                const lines = milestone.text.split('\n');
+                lines.forEach((line, lineIndex) => {
+                    ctx.fillText(line, x, y - (lines.length - 1 - lineIndex) * 12);
+                });
+            });
+        }
+        
         // デプロイ識別用タイムスタンプ（開発者確認用）
         console.log('🚀 Deploy Timestamp:', new Date().toISOString());
         console.log('📅 Last Update:', LAST_UPDATE);
         console.log('📋 Tab System: Enabled');
         console.log('⌨️ Shortcuts: Ctrl+1-6 for tabs');
+        console.log('📈 Research Progress Chart: Ready');
     </script>
 </body>
 </html>
