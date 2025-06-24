@@ -506,8 +506,16 @@
     </div>
     
     <script>
-        // 固定の最終更新日時
-        const LAST_UPDATE = '2025年6月24日 18:45';
+        // 動的な最終更新日時
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const date = now.getDate();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            return `${year}年${month}月${date}日 ${hours}:${minutes}`;
+        }
         
         // タブ機能
         function showTab(tabId) {
@@ -558,7 +566,7 @@
             // 最終更新日時を設定
             const lastUpdateElement = document.getElementById('lastUpdate');
             if (lastUpdateElement) {
-                lastUpdateElement.textContent = LAST_UPDATE;
+                lastUpdateElement.textContent = getCurrentDateTime();
             }
             
             // URLハッシュに基づいてタブを表示
@@ -664,7 +672,7 @@
         
         // 汎用バーチャート描画関数
         function drawBarChart(ctx, width, height, datasets, title) {
-            const margin = {top: 50, right: 50, bottom: 80, left: 70};
+            const margin = {top: 50, right: 50, bottom: 100, left: 90};
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -685,7 +693,7 @@
                 ctx.stroke();
             }
             
-            // Y軸ラベル
+            // Y軸ラベル（数値）
             ctx.fillStyle = '#666';
             ctx.font = '11px Arial';
             ctx.textAlign = 'right';
@@ -717,7 +725,7 @@
                 // X軸ラベル
                 ctx.fillStyle = '#666';
                 ctx.font = '11px Arial';
-                ctx.fillText(dataset.name, x + barWidth/2, height - margin.bottom + 20);
+                ctx.fillText(dataset.name, x + barWidth/2, height - margin.bottom + 30);
             });
             
             // 軸の描画
@@ -734,11 +742,27 @@
             ctx.font = 'bold 14px Arial';
             ctx.textAlign = 'center';
             ctx.fillText(title, width / 2, 25);
+            
+            // Y軸ラベル（確信度）
+            ctx.save();
+            ctx.translate(25, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('確信度 (%)', 0, 0);
+            ctx.restore();
+            
+            // X軸ラベル（データセット）
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('データセット', width / 2, height - 15);
         }
         
         // 汎用ラインチャート描画関数
         function drawLineChart(ctx, width, height, data, title, color) {
-            const margin = {top: 50, right: 50, bottom: 80, left: 70};
+            const margin = {top: 50, right: 50, bottom: 100, left: 90};
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -757,7 +781,7 @@
                 ctx.lineTo(width - margin.right, y);
                 ctx.stroke();
                 
-                // Y軸ラベル
+                // Y軸ラベル（数値）
                 ctx.fillStyle = '#666';
                 ctx.font = '11px Arial';
                 ctx.textAlign = 'right';
@@ -816,7 +840,7 @@
                 // X軸ラベル
                 ctx.fillStyle = '#666';
                 ctx.font = '10px Arial';
-                ctx.fillText(point.label, x, height - margin.bottom + 20);
+                ctx.fillText(point.label, x, height - margin.bottom + 30);
             });
             
             // 軸の描画
@@ -833,11 +857,27 @@
             ctx.font = 'bold 14px Arial';
             ctx.textAlign = 'center';
             ctx.fillText(title, width / 2, 25);
+            
+            // Y軸ラベル（確信度）
+            ctx.save();
+            ctx.translate(25, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('確信度 (%)', 0, 0);
+            ctx.restore();
+            
+            // X軸ラベル（カテゴリ数）
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('カテゴリ数', width / 2, height - 15);
         }
         
         // デュアル軸チャート描画関数
         function drawDualAxisChart(ctx, width, height, data, title) {
-            const margin = {top: 50, right: 70, bottom: 80, left: 70};
+            const margin = {top: 50, right: 90, bottom: 100, left: 90};
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -931,7 +971,7 @@
                 ctx.fillStyle = '#666';
                 ctx.font = '10px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText(point.label, x, height - margin.bottom + 20);
+                ctx.fillText(point.label, x, height - margin.bottom + 30);
             });
             
             // 軸の描画
@@ -949,6 +989,32 @@
             ctx.font = 'bold 14px Arial';
             ctx.textAlign = 'center';
             ctx.fillText(title, width / 2, 25);
+            
+            // 左Y軸ラベル（確信度）
+            ctx.save();
+            ctx.translate(25, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = '#667eea';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('確信度 (%)', 0, 0);
+            ctx.restore();
+            
+            // 右Y軸ラベル（処理時間）
+            ctx.save();
+            ctx.translate(width - 25, height / 2);
+            ctx.rotate(Math.PI / 2);
+            ctx.fillStyle = '#ff6b35';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('処理時間 (秒)', 0, 0);
+            ctx.restore();
+            
+            // X軸ラベル（カテゴリ数）
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('カテゴリ数', width / 2, height - 15);
         }
         
         // 研究進展グラフの描画
@@ -1098,6 +1164,22 @@
             ctx.textAlign = 'center';
             ctx.fillText('研究進展の軌跡 - 13回のディスカッション', width / 2, 25);
             
+            // Y軸ラベル（進展度）
+            ctx.save();
+            ctx.translate(25, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('進展度 (%)', 0, 0);
+            ctx.restore();
+            
+            // X軸ラベル（ディスカッション回数）
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('ディスカッション回数', width / 2, height - 15);
+            
             // 重要なマイルストーンに注釈
             const milestones = [
                 {index: 6, text: 'AI統合\nブレークスルー', color: '#667eea'},
@@ -1122,7 +1204,7 @@
         
         // デプロイ識別用タイムスタンプ（開発者確認用）
         console.log('🚀 Deploy Timestamp:', new Date().toISOString());
-        console.log('📅 Last Update:', LAST_UPDATE);
+        console.log('📅 Last Update:', getCurrentDateTime());
         console.log('📋 Tab System: Enabled');
         console.log('⌨️ Shortcuts: Ctrl+1-6 for tabs');
         console.log('📈 Research Progress Chart: Ready');

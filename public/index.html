@@ -140,6 +140,48 @@
             border-left: 4px solid #667eea;
         }
 
+        /* ステータス情報スタイル */
+        .status-info {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .status-badge {
+            background: linear-gradient(45deg, #ff5722, #ff9800);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+            animation: statusPulse 3s ease-in-out infinite;
+        }
+
+        .last-update {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 6px 20px rgba(255, 87, 34, 0.5);
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -161,6 +203,14 @@
         <div class="header">
             <h1>🔬 研究プロジェクト</h1>
             <p>意味カテゴリベース分類システムの開発と研究記録</p>
+            
+            <!-- ステータス情報 -->
+            <div class="status-info">
+                <div class="status-badge">📊 グラフ機能統合完了</div>
+                <div class="last-update">
+                    📅 最終更新: <span id="lastUpdate">2025年6月24日 22:30</span>
+                </div>
+            </div>
             
             <div class="nav-menu">
                 <a href="/main-system/" class="nav-item">📊 メイン分類システム</a>
@@ -228,8 +278,28 @@
     </div>
 
     <script>
+        // 現在の日時を自動取得・更新
+        function updateLastUpdateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const date = now.getDate();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            
+            const formattedDate = `${year}年${month}月${date}日 ${hours}:${minutes}`;
+            
+            const lastUpdateElement = document.getElementById('lastUpdate');
+            if (lastUpdateElement) {
+                lastUpdateElement.textContent = formattedDate;
+            }
+        }
+
         // ページ読み込み時のアニメーション
         document.addEventListener('DOMContentLoaded', function() {
+            // 最終更新日時を設定
+            updateLastUpdateTime();
+            
             const cards = document.querySelectorAll('.project-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
@@ -241,6 +311,11 @@
                 }, index * 200);
             });
         });
+
+        // デプロイ識別用タイムスタンプ（開発者確認用）
+        console.log('🚀 Main Page Deploy Timestamp:', new Date().toISOString());
+        console.log('📊 Status: Graph Integration Complete');
+        console.log('🔄 Auto Update: Enabled');
     </script>
 </body>
 </html>
