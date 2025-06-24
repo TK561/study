@@ -102,11 +102,13 @@
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
         .tab-content {
-            display: none !important;
-            animation: fadeIn 0.3s ease-in-out;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .tab-content.active {
-            display: block !important;
+            display: block;
+            opacity: 1;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -1282,47 +1284,80 @@
     </div>
 
     <script>
-        // タブ機能
+        // 完全修正されたタブ機能
         function showTab(tabId) {
-            // 全てのタブコンテンツを非表示
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            console.log('showTab called with:', tabId);
             
-            // 全てのタブボタンを非アクティブ
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // 選択されたタブを表示
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
-            
-            // 対応するボタンをアクティブ化
-            const activeButton = Array.from(tabButtons).find(button => 
-                button.getAttribute('onclick').includes(tabId)
-            );
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-            
-            // URL更新
-            if (history.pushState) {
-                history.pushState(null, null, '#' + tabId);
+            try {
+                // 全てのタブコンテンツを非表示
+                const tabContents = document.querySelectorAll('.tab-content');
+                console.log('Found tab contents:', tabContents.length);
+                
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                    content.classList.remove('active');
+                });
+                
+                // 全てのタブボタンを非アクティブ
+                const tabButtons = document.querySelectorAll('.tab-button');
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // 選択されたタブを表示
+                const selectedTab = document.getElementById(tabId);
+                if (selectedTab) {
+                    // 強制的に表示を設定
+                    selectedTab.style.display = 'block';
+                    selectedTab.style.opacity = '1';
+                    selectedTab.classList.add('active');
+                    console.log('Tab activated:', tabId);
+                } else {
+                    console.error('Tab not found:', tabId);
+                    // 利用可能なタブIDを表示
+                    const availableTabs = Array.from(tabContents).map(tab => tab.id);
+                    console.log('Available tabs:', availableTabs);
+                    return;
+                }
+                
+                // 対応するボタンをアクティブ化
+                const activeButton = Array.from(tabButtons).find(button => 
+                    button.getAttribute('onclick') && button.getAttribute('onclick').includes(tabId)
+                );
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                    console.log('Button activated for tab:', tabId);
+                } else {
+                    console.error('Button not found for tab:', tabId);
+                }
+                
+                // URL更新
+                if (history.pushState) {
+                    history.pushState(null, null, '#' + tabId);
+                }
+                
+            } catch (error) {
+                console.error('Error in showTab:', error);
             }
         }
         
-        // ページロード時の処理
+        // ページロード時の処理（完全修正版）
         document.addEventListener('DOMContentLoaded', function() {
-            // URLハッシュに基づいてタブを表示
-            const hash = window.location.hash.substr(1);
-            if (hash && document.getElementById(hash)) {
-                showTab(hash);
-            }
+            console.log('DOM Content Loaded - Initializing tabs');
+            
+            // デバッグ情報
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            console.log('Found', tabContents.length, 'tab contents');
+            console.log('Found', tabButtons.length, 'tab buttons');
+            
+            // 全てのタブIDを表示（デバッグ用）
+            tabContents.forEach(tab => {
+                console.log('Tab found:', tab.id);
+            });
+            
+            // 初期化：確実に最初のタブを表示
+            showTab('overview-tab');
             
             // タブのキーボード操作（Ctrl+1-6）
             document.addEventListener('keydown', function(e) {
@@ -1335,6 +1370,8 @@
                     }
                 }
             });
+            
+            console.log('Tab system initialized successfully');
         });
         
         // ブラウザバック/フォワード対応
