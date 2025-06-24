@@ -638,6 +638,39 @@
                 padding: 15px;
             }
         }
+
+        /* 追加スタイル - 未定義要素の修正 */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 5px 0;
+        }
+        
+        .numbered-item {
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            color: #667eea;
+        }
+        
+        .bullet-item {
+            margin: 5px 0 5px 20px;
+            color: #666;
+        }
+        
+        .final-recommendation {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .recommendation-content h3 {
+            color: #2e7d32;
+            margin: 15px 0 10px 0;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -652,30 +685,6 @@
         </div>
 
         <div class="main-content">
-            <div class="research-overview" id="overview">
-                <h2>🔬 研究テーマの変遷</h2>
-                <p><strong>意味カテゴリベース分類システムの開発</strong></p>
-                <p>画像認識 → 意味理解 → 最適データセット選択 → 特化分類のパイプライン構築</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">13</div>
-                    <div class="stat-label">ディスカッション回数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15ヶ月</div>
-                    <div class="stat-label">研究期間</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5段階</div>
-                    <div class="stat-label">技術発展フェーズ</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">81.2%</div>
-                    <div class="stat-label">最終精度</div>
-                </div>
-            </div>
 
             <!-- タブナビゲーション -->
             <div class="tab-container">
@@ -710,7 +719,7 @@
                             <div class="stat-label">技術発展フェーズ</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number">81.2%</div>
+                            <div class="stat-number">87.1%</div>
                             <div class="stat-label">最終精度</div>
                         </div>
                     </div>
@@ -904,33 +913,31 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <!-- 技術分析タブ -->
             <div id="analysis" class="tab-content">
                 <div class="technical-analysis">
-                <h3>🔧 技術的発展の5段階</h3>
-                <div class="phase-grid">
-                    <div class="phase-card">
-                        <div class="phase-title">基礎構築期（第0-2回）</div>
-                        <p>基本機能実装と環境整備</p>
-                    </div>
-                    <div class="phase-card">
-                        <div class="phase-title">統合期（第3-5回）</div>
-                        <p>マルチモデル統合と課題解決</p>
-                    </div>
-                    <div class="phase-card">
-                        <div class="phase-title">高度化期（第6-8回）</div>
-                        <p>AI技術統合による精度向上</p>
-                    </div>
-                    <div class="phase-card">
-                        <div class="phase-title">最適化期（第9-11回）</div>
-                        <p>特化システム完成と安定化</p>
-                    </div>
-                    <div class="phase-card">
-                        <div class="phase-title">実用化準備期（第12回）</div>
-                        <p>クラウド対応と実装準備</p>
+                    <h3>🔧 技術的発展の5段階</h3>
+                    <div class="phase-grid">
+                        <div class="phase-card">
+                            <div class="phase-title">基礎構築期（第0-2回）</div>
+                            <p>基本機能実装と環境整備</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">統合期（第3-5回）</div>
+                            <p>マルチモデル統合と課題解決</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">高度化期（第6-8回）</div>
+                            <p>AI技術統合による精度向上</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">最適化期（第9-11回）</div>
+                            <p>特化システム完成と安定化</p>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-title">実用化準備期（第12回）</div>
+                            <p>クラウド対応と実装準備</p>
+                        </div>
                     </div>
                 </div>
             </div>
