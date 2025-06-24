@@ -646,8 +646,8 @@
             <h1>📋 研究ディスカッション記録</h1>
             <p>意味カテゴリベース分類システムの開発過程 | 第0回〜第12回</p>
             <div class="nav-links">
-                <a href="/">🏠 研究プロジェクト</a>
-                <a href="/main-system/">🔬 意味カテゴリ画像分類システム</a>
+                <a href="/" onclick="scrollToTop()">🏠 研究プロジェクト</a>
+                <a href="/main-system/" onclick="scrollToTop()">🔬 意味カテゴリ画像分類システム</a>
             </div>
         </div>
 
@@ -1727,6 +1727,14 @@
             // Initialize AI Consultation System
             aiConsultation = new AIConsultationSystem();
         });
+
+        // ページトップへのスクロール関数
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         console.log('📋 Discussion Site: Enhanced with AI Consultation System');
         console.log('⌨️ Shortcuts: Ctrl+1-6 for tabs');
