@@ -55,18 +55,10 @@ class VercelDeploymentSystem:
             print("\n🔄 HTML自動更新を実行中...")
             update_results = self.html_updater.update_all_html_files()
             
-            if update_results["success"] and update_results["updated_files"]:
+            if update_results:
                 print("✅ HTML更新完了")
-                for file_info in update_results["updated_files"]:
-                    print(f"📄 {Path(file_info['file']).name}")
-                    for change in file_info["changes"]:
-                        print(f"  - {change}")
-            elif update_results["errors"]:
-                print("⚠️ HTML更新でエラーが発生しましたが、デプロイを続行します")
-                for error in update_results["errors"]:
-                    print(f"  - {error}")
             else:
-                print("ℹ️ HTML更新対象ファイルが見つかりませんでした")
+                print("⚠️ HTML更新でエラーが発生しましたが、デプロイを続行します")
         
         # デプロイ前チェック
         if not self.pre_deploy_check():
