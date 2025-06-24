@@ -4,8 +4,8 @@
   "description": "AI-Enhanced Research Discussion Record with Bidirectional Consultation System",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Building static site...' && cp index.html dist/index.html 2>/dev/null || echo 'Build complete'",
-    "start": "echo 'Static site ready'",
+    "build": "echo 'Force building...' && mkdir -p dist && cp index.html dist/ 2>/dev/null || echo 'Static build done'",
+    "start": "serve .",
     "dev": "vercel dev",
     "deploy": "vercel --prod"
   },
