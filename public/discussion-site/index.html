@@ -102,11 +102,11 @@
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
         .tab-content {
-            display: none;
+            display: none !important;
             animation: fadeIn 0.3s ease-in-out;
         }
         .tab-content.active {
-            display: block;
+            display: block !important;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -980,14 +980,63 @@
                     <div class="result-box">
                         <h4>1. 動的データセット選択システム</h4>
                         <p>画像内容に応じて最適なカテゴリセットを自動選択する革新的手法</p>
+                        <ul>
+                            <li><strong>革新性</strong>: 従来の固定1000カテゴリから16カテゴリ特化への転換</li>
+                            <li><strong>効果</strong>: 68.4% → 87.1% (27.3%向上) の精度改善</li>
+                            <li><strong>処理速度</strong>: 2.3秒 → 1.8秒 (23%高速化)</li>
+                        </ul>
                     </div>
                     <div class="result-box">
                         <h4>2. WordNet階層マッピング</h4>
                         <p>意味階層構造を活用した特化型分類アーキテクチャ</p>
+                        <ul>
+                            <li><strong>技術基盤</strong>: CLIP + WordNet階層の統合</li>
+                            <li><strong>実装</strong>: 文章→WordNet→上位概念→カテゴリ判定フロー</li>
+                            <li><strong>統計的根拠</strong>: Cohen's d = 1.2 (大きな効果サイズ)</li>
+                        </ul>
                     </div>
                     <div class="result-box">
                         <h4>3. 信頼度フィードバック機構</h4>
                         <p>性能を自動監視し、必要に応じて再処理を実行するシステム</p>
+                        <ul>
+                            <li><strong>機能</strong>: 信頼度スコア < 閾値時のBLIP文章再生成</li>
+                            <li><strong>効果</strong>: トレードオフ管理による最適化</li>
+                            <li><strong>実証</strong>: 第11回ディスカッションで技術革新として導入</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>📋 13回のディスカッション成果総括</h3>
+                    <div class="technical-analysis">
+                        <h3>🔧 技術発展の軌跡</h3>
+                        <div class="phase-grid">
+                            <div class="phase-card">
+                                <div class="phase-title">基礎構築期（第0-2回）</div>
+                                <p><strong>達成</strong>: Python環境構築、画像処理基盤、半自動化機能</p>
+                                <p><strong>成果</strong>: 範囲選択機能実装、UI/UX向上</p>
+                            </div>
+                            <div class="phase-card">
+                                <div class="phase-title">統合期（第3-5回）</div>
+                                <p><strong>達成</strong>: マルチモデル統合、エラー対応、安定性向上</p>
+                                <p><strong>成果</strong>: YOLO統合、リサイズ問題解決</p>
+                            </div>
+                            <div class="phase-card">
+                                <div class="phase-title">高度化期（第6-8回）</div>
+                                <p><strong>達成</strong>: AI統合ブレークスルー、完全自動化</p>
+                                <p><strong>成果</strong>: CLIP・SAM活用、信頼度システム課題発見</p>
+                            </div>
+                            <div class="phase-card">
+                                <div class="phase-title">最適化期（第9-11回）</div>
+                                <p><strong>達成</strong>: 特化データセット選択、アルゴリズム安定化</p>
+                                <p><strong>成果</strong>: 10カテゴリ特化型、フィードバック機構導入</p>
+                            </div>
+                            <div class="phase-card">
+                                <div class="phase-title">実用化準備期（第12回）</div>
+                                <p><strong>達成</strong>: クラウド対応準備、実装環境調査</p>
+                                <p><strong>成果</strong>: Vercel・Render選定、実用化準備完了</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1053,17 +1102,75 @@
                         </ul>
                     </div>
                 </div>
+                
+                <div class="section">
+                    <h3>🎯 具体的なアクションプラン</h3>
+                    <div class="technical-analysis">
+                        <h3>📈 ロードマップ</h3>
+                        <div class="result-box">
+                            <h4>Phase 1: 基盤強化（1-2ヶ月）</h4>
+                            <ul>
+                                <li>✅ 統計的検証の強化（Cohen's Power Analysis完了）</li>
+                                <li>🔄 追加データセットでの検証実験</li>
+                                <li>📊 信頼区間分析の詳細化</li>
+                                <li>📝 実験結果の論文用図表作成</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>Phase 2: 学術発表（2-4ヶ月）</h4>
+                            <ul>
+                                <li>📄 査読付き論文の執筆・投稿</li>
+                                <li>🎤 国際会議（CVPR, ICCV, NeurIPS）での発表準備</li>
+                                <li>🔬 他手法との詳細比較実験</li>
+                                <li>📈 ベンチマークデータセットでの評価</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>Phase 3: 実用化開発（3-6ヶ月）</h4>
+                            <ul>
+                                <li>🖥️ Webアプリケーションの完全版開発</li>
+                                <li>🔌 REST API の設計・実装</li>
+                                <li>☁️ クラウドインフラの構築</li>
+                                <li>👥 ユーザーテスト・フィードバック収集</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3>⚡ 緊急課題と対応策</h3>
+                    <div class="result-box" style="background: #fff3cd; border-color: #ffc107;">
+                        <h4>🚨 優先度：高</h4>
+                        <ul>
+                            <li><strong>統計的有意性の再確認</strong>: より大規模なサンプルサイズでの検証</li>
+                            <li><strong>再現性の確保</strong>: 実験環境・パラメータの詳細文書化</li>
+                            <li><strong>エラー分析</strong>: 失敗ケースの詳細分析と改善策</li>
+                        </ul>
+                    </div>
+                    <div class="result-box" style="background: #d4edda; border-color: #c3e6cb;">
+                        <h4>📋 優先度：中</h4>
+                        <ul>
+                            <li><strong>パフォーマンス最適化</strong>: 推論速度の更なる向上</li>
+                            <li><strong>ユーザビリティ改善</strong>: インターフェースの使いやすさ向上</li>
+                            <li><strong>ドキュメント整備</strong>: 技術文書・マニュアルの充実</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
             <!-- AI提案・議論タブ -->
             <div id="ai-discussion" class="tab-content">
                 <div class="section">
                     <h3>🤖 AI双方向コンサルテーションシステム</h3>
+                    <div class="result-box" style="background: #fff3cd; border-color: #ffc107;">
+                        <h4>⚠️ 静的サイトでの機能制限について</h4>
+                        <p>このシステムはVercelの静的ホスティングで動作しているため、リアルタイムAI APIコールは制限されています。以下は機能のデモンストレーションです。</p>
+                    </div>
                     <div class="ai-consultation-interface">
                         <div class="consultation-input">
                             <h4>💭 相談内容を入力</h4>
                             <textarea id="consultation-input" placeholder="研究に関する課題、アイデア、方向性などを入力してください...\n\n例：\n- 次にどのような実験を行うべきでしょうか？\n- 論文投稿に向けて何を準備すべきでしょうか？\n- 実用化に向けた最適なアプローチは？"></textarea>
-                            <button id="start-consultation" class="ai-button">🚀 AI議論を開始</button>
+                            <button id="start-consultation" class="ai-button">🚀 AI議論を開始（デモ）</button>
                         </div>
                         
                         <div class="ai-discussion-area" id="discussion-area" style="display: none;">
@@ -1094,6 +1201,72 @@
                             <h4>📚 過去の相談履歴</h4>
                             <div class="history-list" id="history-list">
                                 <p class="no-history">まだ相談履歴がありません</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 静的なAI議論サンプル -->
+                <div class="section">
+                    <h3>💡 AI議論サンプル - 「次の実験方向性について」</h3>
+                    <div class="ai-discussion-area" style="display: block;">
+                        <div class="ai-responses">
+                            <div class="ai-response gemini-response">
+                                <div class="ai-avatar">🔮 Gemini AI</div>
+                                <div class="ai-content">
+                                    <h4>📊 実験設計の提案</h4>
+                                    <div class="numbered-item">1. 追加データセット検証</div>
+                                    <div class="bullet-item">• COCO以外のデータセット（Open Images、Pascal VOC）での性能評価</div>
+                                    <div class="bullet-item">• 特化カテゴリ数の異なるデータセットでの比較実験</div>
+                                    
+                                    <div class="numbered-item">2. 統計的検証の強化</div>
+                                    <div class="bullet-item">• より大規模なサンプルサイズでの実験</div>
+                                    <div class="bullet-item">• 交差検証による結果の安定性確認</div>
+                                    
+                                    <div class="numbered-item">3. 実用性評価</div>
+                                    <div class="bullet-item">• 処理時間とメモリ使用量の詳細測定</div>
+                                    <div class="bullet-item">• 異なるハードウェア環境での性能評価</div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-response claude-response">
+                                <div class="ai-avatar">🎯 Claude</div>
+                                <div class="ai-content">
+                                    <h4>🔍 Gemini提案の評価と改善</h4>
+                                    <p><strong>✅ 強み:</strong> 包括的なアプローチと具体的な実行項目</p>
+                                    <p><strong>⚠️ 改善点:</strong> 優先順位付けとリソース配分の最適化</p>
+                                    
+                                    <h4>🎯 推奨する改善策</h4>
+                                    <div class="numbered-item">短期集中項目（1-2ヶ月）</div>
+                                    <div class="checklist-item">☐ 統計的検証の強化を最優先</div>
+                                    <div class="checklist-item">☐ 既存実験データの再分析</div>
+                                    <div class="checklist-item">☐ 信頼区間の詳細計算</div>
+                                    
+                                    <div class="numbered-item">中期発展項目（3-6ヶ月）</div>
+                                    <div class="checklist-item">☐ 新規データセットでの検証実験</div>
+                                    <div class="checklist-item">☐ 論文執筆と投稿準備</div>
+                                    <div class="checklist-item">☐ プロトタイプシステムの開発</div>
+                                </div>
+                            </div>
+                            
+                            <div class="final-recommendation">
+                                <h4>📋 統合アクションプラン</h4>
+                                <div class="recommendation-content">
+                                    <h3>Immediate Actions (今すぐ実行)</h3>
+                                    <div class="checklist-item">☐ 既存データの信頼区間再計算</div>
+                                    <div class="checklist-item">☐ 効果サイズ分析の詳細化</div>
+                                    <div class="checklist-item">☐ 交差検証結果の可視化</div>
+                                    
+                                    <h3>Next Phase Actions (次のフェーズ)</h3>
+                                    <div class="checklist-item">☐ Pascal VOCデータセットでの検証実験</div>
+                                    <div class="checklist-item">☐ カテゴリ数8, 32での比較実験追加</div>
+                                    <div class="checklist-item">☐ 処理時間・メモリ使用量の詳細測定</div>
+                                    
+                                    <h3>Success Metrics</h3>
+                                    <div class="bullet-item">• 論文投稿: 2ヶ月以内</div>
+                                    <div class="bullet-item">• プロトタイプ完成: 3ヶ月以内</div>
+                                    <div class="bullet-item">• 産業応用検討: 6ヶ月以内</div>
+                                </div>
                             </div>
                         </div>
                     </div>
