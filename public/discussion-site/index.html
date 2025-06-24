@@ -102,13 +102,13 @@
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
         .tab-content {
-            display: none;
+            display: none !important;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         .tab-content.active {
-            display: block;
-            opacity: 1;
+            display: block !important;
+            opacity: 1 !important;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -1345,7 +1345,7 @@
             }
         }
         
-        // ページロード時の処理（完全修正版）
+        // ページロード時の処理（URLハッシュ対応改善版）
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM Content Loaded - Initializing tabs');
             
@@ -1360,8 +1360,18 @@
                 console.log('Tab found:', tab.id);
             });
             
-            // 初期化：確実に最初のタブを表示
-            showTab('overview-tab');
+            // URLハッシュから初期タブを決定
+            let initialTab = 'overview-tab';
+            const hash = window.location.hash.substr(1);
+            console.log('URL hash:', hash);
+            
+            if (hash && document.getElementById(hash)) {
+                initialTab = hash;
+                console.log('Using hash tab:', initialTab);
+            }
+            
+            // 初期化：指定されたタブを表示
+            showTab(initialTab);
             
             // タブのキーボード操作（Ctrl+1-6）
             document.addEventListener('keydown', function(e) {
@@ -1375,14 +1385,30 @@
                 }
             });
             
-            console.log('Tab system initialized successfully');
+            console.log('Tab system initialized successfully with initial tab:', initialTab);
         });
         
         // ブラウザバック/フォワード対応
         window.addEventListener('popstate', function() {
             const hash = window.location.hash.substr(1);
+            console.log('Popstate detected, hash:', hash);
             if (hash && document.getElementById(hash)) {
                 showTab(hash);
+            } else if (!hash) {
+                // ハッシュがない場合はデフォルトタブを表示
+                showTab('overview-tab');
+            }
+        });
+        
+        // ページ読み込み時にもハッシュをチェック（DOMContentLoaded後）
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substr(1);
+            console.log('Window load, hash:', hash);
+            if (hash && document.getElementById(hash)) {
+                // 少し遅延させてからタブを表示（確実な表示のため）
+                setTimeout(() => {
+                    showTab(hash);
+                }, 100);
             }
         });
         
