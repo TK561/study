@@ -1404,11 +1404,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM Content Loaded - Initializing tabs');
             
-            // ページトップへスクロール（リンクから来た場合）
-            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
-                window.scrollTo(0, 0);
-            }
-            
             // デバッグ情報
             const tabContents = document.querySelectorAll('.tab-content');
             const tabButtons = document.querySelectorAll('.tab-button');
@@ -1432,6 +1427,16 @@
             
             // 初期化：指定されたタブを表示
             showTab(initialTab);
+            
+            // ページトップへスクロール（リンクから来た場合、タブ表示後に実行）
+            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'instant'
+                    });
+                }, 50);
+            }
             
             // タブのキーボード操作（Ctrl+1-6）
             document.addEventListener('keydown', function(e) {
@@ -1468,6 +1473,13 @@
                 // 少し遅延させてからタブを表示（確実な表示のため）
                 setTimeout(() => {
                     showTab(hash);
+                    // リンクから来た場合はページトップへ
+                    if (document.referrer && !document.referrer.includes(window.location.pathname)) {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'instant'
+                        });
+                    }
                 }, 100);
             }
         });
