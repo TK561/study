@@ -679,8 +679,8 @@
             <h1>📋 研究ディスカッション記録</h1>
             <p>意味カテゴリベース分類システムの開発過程 | 第0回〜第12回</p>
             <div class="nav-links">
-                <a href="/" onclick="scrollToTop()">🏠 研究プロジェクト</a>
-                <a href="/main-system/" onclick="scrollToTop()">🔬 意味カテゴリ画像分類システム</a>
+                <a href="/">🏠 研究プロジェクト</a>
+                <a href="/main-system/">🔬 意味カテゴリ画像分類システム</a>
             </div>
         </div>
 
@@ -1338,13 +1338,16 @@
             console.log('showTab called with:', tabId);
             
             try {
-                // 全てのタブコンテンツを非表示
+                // 全てのタブコンテンツを取得
                 const tabContents = document.querySelectorAll('.tab-content');
                 console.log('Found tab contents:', tabContents.length);
                 
+                // 全てのタブコンテンツを非表示にし、activeクラスを削除
                 tabContents.forEach(content => {
-                    content.style.display = 'none';
                     content.classList.remove('active');
+                    // !importantを上書きするためにstyleも設定
+                    content.style.display = 'none';
+                    content.style.opacity = '0';
                 });
                 
                 // 全てのタブボタンを非アクティブ
@@ -1356,11 +1359,18 @@
                 // 選択されたタブを表示
                 const selectedTab = document.getElementById(tabId);
                 if (selectedTab) {
-                    // 強制的に表示を設定
+                    // activeクラスを追加
+                    selectedTab.classList.add('active');
+                    // !importantを上書きするためにstyleも設定
                     selectedTab.style.display = 'block';
                     selectedTab.style.opacity = '1';
-                    selectedTab.classList.add('active');
                     console.log('Tab activated:', tabId);
+                    
+                    // タブが確実に表示されるように少し遅延
+                    setTimeout(() => {
+                        selectedTab.style.display = 'block';
+                        selectedTab.style.opacity = '1';
+                    }, 10);
                 } else {
                     console.error('Tab not found:', tabId);
                     // 利用可能なタブIDを表示
@@ -1393,6 +1403,11 @@
         // ページロード時の処理（URLハッシュ対応改善版）
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM Content Loaded - Initializing tabs');
+            
+            // ページトップへスクロール（リンクから来た場合）
+            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
+                window.scrollTo(0, 0);
+            }
             
             // デバッグ情報
             const tabContents = document.querySelectorAll('.tab-content');
