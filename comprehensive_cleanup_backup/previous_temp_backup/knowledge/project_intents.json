@@ -1,0 +1,48 @@
+{
+  "deep_consultation_system.py": {
+    "name": "deep_consultation_system.py",
+    "intent": "GeminiとClaude Codeの深層対話により、研究考察の精度を向上させる",
+    "context": "1回の質問だけでなく、自動的に追加質問を生成して段階的に深掘りすることで、より具体的で実践的な洞察を得る",
+    "category": "AI統合",
+    "created_date": "2025-06-22T00:11:01.287396",
+    "tags": [
+      "研究"
+    ],
+    "related_files": []
+  },
+  "session_recovery_system.py": {
+    "name": "session_recovery_system.py",
+    "intent": "Claude Code予期せぬ終了時でも作業を継続できるようにする",
+    "context": "強制終了やエラーで作業が中断されても、次回起動時に前回の作業内容を復元して、効率的に作業を再開する",
+    "category": "システム管理",
+    "created_date": "2025-06-22T00:11:04.906822",
+    "tags": [
+      "復元",
+      "継続"
+    ],
+    "related_files": []
+  },
+  "smart_recovery.py": {
+    "name": "smart_recovery.py",
+    "intent": "セッション復元時に分かりやすい作業要約を提供する",
+    "context": "単なるファイル一覧ではなく、何を目的として何を実装したかを理解しやすい形で表示",
+    "category": "システム管理",
+    "created_date": "2025-06-22T00:11:08.397961",
+    "tags": [
+      "復元"
+    ],
+    "related_files": []
+  },
+  "auto_save_today.py": {
+    "name": "auto_save_today.py",
+    "intent": "作業終了時に次回への引き継ぎを自動化する",
+    "context": "「今日は終わり」の一言で、作業内容の分析・整理・引き継ぎファイル生成を自動実行",
+    "category": "システム管理",
+    "created_date": "2025-06-22T00:11:11.849448",
+    "tags": [
+      "自動化",
+      "分析"
+    ],
+    "related_files": []
+  }
+}

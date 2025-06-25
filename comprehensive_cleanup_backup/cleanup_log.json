@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-06-25T22:41:18.087935",
+  "actions": [],
+  "moved_items": [
+    "/mnt/c/Desktop/Research/temp_cleanup_backup → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/previous_temp_backup",
+    "/mnt/c/Desktop/Research/tools/advanced_gemini_sql_features.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/advanced_gemini_sql_features.py",
+    "/mnt/c/Desktop/Research/tools/deep_consultation_system.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/deep_consultation_system.py",
+    "/mnt/c/Desktop/Research/tools/file_duplicate_analysis.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/file_duplicate_analysis.py",
+    "/mnt/c/Desktop/Research/tools/gemini_sql_toolkit.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/gemini_sql_toolkit.py",
+    "/mnt/c/Desktop/Research/tools/gemini_to_sql_system.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/gemini_to_sql_system.py",
+    "/mnt/c/Desktop/Research/tools/interactive_analysis.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/interactive_analysis.py",
+    "/mnt/c/Desktop/Research/tools/interactive_sql_assistant.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/interactive_sql_assistant.py",
+    "/mnt/c/Desktop/Research/tools/research → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/research",
+    "/mnt/c/Desktop/Research/tools/research_sql_integration.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/research_sql_integration.py",
+    "/mnt/c/Desktop/Research/tools/research_sql_system.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/research_sql_system.py",
+    "/mnt/c/Desktop/Research/tools/simple_research_sql.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/simple_research_sql.py",
+    "/mnt/c/Desktop/Research/tools/system → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/system",
+    "/mnt/c/Desktop/Research/tools/test_auto_intent.py → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/test_auto_intent.py",
+    "/mnt/c/Desktop/Research/tools/utilities → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/tools/utilities",
+    "/mnt/c/Desktop/Research/CLEANUP_REPORT.md → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/old_reports/CLEANUP_REPORT.md",
+    "/mnt/c/Desktop/Research/archive → /mnt/c/Desktop/Research/comprehensive_cleanup_backup/archive"
+  ],
+  "deleted_items": [],
+  "preserved_items": []
+}

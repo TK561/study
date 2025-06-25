@@ -1,0 +1,1340 @@
+[
+  {
+    "timestamp": "2025-06-23T17:50:41.019893",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250623_175039",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-23T17:50:39.442129",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "最適",
+                "config": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 0,
+            "health_score": 100
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-23T17:50:39.462160"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250623_175039"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-23T17:50:40.979380",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250623_175040",
+            "timestamp": "2025-06-23T17:50:40.983971",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250623_175040",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250623_175039\n**実行日時**: 2025-06-23 17:50:41\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 100%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 1"
+    },
+    "duration_seconds": 1.577848,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-23T17:52:47.778004",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250623_175246",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-23T17:52:46.275544",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "最適",
+                "config": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 0,
+            "health_score": 100
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-23T17:52:46.296481"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250623_175246"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-23T17:52:47.764812",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250623_175247",
+            "timestamp": "2025-06-23T17:52:47.768492",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250623_175247",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250623_175246\n**実行日時**: 2025-06-23 17:52:47\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 100%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 2\n- 30日間の成功率: 100.0%"
+    },
+    "duration_seconds": 1.502497,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:04:58.284466",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_170456",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:04:56.475132",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "最適",
+                "config": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 0,
+            "health_score": 100
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:04:56.506390"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_170456"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-24T17:04:58.266197",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250624_170458",
+            "timestamp": "2025-06-24T17:04:58.272550",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250624_170458",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_170456\n**実行日時**: 2025-06-24 17:04:58\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 100%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 3\n- 30日間の成功率: 100.0%"
+    },
+    "duration_seconds": 1.809372,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:08:11.759110",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_170811",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:08:11.314285",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "最適",
+                "config": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 0,
+            "health_score": 100
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:08:11.337413"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_170811"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "failed",
+          "details": {
+            "success": false,
+            "error": "デプロイメント失敗"
+          }
+        },
+        {
+          "name": "エラー修復",
+          "status": "failed",
+          "details": {
+            "fixed": false,
+            "method": "static_html_conversion",
+            "retry_result": {
+              "success": false,
+              "error": "デプロイメント失敗"
+            }
+          }
+        }
+      ],
+      "success": false,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_170811\n**実行日時**: 2025-06-24 17:08:11\n**結果**: ❌ 失敗\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ❌ デプロイ\n- ❌ エラー修復\n\n## 詳細情報\n\n### 環境健全性スコア: 100%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 4\n- 30日間の成功率: 100.0%"
+    },
+    "duration_seconds": 0.444877,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:09:07.335892",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_170905",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:09:05.569279",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "要最適化",
+                "config": {
+                  "version": 2,
+                  "routes": [
+                    {
+                      "src": "/discussion-site/(.*)",
+                      "dest": "/public/discussion-site/$1"
+                    }
+                  ]
+                },
+                "recommendation": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 1,
+            "health_score": 90
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:09:05.589784"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_170905"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-24T17:09:07.319282",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250624_170907",
+            "timestamp": "2025-06-24T17:09:07.323367",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250624_170907",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_170905\n**実行日時**: 2025-06-24 17:09:07\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 90%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 4\n- 30日間の成功率: 75.0%"
+    },
+    "duration_seconds": 1.766659,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:10:37.934240",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_171036",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:10:36.122460",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "要最適化",
+                "config": {
+                  "version": 2,
+                  "buildCommand": "cp -r public/* .",
+                  "outputDirectory": "."
+                },
+                "recommendation": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 1,
+            "health_score": 90
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:10:36.145047"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_171036"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-24T17:10:37.917879",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250624_171037",
+            "timestamp": "2025-06-24T17:10:37.923085",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250624_171037",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_171036\n**実行日時**: 2025-06-24 17:10:37\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 90%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 5\n- 30日間の成功率: 80.0%"
+    },
+    "duration_seconds": 1.811827,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:13:23.529271",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_171322",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:13:22.150240",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "要最適化",
+                "config": {
+                  "version": 2,
+                  "rewrites": [
+                    {
+                      "source": "/discussion-site",
+                      "destination": "/discussion-site/index.html"
+                    },
+                    {
+                      "source": "/discussion-site/",
+                      "destination": "/discussion-site/index.html"
+                    }
+                  ]
+                },
+                "recommendation": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 1,
+            "health_score": 90
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:13:22.174082"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_171322"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-24T17:13:23.512410",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250624_171323",
+            "timestamp": "2025-06-24T17:13:23.517566",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250624_171323",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_171322\n**実行日時**: 2025-06-24 17:13:23\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 90%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 6\n- 30日間の成功率: 83.3%"
+    },
+    "duration_seconds": 1.37908,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  },
+  {
+    "timestamp": "2025-06-24T17:15:39.112221",
+    "action": "smart_deploy",
+    "result": {
+      "workflow_id": "workflow_20250624_171537",
+      "steps": [
+        {
+          "name": "環境診断",
+          "status": "completed",
+          "details": {
+            "timestamp": "2025-06-24T17:15:37.553970",
+            "checks": [
+              {
+                "item": "静的HTMLファイル",
+                "status": "OK",
+                "path": "public/index.html"
+              },
+              {
+                "item": "vercel.json",
+                "status": "要最適化",
+                "config": {
+                  "version": 2,
+                  "outputDirectory": ".",
+                  "cleanUrls": true,
+                  "trailingSlash": false
+                },
+                "recommendation": {
+                  "version": 2
+                }
+              }
+            ],
+            "error_rate_7days": 1,
+            "health_score": 90
+          }
+        },
+        {
+          "name": "AI分析",
+          "status": "completed",
+          "details": {
+            "predicted_success_rate": 90.0,
+            "success_factors": [
+              "静的HTMLサイト（+40%）",
+              "API不使用（+20%）",
+              "類似成功パターンあり（+30%）"
+            ],
+            "ai_insights": {}
+          }
+        },
+        {
+          "name": "構成最適化",
+          "status": "completed",
+          "details": {
+            "optimizations": [
+              "vercel.json最適化"
+            ],
+            "timestamp": "2025-06-24T17:15:37.577260"
+          }
+        },
+        {
+          "name": "バックアップ",
+          "status": "completed",
+          "details": {
+            "backup_path": ".vercel_backups/backup_20250624_171537"
+          }
+        },
+        {
+          "name": "デプロイ",
+          "status": "completed",
+          "details": {
+            "success": true,
+            "timestamp": "2025-06-24T17:15:39.091468",
+            "url": "https://study-research-final.vercel.app"
+          }
+        },
+        {
+          "name": "パターン記録",
+          "status": "completed",
+          "details": {
+            "id": "pattern_20250624_171539",
+            "timestamp": "2025-06-24T17:15:39.097083",
+            "deployment_type": "static_html",
+            "files_changed": [
+              "public/index.html",
+              "vercel.json"
+            ],
+            "config": {
+              "auto_optimize": true,
+              "auto_backup": true,
+              "ai_analysis": true,
+              "user_preferences": {
+                "preferred_type": "static_html",
+                "auto_fix_errors": true,
+                "detailed_reports": true,
+                "notification_level": "verbose",
+                "language": "ja"
+              },
+              "deployment_rules": {
+                "require_backup": true,
+                "min_success_rate": 70,
+                "max_retry_attempts": 3,
+                "timeout_seconds": 300,
+                "auto_rollback_on_failure": true
+              },
+              "optimization_settings": {
+                "auto_convert_to_static": true,
+                "minimize_vercel_json": true,
+                "cache_optimization": true,
+                "performance_monitoring": true
+              },
+              "ai_settings": {
+                "enable_predictions": true,
+                "learning_from_patterns": true,
+                "auto_suggestions": true,
+                "gemini_model": "gemini-pro"
+              },
+              "satisfaction_tracking": {
+                "enabled": true,
+                "prompt_after_deploy": true,
+                "anonymous_analytics": false
+              }
+            },
+            "success_reason": "統合システムによる最適化デプロイ",
+            "deploy_id": "unified_20250624_171539",
+            "url": "https://study-research-final.vercel.app",
+            "reproduction_steps": [
+              "1. 静的HTMLファイルを準備 (public/index.html)",
+              "2. vercel.jsonを最小構成に設定",
+              "3. python3 direct_vercel_deploy.py を実行",
+              "4. 変更ファイル: public/index.html, vercel.json"
+            ]
+          }
+        }
+      ],
+      "success": true,
+      "satisfaction_score": null,
+      "report": "# Vercel統合システムレポート\n**ワークフローID**: workflow_20250624_171537\n**実行日時**: 2025-06-24 17:15:39\n**結果**: ✅ 成功\n\n## 実行ステップ\n- ✅ 環境診断\n- ✅ AI分析\n- ✅ 構成最適化\n- ✅ バックアップ\n- ✅ デプロイ\n- ✅ パターン記録\n\n## 詳細情報\n\n### 環境健全性スコア: 90%\n\n### AI予測成功率: 90.0%\n\n## 統計情報\n- 総デプロイメント数: 7\n- 30日間の成功率: 85.7%"
+    },
+    "duration_seconds": 1.558295,
+    "config_snapshot": {
+      "auto_optimize": true,
+      "auto_backup": true,
+      "ai_analysis": true,
+      "user_preferences": {
+        "preferred_type": "static_html",
+        "auto_fix_errors": true,
+        "detailed_reports": true,
+        "notification_level": "verbose",
+        "language": "ja"
+      },
+      "deployment_rules": {
+        "require_backup": true,
+        "min_success_rate": 70,
+        "max_retry_attempts": 3,
+        "timeout_seconds": 300,
+        "auto_rollback_on_failure": true
+      },
+      "optimization_settings": {
+        "auto_convert_to_static": true,
+        "minimize_vercel_json": true,
+        "cache_optimization": true,
+        "performance_monitoring": true
+      },
+      "ai_settings": {
+        "enable_predictions": true,
+        "learning_from_patterns": true,
+        "auto_suggestions": true,
+        "gemini_model": "gemini-pro"
+      },
+      "satisfaction_tracking": {
+        "enabled": true,
+        "prompt_after_deploy": true,
+        "anonymous_analytics": false
+      }
+    }
+  }
+]
