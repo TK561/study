@@ -19,6 +19,15 @@
             line-height: 1.7;
         }
 
+        /* ページ読み込み時に確実にトップから開始 */
+        html, body {
+            scroll-behavior: auto !important;
+        }
+        
+        html {
+            scroll-top: 0 !important;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -296,13 +305,20 @@
             }
         }
 
+        // 即座にページトップへスクロール（最優先）
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
         // ページ読み込み時のアニメーション
         document.addEventListener('DOMContentLoaded', function() {
-            // ページトップへスクロール（すべての場合）
+            // ページトップへスクロール（確実に実行）
             window.scrollTo({
                 top: 0,
                 behavior: 'instant'
             });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
             
             // 最終更新日時を設定
             updateLastUpdateTime();
@@ -325,6 +341,26 @@
                 top: 0,
                 behavior: 'instant'
             });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        });
+
+        // ページフォーカス時にもスクロール（タブ切り替え等）
+        window.addEventListener('focus', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
+        });
+
+        // ページ表示時にもスクロール（ブラウザバック等）
+        window.addEventListener('pageshow', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
         });
 
         // ページトップへのスクロール関数
