@@ -1,0 +1,418 @@
+{
+  "api_version": "2.0.0",
+  "status": "success",
+  "data": {
+    "detections": {
+      "status": "success",
+      "timestamp": "2025-06-25T23:20:07.179652",
+      "processing_time": 0.863,
+      "models_used": [
+        "yolo",
+        "faster_rcnn",
+        "ssd",
+        "mask_rcnn"
+      ],
+      "total_objects": 13,
+      "category_summary": {
+        "person": 4,
+        "car": 2,
+        "electronics": 2,
+        "vehicle": 2,
+        "bus": 1,
+        "truck": 1,
+        "object": 1
+      },
+      "integrated_detections": [
+        {
+          "object_id": "yolo_0",
+          "category": "person",
+          "confidence": 0.511,
+          "bbox": {
+            "x": 696,
+            "y": 382,
+            "width": 119,
+            "height": 50
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_1",
+          "category": "car",
+          "confidence": 0.547,
+          "bbox": {
+            "x": 686,
+            "y": 480,
+            "width": 70,
+            "height": 105
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_2",
+          "category": "person",
+          "confidence": 0.889,
+          "bbox": {
+            "x": 160,
+            "y": 163,
+            "width": 122,
+            "height": 193
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "faster_rcnn_0",
+          "category": "electronics",
+          "confidence": 0.845,
+          "bbox": {
+            "x": 658,
+            "y": 336,
+            "width": 189,
+            "height": 111
+          },
+          "model": "faster_rcnn",
+          "detected_by": [
+            "faster_rcnn",
+            "mask_rcnn"
+          ],
+          "consensus_score": 0.5,
+          "alternative_categories": [
+            "electronics",
+            "animal"
+          ]
+        },
+        {
+          "object_id": "faster_rcnn_1",
+          "category": "vehicle",
+          "confidence": 0.901,
+          "bbox": {
+            "x": 517,
+            "y": 460,
+            "width": 54,
+            "height": 178
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_2",
+          "category": "electronics",
+          "confidence": 0.911,
+          "bbox": {
+            "x": 732,
+            "y": 298,
+            "width": 101,
+            "height": 88
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "ssd_0",
+          "category": "person",
+          "confidence": 0.431,
+          "bbox": {
+            "x": 273,
+            "y": 103,
+            "width": 68,
+            "height": 161
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_1",
+          "category": "car",
+          "confidence": 0.558,
+          "bbox": {
+            "x": 595,
+            "y": 151,
+            "width": 195,
+            "height": 97
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_2",
+          "category": "bus",
+          "confidence": 0.671,
+          "bbox": {
+            "x": 768,
+            "y": 558,
+            "width": 72,
+            "height": 171
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_3",
+          "category": "truck",
+          "confidence": 0.757,
+          "bbox": {
+            "x": 54,
+            "y": 540,
+            "width": 94,
+            "height": 174
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "mask_rcnn_0",
+          "category": "object",
+          "confidence": 0.934,
+          "bbox": {
+            "x": 251,
+            "y": 496,
+            "width": 186,
+            "height": 53
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_2",
+          "category": "person",
+          "confidence": 0.877,
+          "bbox": {
+            "x": 789,
+            "y": 405,
+            "width": 91,
+            "height": 138
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_3",
+          "category": "vehicle",
+          "confidence": 0.859,
+          "bbox": {
+            "x": 55,
+            "y": 48,
+            "width": 114,
+            "height": 163
+          },
+          "model": "mask_rcnn"
+        }
+      ],
+      "model_specific_results": {
+        "yolo": {
+          "count": 3,
+          "detections": [
+            {
+              "object_id": "yolo_0",
+              "category": "person",
+              "confidence": 0.511,
+              "bbox": {
+                "x": 696,
+                "y": 382,
+                "width": 119,
+                "height": 50
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_1",
+              "category": "car",
+              "confidence": 0.547,
+              "bbox": {
+                "x": 686,
+                "y": 480,
+                "width": 70,
+                "height": 105
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_2",
+              "category": "person",
+              "confidence": 0.889,
+              "bbox": {
+                "x": 160,
+                "y": 163,
+                "width": 122,
+                "height": 193
+              },
+              "model": "yolo"
+            }
+          ]
+        },
+        "faster_rcnn": {
+          "count": 3,
+          "detections": [
+            {
+              "object_id": "faster_rcnn_0",
+              "category": "electronics",
+              "confidence": 0.845,
+              "bbox": {
+                "x": 658,
+                "y": 336,
+                "width": 189,
+                "height": 111
+              },
+              "model": "faster_rcnn",
+              "detected_by": [
+                "faster_rcnn",
+                "mask_rcnn"
+              ],
+              "consensus_score": 0.5,
+              "alternative_categories": [
+                "electronics",
+                "animal"
+              ]
+            },
+            {
+              "object_id": "faster_rcnn_1",
+              "category": "vehicle",
+              "confidence": 0.901,
+              "bbox": {
+                "x": 517,
+                "y": 460,
+                "width": 54,
+                "height": 178
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_2",
+              "category": "electronics",
+              "confidence": 0.911,
+              "bbox": {
+                "x": 732,
+                "y": 298,
+                "width": 101,
+                "height": 88
+              },
+              "model": "faster_rcnn"
+            }
+          ]
+        },
+        "ssd": {
+          "count": 4,
+          "detections": [
+            {
+              "object_id": "ssd_0",
+              "category": "person",
+              "confidence": 0.431,
+              "bbox": {
+                "x": 273,
+                "y": 103,
+                "width": 68,
+                "height": 161
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_1",
+              "category": "car",
+              "confidence": 0.558,
+              "bbox": {
+                "x": 595,
+                "y": 151,
+                "width": 195,
+                "height": 97
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_2",
+              "category": "bus",
+              "confidence": 0.671,
+              "bbox": {
+                "x": 768,
+                "y": 558,
+                "width": 72,
+                "height": 171
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_3",
+              "category": "truck",
+              "confidence": 0.757,
+              "bbox": {
+                "x": 54,
+                "y": 540,
+                "width": 94,
+                "height": 174
+              },
+              "model": "ssd"
+            }
+          ]
+        },
+        "mask_rcnn": {
+          "count": 4,
+          "detections": [
+            {
+              "object_id": "mask_rcnn_0",
+              "category": "object",
+              "confidence": 0.934,
+              "bbox": {
+                "x": 251,
+                "y": 496,
+                "width": 186,
+                "height": 53
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_1",
+              "category": "animal",
+              "confidence": 0.816,
+              "bbox": {
+                "x": 674,
+                "y": 312,
+                "width": 95,
+                "height": 95
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_2",
+              "category": "person",
+              "confidence": 0.877,
+              "bbox": {
+                "x": 789,
+                "y": 405,
+                "width": 91,
+                "height": 138
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_3",
+              "category": "vehicle",
+              "confidence": 0.859,
+              "bbox": {
+                "x": 55,
+                "y": 48,
+                "width": 114,
+                "height": 163
+              },
+              "model": "mask_rcnn"
+            }
+          ]
+        }
+      }
+    },
+    "quality_metrics": {
+      "average_confidence": 0.745,
+      "consensus_rate": 0.0,
+      "model_agreement": {},
+      "category_distribution": {
+        "person": 4,
+        "car": 2,
+        "electronics": 2,
+        "vehicle": 2,
+        "bus": 1,
+        "truck": 1,
+        "object": 1
+      },
+      "detection_density": 0.2708333333333333
+    },
+    "recommendations": [
+      {
+        "type": "consensus",
+        "message": "モデル間の一致率が低いです。特定のカテゴリに特化したモデルの使用を検討してください。"
+      },
+      {
+        "type": "density",
+        "message": "検出物体が多数あります。セグメンテーションモデルの使用を推奨します。"
+      }
+    ]
+  }
+}

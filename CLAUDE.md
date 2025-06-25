@@ -1,5 +1,65 @@
 # Claude Code 設定ファイル
 
+## 🔄 自動整理・保存システム
+**ユーザーが「ファイルとフォルダ整理」「やったことの保存」のどちらを要求しても両方を自動実行**
+
+### 自動実行コマンド
+```bash
+# 手動実行
+python3 auto_organize_and_save.py
+
+# 自動時間監視システム開始（毎時0分に自動実行）
+python3 start_auto_monitor.py start
+```
+
+### 対応キーワード
+- **整理関連**: 「整理」「ファイル」「フォルダ」「削除」「cleanup」「organize」
+- **保存関連**: 「保存」「記録」「やったこと」「作業」「save」「記録」
+
+### 実行内容（固定順序）
+1. **ファイル・フォルダ整理**（第1ステップ）:
+   - 一時ファイル削除 (temp_*, test_*, old_*)
+   - 空ディレクトリ削除
+   - バックアップ統合
+   
+2. **セッション作業保存**（第2ステップ）:
+   - Git変更状況記録
+   - 今日更新されたファイル一覧
+   - システム出力結果収集
+   - 重要ファイル自動バックアップ
+
+**注意**: どちらの要求でも必ず「整理→保存」の順序で実行されます
+
+### 🕐 自動時間実行機能
+**Claude Code実行中かつ毎時0分に自動実行**
+
+#### 自動監視システム
+```bash
+# 監視開始
+python3 start_auto_monitor.py start
+
+# 状態確認  
+python3 start_auto_monitor.py status
+
+# 監視停止
+python3 start_auto_monitor.py stop
+```
+
+#### 実行条件
+1. **Claude Code起動中**: プロセス監視により自動検出
+2. **毎時0分**: 00:00, 01:00, 02:00... の時刻
+3. **重複防止**: 同じ時間帯では1回のみ実行
+
+#### 監視ログ
+- `auto_hourly_monitor.log` - 監視システムログ
+- 30秒間隔で条件チェック
+- 実行結果を自動記録
+
+### 出力ファイル
+- `sessions/AUTO_SESSION_SAVE_YYYY-MM-DD.md` - セッション記録
+- `auto_execution_log_YYYYMMDD_HHMMSS.json` - 実行ログ
+- `important_backup_YYYYMMDD_HHMMSS/` - 重要ファイルバックアップ
+
 ## 🚨 Vercelデプロイメント重要事項
 **Python APIハンドラーは使用しないでください。静的HTMLサイトとしてデプロイしてください。**
 

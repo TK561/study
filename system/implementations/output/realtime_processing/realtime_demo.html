@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>リアルタイム画像処理デモ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .stats {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .result-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .fps {
+            font-size: 24px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>リアルタイム画像処理システム デモ</h1>
+        
+        <div class="controls">
+            <button onclick="startStreaming()">ストリーミング開始</button>
+            <button onclick="stopStreaming()">停止</button>
+            <button onclick="getStats()">統計情報更新</button>
+        </div>
+        
+        <div class="stats">
+            <h3>処理統計</h3>
+            <p>FPS: <span class="fps" id="fps">0</span></p>
+            <p>処理済みフレーム: <span id="processed">0</span></p>
+            <p>平均処理時間: <span id="avgTime">0</span> ms</p>
+            <p>キューサイズ: <span id="queueSize">0</span></p>
+        </div>
+        
+        <div class="results">
+            <h3>処理結果</h3>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+    
+    <script>
+        let ws = null;
+        let streaming = false;
+        let frameId = 0;
+        
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+            
+            ws.onopen = () => {
+                console.log('WebSocket接続成功');
+            };
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                
+                if (data.type === 'results') {
+                    displayResults(data.data);
+                } else if (data.type === 'statistics') {
+                    updateStats(data.data);
+                }
+            };
+            
+            ws.onerror = (error) => {
+                console.error('WebSocketエラー:', error);
+            };
+        }
+        
+        function startStreaming() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                connectWebSocket();
+                setTimeout(startStreaming, 1000);
+                return;
+            }
+            
+            streaming = true;
+            streamFrames();
+        }
+        
+        function stopStreaming() {
+            streaming = false;
+        }
+        
+        function streamFrames() {
+            if (!streaming) return;
+            
+            // モックフレームデータ送信
+            const frame = {
+                type: 'frame',
+                frame_id: frameId++,
+                timestamp: new Date().toISOString()
+            };
+            
+            ws.send(JSON.stringify(frame));
+            
+            // 結果取得
+            ws.send(JSON.stringify({type: 'get_results'}));
+            
+            // 30FPSでループ
+            setTimeout(streamFrames, 33);
+        }
+        
+        function getStats() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({type: 'get_stats'}));
+            }
+        }
+        
+        function updateStats(stats) {
+            document.getElementById('fps').textContent = stats.current_fps;
+            document.getElementById('processed').textContent = stats.total_processed;
+            document.getElementById('avgTime').textContent = 
+                Math.round(stats.average_processing_time * 1000);
+            document.getElementById('queueSize').textContent = stats.queue_size;
+        }
+        
+        function displayResults(results) {
+            const list = document.getElementById('resultsList');
+            
+            results.forEach(result => {
+                const item = document.createElement('div');
+                item.className = 'result-item';
+                
+                const summary = result.postprocessing?.output?.summary || {};
+                item.innerHTML = `
+                    <strong>Frame ${result.frame_id}</strong><br>
+                    物体数: ${summary.total_objects || 0}<br>
+                    シーン: ${summary.scene_type || 'unknown'}<br>
+                    品質スコア: ${summary.quality_score || 0}<br>
+                    処理時間: ${Math.round(result.total_processing_time * 1000)} ms
+                `;
+                
+                list.insertBefore(item, list.firstChild);
+                
+                // 最新20件のみ表示
+                while (list.children.length > 20) {
+                    list.removeChild(list.lastChild);
+                }
+            });
+        }
+        
+        // 定期的に統計情報を更新
+        setInterval(getStats, 1000);
+    </script>
+</body>
+</html>

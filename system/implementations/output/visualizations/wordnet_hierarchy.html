@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordNet階層可視化システム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .hierarchy {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .node {
+            margin: 5px 0;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .node:hover {
+            background: #e3f2fd;
+            border-radius: 4px;
+        }
+        .node.expanded::before {
+            content: "▼ ";
+        }
+        .node.collapsed::before {
+            content: "▶ ";
+        }
+        .children {
+            margin-left: 20px;
+            display: none;
+        }
+        .children.show {
+            display: block;
+        }
+        .definition {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-left: 20px;
+        }
+        .path {
+            background: #fffbdd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ffd700;
+        }
+        .stats {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WordNet階層可視化システム</h1>
+    
+    <div class="controls">
+        <h3>概念検索</h3>
+        <input type="text" id="searchInput" placeholder="検索する概念を入力（例: animal, artifact）">
+        <button onclick="searchConcept()">検索</button>
+        <button onclick="expandAll()">すべて展開</button>
+        <button onclick="collapseAll()">すべて折りたたむ</button>
+    </div>
+    
+    <div id="searchResult"></div>
+    
+    <div class="stats">
+        <h3>階層統計情報</h3>
+        <p>総概念数: <span id="totalConcepts">0</span></p>
+        <p>最大階層深度: <span id="maxDepth">0</span></p>
+    </div>
+    
+    <div class="hierarchy" id="hierarchyContainer">
+        <h3>WordNet階層構造</h3>
+        <div id="hierarchyTree"></div>
+    </div>
+    
+    <script>
+        const wordnetData = {"entity": {"definition": "that which is perceived or known or inferred", "children": {"physical_entity": {"definition": "an entity that has physical existence", "children": {"object": {"definition": "a tangible and visible entity", "children": {"whole": {"definition": "an assemblage of parts", "children": {"artifact": {"definition": "a man-made object", "children": {"instrumentality": {"definition": "an artifact designed to be used"}, "structure": {"definition": "a thing constructed"}, "commodity": {"definition": "articles of commerce"}}}, "living_thing": {"definition": "a living organism", "children": {"organism": {"definition": "a living thing that has the ability to act"}, "plant": {"definition": "a living organism lacking the power of locomotion"}, "animal": {"definition": "a living organism characterized by voluntary movement"}}}}}}}, "substance": {"definition": "the real physical matter", "children": {"matter": {"definition": "that which has mass and occupies space"}, "food": {"definition": "any substance that can be metabolized"}}}}}, "abstraction": {"definition": "a general concept formed by extracting common features", "children": {"attribute": {"definition": "an abstraction belonging to or characteristic of an entity"}, "measure": {"definition": "a basis for comparison"}, "relation": {"definition": "an abstraction belonging to or characteristic of two entities"}}}}}};
+        
+        function renderHierarchy(data, container, level = 0) {
+            for (const [key, value] of Object.entries(data)) {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = 'node collapsed';
+                nodeDiv.style.marginLeft = level * 20 + 'px';
+                
+                const hasChildren = value.children && Object.keys(value.children).length > 0;
+                
+                let nodeContent = key.replace(/_/g, ' ');
+                if (value.definition) {
+                    nodeContent += '<div class="definition">' + value.definition + '</div>';
+                }
+                
+                nodeDiv.innerHTML = nodeContent;
+                
+                if (hasChildren) {
+                    nodeDiv.onclick = function(e) {
+                        e.stopPropagation();
+                        toggleNode(this);
+                    };
+                    
+                    const childrenDiv = document.createElement('div');
+                    childrenDiv.className = 'children';
+                    renderHierarchy(value.children, childrenDiv, level + 1);
+                    
+                    container.appendChild(nodeDiv);
+                    container.appendChild(childrenDiv);
+                } else {
+                    nodeDiv.style.marginLeft = (level * 20 + 20) + 'px';
+                    nodeDiv.className = 'node';
+                    container.appendChild(nodeDiv);
+                }
+            }
+        }
+        
+        function toggleNode(node) {
+            node.classList.toggle('expanded');
+            node.classList.toggle('collapsed');
+            const children = node.nextElementSibling;
+            if (children && children.classList.contains('children')) {
+                children.classList.toggle('show');
+            }
+        }
+        
+        function expandAll() {
+            document.querySelectorAll('.node.collapsed').forEach(node => {
+                node.classList.remove('collapsed');
+                node.classList.add('expanded');
+            });
+            document.querySelectorAll('.children').forEach(children => {
+                children.classList.add('show');
+            });
+        }
+        
+        function collapseAll() {
+            document.querySelectorAll('.node.expanded').forEach(node => {
+                node.classList.remove('expanded');
+                node.classList.add('collapsed');
+            });
+            document.querySelectorAll('.children').forEach(children => {
+                children.classList.remove('show');
+            });
+        }
+        
+        function searchConcept() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (!searchTerm) {
+                resultDiv.innerHTML = '';
+                return;
+            }
+            
+            const path = findPath(wordnetData, searchTerm);
+            if (path) {
+                resultDiv.innerHTML = '<div class="path"><strong>パス:</strong> ' + 
+                    path.join(' → ') + '</div>';
+            } else {
+                resultDiv.innerHTML = '<div class="path">概念が見つかりませんでした</div>';
+            }
+        }
+        
+        function findPath(data, target, currentPath = []) {
+            for (const [key, value] of Object.entries(data)) {
+                const newPath = [...currentPath, key];
+                if (key.toLowerCase().includes(target)) {
+                    return newPath;
+                }
+                if (value.children) {
+                    const result = findPath(value.children, target, newPath);
+                    if (result) return result;
+                }
+            }
+            return null;
+        }
+        
+        function countConcepts(data) {
+            let count = 0;
+            for (const [key, value] of Object.entries(data)) {
+                count++;
+                if (value.children) {
+                    count += countConcepts(value.children);
+                }
+            }
+            return count;
+        }
+        
+        function getMaxDepth(data, depth = 0) {
+            let maxDepth = depth;
+            for (const [key, value] of Object.entries(data)) {
+                if (value.children) {
+                    const childDepth = getMaxDepth(value.children, depth + 1);
+                    maxDepth = Math.max(maxDepth, childDepth);
+                }
+            }
+            return maxDepth;
+        }
+        
+        // 初期化
+        renderHierarchy(wordnetData, document.getElementById('hierarchyTree'));
+        document.getElementById('totalConcepts').textContent = countConcepts(wordnetData);
+        document.getElementById('maxDepth').textContent = getMaxDepth(wordnetData);
+    </script>
+</body>
+</html>

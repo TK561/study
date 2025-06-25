@@ -1,0 +1,416 @@
+{
+  "api_version": "2.0.0",
+  "status": "success",
+  "data": {
+    "detections": {
+      "status": "success",
+      "timestamp": "2025-06-25T23:43:34.666771",
+      "processing_time": 0.854,
+      "models_used": [
+        "yolo",
+        "faster_rcnn",
+        "ssd",
+        "mask_rcnn"
+      ],
+      "total_objects": 14,
+      "category_summary": {
+        "bottle": 2,
+        "book": 1,
+        "cat": 1,
+        "animal": 2,
+        "person": 2,
+        "truck": 2,
+        "bicycle": 1,
+        "car": 1,
+        "object": 2
+      },
+      "integrated_detections": [
+        {
+          "object_id": "yolo_0",
+          "category": "bottle",
+          "confidence": 0.675,
+          "bbox": {
+            "x": 48,
+            "y": 309,
+            "width": 107,
+            "height": 62
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_1",
+          "category": "bottle",
+          "confidence": 0.951,
+          "bbox": {
+            "x": 569,
+            "y": 336,
+            "width": 61,
+            "height": 111
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_2",
+          "category": "book",
+          "confidence": 0.63,
+          "bbox": {
+            "x": 408,
+            "y": 112,
+            "width": 189,
+            "height": 92
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_3",
+          "category": "cat",
+          "confidence": 0.585,
+          "bbox": {
+            "x": 531,
+            "y": 392,
+            "width": 178,
+            "height": 132
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "faster_rcnn_0",
+          "category": "animal",
+          "confidence": 0.71,
+          "bbox": {
+            "x": 224,
+            "y": 231,
+            "width": 159,
+            "height": 161
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_1",
+          "category": "person",
+          "confidence": 0.751,
+          "bbox": {
+            "x": 419,
+            "y": 206,
+            "width": 69,
+            "height": 180
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "ssd_0",
+          "category": "truck",
+          "confidence": 0.661,
+          "bbox": {
+            "x": 466,
+            "y": 487,
+            "width": 190,
+            "height": 164
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_1",
+          "category": "bicycle",
+          "confidence": 0.559,
+          "bbox": {
+            "x": 140,
+            "y": 531,
+            "width": 73,
+            "height": 72
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_2",
+          "category": "person",
+          "confidence": 0.687,
+          "bbox": {
+            "x": 213,
+            "y": 292,
+            "width": 184,
+            "height": 183
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_3",
+          "category": "car",
+          "confidence": 0.868,
+          "bbox": {
+            "x": 153,
+            "y": 214,
+            "width": 195,
+            "height": 153
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_4",
+          "category": "truck",
+          "confidence": 0.539,
+          "bbox": {
+            "x": 362,
+            "y": 271,
+            "width": 134,
+            "height": 128
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "mask_rcnn_0",
+          "category": "animal",
+          "confidence": 0.719,
+          "bbox": {
+            "x": 314,
+            "y": 228,
+            "width": 87,
+            "height": 189
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_1",
+          "category": "object",
+          "confidence": 0.704,
+          "bbox": {
+            "x": 610,
+            "y": 45,
+            "width": 150,
+            "height": 136
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_2",
+          "category": "object",
+          "confidence": 0.876,
+          "bbox": {
+            "x": 119,
+            "y": 246,
+            "width": 165,
+            "height": 156
+          },
+          "model": "mask_rcnn"
+        }
+      ],
+      "model_specific_results": {
+        "yolo": {
+          "count": 4,
+          "detections": [
+            {
+              "object_id": "yolo_0",
+              "category": "bottle",
+              "confidence": 0.675,
+              "bbox": {
+                "x": 48,
+                "y": 309,
+                "width": 107,
+                "height": 62
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_1",
+              "category": "bottle",
+              "confidence": 0.951,
+              "bbox": {
+                "x": 569,
+                "y": 336,
+                "width": 61,
+                "height": 111
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_2",
+              "category": "book",
+              "confidence": 0.63,
+              "bbox": {
+                "x": 408,
+                "y": 112,
+                "width": 189,
+                "height": 92
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_3",
+              "category": "cat",
+              "confidence": 0.585,
+              "bbox": {
+                "x": 531,
+                "y": 392,
+                "width": 178,
+                "height": 132
+              },
+              "model": "yolo"
+            }
+          ]
+        },
+        "faster_rcnn": {
+          "count": 2,
+          "detections": [
+            {
+              "object_id": "faster_rcnn_0",
+              "category": "animal",
+              "confidence": 0.71,
+              "bbox": {
+                "x": 224,
+                "y": 231,
+                "width": 159,
+                "height": 161
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_1",
+              "category": "person",
+              "confidence": 0.751,
+              "bbox": {
+                "x": 419,
+                "y": 206,
+                "width": 69,
+                "height": 180
+              },
+              "model": "faster_rcnn"
+            }
+          ]
+        },
+        "ssd": {
+          "count": 5,
+          "detections": [
+            {
+              "object_id": "ssd_0",
+              "category": "truck",
+              "confidence": 0.661,
+              "bbox": {
+                "x": 466,
+                "y": 487,
+                "width": 190,
+                "height": 164
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_1",
+              "category": "bicycle",
+              "confidence": 0.559,
+              "bbox": {
+                "x": 140,
+                "y": 531,
+                "width": 73,
+                "height": 72
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_2",
+              "category": "person",
+              "confidence": 0.687,
+              "bbox": {
+                "x": 213,
+                "y": 292,
+                "width": 184,
+                "height": 183
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_3",
+              "category": "car",
+              "confidence": 0.868,
+              "bbox": {
+                "x": 153,
+                "y": 214,
+                "width": 195,
+                "height": 153
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_4",
+              "category": "truck",
+              "confidence": 0.539,
+              "bbox": {
+                "x": 362,
+                "y": 271,
+                "width": 134,
+                "height": 128
+              },
+              "model": "ssd"
+            }
+          ]
+        },
+        "mask_rcnn": {
+          "count": 3,
+          "detections": [
+            {
+              "object_id": "mask_rcnn_0",
+              "category": "animal",
+              "confidence": 0.719,
+              "bbox": {
+                "x": 314,
+                "y": 228,
+                "width": 87,
+                "height": 189
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_1",
+              "category": "object",
+              "confidence": 0.704,
+              "bbox": {
+                "x": 610,
+                "y": 45,
+                "width": 150,
+                "height": 136
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_2",
+              "category": "object",
+              "confidence": 0.876,
+              "bbox": {
+                "x": 119,
+                "y": 246,
+                "width": 165,
+                "height": 156
+              },
+              "model": "mask_rcnn"
+            }
+          ]
+        }
+      }
+    },
+    "quality_metrics": {
+      "average_confidence": 0.708,
+      "consensus_rate": 0.0,
+      "model_agreement": {},
+      "category_distribution": {
+        "bottle": 2,
+        "book": 1,
+        "cat": 1,
+        "animal": 2,
+        "person": 2,
+        "truck": 2,
+        "bicycle": 1,
+        "car": 1,
+        "object": 2
+      },
+      "detection_density": 0.2916666666666667
+    },
+    "recommendations": [
+      {
+        "type": "consensus",
+        "message": "モデル間の一致率が低いです。特定のカテゴリに特化したモデルの使用を検討してください。"
+      },
+      {
+        "type": "density",
+        "message": "検出物体が多数あります。セグメンテーションモデルの使用を推奨します。"
+      }
+    ]
+  }
+}

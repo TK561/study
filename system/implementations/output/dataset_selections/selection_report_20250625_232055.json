@@ -1,0 +1,22 @@
+{
+  "total_selections": 4,
+  "dataset_usage": {
+    "cityscapes": 1,
+    "coco": 1,
+    "ade20k": 2
+  },
+  "average_scores": {
+    "cityscapes": 0.699,
+    "openimages": 0.614,
+    "coco": 0.61,
+    "wildlife": 0.608,
+    "ade20k": 0.713,
+    "fashion": 0.51,
+    "aerial": 0.502
+  },
+  "domain_distribution": {
+    "urban": 1,
+    "nature": 2,
+    "indoor": 1
+  }
+}

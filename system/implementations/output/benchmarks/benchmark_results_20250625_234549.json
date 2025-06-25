@@ -1,0 +1,2250 @@
+{
+  "benchmark_name": "比較ベンチマーク",
+  "timestamp": "2025-06-25T23:45:49.464525",
+  "models": [
+    {
+      "name": "resnet50",
+      "version": "1.0",
+      "type": "CNN"
+    },
+    {
+      "name": "efficientnet",
+      "version": "b0",
+      "type": "CNN"
+    },
+    {
+      "name": "mobilenet",
+      "version": "v3",
+      "type": "lightweight"
+    },
+    {
+      "name": "custom_model",
+      "version": "2.0",
+      "type": "hybrid"
+    },
+    {
+      "name": "ensemble",
+      "version": "1.0",
+      "type": "ensemble"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "COCO_subset",
+      "difficulty": "medium",
+      "num_classes": 5
+    },
+    {
+      "name": "ImageNet_subset",
+      "difficulty": "hard",
+      "num_classes": 10
+    },
+    {
+      "name": "Custom_dataset",
+      "difficulty": "easy",
+      "num_classes": 3
+    }
+  ],
+  "results": [
+    {
+      "model": {
+        "name": "resnet50",
+        "version": "1.0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "COCO_subset",
+        "difficulty": "medium",
+        "num_classes": 5
+      },
+      "metrics": {
+        "accuracy": 86.09222019812647,
+        "precision": 0.8000281870339464,
+        "recall": 0.7969780329978156,
+        "f1_score": 0.7973258457177987,
+        "processing_time": 59.842631458588265,
+        "memory_usage": 213.60040902424697,
+        "throughput": 19.284454843762802
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.7631578947368421,
+          "recall": 0.8365384615384616,
+          "f1_score": 0.7981651376146789,
+          "support": 104
+        },
+        {
+          "class_id": 1,
+          "precision": 0.872093023255814,
+          "recall": 0.7653061224489796,
+          "f1_score": 0.8152173913043479,
+          "support": 98
+        },
+        {
+          "class_id": 2,
+          "precision": 0.797979797979798,
+          "recall": 0.7669902912621359,
+          "f1_score": 0.7821782178217821,
+          "support": 103
+        },
+        {
+          "class_id": 3,
+          "precision": 0.8349514563106796,
+          "recall": 0.8686868686868687,
+          "f1_score": 0.8514851485148516,
+          "support": 99
+        },
+        {
+          "class_id": 4,
+          "precision": 0.7319587628865979,
+          "recall": 0.7473684210526316,
+          "f1_score": 0.7395833333333333,
+          "support": 95
+        }
+      ],
+      "confusion_matrix": [
+        [
+          87,
+          2,
+          4,
+          10,
+          1
+        ],
+        [
+          5,
+          75,
+          8,
+          0,
+          10
+        ],
+        [
+          10,
+          0,
+          79,
+          4,
+          10
+        ],
+        [
+          4,
+          1,
+          3,
+          86,
+          5
+        ],
+        [
+          8,
+          8,
+          5,
+          3,
+          71
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.462975"
+    },
+    {
+      "model": {
+        "name": "resnet50",
+        "version": "1.0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "ImageNet_subset",
+        "difficulty": "hard",
+        "num_classes": 10
+      },
+      "metrics": {
+        "accuracy": 72.25979941217228,
+        "precision": 0.6465678432272096,
+        "recall": 0.6441356791292357,
+        "f1_score": 0.6433795582947957,
+        "processing_time": 41.862488264285844,
+        "memory_usage": 206.44052929805787,
+        "throughput": 20.126656432408062
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.6302521008403361,
+          "recall": 0.6818181818181818,
+          "f1_score": 0.6550218340611353,
+          "support": 110
+        },
+        {
+          "class_id": 1,
+          "precision": 0.6486486486486487,
+          "recall": 0.5714285714285714,
+          "f1_score": 0.6075949367088608,
+          "support": 126
+        },
+        {
+          "class_id": 2,
+          "precision": 0.7352941176470589,
+          "recall": 0.6,
+          "f1_score": 0.6607929515418502,
+          "support": 125
+        },
+        {
+          "class_id": 3,
+          "precision": 0.6474820143884892,
+          "recall": 0.6716417910447762,
+          "f1_score": 0.6593406593406593,
+          "support": 134
+        },
+        {
+          "class_id": 4,
+          "precision": 0.6101694915254238,
+          "recall": 0.6728971962616822,
+          "f1_score": 0.64,
+          "support": 107
+        },
+        {
+          "class_id": 5,
+          "precision": 0.6952380952380952,
+          "recall": 0.6293103448275862,
+          "f1_score": 0.6606334841628959,
+          "support": 116
+        },
+        {
+          "class_id": 6,
+          "precision": 0.7610619469026548,
+          "recall": 0.7226890756302521,
+          "f1_score": 0.7413793103448276,
+          "support": 119
+        },
+        {
+          "class_id": 7,
+          "precision": 0.6068376068376068,
+          "recall": 0.6574074074074074,
+          "f1_score": 0.6311111111111111,
+          "support": 108
+        },
+        {
+          "class_id": 8,
+          "precision": 0.5419847328244275,
+          "recall": 0.6454545454545455,
+          "f1_score": 0.5892116182572614,
+          "support": 110
+        },
+        {
+          "class_id": 9,
+          "precision": 0.5887096774193549,
+          "recall": 0.5887096774193549,
+          "f1_score": 0.5887096774193549,
+          "support": 124
+        }
+      ],
+      "confusion_matrix": [
+        [
+          75,
+          1,
+          9,
+          6,
+          1,
+          3,
+          2,
+          3,
+          10,
+          0
+        ],
+        [
+          10,
+          72,
+          5,
+          6,
+          9,
+          2,
+          1,
+          8,
+          8,
+          5
+        ],
+        [
+          1,
+          0,
+          75,
+          7,
+          0,
+          8,
+          10,
+          9,
+          5,
+          10
+        ],
+        [
+          3,
+          6,
+          0,
+          90,
+          9,
+          7,
+          0,
+          9,
+          5,
+          5
+        ],
+        [
+          5,
+          3,
+          6,
+          5,
+          72,
+          1,
+          2,
+          6,
+          0,
+          7
+        ],
+        [
+          0,
+          4,
+          1,
+          9,
+          3,
+          73,
+          5,
+          1,
+          10,
+          10
+        ],
+        [
+          2,
+          2,
+          0,
+          8,
+          3,
+          0,
+          86,
+          5,
+          6,
+          7
+        ],
+        [
+          7,
+          5,
+          0,
+          0,
+          10,
+          2,
+          4,
+          71,
+          6,
+          3
+        ],
+        [
+          8,
+          9,
+          5,
+          0,
+          6,
+          7,
+          0,
+          0,
+          71,
+          4
+        ],
+        [
+          8,
+          9,
+          1,
+          8,
+          5,
+          2,
+          3,
+          5,
+          10,
+          73
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463107"
+    },
+    {
+      "model": {
+        "name": "resnet50",
+        "version": "1.0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "Custom_dataset",
+        "difficulty": "easy",
+        "num_classes": 3
+      },
+      "metrics": {
+        "accuracy": 93.30295056923521,
+        "precision": 0.8771187725928068,
+        "recall": 0.8644024514811032,
+        "f1_score": 0.8663390762166617,
+        "processing_time": 47.91367266748343,
+        "memory_usage": 215.5003492843948,
+        "throughput": 18.303756040293067
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.8411214953271028,
+          "recall": 0.9090909090909091,
+          "f1_score": 0.8737864077669902,
+          "support": 99
+        },
+        {
+          "class_id": 1,
+          "precision": 0.9861111111111112,
+          "recall": 0.797752808988764,
+          "f1_score": 0.8819875776397516,
+          "support": 89
+        },
+        {
+          "class_id": 2,
+          "precision": 0.8041237113402062,
+          "recall": 0.8863636363636364,
+          "f1_score": 0.8432432432432433,
+          "support": 88
+        }
+      ],
+      "confusion_matrix": [
+        [
+          90,
+          0,
+          9
+        ],
+        [
+          8,
+          71,
+          10
+        ],
+        [
+          9,
+          1,
+          78
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463131"
+    },
+    {
+      "model": {
+        "name": "efficientnet",
+        "version": "b0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "COCO_subset",
+        "difficulty": "medium",
+        "num_classes": 5
+      },
+      "metrics": {
+        "accuracy": 87.4832061526412,
+        "precision": 0.7800489438708279,
+        "recall": 0.7823168830434863,
+        "f1_score": 0.7810000933519136,
+        "processing_time": 42.577779446485856,
+        "memory_usage": 162.4539052580293,
+        "throughput": 28.378625243010024
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.7723577235772358,
+          "recall": 0.7723577235772358,
+          "f1_score": 0.7723577235772358,
+          "support": 123
+        },
+        {
+          "class_id": 1,
+          "precision": 0.7777777777777778,
+          "recall": 0.8235294117647058,
+          "f1_score": 0.7999999999999999,
+          "support": 85
+        },
+        {
+          "class_id": 2,
+          "precision": 0.7614678899082569,
+          "recall": 0.7345132743362832,
+          "f1_score": 0.7477477477477478,
+          "support": 113
+        },
+        {
+          "class_id": 3,
+          "precision": 0.7981651376146789,
+          "recall": 0.7981651376146789,
+          "f1_score": 0.7981651376146789,
+          "support": 109
+        },
+        {
+          "class_id": 4,
+          "precision": 0.7904761904761904,
+          "recall": 0.7830188679245284,
+          "f1_score": 0.7867298578199052,
+          "support": 106
+        }
+      ],
+      "confusion_matrix": [
+        [
+          95,
+          1,
+          7,
+          10,
+          10
+        ],
+        [
+          1,
+          70,
+          10,
+          3,
+          1
+        ],
+        [
+          7,
+          10,
+          83,
+          6,
+          7
+        ],
+        [
+          10,
+          6,
+          2,
+          87,
+          4
+        ],
+        [
+          10,
+          3,
+          7,
+          3,
+          83
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463167"
+    },
+    {
+      "model": {
+        "name": "efficientnet",
+        "version": "b0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "ImageNet_subset",
+        "difficulty": "hard",
+        "num_classes": 10
+      },
+      "metrics": {
+        "accuracy": 78.44174918167083,
+        "precision": 0.6666912425457973,
+        "recall": 0.6688359757163254,
+        "f1_score": 0.6669483117929642,
+        "processing_time": 28.551149635180415,
+        "memory_usage": 144.73186467625558,
+        "throughput": 28.777319534838274
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.7089552238805971,
+          "recall": 0.753968253968254,
+          "f1_score": 0.7307692307692307,
+          "support": 126
+        },
+        {
+          "class_id": 1,
+          "precision": 0.6776859504132231,
+          "recall": 0.640625,
+          "f1_score": 0.6586345381526104,
+          "support": 128
+        },
+        {
+          "class_id": 2,
+          "precision": 0.6492537313432836,
+          "recall": 0.725,
+          "f1_score": 0.68503937007874,
+          "support": 120
+        },
+        {
+          "class_id": 3,
+          "precision": 0.6923076923076923,
+          "recall": 0.6122448979591837,
+          "f1_score": 0.6498194945848376,
+          "support": 147
+        },
+        {
+          "class_id": 4,
+          "precision": 0.7142857142857143,
+          "recall": 0.6597222222222222,
+          "f1_score": 0.6859205776173285,
+          "support": 144
+        },
+        {
+          "class_id": 5,
+          "precision": 0.6434108527131783,
+          "recall": 0.6747967479674797,
+          "f1_score": 0.6587301587301587,
+          "support": 123
+        },
+        {
+          "class_id": 6,
+          "precision": 0.6585365853658537,
+          "recall": 0.7043478260869566,
+          "f1_score": 0.680672268907563,
+          "support": 115
+        },
+        {
+          "class_id": 7,
+          "precision": 0.6296296296296297,
+          "recall": 0.6439393939393939,
+          "f1_score": 0.6367041198501873,
+          "support": 132
+        },
+        {
+          "class_id": 8,
+          "precision": 0.6592592592592592,
+          "recall": 0.644927536231884,
+          "f1_score": 0.652014652014652,
+          "support": 138
+        },
+        {
+          "class_id": 9,
+          "precision": 0.6335877862595419,
+          "recall": 0.6287878787878788,
+          "f1_score": 0.6311787072243346,
+          "support": 132
+        }
+      ],
+      "confusion_matrix": [
+        [
+          95,
+          2,
+          1,
+          5,
+          7,
+          5,
+          6,
+          1,
+          2,
+          2
+        ],
+        [
+          8,
+          82,
+          5,
+          1,
+          6,
+          6,
+          6,
+          1,
+          3,
+          10
+        ],
+        [
+          5,
+          2,
+          87,
+          1,
+          0,
+          6,
+          4,
+          4,
+          3,
+          8
+        ],
+        [
+          9,
+          4,
+          10,
+          90,
+          2,
+          10,
+          2,
+          9,
+          2,
+          9
+        ],
+        [
+          0,
+          10,
+          9,
+          6,
+          95,
+          0,
+          9,
+          10,
+          3,
+          2
+        ],
+        [
+          10,
+          1,
+          4,
+          1,
+          8,
+          83,
+          4,
+          7,
+          5,
+          0
+        ],
+        [
+          4,
+          3,
+          0,
+          7,
+          3,
+          1,
+          81,
+          1,
+          10,
+          5
+        ],
+        [
+          1,
+          7,
+          0,
+          10,
+          6,
+          4,
+          2,
+          85,
+          9,
+          8
+        ],
+        [
+          2,
+          2,
+          9,
+          4,
+          3,
+          6,
+          9,
+          10,
+          89,
+          4
+        ],
+        [
+          0,
+          8,
+          9,
+          5,
+          3,
+          8,
+          0,
+          7,
+          9,
+          83
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463245"
+    },
+    {
+      "model": {
+        "name": "efficientnet",
+        "version": "b0",
+        "type": "CNN"
+      },
+      "dataset": {
+        "name": "Custom_dataset",
+        "difficulty": "easy",
+        "num_classes": 3
+      },
+      "metrics": {
+        "accuracy": 97.35573321719544,
+        "precision": 0.9091743360851074,
+        "recall": 0.9105439301063903,
+        "f1_score": 0.9087702657441193,
+        "processing_time": 33.81601888089485,
+        "memory_usage": 144.6775535396663,
+        "throughput": 30.060578289838116
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.8777777777777778,
+          "recall": 0.9518072289156626,
+          "f1_score": 0.9132947976878613,
+          "support": 83
+        },
+        {
+          "class_id": 1,
+          "precision": 0.9072164948453608,
+          "recall": 0.9166666666666666,
+          "f1_score": 0.9119170984455958,
+          "support": 96
+        },
+        {
+          "class_id": 2,
+          "precision": 0.9425287356321839,
+          "recall": 0.8631578947368421,
+          "f1_score": 0.901098901098901,
+          "support": 95
+        }
+      ],
+      "confusion_matrix": [
+        [
+          79,
+          1,
+          3
+        ],
+        [
+          6,
+          88,
+          2
+        ],
+        [
+          5,
+          8,
+          82
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463263"
+    },
+    {
+      "model": {
+        "name": "mobilenet",
+        "version": "v3",
+        "type": "lightweight"
+      },
+      "dataset": {
+        "name": "COCO_subset",
+        "difficulty": "medium",
+        "num_classes": 5
+      },
+      "metrics": {
+        "accuracy": 81.24489557876092,
+        "precision": 0.8089682429078364,
+        "recall": 0.8011905923087804,
+        "f1_score": 0.8020669375579136,
+        "processing_time": 17.466929920222242,
+        "memory_usage": 40.3633240266938,
+        "throughput": 51.77970932856341
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.9080459770114943,
+          "recall": 0.7383177570093458,
+          "f1_score": 0.8144329896907215,
+          "support": 107
+        },
+        {
+          "class_id": 1,
+          "precision": 0.7131147540983607,
+          "recall": 0.7981651376146789,
+          "f1_score": 0.7532467532467533,
+          "support": 109
+        },
+        {
+          "class_id": 2,
+          "precision": 0.8539325842696629,
+          "recall": 0.7835051546391752,
+          "f1_score": 0.8172043010752688,
+          "support": 97
+        },
+        {
+          "class_id": 3,
+          "precision": 0.7714285714285715,
+          "recall": 0.8526315789473684,
+          "f1_score": 0.81,
+          "support": 95
+        },
+        {
+          "class_id": 4,
+          "precision": 0.7983193277310925,
+          "recall": 0.8333333333333334,
+          "f1_score": 0.8154506437768242,
+          "support": 114
+        }
+      ],
+      "confusion_matrix": [
+        [
+          79,
+          9,
+          2,
+          8,
+          9
+        ],
+        [
+          0,
+          87,
+          7,
+          5,
+          10
+        ],
+        [
+          6,
+          6,
+          76,
+          5,
+          4
+        ],
+        [
+          0,
+          10,
+          3,
+          81,
+          1
+        ],
+        [
+          2,
+          10,
+          1,
+          6,
+          95
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463291"
+    },
+    {
+      "model": {
+        "name": "mobilenet",
+        "version": "v3",
+        "type": "lightweight"
+      },
+      "dataset": {
+        "name": "ImageNet_subset",
+        "difficulty": "hard",
+        "num_classes": 10
+      },
+      "metrics": {
+        "accuracy": 71.382513606824,
+        "precision": 0.6822216745888496,
+        "recall": 0.6801594736950622,
+        "f1_score": 0.6793449988822835,
+        "processing_time": 26.8945576964039,
+        "memory_usage": 68.21023848516617,
+        "throughput": 51.151106948875736
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.7560975609756098,
+          "recall": 0.7265625,
+          "f1_score": 0.7410358565737052,
+          "support": 128
+        },
+        {
+          "class_id": 1,
+          "precision": 0.75,
+          "recall": 0.6923076923076923,
+          "f1_score": 0.7199999999999999,
+          "support": 130
+        },
+        {
+          "class_id": 2,
+          "precision": 0.6870229007633588,
+          "recall": 0.6617647058823529,
+          "f1_score": 0.6741573033707866,
+          "support": 136
+        },
+        {
+          "class_id": 3,
+          "precision": 0.6074074074074074,
+          "recall": 0.7068965517241379,
+          "f1_score": 0.6533864541832669,
+          "support": 116
+        },
+        {
+          "class_id": 4,
+          "precision": 0.6822429906542056,
+          "recall": 0.5748031496062992,
+          "f1_score": 0.6239316239316238,
+          "support": 127
+        },
+        {
+          "class_id": 5,
+          "precision": 0.7307692307692307,
+          "recall": 0.753968253968254,
+          "f1_score": 0.7421874999999999,
+          "support": 126
+        },
+        {
+          "class_id": 6,
+          "precision": 0.6666666666666666,
+          "recall": 0.6434782608695652,
+          "f1_score": 0.654867256637168,
+          "support": 115
+        },
+        {
+          "class_id": 7,
+          "precision": 0.7280701754385965,
+          "recall": 0.6587301587301587,
+          "f1_score": 0.6916666666666667,
+          "support": 126
+        },
+        {
+          "class_id": 8,
+          "precision": 0.6016949152542372,
+          "recall": 0.6513761467889908,
+          "f1_score": 0.6255506607929515,
+          "support": 109
+        },
+        {
+          "class_id": 9,
+          "precision": 0.6122448979591837,
+          "recall": 0.7317073170731707,
+          "f1_score": 0.6666666666666666,
+          "support": 123
+        }
+      ],
+      "confusion_matrix": [
+        [
+          93,
+          1,
+          8,
+          5,
+          3,
+          5,
+          1,
+          1,
+          1,
+          10
+        ],
+        [
+          4,
+          90,
+          1,
+          8,
+          0,
+          0,
+          6,
+          2,
+          9,
+          10
+        ],
+        [
+          10,
+          4,
+          90,
+          7,
+          9,
+          8,
+          3,
+          1,
+          0,
+          4
+        ],
+        [
+          2,
+          3,
+          3,
+          82,
+          4,
+          5,
+          2,
+          1,
+          10,
+          4
+        ],
+        [
+          3,
+          4,
+          8,
+          5,
+          73,
+          3,
+          7,
+          8,
+          6,
+          10
+        ],
+        [
+          0,
+          3,
+          3,
+          8,
+          4,
+          95,
+          1,
+          5,
+          4,
+          3
+        ],
+        [
+          6,
+          1,
+          5,
+          7,
+          1,
+          3,
+          74,
+          7,
+          5,
+          6
+        ],
+        [
+          4,
+          9,
+          3,
+          8,
+          3,
+          1,
+          7,
+          83,
+          3,
+          5
+        ],
+        [
+          0,
+          2,
+          8,
+          3,
+          1,
+          8,
+          9,
+          2,
+          71,
+          5
+        ],
+        [
+          1,
+          3,
+          2,
+          2,
+          9,
+          2,
+          1,
+          4,
+          9,
+          90
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463361"
+    },
+    {
+      "model": {
+        "name": "mobilenet",
+        "version": "v3",
+        "type": "lightweight"
+      },
+      "dataset": {
+        "name": "Custom_dataset",
+        "difficulty": "easy",
+        "num_classes": 3
+      },
+      "metrics": {
+        "accuracy": 91.15476918085467,
+        "precision": 0.9098025450177779,
+        "recall": 0.9133928601621939,
+        "f1_score": 0.9101691958834816,
+        "processing_time": 25.808384050666376,
+        "memory_usage": 67.21328390523826,
+        "throughput": 51.00597362938234
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.956989247311828,
+          "recall": 0.8640776699029126,
+          "f1_score": 0.9081632653061223,
+          "support": 103
+        },
+        {
+          "class_id": 1,
+          "precision": 0.8736842105263158,
+          "recall": 0.9540229885057471,
+          "f1_score": 0.9120879120879121,
+          "support": 87
+        },
+        {
+          "class_id": 2,
+          "precision": 0.8987341772151899,
+          "recall": 0.922077922077922,
+          "f1_score": 0.9102564102564102,
+          "support": 77
+        }
+      ],
+      "confusion_matrix": [
+        [
+          89,
+          10,
+          4
+        ],
+        [
+          0,
+          83,
+          4
+        ],
+        [
+          4,
+          2,
+          71
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463379"
+    },
+    {
+      "model": {
+        "name": "custom_model",
+        "version": "2.0",
+        "type": "hybrid"
+      },
+      "dataset": {
+        "name": "COCO_subset",
+        "difficulty": "medium",
+        "num_classes": 5
+      },
+      "metrics": {
+        "accuracy": 78.73974700591454,
+        "precision": 0.7978426657435225,
+        "recall": 0.7970952979267449,
+        "f1_score": 0.7970456698946073,
+        "processing_time": 49.701545565959094,
+        "memory_usage": 183.84258556289896,
+        "throughput": 21.480634483199854
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.8148148148148148,
+          "recall": 0.7927927927927928,
+          "f1_score": 0.8036529680365296,
+          "support": 111
+        },
+        {
+          "class_id": 1,
+          "precision": 0.7916666666666666,
+          "recall": 0.8260869565217391,
+          "f1_score": 0.8085106382978724,
+          "support": 115
+        },
+        {
+          "class_id": 2,
+          "precision": 0.8255813953488372,
+          "recall": 0.8068181818181818,
+          "f1_score": 0.8160919540229885,
+          "support": 88
+        },
+        {
+          "class_id": 3,
+          "precision": 0.7676767676767676,
+          "recall": 0.8172043010752689,
+          "f1_score": 0.7916666666666666,
+          "support": 93
+        },
+        {
+          "class_id": 4,
+          "precision": 0.7894736842105263,
+          "recall": 0.7425742574257426,
+          "f1_score": 0.7653061224489796,
+          "support": 101
+        }
+      ],
+      "confusion_matrix": [
+        [
+          88,
+          2,
+          9,
+          9,
+          3
+        ],
+        [
+          2,
+          95,
+          3,
+          5,
+          10
+        ],
+        [
+          4,
+          7,
+          71,
+          1,
+          5
+        ],
+        [
+          4,
+          8,
+          3,
+          76,
+          2
+        ],
+        [
+          10,
+          8,
+          0,
+          8,
+          75
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463503"
+    },
+    {
+      "model": {
+        "name": "custom_model",
+        "version": "2.0",
+        "type": "hybrid"
+      },
+      "dataset": {
+        "name": "ImageNet_subset",
+        "difficulty": "hard",
+        "num_classes": 10
+      },
+      "metrics": {
+        "accuracy": 79.23812987347011,
+        "precision": 0.6515563640380877,
+        "recall": 0.6505296555102655,
+        "f1_score": 0.6498562219411506,
+        "processing_time": 36.03982668271657,
+        "memory_usage": 175.89676135924768,
+        "throughput": 22.264870733488795
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.5923076923076923,
+          "recall": 0.7,
+          "f1_score": 0.6416666666666667,
+          "support": 110
+        },
+        {
+          "class_id": 1,
+          "precision": 0.6333333333333333,
+          "recall": 0.6551724137931034,
+          "f1_score": 0.6440677966101694,
+          "support": 116
+        },
+        {
+          "class_id": 2,
+          "precision": 0.7456140350877193,
+          "recall": 0.6439393939393939,
+          "f1_score": 0.6910569105691057,
+          "support": 132
+        },
+        {
+          "class_id": 3,
+          "precision": 0.610738255033557,
+          "recall": 0.6594202898550725,
+          "f1_score": 0.6341463414634145,
+          "support": 138
+        },
+        {
+          "class_id": 4,
+          "precision": 0.6934306569343066,
+          "recall": 0.6462585034013606,
+          "f1_score": 0.6690140845070423,
+          "support": 147
+        },
+        {
+          "class_id": 5,
+          "precision": 0.6180555555555556,
+          "recall": 0.6357142857142857,
+          "f1_score": 0.6267605633802816,
+          "support": 140
+        },
+        {
+          "class_id": 6,
+          "precision": 0.6923076923076923,
+          "recall": 0.6382978723404256,
+          "f1_score": 0.6642066420664207,
+          "support": 141
+        },
+        {
+          "class_id": 7,
+          "precision": 0.5813953488372093,
+          "recall": 0.5952380952380952,
+          "f1_score": 0.5882352941176471,
+          "support": 126
+        },
+        {
+          "class_id": 8,
+          "precision": 0.7045454545454546,
+          "recall": 0.6739130434782609,
+          "f1_score": 0.688888888888889,
+          "support": 138
+        },
+        {
+          "class_id": 9,
+          "precision": 0.6438356164383562,
+          "recall": 0.6573426573426573,
+          "f1_score": 0.6505190311418684,
+          "support": 143
+        }
+      ],
+      "confusion_matrix": [
+        [
+          77,
+          0,
+          0,
+          0,
+          8,
+          9,
+          8,
+          5,
+          0,
+          3
+        ],
+        [
+          0,
+          76,
+          1,
+          8,
+          5,
+          6,
+          0,
+          9,
+          8,
+          3
+        ],
+        [
+          4,
+          8,
+          85,
+          10,
+          5,
+          7,
+          7,
+          5,
+          0,
+          1
+        ],
+        [
+          5,
+          6,
+          3,
+          91,
+          5,
+          2,
+          9,
+          8,
+          4,
+          5
+        ],
+        [
+          5,
+          5,
+          5,
+          9,
+          95,
+          3,
+          7,
+          10,
+          6,
+          2
+        ],
+        [
+          10,
+          1,
+          5,
+          9,
+          7,
+          89,
+          4,
+          0,
+          5,
+          10
+        ],
+        [
+          8,
+          1,
+          3,
+          5,
+          2,
+          6,
+          90,
+          7,
+          9,
+          10
+        ],
+        [
+          9,
+          4,
+          10,
+          4,
+          0,
+          9,
+          4,
+          75,
+          2,
+          9
+        ],
+        [
+          4,
+          10,
+          0,
+          9,
+          3,
+          7,
+          0,
+          3,
+          93,
+          9
+        ],
+        [
+          8,
+          9,
+          2,
+          4,
+          7,
+          6,
+          1,
+          7,
+          5,
+          94
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463574"
+    },
+    {
+      "model": {
+        "name": "custom_model",
+        "version": "2.0",
+        "type": "hybrid"
+      },
+      "dataset": {
+        "name": "Custom_dataset",
+        "difficulty": "easy",
+        "num_classes": 3
+      },
+      "metrics": {
+        "accuracy": 95.96921519976206,
+        "precision": 0.891578989319305,
+        "recall": 0.8964908509212307,
+        "f1_score": 0.8915620664440153,
+        "processing_time": 41.3586892501725,
+        "memory_usage": 190.27629570148136,
+        "throughput": 22.387437418754942
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.8536585365853658,
+          "recall": 0.8860759493670886,
+          "f1_score": 0.8695652173913043,
+          "support": 79
+        },
+        {
+          "class_id": 1,
+          "precision": 0.9583333333333334,
+          "recall": 0.8363636363636363,
+          "f1_score": 0.8932038834951457,
+          "support": 110
+        },
+        {
+          "class_id": 2,
+          "precision": 0.8627450980392157,
+          "recall": 0.967032967032967,
+          "f1_score": 0.9119170984455958,
+          "support": 91
+        }
+      ],
+      "confusion_matrix": [
+        [
+          70,
+          3,
+          6
+        ],
+        [
+          10,
+          92,
+          8
+        ],
+        [
+          2,
+          1,
+          88
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463593"
+    },
+    {
+      "model": {
+        "name": "ensemble",
+        "version": "1.0",
+        "type": "ensemble"
+      },
+      "dataset": {
+        "name": "COCO_subset",
+        "difficulty": "medium",
+        "num_classes": 5
+      },
+      "metrics": {
+        "accuracy": 90.11969413177474,
+        "precision": 0.8487727585416189,
+        "recall": 0.8545143108830315,
+        "f1_score": 0.8494175087549245,
+        "processing_time": 86.35230190303525,
+        "memory_usage": 380.2765637785586,
+        "throughput": 11.682117398979393
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.7904761904761904,
+          "recall": 0.8924731182795699,
+          "f1_score": 0.8383838383838383,
+          "support": 93
+        },
+        {
+          "class_id": 1,
+          "precision": 0.8380952380952381,
+          "recall": 0.8,
+          "f1_score": 0.8186046511627908,
+          "support": 110
+        },
+        {
+          "class_id": 2,
+          "precision": 0.7865168539325843,
+          "recall": 0.8974358974358975,
+          "f1_score": 0.8383233532934132,
+          "support": 78
+        },
+        {
+          "class_id": 3,
+          "precision": 0.89,
+          "recall": 0.7807017543859649,
+          "f1_score": 0.8317757009345794,
+          "support": 114
+        },
+        {
+          "class_id": 4,
+          "precision": 0.9387755102040817,
+          "recall": 0.9019607843137255,
+          "f1_score": 0.92,
+          "support": 102
+        }
+      ],
+      "confusion_matrix": [
+        [
+          83,
+          10,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          88,
+          9,
+          8,
+          0
+        ],
+        [
+          6,
+          1,
+          70,
+          0,
+          1
+        ],
+        [
+          6,
+          6,
+          8,
+          89,
+          5
+        ],
+        [
+          5,
+          0,
+          2,
+          3,
+          92
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463624"
+    },
+    {
+      "model": {
+        "name": "ensemble",
+        "version": "1.0",
+        "type": "ensemble"
+      },
+      "dataset": {
+        "name": "ImageNet_subset",
+        "difficulty": "hard",
+        "num_classes": 10
+      },
+      "metrics": {
+        "accuracy": 76.03162007348807,
+        "precision": 0.6411649750077518,
+        "recall": 0.6412396395803868,
+        "f1_score": 0.6406116328060436,
+        "processing_time": 75.05796500330288,
+        "memory_usage": 419.5587223269935,
+        "throughput": 12.30731057350316
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.6268656716417911,
+          "recall": 0.6666666666666666,
+          "f1_score": 0.6461538461538462,
+          "support": 126
+        },
+        {
+          "class_id": 1,
+          "precision": 0.5983606557377049,
+          "recall": 0.6083333333333333,
+          "f1_score": 0.6033057851239669,
+          "support": 120
+        },
+        {
+          "class_id": 2,
+          "precision": 0.6739130434782609,
+          "recall": 0.744,
+          "f1_score": 0.7072243346007604,
+          "support": 125
+        },
+        {
+          "class_id": 3,
+          "precision": 0.6239316239316239,
+          "recall": 0.5615384615384615,
+          "f1_score": 0.5910931174089069,
+          "support": 130
+        },
+        {
+          "class_id": 4,
+          "precision": 0.6792452830188679,
+          "recall": 0.6486486486486487,
+          "f1_score": 0.663594470046083,
+          "support": 111
+        },
+        {
+          "class_id": 5,
+          "precision": 0.703125,
+          "recall": 0.6870229007633588,
+          "f1_score": 0.694980694980695,
+          "support": 131
+        },
+        {
+          "class_id": 6,
+          "precision": 0.7209302325581395,
+          "recall": 0.6888888888888889,
+          "f1_score": 0.7045454545454545,
+          "support": 135
+        },
+        {
+          "class_id": 7,
+          "precision": 0.6148148148148148,
+          "recall": 0.5845070422535211,
+          "f1_score": 0.5992779783393503,
+          "support": 142
+        },
+        {
+          "class_id": 8,
+          "precision": 0.5877862595419847,
+          "recall": 0.6260162601626016,
+          "f1_score": 0.6062992125984251,
+          "support": 123
+        },
+        {
+          "class_id": 9,
+          "precision": 0.5826771653543307,
+          "recall": 0.5967741935483871,
+          "f1_score": 0.5896414342629482,
+          "support": 124
+        }
+      ],
+      "confusion_matrix": [
+        [
+          84,
+          6,
+          4,
+          8,
+          1,
+          5,
+          0,
+          4,
+          9,
+          5
+        ],
+        [
+          2,
+          73,
+          7,
+          5,
+          1,
+          6,
+          1,
+          9,
+          7,
+          9
+        ],
+        [
+          0,
+          6,
+          93,
+          1,
+          0,
+          3,
+          2,
+          10,
+          3,
+          7
+        ],
+        [
+          4,
+          4,
+          9,
+          73,
+          8,
+          1,
+          9,
+          10,
+          6,
+          6
+        ],
+        [
+          0,
+          8,
+          3,
+          5,
+          72,
+          8,
+          2,
+          3,
+          7,
+          3
+        ],
+        [
+          9,
+          4,
+          0,
+          10,
+          3,
+          90,
+          3,
+          6,
+          5,
+          1
+        ],
+        [
+          9,
+          6,
+          3,
+          9,
+          2,
+          1,
+          93,
+          8,
+          1,
+          3
+        ],
+        [
+          9,
+          9,
+          1,
+          0,
+          9,
+          7,
+          7,
+          83,
+          8,
+          9
+        ],
+        [
+          10,
+          0,
+          9,
+          6,
+          2,
+          5,
+          2,
+          2,
+          77,
+          10
+        ],
+        [
+          7,
+          6,
+          9,
+          0,
+          8,
+          2,
+          10,
+          0,
+          8,
+          74
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463699"
+    },
+    {
+      "model": {
+        "name": "ensemble",
+        "version": "1.0",
+        "type": "ensemble"
+      },
+      "dataset": {
+        "name": "Custom_dataset",
+        "difficulty": "easy",
+        "num_classes": 3
+      },
+      "metrics": {
+        "accuracy": 100,
+        "precision": 0.9247212317121131,
+        "recall": 0.9257507556960821,
+        "f1_score": 0.9244636428454545,
+        "processing_time": 80.18618183309842,
+        "memory_usage": 419.77471490688094,
+        "throughput": 11.336225242363064
+      },
+      "class_metrics": [
+        {
+          "class_id": 0,
+          "precision": 0.9468085106382979,
+          "recall": 0.8725490196078431,
+          "f1_score": 0.9081632653061226,
+          "support": 102
+        },
+        {
+          "class_id": 1,
+          "precision": 0.9081632653061225,
+          "recall": 0.9468085106382979,
+          "f1_score": 0.9270833333333334,
+          "support": 94
+        },
+        {
+          "class_id": 2,
+          "precision": 0.9191919191919192,
+          "recall": 0.9578947368421052,
+          "f1_score": 0.9381443298969072,
+          "support": 95
+        }
+      ],
+      "confusion_matrix": [
+        [
+          89,
+          9,
+          4
+        ],
+        [
+          1,
+          89,
+          4
+        ],
+        [
+          4,
+          0,
+          91
+        ]
+      ],
+      "num_samples": 1000,
+      "benchmark_time": 0.0,
+      "timestamp": "2025-06-25T23:45:49.463716"
+    }
+  ],
+  "comparison_matrix": {
+    "accuracy": {
+      "resnet50": {
+        "COCO_subset": 86.09222019812647,
+        "ImageNet_subset": 72.25979941217228,
+        "Custom_dataset": 93.30295056923521
+      },
+      "efficientnet": {
+        "COCO_subset": 87.4832061526412,
+        "ImageNet_subset": 78.44174918167083,
+        "Custom_dataset": 97.35573321719544
+      },
+      "mobilenet": {
+        "COCO_subset": 81.24489557876092,
+        "ImageNet_subset": 71.382513606824,
+        "Custom_dataset": 91.15476918085467
+      },
+      "custom_model": {
+        "COCO_subset": 78.73974700591454,
+        "ImageNet_subset": 79.23812987347011,
+        "Custom_dataset": 95.96921519976206
+      },
+      "ensemble": {
+        "COCO_subset": 90.11969413177474,
+        "ImageNet_subset": 76.03162007348807,
+        "Custom_dataset": 100
+      }
+    },
+    "precision": {
+      "resnet50": {
+        "COCO_subset": 0.8000281870339464,
+        "ImageNet_subset": 0.6465678432272096,
+        "Custom_dataset": 0.8771187725928068
+      },
+      "efficientnet": {
+        "COCO_subset": 0.7800489438708279,
+        "ImageNet_subset": 0.6666912425457973,
+        "Custom_dataset": 0.9091743360851074
+      },
+      "mobilenet": {
+        "COCO_subset": 0.8089682429078364,
+        "ImageNet_subset": 0.6822216745888496,
+        "Custom_dataset": 0.9098025450177779
+      },
+      "custom_model": {
+        "COCO_subset": 0.7978426657435225,
+        "ImageNet_subset": 0.6515563640380877,
+        "Custom_dataset": 0.891578989319305
+      },
+      "ensemble": {
+        "COCO_subset": 0.8487727585416189,
+        "ImageNet_subset": 0.6411649750077518,
+        "Custom_dataset": 0.9247212317121131
+      }
+    },
+    "recall": {
+      "resnet50": {
+        "COCO_subset": 0.7969780329978156,
+        "ImageNet_subset": 0.6441356791292357,
+        "Custom_dataset": 0.8644024514811032
+      },
+      "efficientnet": {
+        "COCO_subset": 0.7823168830434863,
+        "ImageNet_subset": 0.6688359757163254,
+        "Custom_dataset": 0.9105439301063903
+      },
+      "mobilenet": {
+        "COCO_subset": 0.8011905923087804,
+        "ImageNet_subset": 0.6801594736950622,
+        "Custom_dataset": 0.9133928601621939
+      },
+      "custom_model": {
+        "COCO_subset": 0.7970952979267449,
+        "ImageNet_subset": 0.6505296555102655,
+        "Custom_dataset": 0.8964908509212307
+      },
+      "ensemble": {
+        "COCO_subset": 0.8545143108830315,
+        "ImageNet_subset": 0.6412396395803868,
+        "Custom_dataset": 0.9257507556960821
+      }
+    },
+    "f1_score": {
+      "resnet50": {
+        "COCO_subset": 0.7973258457177987,
+        "ImageNet_subset": 0.6433795582947957,
+        "Custom_dataset": 0.8663390762166617
+      },
+      "efficientnet": {
+        "COCO_subset": 0.7810000933519136,
+        "ImageNet_subset": 0.6669483117929642,
+        "Custom_dataset": 0.9087702657441193
+      },
+      "mobilenet": {
+        "COCO_subset": 0.8020669375579136,
+        "ImageNet_subset": 0.6793449988822835,
+        "Custom_dataset": 0.9101691958834816
+      },
+      "custom_model": {
+        "COCO_subset": 0.7970456698946073,
+        "ImageNet_subset": 0.6498562219411506,
+        "Custom_dataset": 0.8915620664440153
+      },
+      "ensemble": {
+        "COCO_subset": 0.8494175087549245,
+        "ImageNet_subset": 0.6406116328060436,
+        "Custom_dataset": 0.9244636428454545
+      }
+    },
+    "processing_time": {
+      "resnet50": {
+        "COCO_subset": 59.842631458588265,
+        "ImageNet_subset": 41.862488264285844,
+        "Custom_dataset": 47.91367266748343
+      },
+      "efficientnet": {
+        "COCO_subset": 42.577779446485856,
+        "ImageNet_subset": 28.551149635180415,
+        "Custom_dataset": 33.81601888089485
+      },
+      "mobilenet": {
+        "COCO_subset": 17.466929920222242,
+        "ImageNet_subset": 26.8945576964039,
+        "Custom_dataset": 25.808384050666376
+      },
+      "custom_model": {
+        "COCO_subset": 49.701545565959094,
+        "ImageNet_subset": 36.03982668271657,
+        "Custom_dataset": 41.3586892501725
+      },
+      "ensemble": {
+        "COCO_subset": 86.35230190303525,
+        "ImageNet_subset": 75.05796500330288,
+        "Custom_dataset": 80.18618183309842
+      }
+    },
+    "memory_usage": {
+      "resnet50": {
+        "COCO_subset": 213.60040902424697,
+        "ImageNet_subset": 206.44052929805787,
+        "Custom_dataset": 215.5003492843948
+      },
+      "efficientnet": {
+        "COCO_subset": 162.4539052580293,
+        "ImageNet_subset": 144.73186467625558,
+        "Custom_dataset": 144.6775535396663
+      },
+      "mobilenet": {
+        "COCO_subset": 40.3633240266938,
+        "ImageNet_subset": 68.21023848516617,
+        "Custom_dataset": 67.21328390523826
+      },
+      "custom_model": {
+        "COCO_subset": 183.84258556289896,
+        "ImageNet_subset": 175.89676135924768,
+        "Custom_dataset": 190.27629570148136
+      },
+      "ensemble": {
+        "COCO_subset": 380.2765637785586,
+        "ImageNet_subset": 419.5587223269935,
+        "Custom_dataset": 419.77471490688094
+      }
+    },
+    "throughput": {
+      "resnet50": {
+        "COCO_subset": 19.284454843762802,
+        "ImageNet_subset": 20.126656432408062,
+        "Custom_dataset": 18.303756040293067
+      },
+      "efficientnet": {
+        "COCO_subset": 28.378625243010024,
+        "ImageNet_subset": 28.777319534838274,
+        "Custom_dataset": 30.060578289838116
+      },
+      "mobilenet": {
+        "COCO_subset": 51.77970932856341,
+        "ImageNet_subset": 51.151106948875736,
+        "Custom_dataset": 51.00597362938234
+      },
+      "custom_model": {
+        "COCO_subset": 21.480634483199854,
+        "ImageNet_subset": 22.264870733488795,
+        "Custom_dataset": 22.387437418754942
+      },
+      "ensemble": {
+        "COCO_subset": 11.682117398979393,
+        "ImageNet_subset": 12.30731057350316,
+        "Custom_dataset": 11.336225242363064
+      }
+    }
+  },
+  "analysis": {
+    "best_performers": {
+      "accuracy": {
+        "model": "ensemble",
+        "dataset": "Custom_dataset",
+        "value": 100
+      },
+      "precision": {
+        "model": "ensemble",
+        "dataset": "Custom_dataset",
+        "value": 0.9247212317121131
+      },
+      "recall": {
+        "model": "ensemble",
+        "dataset": "Custom_dataset",
+        "value": 0.9257507556960821
+      },
+      "f1_score": {
+        "model": "ensemble",
+        "dataset": "Custom_dataset",
+        "value": 0.9244636428454545
+      },
+      "processing_time": {
+        "model": "mobilenet",
+        "dataset": "COCO_subset",
+        "value": 17.466929920222242
+      },
+      "memory_usage": {
+        "model": "mobilenet",
+        "dataset": "COCO_subset",
+        "value": 40.3633240266938
+      },
+      "throughput": {
+        "model": "mobilenet",
+        "dataset": "COCO_subset",
+        "value": 51.77970932856341
+      }
+    },
+    "metric_statistics": {
+      "accuracy": {
+        "mean": 85.25441622545937,
+        "std": 9.239238805574619,
+        "min": 71.382513606824,
+        "max": 100
+      },
+      "precision": {
+        "mean": 0.7890839181488373,
+        "std": 0.10602829760607495,
+        "min": 0.6411649750077518,
+        "max": 0.9247212317121131
+      },
+      "recall": {
+        "mean": 0.7885050926105424,
+        "std": 0.10659552579277551,
+        "min": 0.6412396395803868,
+        "max": 0.9257507556960821
+      },
+      "f1_score": {
+        "mean": 0.7872200684085419,
+        "std": 0.10601731448650918,
+        "min": 0.6406116328060436,
+        "max": 0.9244636428454545
+      },
+      "processing_time": {
+        "mean": 46.22867481723306,
+        "std": 20.768985860404936,
+        "min": 17.466929920222242,
+        "max": 86.35230190303525
+      },
+      "memory_usage": {
+        "mean": 202.187806742254,
+        "std": 119.02810634700869,
+        "min": 40.3633240266938,
+        "max": 419.77471490688094
+      },
+      "throughput": {
+        "mean": 26.688451742750736,
+        "std": 13.987217695593882,
+        "min": 11.336225242363064,
+        "max": 51.77970932856341
+      }
+    },
+    "model_rankings": {
+      "mobilenet": {
+        "average_score": 0.6949128426513714,
+        "num_metrics": 21
+      },
+      "efficientnet": {
+        "average_score": 0.5711614480008206,
+        "num_metrics": 21
+      },
+      "custom_model": {
+        "average_score": 0.4946586400192831,
+        "num_metrics": 21
+      },
+      "resnet50": {
+        "average_score": 0.44000157974405246,
+        "num_metrics": 21
+      },
+      "ensemble": {
+        "average_score": 0.35358576033590466,
+        "num_metrics": 21
+      }
+    },
+    "recommendations": [
+      "総合的に最も優れたモデルは mobilenet です",
+      "最速処理は mobilenet で 17.5ms です"
+    ]
+  }
+}

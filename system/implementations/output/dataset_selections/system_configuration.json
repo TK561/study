@@ -1,0 +1,219 @@
+{
+  "system_name": "動的データセット選択エンジン",
+  "version": "2.0.0",
+  "export_date": "2025-06-25T23:20:55.386930",
+  "datasets": {
+    "coco": {
+      "name": "COCO Dataset",
+      "categories": 80,
+      "size": "large",
+      "speciality": [
+        "general",
+        "common_objects"
+      ],
+      "strengths": [
+        "person",
+        "vehicle",
+        "animal",
+        "furniture"
+      ],
+      "performance_score": 0.85,
+      "training_images": 118000,
+      "use_cases": [
+        "general_detection",
+        "daily_objects"
+      ]
+    },
+    "imagenet": {
+      "name": "ImageNet",
+      "categories": 1000,
+      "size": "xlarge",
+      "speciality": [
+        "classification",
+        "fine_grained"
+      ],
+      "strengths": [
+        "animals",
+        "plants",
+        "objects",
+        "scenes"
+      ],
+      "performance_score": 0.82,
+      "training_images": 1200000,
+      "use_cases": [
+        "detailed_classification",
+        "research"
+      ]
+    },
+    "openimages": {
+      "name": "Open Images",
+      "categories": 600,
+      "size": "large",
+      "speciality": [
+        "detection",
+        "segmentation"
+      ],
+      "strengths": [
+        "complex_scenes",
+        "relationships"
+      ],
+      "performance_score": 0.87,
+      "training_images": 1900000,
+      "use_cases": [
+        "complex_detection",
+        "scene_understanding"
+      ]
+    },
+    "cityscapes": {
+      "name": "Cityscapes",
+      "categories": 30,
+      "size": "medium",
+      "speciality": [
+        "urban",
+        "autonomous_driving"
+      ],
+      "strengths": [
+        "road",
+        "vehicle",
+        "pedestrian",
+        "traffic_sign"
+      ],
+      "performance_score": 0.92,
+      "training_images": 25000,
+      "use_cases": [
+        "autonomous_driving",
+        "urban_analysis"
+      ]
+    },
+    "ade20k": {
+      "name": "ADE20K",
+      "categories": 150,
+      "size": "medium",
+      "speciality": [
+        "scene_parsing",
+        "indoor_outdoor"
+      ],
+      "strengths": [
+        "furniture",
+        "building",
+        "nature"
+      ],
+      "performance_score": 0.83,
+      "training_images": 25000,
+      "use_cases": [
+        "scene_understanding",
+        "interior_design"
+      ]
+    },
+    "medical": {
+      "name": "Medical Images",
+      "categories": 50,
+      "size": "medium",
+      "speciality": [
+        "medical",
+        "diagnostic"
+      ],
+      "strengths": [
+        "organs",
+        "abnormalities",
+        "medical_devices"
+      ],
+      "performance_score": 0.89,
+      "training_images": 100000,
+      "use_cases": [
+        "medical_diagnosis",
+        "health_screening"
+      ]
+    },
+    "aerial": {
+      "name": "Aerial/Satellite",
+      "categories": 40,
+      "size": "medium",
+      "speciality": [
+        "aerial",
+        "geographic"
+      ],
+      "strengths": [
+        "buildings",
+        "roads",
+        "vegetation",
+        "water"
+      ],
+      "performance_score": 0.86,
+      "training_images": 50000,
+      "use_cases": [
+        "mapping",
+        "environmental_monitoring"
+      ]
+    },
+    "fashion": {
+      "name": "Fashion Dataset",
+      "categories": 100,
+      "size": "medium",
+      "speciality": [
+        "fashion",
+        "clothing"
+      ],
+      "strengths": [
+        "clothing",
+        "accessories",
+        "styles"
+      ],
+      "performance_score": 0.9,
+      "training_images": 80000,
+      "use_cases": [
+        "e_commerce",
+        "fashion_recommendation"
+      ]
+    },
+    "food": {
+      "name": "Food-101",
+      "categories": 101,
+      "size": "medium",
+      "speciality": [
+        "food",
+        "cuisine"
+      ],
+      "strengths": [
+        "dishes",
+        "ingredients",
+        "cuisine_types"
+      ],
+      "performance_score": 0.88,
+      "training_images": 101000,
+      "use_cases": [
+        "food_recognition",
+        "nutrition_analysis"
+      ]
+    },
+    "wildlife": {
+      "name": "Wildlife Dataset",
+      "categories": 200,
+      "size": "medium",
+      "speciality": [
+        "animals",
+        "nature"
+      ],
+      "strengths": [
+        "wild_animals",
+        "birds",
+        "marine_life"
+      ],
+      "performance_score": 0.84,
+      "training_images": 150000,
+      "use_cases": [
+        "wildlife_monitoring",
+        "conservation"
+      ]
+    }
+  },
+  "selection_algorithm": {
+    "weights": {
+      "domain_match": 0.3,
+      "category_match": 0.3,
+      "complexity_match": 0.2,
+      "performance_score": 0.2
+    },
+    "description": "多要素を考慮した重み付けスコアリング"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "integrated_research_system": {
+    "name": "WordNet-based統合研究システム",
+    "version": "3.0.0",
+    "export_date": "2025-06-25T23:35:29.745269",
+    "research_context": {
+      "project_title": "WordNet-based Semantic Category Image Classification System",
+      "research_period": "15ヶ月 (2024年3月〜2025年6月)",
+      "current_accuracy": 87.1,
+      "improvement_rate": 27.3,
+      "specialized_datasets": 8,
+      "next_session": "Session 13 (2025年6月26日)",
+      "graduation_target": "2026年2月"
+    }
+  },
+  "component_systems": {
+    "wordnet_visualizer": {
+      "name": "WordNet階層可視化システム",
+      "version": "2.0.0",
+      "function": "意味階層可視化"
+    },
+    "detection_api": {
+      "name": "多層物体検出統合API",
+      "version": "2.0.0",
+      "function": "多層物体検出"
+    },
+    "dataset_selector": {
+      "name": "動的データセット選択エンジン",
+      "version": "2.0.0",
+      "function": "動的データセット選択"
+    },
+    "realtime_processor": {
+      "name": "リアルタイム画像処理システム",
+      "version": "2.0.0",
+      "function": "リアルタイム処理"
+    },
+    "benchmark_system": {
+      "name": "自動評価・ベンチマークシステム",
+      "version": "2.0.0",
+      "function": "自動評価ベンチマーク"
+    }
+  },
+  "integration_strategy": {
+    "research_focus": "WordNet-based Semantic Image Classification",
+    "target_accuracy": "90%+",
+    "session_timeline": "Session 13 (2025年6月26日)",
+    "graduation_target": "2026年2月",
+    "key_achievements": [
+      "87.1%精度達成",
+      "15ヶ月研究継続",
+      "5システム統合完了",
+      "8専門データセット活用"
+    ]
+  }
+}

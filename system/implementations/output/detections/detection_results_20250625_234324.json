@@ -1,0 +1,440 @@
+{
+  "api_version": "2.0.0",
+  "status": "success",
+  "data": {
+    "detections": {
+      "status": "success",
+      "timestamp": "2025-06-25T23:43:24.143892",
+      "processing_time": 0.874,
+      "models_used": [
+        "yolo",
+        "faster_rcnn",
+        "ssd",
+        "mask_rcnn"
+      ],
+      "total_objects": 15,
+      "category_summary": {
+        "phone": 1,
+        "person": 4,
+        "book": 1,
+        "cat": 1,
+        "vehicle": 2,
+        "animal": 2,
+        "bicycle": 1,
+        "bus": 1,
+        "object": 2
+      },
+      "integrated_detections": [
+        {
+          "object_id": "yolo_0",
+          "category": "phone",
+          "confidence": 0.986,
+          "bbox": {
+            "x": 752,
+            "y": 410,
+            "width": 126,
+            "height": 163
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_1",
+          "category": "person",
+          "confidence": 0.688,
+          "bbox": {
+            "x": 281,
+            "y": 393,
+            "width": 128,
+            "height": 117
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_2",
+          "category": "book",
+          "confidence": 0.836,
+          "bbox": {
+            "x": 11,
+            "y": 269,
+            "width": 65,
+            "height": 76
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "yolo_3",
+          "category": "cat",
+          "confidence": 0.736,
+          "bbox": {
+            "x": 277,
+            "y": 292,
+            "width": 120,
+            "height": 188
+          },
+          "model": "yolo"
+        },
+        {
+          "object_id": "faster_rcnn_0",
+          "category": "vehicle",
+          "confidence": 0.893,
+          "bbox": {
+            "x": 735,
+            "y": 273,
+            "width": 51,
+            "height": 109
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_1",
+          "category": "person",
+          "confidence": 0.745,
+          "bbox": {
+            "x": 495,
+            "y": 226,
+            "width": 65,
+            "height": 165
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_2",
+          "category": "person",
+          "confidence": 0.756,
+          "bbox": {
+            "x": 529,
+            "y": 268,
+            "width": 61,
+            "height": 65
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_3",
+          "category": "animal",
+          "confidence": 0.956,
+          "bbox": {
+            "x": 721,
+            "y": 118,
+            "width": 58,
+            "height": 111
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "faster_rcnn_4",
+          "category": "person",
+          "confidence": 0.944,
+          "bbox": {
+            "x": 226,
+            "y": 276,
+            "width": 181,
+            "height": 138
+          },
+          "model": "faster_rcnn"
+        },
+        {
+          "object_id": "ssd_0",
+          "category": "bicycle",
+          "confidence": 0.826,
+          "bbox": {
+            "x": 499,
+            "y": 541,
+            "width": 192,
+            "height": 199
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "ssd_1",
+          "category": "bus",
+          "confidence": 0.898,
+          "bbox": {
+            "x": 135,
+            "y": 569,
+            "width": 172,
+            "height": 55
+          },
+          "model": "ssd"
+        },
+        {
+          "object_id": "mask_rcnn_0",
+          "category": "vehicle",
+          "confidence": 0.724,
+          "bbox": {
+            "x": 640,
+            "y": 120,
+            "width": 155,
+            "height": 175
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_1",
+          "category": "object",
+          "confidence": 0.703,
+          "bbox": {
+            "x": 621,
+            "y": 351,
+            "width": 105,
+            "height": 100
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_2",
+          "category": "animal",
+          "confidence": 0.84,
+          "bbox": {
+            "x": 573,
+            "y": 425,
+            "width": 112,
+            "height": 191
+          },
+          "model": "mask_rcnn"
+        },
+        {
+          "object_id": "mask_rcnn_3",
+          "category": "object",
+          "confidence": 0.846,
+          "bbox": {
+            "x": 29,
+            "y": 511,
+            "width": 104,
+            "height": 162
+          },
+          "model": "mask_rcnn"
+        }
+      ],
+      "model_specific_results": {
+        "yolo": {
+          "count": 4,
+          "detections": [
+            {
+              "object_id": "yolo_0",
+              "category": "phone",
+              "confidence": 0.986,
+              "bbox": {
+                "x": 752,
+                "y": 410,
+                "width": 126,
+                "height": 163
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_1",
+              "category": "person",
+              "confidence": 0.688,
+              "bbox": {
+                "x": 281,
+                "y": 393,
+                "width": 128,
+                "height": 117
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_2",
+              "category": "book",
+              "confidence": 0.836,
+              "bbox": {
+                "x": 11,
+                "y": 269,
+                "width": 65,
+                "height": 76
+              },
+              "model": "yolo"
+            },
+            {
+              "object_id": "yolo_3",
+              "category": "cat",
+              "confidence": 0.736,
+              "bbox": {
+                "x": 277,
+                "y": 292,
+                "width": 120,
+                "height": 188
+              },
+              "model": "yolo"
+            }
+          ]
+        },
+        "faster_rcnn": {
+          "count": 5,
+          "detections": [
+            {
+              "object_id": "faster_rcnn_0",
+              "category": "vehicle",
+              "confidence": 0.893,
+              "bbox": {
+                "x": 735,
+                "y": 273,
+                "width": 51,
+                "height": 109
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_1",
+              "category": "person",
+              "confidence": 0.745,
+              "bbox": {
+                "x": 495,
+                "y": 226,
+                "width": 65,
+                "height": 165
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_2",
+              "category": "person",
+              "confidence": 0.756,
+              "bbox": {
+                "x": 529,
+                "y": 268,
+                "width": 61,
+                "height": 65
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_3",
+              "category": "animal",
+              "confidence": 0.956,
+              "bbox": {
+                "x": 721,
+                "y": 118,
+                "width": 58,
+                "height": 111
+              },
+              "model": "faster_rcnn"
+            },
+            {
+              "object_id": "faster_rcnn_4",
+              "category": "person",
+              "confidence": 0.944,
+              "bbox": {
+                "x": 226,
+                "y": 276,
+                "width": 181,
+                "height": 138
+              },
+              "model": "faster_rcnn"
+            }
+          ]
+        },
+        "ssd": {
+          "count": 2,
+          "detections": [
+            {
+              "object_id": "ssd_0",
+              "category": "bicycle",
+              "confidence": 0.826,
+              "bbox": {
+                "x": 499,
+                "y": 541,
+                "width": 192,
+                "height": 199
+              },
+              "model": "ssd"
+            },
+            {
+              "object_id": "ssd_1",
+              "category": "bus",
+              "confidence": 0.898,
+              "bbox": {
+                "x": 135,
+                "y": 569,
+                "width": 172,
+                "height": 55
+              },
+              "model": "ssd"
+            }
+          ]
+        },
+        "mask_rcnn": {
+          "count": 4,
+          "detections": [
+            {
+              "object_id": "mask_rcnn_0",
+              "category": "vehicle",
+              "confidence": 0.724,
+              "bbox": {
+                "x": 640,
+                "y": 120,
+                "width": 155,
+                "height": 175
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_1",
+              "category": "object",
+              "confidence": 0.703,
+              "bbox": {
+                "x": 621,
+                "y": 351,
+                "width": 105,
+                "height": 100
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_2",
+              "category": "animal",
+              "confidence": 0.84,
+              "bbox": {
+                "x": 573,
+                "y": 425,
+                "width": 112,
+                "height": 191
+              },
+              "model": "mask_rcnn"
+            },
+            {
+              "object_id": "mask_rcnn_3",
+              "category": "object",
+              "confidence": 0.846,
+              "bbox": {
+                "x": 29,
+                "y": 511,
+                "width": 104,
+                "height": 162
+              },
+              "model": "mask_rcnn"
+            }
+          ]
+        }
+      }
+    },
+    "quality_metrics": {
+      "average_confidence": 0.825,
+      "consensus_rate": 0.0,
+      "model_agreement": {},
+      "category_distribution": {
+        "phone": 1,
+        "person": 4,
+        "book": 1,
+        "cat": 1,
+        "vehicle": 2,
+        "animal": 2,
+        "bicycle": 1,
+        "bus": 1,
+        "object": 2
+      },
+      "detection_density": 0.3125
+    },
+    "recommendations": [
+      {
+        "type": "consensus",
+        "message": "モデル間の一致率が低いです。特定のカテゴリに特化したモデルの使用を検討してください。"
+      },
+      {
+        "type": "density",
+        "message": "検出物体が多数あります。セグメンテーションモデルの使用を推奨します。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ベンチマークレポート - 2025-06-25T23:46:40.124211</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .metric-value {
+            font-weight: bold;
+            text-align: right;
+        }
+        .best-value {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .recommendation {
+            background-color: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .chart {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 自動評価・ベンチマークレポート</h1>
+        <p><strong>実行日時:</strong> 2025年06月25日 23:46:40</p>
+        
+        <h2>📊 比較マトリクス</h2>
+
+        <h3>精度</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">84.23</td><td class="metric-value">71.75</td><td class="metric-value">89.91</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">82.18</td><td class="metric-value">81.22</td><td class="metric-value best-value">100.00</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value">79.23</td><td class="metric-value">73.59</td><td class="metric-value">83.40</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">87.41</td><td class="metric-value">75.88</td><td class="metric-value">95.95</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">88.42</td><td class="metric-value">78.56</td><td class="metric-value">94.62</td></tr></table>
+        <h3>適合率</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">0.64</td><td class="metric-value">0.46</td><td class="metric-value best-value">0.81</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">0.68</td><td class="metric-value">0.47</td><td class="metric-value">0.77</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value">0.77</td><td class="metric-value">0.49</td><td class="metric-value">0.72</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">0.65</td><td class="metric-value">0.46</td><td class="metric-value">0.80</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">0.73</td><td class="metric-value">0.47</td><td class="metric-value">0.74</td></tr></table>
+        <h3>再現率</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">0.66</td><td class="metric-value">0.47</td><td class="metric-value best-value">0.83</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">0.68</td><td class="metric-value">0.48</td><td class="metric-value">0.79</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value">0.75</td><td class="metric-value">0.52</td><td class="metric-value">0.72</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">0.64</td><td class="metric-value">0.46</td><td class="metric-value">0.80</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">0.73</td><td class="metric-value">0.47</td><td class="metric-value">0.73</td></tr></table>
+        <h3>F1スコア</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">0.65</td><td class="metric-value">0.46</td><td class="metric-value best-value">0.80</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">0.68</td><td class="metric-value">0.47</td><td class="metric-value">0.77</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value">0.75</td><td class="metric-value">0.49</td><td class="metric-value">0.72</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">0.64</td><td class="metric-value">0.45</td><td class="metric-value">0.79</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">0.72</td><td class="metric-value">0.46</td><td class="metric-value">0.73</td></tr></table>
+        <h3>処理時間 (ms)</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">55.37</td><td class="metric-value">40.85</td><td class="metric-value">44.00</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">38.62</td><td class="metric-value">42.73</td><td class="metric-value">32.77</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value best-value">22.82</td><td class="metric-value">28.73</td><td class="metric-value">27.97</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">47.57</td><td class="metric-value">36.42</td><td class="metric-value">38.12</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">72.60</td><td class="metric-value">89.03</td><td class="metric-value">81.36</td></tr></table>
+        <h3>メモリ使用量 (MB)</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">187.04</td><td class="metric-value">206.36</td><td class="metric-value">191.57</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">159.39</td><td class="metric-value">155.19</td><td class="metric-value">166.15</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value best-value">31.69</td><td class="metric-value">49.31</td><td class="metric-value">48.42</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">162.09</td><td class="metric-value">172.37</td><td class="metric-value">190.38</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">385.26</td><td class="metric-value">418.17</td><td class="metric-value">405.60</td></tr></table>
+        <h3>スループット (fps)</h3>
+        <table>
+            <tr>
+                <th>モデル</th>
+<th>COCO_subset</th><th>ImageNet_subset</th><th>Custom_dataset</th></tr><tr><td><strong>resnet50</strong></td><td class="metric-value">21.10</td><td class="metric-value">21.57</td><td class="metric-value">21.13</td></tr><tr><td><strong>efficientnet</strong></td><td class="metric-value">26.87</td><td class="metric-value">30.00</td><td class="metric-value">27.13</td></tr><tr><td><strong>mobilenet</strong></td><td class="metric-value">49.19</td><td class="metric-value">49.68</td><td class="metric-value best-value">50.75</td></tr><tr><td><strong>custom_model</strong></td><td class="metric-value">21.58</td><td class="metric-value">22.31</td><td class="metric-value">21.37</td></tr><tr><td><strong>ensemble</strong></td><td class="metric-value">10.63</td><td class="metric-value">14.31</td><td class="metric-value">13.90</td></tr></table>
+        <h2>🏅 モデル総合ランキング</h2>
+        <table>
+            <tr>
+                <th>順位</th>
+                <th>モデル</th>
+                <th>総合スコア</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td><strong>mobilenet</strong></td>
+                <td class="metric-value">0.692</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td><strong>efficientnet</strong></td>
+                <td class="metric-value">0.573</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td><strong>custom_model</strong></td>
+                <td class="metric-value">0.518</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td><strong>resnet50</strong></td>
+                <td class="metric-value">0.488</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td><strong>ensemble</strong></td>
+                <td class="metric-value">0.332</td>
+            </tr>
+
+        </table>
+        
+        <h2>💡 推奨事項</h2>
+
+        <div class="recommendation">
+            総合的に最も優れたモデルは mobilenet です
+        </div>
+
+        <div class="recommendation">
+            最速処理は mobilenet で 22.8ms です
+        </div>
+
+    </div>
+</body>
+</html>

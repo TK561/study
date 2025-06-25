@@ -1,0 +1,162 @@
+{
+  "metadata": {
+    "system": "WordNet階層可視化システム",
+    "version": "2.0.0",
+    "export_date": "2025-06-25T23:19:52.242301",
+    "total_concepts": 19,
+    "max_depth": 5
+  },
+  "hierarchy": {
+    "entity": {
+      "definition": "that which is perceived or known or inferred",
+      "children": {
+        "physical_entity": {
+          "definition": "an entity that has physical existence",
+          "children": {
+            "object": {
+              "definition": "a tangible and visible entity",
+              "children": {
+                "whole": {
+                  "definition": "an assemblage of parts",
+                  "children": {
+                    "artifact": {
+                      "definition": "a man-made object",
+                      "children": {
+                        "instrumentality": {
+                          "definition": "an artifact designed to be used"
+                        },
+                        "structure": {
+                          "definition": "a thing constructed"
+                        },
+                        "commodity": {
+                          "definition": "articles of commerce"
+                        }
+                      }
+                    },
+                    "living_thing": {
+                      "definition": "a living organism",
+                      "children": {
+                        "organism": {
+                          "definition": "a living thing that has the ability to act"
+                        },
+                        "plant": {
+                          "definition": "a living organism lacking the power of locomotion"
+                        },
+                        "animal": {
+                          "definition": "a living organism characterized by voluntary movement"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "substance": {
+              "definition": "the real physical matter",
+              "children": {
+                "matter": {
+                  "definition": "that which has mass and occupies space"
+                },
+                "food": {
+                  "definition": "any substance that can be metabolized"
+                }
+              }
+            }
+          }
+        },
+        "abstraction": {
+          "definition": "a general concept formed by extracting common features",
+          "children": {
+            "attribute": {
+              "definition": "an abstraction belonging to or characteristic of an entity"
+            },
+            "measure": {
+              "definition": "a basis for comparison"
+            },
+            "relation": {
+              "definition": "an abstraction belonging to or characteristic of two entities"
+            }
+          }
+        }
+      }
+    }
+  },
+  "concepts": [
+    {
+      "name": "entity",
+      "definition": "that which is perceived or known or inferred"
+    },
+    {
+      "name": "physical_entity",
+      "definition": "an entity that has physical existence"
+    },
+    {
+      "name": "object",
+      "definition": "a tangible and visible entity"
+    },
+    {
+      "name": "whole",
+      "definition": "an assemblage of parts"
+    },
+    {
+      "name": "artifact",
+      "definition": "a man-made object"
+    },
+    {
+      "name": "instrumentality",
+      "definition": "an artifact designed to be used"
+    },
+    {
+      "name": "structure",
+      "definition": "a thing constructed"
+    },
+    {
+      "name": "commodity",
+      "definition": "articles of commerce"
+    },
+    {
+      "name": "living_thing",
+      "definition": "a living organism"
+    },
+    {
+      "name": "organism",
+      "definition": "a living thing that has the ability to act"
+    },
+    {
+      "name": "plant",
+      "definition": "a living organism lacking the power of locomotion"
+    },
+    {
+      "name": "animal",
+      "definition": "a living organism characterized by voluntary movement"
+    },
+    {
+      "name": "substance",
+      "definition": "the real physical matter"
+    },
+    {
+      "name": "matter",
+      "definition": "that which has mass and occupies space"
+    },
+    {
+      "name": "food",
+      "definition": "any substance that can be metabolized"
+    },
+    {
+      "name": "abstraction",
+      "definition": "a general concept formed by extracting common features"
+    },
+    {
+      "name": "attribute",
+      "definition": "an abstraction belonging to or characteristic of an entity"
+    },
+    {
+      "name": "measure",
+      "definition": "a basis for comparison"
+    },
+    {
+      "name": "relation",
+      "definition": "an abstraction belonging to or characteristic of two entities"
+    }
+  ]
+}
