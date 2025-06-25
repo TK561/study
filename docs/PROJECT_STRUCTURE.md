@@ -1,141 +1,157 @@
-# プロジェクト構造
+# プロジェクト構造 - 最適化後
 
-最終更新: 2025年6月24日
+最終更新: 2025年6月25日（包括的整理後）
 
-## 📁 ディレクトリ構造
+## 📂 ディレクトリ構造（最適化後）
 
 ```
 /mnt/c/Desktop/Research/
-├── 📁 core/                     # コアシステム
-│   ├── vercel_deploy.py         # 統合Vercelデプロイシステム
-│   ├── research_manager.py      # 統合研究データ管理（作成予定）
-│   ├── session_manager.py       # 統合セッション管理（作成予定）
-│   └── auto_master.py           # マスター自動化システム（作成予定）
+├── CLAUDE.md                          # Claude Code設定・指示
+├── README.md                          # プロジェクト概要
+├── package.json                       # Node.js依存関係
+├── requirements.txt                   # Python依存関係
+├── vercel.json                        # Vercelデプロイ設定
 │
-├── 📁 automation/               # 自動化スクリプト
-│   ├── git_auto.py             # Git自動管理
-│   ├── backup_auto.py          # バックアップ自動化
-│   ├── monitor_auto.py         # 監視自動化
-│   └── startup scripts         # 起動スクリプト
+├── 📁 system/                         # コアシステム（7ファイル）
+│   ├── auto_cleanup.py               # 自動整理システム
+│   ├── auto_update_system.py         # 自動更新システム
+│   ├── cleanup_plan.py               # 整理計画システム
+│   ├── comprehensive_cleanup.py      # 包括的整理システム
+│   ├── gemini_integration.py         # Gemini AI統合
+│   ├── session_save_protocol.py      # セッション保存プロトコル
+│   └── setup_auto_update.py          # 自動更新セットアップ
 │
-├── 📁 study/                    # 研究本体
-│   ├── analysis/               # 分析結果
-│   ├── research_content/       # 研究コンテンツ
-│   ├── research_discussions/   # ディスカッション記録
-│   └── reports/                # レポート
+├── 📁 docs/                           # ドキュメント（4ファイル）
+│   ├── AUTO_UPDATE_GUIDE.md          # 自動更新ガイド
+│   ├── COMPREHENSIVE_CLEANUP_REPORT.md # 包括整理レポート
+│   ├── PROJECT_STRUCTURE.md          # プロジェクト構造（このファイル）
+│   └── SESSION_SAVE_GUIDE.md         # セッション保存ガイド
 │
-├── 📁 discussion-site/          # ディスカッションサイト
-│   └── index.html              # ディスカッション記録ページ
+├── 📁 sessions/                       # セッション記録（2ファイル）
+│   ├── daily_session_2025-06-25.md   # 日次セッション記録
+│   └── COMPLETE_SESSION_SUMMARY_2025-06-25.md # 包括セッション記録
 │
-├── 📁 docs/                     # ドキュメント
-│   ├── guides/                 # ガイド文書
-│   │   ├── Vercel関連ガイド
-│   │   ├── システムガイド
-│   │   └── クイックスタート
-│   ├── archives/               # アーカイブ済みドキュメント
-│   └── PROJECT_STRUCTURE.md    # このファイル
+├── 📁 ai_analysis/                    # AI分析結果（2ファイル）
+│   ├── gemini_analysis_chat_*.md     # Gemini対話結果
+│   └── gemini_analysis_progress_*.md # Gemini進捗分析
 │
-├── 📁 config/                   # 設定ファイル
-│   ├── vercel.json
-│   ├── system_config.json
-│   └── 各種設定ファイル
+├── 📁 public/                         # Web公開ファイル
+│   ├── discussion-site/              # 研究ディスカッションサイト
+│   │   ├── index.html               # メインHTML（3タブシステム）
+│   │   └── index_old.html           # 旧バージョン
+│   ├── main-system/                  # メインシステム
+│   │   └── index.html               # システムHTML
+│   └── index.html                    # ルートHTML
 │
-├── 📁 logs/                     # ログファイル
-│   ├── deployment/             # デプロイメントログ
-│   ├── system/                 # システムログ
-│   └── archives/               # アーカイブ済みログ
+├── 📁 tools/                          # 最小限ツール（3ファイル）
+│   ├── direct_vercel_deploy.py       # 直接Vercelデプロイ
+│   ├── research_analysis_system.py   # 研究分析システム
+│   └── vercel_quick_deploy.sh        # クイックデプロイスクリプト
 │
-├── 📁 backup/                   # バックアップ
-│   ├── .claude_sessions/       # Claudeセッション
-│   └── .vercel_backups/        # Vercelバックアップ
+├── 📁 study/                          # 研究内容（Git submodule）
+│   ├── early_development/            # 第0-2回初期開発
+│   ├── research_discussions/         # 研究ディスカッション記録
+│   ├── analysis_reports/             # 分析レポート
+│   └── research_content/             # 研究実装コード
 │
-├── 📁 public/                   # 公開ファイル
-│   └── index.html              # メインサイト
-│
-├── 📁 _deprecated/              # 非推奨・削除予定
-│   ├── old_scripts/            # 古いスクリプト
-│   └── demo_files/             # デモファイル
-│
-├── index.html                   # ルートのメインページ
-├── vercel.json                  # Vercel設定
-├── README.md                    # プロジェクト概要
-├── CLAUDE.md                    # Claude設定
-└── requirements.txt             # Python依存関係
+└── 📁 comprehensive_cleanup_backup/   # 整理済みファイル保管
+    ├── previous_temp_backup/         # 前回整理分
+    ├── tools/                        # 移動済みツール（14ファイル）
+    ├── old_reports/                  # 古いレポート
+    └── archive/                      # アーカイブ
 ```
 
-## 🔧 主要ファイルの説明
+## 🎯 各ディレクトリの役割
 
-### コアシステム (`core/`)
-- **vercel_deploy.py**: 全てのVercelデプロイ機能を統合
-  - 自動デプロイ（Git経由）
-  - APIデプロイ
-  - 手動デプロイガイド
+### ルートファイル
+- **CLAUDE.md**: プロジェクト全体の設定・指示
+- **README.md**: プロジェクト概要・使用方法
+- **設定ファイル**: package.json, requirements.txt, vercel.json
 
-### 自動化システム (`automation/`)
-- Git操作、バックアップ、監視の自動化スクリプト
-- 起動時の自動実行設定
+### system/
+研究プロジェクトのコアシステム
+- **自動更新・整理システム**: auto_update_system.py, comprehensive_cleanup.py
+- **AI統合・分析システム**: gemini_integration.py
+- **セッション管理システム**: session_save_protocol.py
 
-### 研究コンテンツ (`study/`)
-- 研究の本体部分
-- 分析結果、実験データ、レポート
+### docs/
+プロジェクト関連ドキュメント
+- **システム使用ガイド**: AUTO_UPDATE_GUIDE.md, SESSION_SAVE_GUIDE.md
+- **プロジェクト構造説明**: PROJECT_STRUCTURE.md
+- **整理・保存プロトコル**: COMPREHENSIVE_CLEANUP_REPORT.md
 
-### ドキュメント (`docs/`)
-- プロジェクトのガイドとドキュメント
-- アーカイブされた作業記録
+### sessions/
+セッション記録・作業履歴
+- **日次作業記録**: daily_session_*.md
+- **包括的セッション記録**: COMPLETE_SESSION_SUMMARY_*.md
+
+### public/
+Web公開サイト
+- **研究ディスカッションサイト**: discussion-site/（3タブシステム）
+- **メインシステム**: main-system/
+
+### tools/
+最小限の実用ツール
+- **Vercelデプロイ**: direct_vercel_deploy.py, vercel_quick_deploy.sh
+- **研究分析**: research_analysis_system.py
+
+### study/
+研究内容（Git submodule）
+- **初期開発**: early_development/（第0-2回ファイル）
+- **研究実装・分析**: research_content/, analysis_reports/
+- **ディスカッション記録**: research_discussions/
 
 ## 🚀 使い方
 
-### Vercelデプロイ
+### 自動更新システム
 ```bash
-# 自動デプロイ（推奨）
-python core/vercel_deploy.py auto
+# 研究記録更新時の自動同期
+python3 system/auto_update_system.py monitor
 
-# APIデプロイ
-python core/vercel_deploy.py api
-
-# 手動デプロイ
-python core/vercel_deploy.py manual
+# VS Code: Ctrl+Shift+P > Tasks: Run Task > Discussion: Check Updates
 ```
 
-### 研究データ管理
+### Gemini AI統合
 ```bash
-# 研究データの管理（作成予定）
-python core/research_manager.py
+# 研究進捗分析
+python3 system/gemini_integration.py progress
+
+# 対話形式質問
+python3 system/gemini_integration.py chat "質問内容"
 ```
 
-### セッション管理
+### セッション保存
 ```bash
-# セッションの保存と復元（作成予定）
-python core/session_manager.py
+# 包括的セッション保存（トリガー: "今日の内容を保存"）
+python3 system/session_save_protocol.py
 ```
 
-## 📝 メンテナンス
+### プロジェクト整理
+```bash
+# 包括的プロジェクト整理
+python3 system/comprehensive_cleanup.py
+```
 
-### 定期的なクリーンアップ
-1. `_deprecated/` フォルダの古いファイルを定期的に削除
-2. `logs/archives/` の古いログを圧縮または削除
-3. `backup/` の古いバックアップを整理
+## 🔄 整理履歴
 
-### 新規ファイルの追加
-- 機能別に適切なディレクトリに配置
-- 重複機能がないか確認
-- ドキュメントを更新
+### 2025年6月25日 - 包括的整理
+- **17項目移動**: tools/, archive/, 重複ファイル
+- **構造最適化**: 機能別フォルダ分類
+- **バックアップ**: comprehensive_cleanup_backup/に安全保管
 
-## 🔄 移行状況
+### 効果
+- **構造明確化**: 機能別の明確な役割分担
+- **保守性向上**: 必要ファイルの特定容易
+- **効率向上**: ファイル検索時間短縮
 
-### 完了
-- ✅ ディレクトリ構造の作成
-- ✅ デモファイルの移動
-- ✅ 日付付きドキュメントのアーカイブ
-- ✅ Vercelスクリプトの統合（一部）
-- ✅ ガイド文書の整理
+## ⚠️ 注意事項
 
-### 進行中
-- 🔄 研究データ管理システムの統合
-- 🔄 セッション管理システムの統合
-- 🔄 自動化システムの整理
+### バックアップ管理
+- **comprehensive_cleanup_backup/**: 1週間後削除検討
+- **復元可能**: 必要時は手動復元
+- **Git管理**: .gitignore でバックアップ除外
 
-### 予定
-- ⏳ 重複ファイルの完全削除
-- ⏳ 設定ファイルの統合
-- ⏳ テストとドキュメントの更新
+### 継続保守
+- **定期整理**: 1ヶ月後に再整理推奨
+- **自動システム**: system/ 内のツールで自動化
+- **Git管理**: 重要変更は適切にコミット
