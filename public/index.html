@@ -22,10 +22,16 @@
         /* ページ読み込み時に確実にトップから開始 */
         html, body {
             scroll-behavior: auto !important;
+            scroll-restoration: manual !important;
         }
         
         html {
             scroll-top: 0 !important;
+        }
+        
+        /* ブラウザのスクロール復元を無効化 */
+        * {
+            scroll-restoration: manual !important;
         }
 
         .container {
@@ -306,23 +312,42 @@
         }
 
         // 即座にページトップへスクロール（最優先）
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
+        function forceScrollToTop() {
+            // 複数の方法でページトップへ強制移動
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            
+            // さらに確実にするため
+            if (window.pageYOffset !== 0) {
+                window.pageYOffset = 0;
+            }
+            if (window.scrollY !== 0) {
+                window.scrollY = 0;
+            }
+            
+            console.log('🔝 Force scroll to top executed');
+        }
+
+        // ページ読み込み前に即座実行
+        forceScrollToTop();
 
         // ページ読み込み時のアニメーション
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('📋 DOM Content Loaded - executing scroll');
+            
             // ページトップへスクロール（確実に実行）
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+            forceScrollToTop();
+            
+            // 少し遅延してもう一度実行
+            setTimeout(forceScrollToTop, 10);
+            setTimeout(forceScrollToTop, 50);
+            setTimeout(forceScrollToTop, 100);
             
             // 最終更新日時を設定
             updateLastUpdateTime();
             
+            // カードアニメーション（ページスクロールとは別）
             const cards = document.querySelectorAll('.project-card');
             cards.forEach((card, index) => {
                 card.style.opacity = '0';
@@ -337,30 +362,27 @@
 
         // ページ完全読み込み時にもスクロール
         window.addEventListener('load', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+            console.log('🔄 Window loaded - executing scroll');
+            forceScrollToTop();
+            setTimeout(forceScrollToTop, 100);
         });
 
         // ページフォーカス時にもスクロール（タブ切り替え等）
         window.addEventListener('focus', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
+            console.log('👁️ Window focused - executing scroll');
+            forceScrollToTop();
         });
 
         // ページ表示時にもスクロール（ブラウザバック等）
         window.addEventListener('pageshow', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'instant'
-            });
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
+            console.log('📄 Page shown - executing scroll');
+            forceScrollToTop();
+            setTimeout(forceScrollToTop, 50);
+        });
+
+        // ページ離脱時のスクロール位置リセット
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
         });
 
         // ページトップへのスクロール関数
