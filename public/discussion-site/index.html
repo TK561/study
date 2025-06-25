@@ -102,7 +102,7 @@
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
         .tab-content {
-            display: none;
+            display: none !important;
             padding: 20px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -110,9 +110,9 @@
             min-height: 200px;
         }
         .tab-content.active {
-            display: block;
-            opacity: 1;
-            visibility: visible;
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -1632,6 +1632,11 @@
                 targetTab.style.opacity = '1';
                 targetTab.classList.add('active');
                 
+                // 追加の確実な表示設定
+                targetTab.style.setProperty('display', 'block', 'important');
+                targetTab.style.setProperty('visibility', 'visible', 'important');
+                targetTab.style.setProperty('opacity', '1', 'important');
+                
                 console.log('✅ Tab displayed:', tabId);
                 console.log('📄 Content length:', targetTab.innerHTML.length);
                 
@@ -1656,6 +1661,18 @@
         // ページロード時の処理（URLハッシュ対応改善版）
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM Content Loaded - Initializing tabs');
+            
+            // 強制的に全タブを非表示にして初期化
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.style.display = 'none';
+                tab.classList.remove('active');
+            });
+            
+            const allButtons = document.querySelectorAll('.tab-button');
+            allButtons.forEach(button => {
+                button.classList.remove('active');
+            });
             
             // デバッグ情報
             const tabContents = document.querySelectorAll('.tab-content');
