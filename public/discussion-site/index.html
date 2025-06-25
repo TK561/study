@@ -115,6 +115,8 @@
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
+            position: relative !important;
+            z-index: 1 !important;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -298,14 +300,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        /* 確実に表示されるための追加スタイル */
-        .tab-content.active {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            position: relative !important;
-            z-index: 1 !important;
-        }
+        /* 確実に表示されるための追加スタイル（重複削除済み） */
         
         /* numbered-item, bullet-item, checklist-item スタイル */
         .numbered-item {
@@ -1649,19 +1644,33 @@
                     selectedTab.style.display = 'block';
                     selectedTab.style.opacity = '1';
                     selectedTab.style.visibility = 'visible';
+                    selectedTab.style.position = 'relative';
+                    selectedTab.style.zIndex = '1';
                     
                     console.log('✅ Tab activated:', tabId);
                     console.log('📄 Tab content length:', selectedTab.innerHTML.length);
+                    console.log('🎨 Tab computed display:', window.getComputedStyle(selectedTab).display);
+                    console.log('👁️ Tab computed visibility:', window.getComputedStyle(selectedTab).visibility);
                     
                     // 確実に表示されるまで複数回チェック
                     let checkCount = 0;
                     const ensureVisible = () => {
-                        if (checkCount < 5) {
+                        if (checkCount < 10) {
                             selectedTab.style.display = 'block';
                             selectedTab.style.opacity = '1';
                             selectedTab.style.visibility = 'visible';
+                            selectedTab.style.position = 'relative';
+                            selectedTab.style.zIndex = '1';
+                            
+                            // 親要素も確認
+                            let parent = selectedTab.parentElement;
+                            while (parent && parent !== document.body) {
+                                parent.style.display = parent.style.display || 'block';
+                                parent = parent.parentElement;
+                            }
+                            
                             checkCount++;
-                            setTimeout(ensureVisible, 20);
+                            setTimeout(ensureVisible, 30);
                         }
                     };
                     ensureVisible();
