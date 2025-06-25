@@ -298,15 +298,11 @@
 
         // ページ読み込み時のアニメーション
         document.addEventListener('DOMContentLoaded', function() {
-            // ページトップへスクロール（リンクから来た場合）
-            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'instant'
-                    });
-                }, 50);
-            }
+            // ページトップへスクロール（すべての場合）
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
             
             // 最終更新日時を設定
             updateLastUpdateTime();
@@ -320,6 +316,14 @@
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, index * 200);
+            });
+        });
+
+        // ページ完全読み込み時にもスクロール
+        window.addEventListener('load', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
             });
         });
 
