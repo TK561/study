@@ -102,7 +102,7 @@
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
         .tab-content {
-            display: none !important;
+            display: none;
             padding: 20px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -110,9 +110,13 @@
             min-height: 200px;
         }
         .tab-content.active {
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Vercel対応: 初期表示用 */
+        .tab-content#overview-tab {
+            display: block;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -1607,130 +1611,59 @@
     </div>
 
     <script>
-        // 超強固なタブ機能 - 確実に動作する版
+        // Vercel完全対応タブシステム - 最もシンプルで確実
         function showTab(tabId) {
-            console.log('🔄 showTab called with:', tabId);
+            console.log('🔄 TabSwitch:', tabId);
             
-            // 全てのタブを強制非表示
-            const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                // 複数の方法で確実に非表示
-                tab.style.display = 'none';
-                tab.style.visibility = 'hidden';
-                tab.style.opacity = '0';
-                tab.classList.remove('active');
-                tab.style.setProperty('display', 'none', 'important');
-                tab.style.setProperty('visibility', 'hidden', 'important');
-                tab.style.setProperty('opacity', '0', 'important');
+            // 全てのタブを非表示
+            const tabs = ['overview-tab', 'timeline', 'analysis', 'summary', 'next-directions', 'ai-discussion'];
+            tabs.forEach(id => {
+                const tab = document.getElementById(id);
+                if (tab) {
+                    tab.style.display = 'none';
+                    tab.classList.remove('active');
+                }
             });
             
             // 全てのボタンを非アクティブ
-            const allButtons = document.querySelectorAll('.tab-button');
-            allButtons.forEach(button => {
-                button.classList.remove('active');
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
             });
             
-            // 選択されたタブを強制表示
+            // 指定タブを表示
             const targetTab = document.getElementById(tabId);
             if (targetTab) {
-                // 複数の方法で確実に表示
-                targetTab.style.setProperty('display', 'block', 'important');
-                targetTab.style.setProperty('visibility', 'visible', 'important');
-                targetTab.style.setProperty('opacity', '1', 'important');
-                targetTab.style.setProperty('position', 'relative', 'important');
-                targetTab.style.setProperty('z-index', '1', 'important');
-                
+                targetTab.style.display = 'block';
                 targetTab.classList.add('active');
                 
-                // さらなる確実性のために遅延実行
-                setTimeout(() => {
-                    targetTab.style.setProperty('display', 'block', 'important');
-                    targetTab.style.setProperty('visibility', 'visible', 'important');
-                    targetTab.style.setProperty('opacity', '1', 'important');
-                }, 10);
-                
-                console.log('✅ Tab displayed:', tabId);
-                console.log('📄 Content length:', targetTab.innerHTML.length);
-                console.log('📊 Final display style:', window.getComputedStyle(targetTab).display);
-                console.log('👁️ Final visibility style:', window.getComputedStyle(targetTab).visibility);
-                
-                // 対応するボタンをアクティブ化
-                const buttons = document.querySelectorAll('.tab-button');
-                buttons.forEach(button => {
-                    const onclick = button.getAttribute('onclick');
-                    if (onclick && onclick.includes(tabId)) {
-                        button.classList.add('active');
+                // 対応ボタンをアクティブ
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+                        btn.classList.add('active');
                     }
                 });
                 
-                // URL更新
-                window.location.hash = tabId;
+                console.log('✅ Displayed:', tabId);
             } else {
                 console.error('❌ Tab not found:', tabId);
-                const availableIds = Array.from(allTabs).map(t => t.id);
-                console.log('Available tabs:', availableIds);
             }
         }
         
-        // 超強固な初期化処理
+        // Vercel対応 - シンプルで確実な初期化
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 DOM Content Loaded - 超強固タブ初期化開始');
-            
-            // 強制的に全タブを非表示にして初期化
-            const allTabs = document.querySelectorAll('.tab-content');
-            console.log('📋 Found tabs:', allTabs.length);
-            
-            allTabs.forEach((tab, index) => {
-                console.log(`Tab ${index}:`, tab.id);
-                tab.style.setProperty('display', 'none', 'important');
-                tab.style.setProperty('visibility', 'hidden', 'important');
-                tab.style.setProperty('opacity', '0', 'important');
-                tab.classList.remove('active');
-            });
-            
-            const allButtons = document.querySelectorAll('.tab-button');
-            console.log('🔘 Found buttons:', allButtons.length);
-            
-            allButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // デバッグ情報
-            const tabContents = document.querySelectorAll('.tab-content');
-            const tabButtons = document.querySelectorAll('.tab-button');
-            console.log('Found', tabContents.length, 'tab contents');
-            console.log('Found', tabButtons.length, 'tab buttons');
-            
-            // 全てのタブIDを表示（デバッグ用）
-            tabContents.forEach(tab => {
-                console.log('Tab found:', tab.id);
-            });
+            console.log('🚀 Vercel Tab Init');
             
             // URLハッシュから初期タブを決定
             let initialTab = 'overview-tab';
             const hash = window.location.hash.substr(1);
-            console.log('URL hash:', hash);
-            
             if (hash && document.getElementById(hash)) {
                 initialTab = hash;
-                console.log('Using hash tab:', initialTab);
             }
             
-            // 初期化：指定されたタブを強制表示
-            console.log('🎯 初期タブ表示:', initialTab);
+            // 初期タブ表示
             showTab(initialTab);
             
-            // 追加の確実性のために遅延実行
-            setTimeout(() => {
-                console.log('🔄 遅延実行でタブ再表示:', initialTab);
-                showTab(initialTab);
-            }, 100);
-            
-            // さらに確実にするため追加遅延
-            setTimeout(() => {
-                console.log('🔄 最終確認でタブ再表示:', initialTab);
-                showTab(initialTab);
-            }, 500);
+            console.log('📋 Tabs Ready - Initial:', initialTab);
             
             // ページトップへスクロール（リンクから来た場合、タブ表示後に実行）
             if (document.referrer && !document.referrer.includes(window.location.pathname)) {
