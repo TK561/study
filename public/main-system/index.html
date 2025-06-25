@@ -547,6 +547,16 @@
         
         // ページロード時の処理
         document.addEventListener('DOMContentLoaded', function() {
+            // ページトップへスクロール（リンクから来た場合）
+            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'instant'
+                    });
+                }, 50);
+            }
+            
             // URLハッシュに基づいてタブを表示
             const hash = window.location.hash.substr(1);
             if (hash && document.getElementById(hash)) {

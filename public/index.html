@@ -298,6 +298,16 @@
 
         // ページ読み込み時のアニメーション
         document.addEventListener('DOMContentLoaded', function() {
+            // ページトップへスクロール（リンクから来た場合）
+            if (document.referrer && !document.referrer.includes(window.location.pathname)) {
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'instant'
+                    });
+                }, 50);
+            }
+            
             // 最終更新日時を設定
             updateLastUpdateTime();
             
