@@ -181,6 +181,7 @@
                 <div class="tab-nav">
                     <button class="tab-button active" onclick="showTab('records')">📋 記録</button>
                     <button class="tab-button" onclick="showTab('next-meeting')">📅 次回</button>
+                    <button class="tab-button" onclick="showTab('goals')">🎯 目標</button>
                 </div>
 
                 <!-- 記録タブ -->
@@ -509,18 +510,155 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- 目標タブ -->
+                <div id="goals" class="tab-content">
+                    <h2>🎯 研究目標・発表計画</h2>
+                    <p style="text-align: center; color: #667eea; font-weight: 600; margin-bottom: 30px;">
+                        📊 中間発表・卒業発表に向けた戦略的ロードマップ 📊
+                    </p>
+                    
+                    <div class="section">
+                        <h3>🏆 中間発表（2025年8月下旬）</h3>
+                        <div class="result-box">
+                            <h4>📋 発表目標・成果アピール</h4>
+                            <ul>
+                                <li><strong>技術的成果</strong>: 精度87.1%（27.3%向上）の詳細分析発表</li>
+                                <li><strong>独創性アピール</strong>: WordNet階層システム×動的データセット選択の革新性</li>
+                                <li><strong>システム実演</strong>: リアルタイム画像分類デモンストレーション</li>
+                                <li><strong>学術的価値</strong>: 5段階技術発展プロセスの体系的説明</li>
+                                <li><strong>実用化アピール</strong>: クラウド対応完了・Webシステム稼働中</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>📊 発表構成（15分発表想定）</h4>
+                            <ul>
+                                <li><strong>導入（2分）</strong>: 研究背景・従来手法の課題・研究目的</li>
+                                <li><strong>提案手法（5分）</strong>: WordNet階層活用・動的カテゴリ選択・AI技術統合</li>
+                                <li><strong>実験結果（4分）</strong>: 精度向上・比較実験・アブレーション研究</li>
+                                <li><strong>デモ（2分）</strong>: システム実演・ユーザビリティ</li>
+                                <li><strong>今後の展開（2分）</strong>: 論文投稿・実用化・拡張計画</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>🔬 準備すべき資料（8月上旬までに完成）</h4>
+                            <ul>
+                                <li>[ ] <strong>発表スライド</strong>: 20-25枚の視覚的で分かりやすい構成</li>
+                                <li>[ ] <strong>デモ動画</strong>: 3-5分の完全自動化処理実演</li>
+                                <li>[ ] <strong>技術詳細資料</strong>: アーキテクチャ図・フローチャート</li>
+                                <li>[ ] <strong>実験データ集</strong>: 統計的有意性・比較結果・エラー分析</li>
+                                <li>[ ] <strong>質疑応答準備</strong>: 想定質問30項目＋回答案</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>⭐ 期待される評価ポイント</h4>
+                            <ul>
+                                <li><strong>技術的先進性</strong>: 複数AI技術の有機的統合による相乗効果</li>
+                                <li><strong>実用性</strong>: エンドツーエンド自動処理＋クラウド対応</li>
+                                <li><strong>学術貢献</strong>: 新規手法の提案と定量的性能実証</li>
+                                <li><strong>継続性</strong>: 15ヶ月の段階的発展による堅牢な研究プロセス</li>
+                                <li><strong>将来性</strong>: 産業応用可能性と拡張性</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>🎓 卒業発表（2026年2月下旬）</h3>
+                        <div class="result-box">
+                            <h4>🏆 最終成果目標</h4>
+                            <ul>
+                                <li><strong>精度目標</strong>: 90%以上達成（追加研究による更なる向上）</li>
+                                <li><strong>学術発表</strong>: 国際会議採択・論文掲載完了</li>
+                                <li><strong>実用化実績</strong>: 産業界での実証実験・フィードバック収集</li>
+                                <li><strong>知的財産</strong>: 特許出願完了・ライセンス戦略確立</li>
+                                <li><strong>後続研究</strong>: 次世代システムの基盤設計完了</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>📚 追加研究計画（2025年9月-2026年2月）</h4>
+                            <ul>
+                                <li><strong>性能最適化</strong>: 処理速度30%向上・メモリ効率化</li>
+                                <li><strong>汎化性能向上</strong>: 新規ドメインでの適応性確認</li>
+                                <li><strong>ロバスト性強化</strong>: ノイズ・歪み・照明変化への対応</li>
+                                <li><strong>スケーラビリティ</strong>: 大規模データセットでの動作確認</li>
+                                <li><strong>ユーザビリティ</strong>: UI/UX改善・使いやすさ向上</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>📖 卒業論文構成（想定100-120ページ）</h4>
+                            <ul>
+                                <li><strong>第1章</strong>: 序論（研究背景・目的・貢献・論文構成）</li>
+                                <li><strong>第2章</strong>: 関連研究（画像分類・WordNet活用・AI技術統合）</li>
+                                <li><strong>第3章</strong>: 提案手法（システム設計・アルゴリズム詳細）</li>
+                                <li><strong>第4章</strong>: 実装（技術選択・アーキテクチャ・開発過程）</li>
+                                <li><strong>第5章</strong>: 実験・評価（性能測定・比較・統計分析）</li>
+                                <li><strong>第6章</strong>: 考察（成果分析・限界・改善方向性）</li>
+                                <li><strong>第7章</strong>: 結論（貢献まとめ・今後の展開）</li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>🌟 学術的インパクト目標</h4>
+                            <ul>
+                                <li><strong>国際会議</strong>: CVPR/ICCV/NeurIPS等トップ会議採択</li>
+                                <li><strong>ジャーナル論文</strong>: IEEE Transactions等への投稿・掲載</li>
+                                <li><strong>引用実績</strong>: 他研究での参照・手法活用</li>
+                                <li><strong>産業応用</strong>: 企業での実装・商用化検討</li>
+                                <li><strong>教育活用</strong>: 教材・事例研究としての活用</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>📅 詳細スケジュール</h3>
+                        <div class="result-box">
+                            <h4>🗓️ 2025年7-8月（中間発表準備期間）</h4>
+                            <ul>
+                                <li><strong>7月上旬</strong>: 発表資料作成開始・デモシステム完成度向上</li>
+                                <li><strong>7月中旬</strong>: 実験データ追加収集・統計分析強化</li>
+                                <li><strong>7月下旬</strong>: 発表練習・質疑応答準備・資料最終調整</li>
+                                <li><strong>8月上旬</strong>: 最終リハーサル・フィードバック反映</li>
+                                <li><strong>8月下旬</strong>: <strong>中間発表実施</strong></li>
+                            </ul>
+                        </div>
+                        <div class="result-box">
+                            <h4>📚 2025年9月-2026年2月（最終研究期間）</h4>
+                            <ul>
+                                <li><strong>9-10月</strong>: 中間発表フィードバック反映・追加研究計画実行</li>
+                                <li><strong>11-12月</strong>: 論文執筆・国際会議投稿・特許出願</li>
+                                <li><strong>1月</strong>: 卒業論文執筆・最終実験・システム完成</li>
+                                <li><strong>2月上旬</strong>: 発表準備・論文最終提出</li>
+                                <li><strong>2月下旬</strong>: <strong>卒業発表実施</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1)); border-left: 6px solid #ff8c00;">
+                        <h3>🚀 戦略的ポイント</h3>
+                        <div class="result-box">
+                            <h4>💡 差別化戦略</h4>
+                            <ul>
+                                <li><strong>独自性強調</strong>: WordNet階層×動的選択の先駆性</li>
+                                <li><strong>実用性アピール</strong>: クラウド対応・リアルタイム処理</li>
+                                <li><strong>継続性示威</strong>: 15ヶ月の体系的研究開発</li>
+                                <li><strong>拡張性提示</strong>: 多分野応用可能性</li>
+                                <li><strong>産業連携</strong>: 実証実験・フィードバック活用</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 2タブ専用システム - 超シンプル
+        // 3タブシステム - 記録・次回・目標
         function showTab(tabId) {
             console.log('🔄 タブ切り替え:', tabId);
             
-            // 両方のタブを非表示
+            // 全てのタブを非表示
             document.getElementById('records').style.display = 'none';
             document.getElementById('next-meeting').style.display = 'none';
+            document.getElementById('goals').style.display = 'none';
             
             // 全ボタンを非アクティブ
             document.querySelectorAll('.tab-button').forEach(btn => {
@@ -544,9 +682,9 @@
             }
         }
         
-        // 2タブ初期化
+        // 3タブ初期化
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 2タブシステム初期化');
+            console.log('🚀 3タブシステム初期化');
             
             // デフォルトで記録タブを表示
             showTab('records');
