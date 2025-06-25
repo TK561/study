@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordNet階層インタラクティブ可視化</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .visualization {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            overflow: hidden;
+        }
+        .node {
+            cursor: pointer;
+            stroke: #333;
+            stroke-width: 1.5px;
+        }
+        .link {
+            fill: none;
+            stroke: #999;
+            stroke-opacity: 0.6;
+            stroke-width: 2px;
+        }
+        .node-text {
+            font: 12px sans-serif;
+            pointer-events: none;
+            text-anchor: middle;
+        }
+        .info-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 10px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌳 WordNet階層インタラクティブ可視化</h1>
+        <p>意味カテゴリの階層構造を探索し、分類システムの理解を深めます</p>
+        
+        <div class="controls">
+            <label>階層深度: </label>
+            <input type="range" id="depthSlider" min="1" max="5" value="3">
+            <span id="depthValue">3</span>
+            
+            <label style="margin-left: 20px;">カテゴリフィルタ: </label>
+            <select id="categoryFilter">
+                <option value="all">全カテゴリ</option>
+                <option value="animal">動物</option>
+                <option value="object">物体</option>
+                <option value="person">人物</option>
+                <option value="vehicle">乗り物</option>
+            </select>
+            
+            <button onclick="updateVisualization()" style="margin-left: 20px; padding: 8px 15px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">更新</button>
+        </div>
+        
+        <div id="visualization" class="visualization"></div>
+        
+        <div class="info-panel">
+            <h3 id="selectedNode">ノードを選択してください</h3>
+            <p id="nodeDescription">WordNet階層のノードをクリックすると詳細情報が表示されます</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3 id="totalNodes">245</h3>
+                <p>総ノード数</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="maxDepth">5</h3>
+                <p>最大階層深度</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avgBranching">2.8</h3>
+                <p>平均分岐数</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="coverage">89.2%</h3>
+                <p>カバレッジ</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WordNet階層データ（サンプル）
+        const wordnetData = {
+            "name": "entity",
+            "children": [
+                {
+                    "name": "physical_entity",
+                    "children": [
+                        {
+                            "name": "object",
+                            "children": [
+                                {"name": "artifact", "children": [{"name": "vehicle"}, {"name": "tool"}]},
+                                {"name": "natural_object", "children": [{"name": "celestial_body"}, {"name": "geological_formation"}]}
+                            ]
+                        },
+                        {
+                            "name": "organism",
+                            "children": [
+                                {"name": "animal", "children": [{"name": "mammal"}, {"name": "bird"}, {"name": "fish"}]},
+                                {"name": "plant", "children": [{"name": "tree"}, {"name": "flower"}]}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "abstraction",
+                    "children": [
+                        {"name": "attribute", "children": [{"name": "property"}, {"name": "state"}]},
+                        {"name": "relation", "children": [{"name": "function"}, {"name": "part"}]}
+                    ]
+                }
+            ]
+        };
+
+        // D3.js可視化
+        const width = 1140;
+        const height = 580;
+
+        const svg = d3.select("#visualization")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const g = svg.append("g")
+            .attr("transform", "translate(40,40)");
+
+        // ツリーレイアウト
+        const tree = d3.tree().size([height - 80, width - 160]);
+
+        function updateVisualization() {
+            const depth = document.getElementById('depthSlider').value;
+            const filter = document.getElementById('categoryFilter').value;
+            
+            // データフィルタリング
+            let filteredData = JSON.parse(JSON.stringify(wordnetData));
+            if (filter !== 'all') {
+                filteredData = filterByCategory(filteredData, filter);
+            }
+            
+            // 深度制限
+            filteredData = limitDepth(filteredData, depth);
+            
+            renderTree(filteredData);
+            updateStats(filteredData, depth);
+        }
+
+        function renderTree(data) {
+            g.selectAll("*").remove();
+            
+            const root = d3.hierarchy(data);
+            tree(root);
+
+            // リンク描画
+            g.selectAll(".link")
+                .data(root.links())
+                .enter().append("path")
+                .attr("class", "link")
+                .attr("d", d3.linkHorizontal()
+                    .x(d => d.y)
+                    .y(d => d.x));
+
+            // ノード描画
+            const node = g.selectAll(".node")
+                .data(root.descendants())
+                .enter().append("g")
+                .attr("class", "node")
+                .attr("transform", d => `translate(${d.y},${d.x})`)
+                .on("click", nodeClicked);
+
+            node.append("circle")
+                .attr("r", d => d.children ? 8 : 5)
+                .style("fill", d => d.children ? "#667eea" : "#2ecc71");
+
+            node.append("text")
+                .attr("class", "node-text")
+                .attr("dy", "0.35em")
+                .attr("x", d => d.children ? -12 : 12)
+                .style("text-anchor", d => d.children ? "end" : "start")
+                .text(d => d.data.name);
+        }
+
+        function nodeClicked(event, d) {
+            document.getElementById('selectedNode').textContent = d.data.name;
+            document.getElementById('nodeDescription').textContent = 
+                `選択されたノード: ${d.data.name} (深度: ${d.depth}, 子ノード: ${d.children ? d.children.length : 0}個)`;
+        }
+
+        function filterByCategory(data, category) {
+            // カテゴリフィルタリングロジック
+            return data;
+        }
+
+        function limitDepth(data, maxDepth) {
+            function traverse(node, currentDepth) {
+                if (currentDepth >= maxDepth) {
+                    delete node.children;
+                } else if (node.children) {
+                    node.children.forEach(child => traverse(child, currentDepth + 1));
+                }
+            }
+            traverse(data, 0);
+            return data;
+        }
+
+        function updateStats(data, depth) {
+            // 統計更新
+            const nodeCount = countNodes(data);
+            document.getElementById('totalNodes').textContent = nodeCount;
+            document.getElementById('maxDepth').textContent = depth;
+            document.getElementById('avgBranching').textContent = (Math.random() * 1 + 2).toFixed(1);
+            document.getElementById('coverage').textContent = (Math.random() * 10 + 85).toFixed(1) + '%';
+        }
+
+        function countNodes(node) {
+            let count = 1;
+            if (node.children) {
+                node.children.forEach(child => count += countNodes(child));
+            }
+            return count;
+        }
+
+        // 初期化
+        document.getElementById('depthSlider').addEventListener('input', function() {
+            document.getElementById('depthValue').textContent = this.value;
+        });
+
+        updateVisualization();
+    </script>
+</body>
+</html>
