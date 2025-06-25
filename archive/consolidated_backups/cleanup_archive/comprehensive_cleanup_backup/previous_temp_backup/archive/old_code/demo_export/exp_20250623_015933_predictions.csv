@@ -1,0 +1,5 @@
+image_id,predicted_category,confidence,processing_time,true_category,predicted_category_name,true_category_name
+wordnet_test_000,1,0.95,0.12,1,Person,Person
+wordnet_test_001,2,0.88,0.11,2,Animal,Animal
+wordnet_test_002,2,0.76,0.13,3,Animal,Food
+wordnet_test_003,4,0.92,0.1,4,Landscape,Landscape

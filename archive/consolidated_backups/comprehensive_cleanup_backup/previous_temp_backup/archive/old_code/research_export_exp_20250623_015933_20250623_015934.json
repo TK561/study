@@ -1,0 +1,112 @@
+{
+  "experiment": {
+    "experiment_id": "exp_20250623_015933",
+    "name": "WordNet特化実験_20250623_015933",
+    "description": "WordNetベースの意味カテゴリ分析を用いた特化型画像分類",
+    "researcher": "WordNet研究チーム",
+    "model_type": "BLIP+WordNet+CLIP",
+    "dataset_name": "8カテゴリ特化データセット",
+    "created_at": "2025-06-22 16:59:33",
+    "status": "running",
+    "total_predictions": 4,
+    "accuracy": 0.75,
+    "avg_confidence": 0.8775,
+    "avg_processing_time": 0.115,
+    "min_processing_time": 0.1,
+    "max_processing_time": 0.13
+  },
+  "predictions": [
+    {
+      "id": 1,
+      "experiment_id": "exp_20250623_015933",
+      "image_id": "wordnet_test_000",
+      "predicted_category": 1,
+      "confidence": 0.95,
+      "processing_time": 0.12,
+      "timestamp": "2025-06-22 16:59:33",
+      "image_path": "/wordnet/person_001.jpg",
+      "predicted_category_name": "Person",
+      "true_category_name": "Person"
+    },
+    {
+      "id": 2,
+      "experiment_id": "exp_20250623_015933",
+      "image_id": "wordnet_test_001",
+      "predicted_category": 2,
+      "confidence": 0.88,
+      "processing_time": 0.11,
+      "timestamp": "2025-06-22 16:59:33",
+      "image_path": "/wordnet/animal_001.jpg",
+      "predicted_category_name": "Animal",
+      "true_category_name": "Animal"
+    },
+    {
+      "id": 3,
+      "experiment_id": "exp_20250623_015933",
+      "image_id": "wordnet_test_002",
+      "predicted_category": 2,
+      "confidence": 0.76,
+      "processing_time": 0.13,
+      "timestamp": "2025-06-22 16:59:33",
+      "image_path": "/wordnet/food_001.jpg",
+      "predicted_category_name": "Animal",
+      "true_category_name": "Food"
+    },
+    {
+      "id": 4,
+      "experiment_id": "exp_20250623_015933",
+      "image_id": "wordnet_test_003",
+      "predicted_category": 4,
+      "confidence": 0.92,
+      "processing_time": 0.1,
+      "timestamp": "2025-06-22 16:59:33",
+      "image_path": "/wordnet/landscape_001.jpg",
+      "predicted_category_name": "Landscape",
+      "true_category_name": "Landscape"
+    }
+  ],
+  "category_performance": [
+    {
+      "category": "Animal",
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "avg_confidence": 0.88
+    },
+    {
+      "category": "Food",
+      "total": 1,
+      "correct": 0,
+      "accuracy": 0.0,
+      "avg_confidence": 0.76
+    },
+    {
+      "category": "Landscape",
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "avg_confidence": 0.92
+    },
+    {
+      "category": "Person",
+      "total": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "avg_confidence": 0.95
+    }
+  ],
+  "processing_time_stats": {
+    "avg_time": 0.115,
+    "min_time": 0.1,
+    "max_time": 0.13,
+    "total_predictions": 4
+  },
+  "confidence_distribution": {
+    "very_high": 2,
+    "high": 2,
+    "medium": 0,
+    "low": 0,
+    "very_low": 0
+  },
+  "exported_at": "2025-06-23T01:59:34.237793"
+}

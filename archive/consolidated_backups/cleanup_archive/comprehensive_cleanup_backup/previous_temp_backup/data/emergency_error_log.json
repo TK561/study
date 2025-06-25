@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "timestamp": "2025-06-23T16:52:51.731983",
+      "error_message": "Traceback (most recent call last):\nFile \"/var/task/vc__handler__python.py\", line 213, in <module>\nif not issubclass(base, BaseHTTPRequestHandler):\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: issubclass() arg 1 must be a class\nPython process exited with exit status: 1.",
+      "context": "",
+      "resolved": false,
+      "solution_applied": null,
+      "resolution_steps": [],
+      "prevention_measures": []
+    }
+  ]
+}

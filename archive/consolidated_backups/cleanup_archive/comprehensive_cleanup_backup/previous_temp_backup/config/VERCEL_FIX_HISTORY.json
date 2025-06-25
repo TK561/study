@@ -1,0 +1,14 @@
+{
+  "fixes": [
+    {
+      "type": "static_html",
+      "timestamp": "2025-06-24T17:08:11.750151",
+      "changes": [
+        "APIディレクトリ削除",
+        "静的HTMLサイト構成に変更",
+        "vercel.json簡素化"
+      ],
+      "success": true
+    }
+  ]
+}

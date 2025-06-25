@@ -1,0 +1,5 @@
+image_id,predicted_category,confidence,processing_time,true_category,predicted_category_name,true_category_name
+comp_001,1,0.82,0.15,1,Person,Person
+comp_002,3,0.75,0.14,2,Food,Animal
+comp_003,3,0.89,0.16,3,Food,Food
+comp_004,4,0.91,0.12,4,Landscape,Landscape
