@@ -86,3 +86,8 @@ backup/
 
 # バックアップディレクトリ
 .vercel_backups/
+.html_backups/
+temp_cleanup_backup/
+
+# 自動生成設定ファイル
+.auto_update_config.json
