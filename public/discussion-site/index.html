@@ -1607,15 +1607,21 @@
     </div>
 
     <script>
-        // シンプルで確実なタブ機能
+        // 超強固なタブ機能 - 確実に動作する版
         function showTab(tabId) {
             console.log('🔄 showTab called with:', tabId);
             
-            // 全てのタブを非表示
+            // 全てのタブを強制非表示
             const allTabs = document.querySelectorAll('.tab-content');
             allTabs.forEach(tab => {
+                // 複数の方法で確実に非表示
                 tab.style.display = 'none';
+                tab.style.visibility = 'hidden';
+                tab.style.opacity = '0';
                 tab.classList.remove('active');
+                tab.style.setProperty('display', 'none', 'important');
+                tab.style.setProperty('visibility', 'hidden', 'important');
+                tab.style.setProperty('opacity', '0', 'important');
             });
             
             // 全てのボタンを非アクティブ
@@ -1624,21 +1630,29 @@
                 button.classList.remove('active');
             });
             
-            // 選択されたタブを表示
+            // 選択されたタブを強制表示
             const targetTab = document.getElementById(tabId);
             if (targetTab) {
-                targetTab.style.display = 'block';
-                targetTab.style.visibility = 'visible';
-                targetTab.style.opacity = '1';
-                targetTab.classList.add('active');
-                
-                // 追加の確実な表示設定
+                // 複数の方法で確実に表示
                 targetTab.style.setProperty('display', 'block', 'important');
                 targetTab.style.setProperty('visibility', 'visible', 'important');
                 targetTab.style.setProperty('opacity', '1', 'important');
+                targetTab.style.setProperty('position', 'relative', 'important');
+                targetTab.style.setProperty('z-index', '1', 'important');
+                
+                targetTab.classList.add('active');
+                
+                // さらなる確実性のために遅延実行
+                setTimeout(() => {
+                    targetTab.style.setProperty('display', 'block', 'important');
+                    targetTab.style.setProperty('visibility', 'visible', 'important');
+                    targetTab.style.setProperty('opacity', '1', 'important');
+                }, 10);
                 
                 console.log('✅ Tab displayed:', tabId);
                 console.log('📄 Content length:', targetTab.innerHTML.length);
+                console.log('📊 Final display style:', window.getComputedStyle(targetTab).display);
+                console.log('👁️ Final visibility style:', window.getComputedStyle(targetTab).visibility);
                 
                 // 対応するボタンをアクティブ化
                 const buttons = document.querySelectorAll('.tab-button');
@@ -1658,18 +1672,25 @@
             }
         }
         
-        // ページロード時の処理（URLハッシュ対応改善版）
+        // 超強固な初期化処理
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded - Initializing tabs');
+            console.log('🚀 DOM Content Loaded - 超強固タブ初期化開始');
             
             // 強制的に全タブを非表示にして初期化
             const allTabs = document.querySelectorAll('.tab-content');
-            allTabs.forEach(tab => {
-                tab.style.display = 'none';
+            console.log('📋 Found tabs:', allTabs.length);
+            
+            allTabs.forEach((tab, index) => {
+                console.log(`Tab ${index}:`, tab.id);
+                tab.style.setProperty('display', 'none', 'important');
+                tab.style.setProperty('visibility', 'hidden', 'important');
+                tab.style.setProperty('opacity', '0', 'important');
                 tab.classList.remove('active');
             });
             
             const allButtons = document.querySelectorAll('.tab-button');
+            console.log('🔘 Found buttons:', allButtons.length);
+            
             allButtons.forEach(button => {
                 button.classList.remove('active');
             });
@@ -1695,8 +1716,21 @@
                 console.log('Using hash tab:', initialTab);
             }
             
-            // 初期化：指定されたタブを表示
+            // 初期化：指定されたタブを強制表示
+            console.log('🎯 初期タブ表示:', initialTab);
             showTab(initialTab);
+            
+            // 追加の確実性のために遅延実行
+            setTimeout(() => {
+                console.log('🔄 遅延実行でタブ再表示:', initialTab);
+                showTab(initialTab);
+            }, 100);
+            
+            // さらに確実にするため追加遅延
+            setTimeout(() => {
+                console.log('🔄 最終確認でタブ再表示:', initialTab);
+                showTab(initialTab);
+            }, 500);
             
             // ページトップへスクロール（リンクから来た場合、タブ表示後に実行）
             if (document.referrer && !document.referrer.includes(window.location.pathname)) {
