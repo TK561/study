@@ -105,10 +105,16 @@
             display: none !important;
             opacity: 0;
             transition: opacity 0.3s ease;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            margin: 20px 0;
+            min-height: 200px;
         }
         .tab-content.active {
             display: block !important;
             opacity: 1 !important;
+            visibility: visible !important;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -283,10 +289,66 @@
         }
 
         .phase-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
+            border: 1px solid #ddd;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* 確実に表示されるための追加スタイル */
+        .tab-content.active {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        
+        /* numbered-item, bullet-item, checklist-item スタイル */
+        .numbered-item {
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        .bullet-item {
+            margin: 8px 0 8px 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .checklist-item {
+            margin: 8px 0;
+            padding: 5px 0;
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        .ai-response {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .ai-avatar {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .final-recommendation {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #4caf50;
         }
 
         .phase-title {
@@ -1554,21 +1616,22 @@
     </div>
 
     <script>
-        // 完全修正されたタブ機能
+        // 強化されたタブ機能
         function showTab(tabId) {
-            console.log('showTab called with:', tabId);
+            console.log('🔄 showTab called with:', tabId);
             
             try {
                 // 全てのタブコンテンツを取得
                 const tabContents = document.querySelectorAll('.tab-content');
-                console.log('Found tab contents:', tabContents.length);
+                console.log('📋 Found tab contents:', tabContents.length);
                 
                 // 全てのタブコンテンツを非表示にし、activeクラスを削除
-                tabContents.forEach(content => {
+                tabContents.forEach((content, index) => {
                     content.classList.remove('active');
-                    // !importantを上書きするためにstyleも設定
                     content.style.display = 'none';
                     content.style.opacity = '0';
+                    content.style.visibility = 'hidden';
+                    console.log(`🔒 Hidden tab ${index + 1}: ${content.id}`);
                 });
                 
                 // 全てのタブボタンを非アクティブ
@@ -1582,21 +1645,32 @@
                 if (selectedTab) {
                     // activeクラスを追加
                     selectedTab.classList.add('active');
-                    // !importantを上書きするためにstyleも設定
+                    // スタイルを強制的に設定
                     selectedTab.style.display = 'block';
                     selectedTab.style.opacity = '1';
-                    console.log('Tab activated:', tabId);
+                    selectedTab.style.visibility = 'visible';
                     
-                    // タブが確実に表示されるように少し遅延
-                    setTimeout(() => {
-                        selectedTab.style.display = 'block';
-                        selectedTab.style.opacity = '1';
-                    }, 10);
+                    console.log('✅ Tab activated:', tabId);
+                    console.log('📄 Tab content length:', selectedTab.innerHTML.length);
+                    
+                    // 確実に表示されるまで複数回チェック
+                    let checkCount = 0;
+                    const ensureVisible = () => {
+                        if (checkCount < 5) {
+                            selectedTab.style.display = 'block';
+                            selectedTab.style.opacity = '1';
+                            selectedTab.style.visibility = 'visible';
+                            checkCount++;
+                            setTimeout(ensureVisible, 20);
+                        }
+                    };
+                    ensureVisible();
+                    
                 } else {
-                    console.error('Tab not found:', tabId);
+                    console.error('❌ Tab not found:', tabId);
                     // 利用可能なタブIDを表示
                     const availableTabs = Array.from(tabContents).map(tab => tab.id);
-                    console.log('Available tabs:', availableTabs);
+                    console.log('📝 Available tabs:', availableTabs);
                     return;
                 }
                 
@@ -1606,9 +1680,9 @@
                 );
                 if (activeButton) {
                     activeButton.classList.add('active');
-                    console.log('Button activated for tab:', tabId);
+                    console.log('🔘 Button activated for tab:', tabId);
                 } else {
-                    console.error('Button not found for tab:', tabId);
+                    console.error('❌ Button not found for tab:', tabId);
                 }
                 
                 // URL更新
@@ -1617,7 +1691,7 @@
                 }
                 
             } catch (error) {
-                console.error('Error in showTab:', error);
+                console.error('💥 Error in showTab:', error);
             }
         }
         
