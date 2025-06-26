@@ -91,3 +91,4 @@ temp_cleanup_backup/
 
 # 自動生成設定ファイル
 .auto_update_config.json
+.vercel
