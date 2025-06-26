@@ -763,32 +763,101 @@
                         const beforeFeedback = [68, 72, 74, 76, 78];
                         const afterFeedback = [68, 85, 89, 92, 91];
                         
-                        // シンプルなバーチャート描画
                         const canvas = feedbackChart.canvas;
                         const width = canvas.width;
                         const height = canvas.height;
+                        const margin = {top: 40, right: 40, bottom: 80, left: 60};
                         feedbackChart.clearRect(0, 0, width, height);
                         
+                        // 背景
+                        feedbackChart.fillStyle = '#f8f9fa';
+                        feedbackChart.fillRect(0, 0, width, height);
+                        
+                        // 軸線
+                        feedbackChart.strokeStyle = '#333';
+                        feedbackChart.lineWidth = 2;
+                        feedbackChart.beginPath();
+                        feedbackChart.moveTo(margin.left, margin.top);
+                        feedbackChart.lineTo(margin.left, height - margin.bottom);
+                        feedbackChart.lineTo(width - margin.right, height - margin.bottom);
+                        feedbackChart.stroke();
+                        
+                        // Y軸目盛り
+                        for (let i = 0; i <= 5; i++) {
+                            const y = margin.top + (i * (height - margin.top - margin.bottom) / 5);
+                            const value = 100 - (i * 20);
+                            
+                            feedbackChart.strokeStyle = '#e0e0e0';
+                            feedbackChart.lineWidth = 1;
+                            feedbackChart.beginPath();
+                            feedbackChart.moveTo(margin.left, y);
+                            feedbackChart.lineTo(width - margin.right, y);
+                            feedbackChart.stroke();
+                            
+                            feedbackChart.fillStyle = '#666';
+                            feedbackChart.font = '10px Arial';
+                            feedbackChart.textAlign = 'right';
+                            feedbackChart.fillText(value + '%', margin.left - 5, y + 3);
+                        }
+                        
+                        // 比較バーチャート
+                        const barWidth = (width - margin.left - margin.right) / (categories.length * 3);
                         categories.forEach((category, i) => {
-                            const x = (i + 1) * (width / (categories.length + 1));
-                            const beforeHeight = (beforeFeedback[i] / 100) * (height - 100);
-                            const afterHeight = (afterFeedback[i] / 100) * (height - 100);
+                            const x = margin.left + (i + 0.5) * ((width - margin.left - margin.right) / categories.length);
+                            const beforeHeight = (beforeFeedback[i] / 100) * (height - margin.top - margin.bottom);
+                            const afterHeight = (afterFeedback[i] / 100) * (height - margin.top - margin.bottom);
                             
                             // Before バー (赤)
                             feedbackChart.fillStyle = '#e74c3c';
-                            feedbackChart.fillRect(x - 15, height - 50 - beforeHeight, 15, beforeHeight);
+                            feedbackChart.fillRect(x - barWidth, height - margin.bottom - beforeHeight, barWidth, beforeHeight);
                             
                             // After バー (緑)
                             feedbackChart.fillStyle = '#2ecc71';
-                            feedbackChart.fillRect(x + 5, height - 50 - afterHeight, 15, afterHeight);
+                            feedbackChart.fillRect(x + 5, height - margin.bottom - afterHeight, barWidth, afterHeight);
                             
-                            // ラベル
+                            // 値ラベル
                             feedbackChart.fillStyle = '#333';
-                            feedbackChart.font = '10px Arial';
+                            feedbackChart.font = '9px Arial';
                             feedbackChart.textAlign = 'center';
-                            feedbackChart.fillText(beforeFeedback[i] + '%', x - 7, height - 55 - beforeHeight);
-                            feedbackChart.fillText(afterFeedback[i] + '%', x + 12, height - 55 - afterHeight);
+                            feedbackChart.fillText(beforeFeedback[i] + '%', x - barWidth/2, height - margin.bottom - beforeHeight - 5);
+                            feedbackChart.fillText(afterFeedback[i] + '%', x + barWidth/2 + 5, height - margin.bottom - afterHeight - 5);
+                            
+                            // X軸ラベル
+                            feedbackChart.save();
+                            feedbackChart.translate(x, height - margin.bottom + 20);
+                            feedbackChart.rotate(-Math.PI/6);
+                            feedbackChart.font = '9px Arial';
+                            feedbackChart.textAlign = 'center';
+                            feedbackChart.fillText(category, 0, 0);
+                            feedbackChart.restore();
                         });
+                        
+                        // タイトル
+                        feedbackChart.fillStyle = '#333';
+                        feedbackChart.font = 'bold 14px Arial';
+                        feedbackChart.textAlign = 'center';
+                        feedbackChart.fillText('信頼度フィードバック効果', width / 2, 25);
+                        
+                        // Y軸ラベル
+                        feedbackChart.save();
+                        feedbackChart.translate(20, height / 2);
+                        feedbackChart.rotate(-Math.PI / 2);
+                        feedbackChart.font = 'bold 10px Arial';
+                        feedbackChart.textAlign = 'center';
+                        feedbackChart.fillText('精度 (%)', 0, 0);
+                        feedbackChart.restore();
+                        
+                        // 凡例
+                        feedbackChart.fillStyle = '#e74c3c';
+                        feedbackChart.fillRect(width - 120, margin.top + 10, 15, 15);
+                        feedbackChart.fillStyle = '#333';
+                        feedbackChart.font = '10px Arial';
+                        feedbackChart.textAlign = 'left';
+                        feedbackChart.fillText('フィードバック前', width - 100, margin.top + 22);
+                        
+                        feedbackChart.fillStyle = '#2ecc71';
+                        feedbackChart.fillRect(width - 120, margin.top + 30, 15, 15);
+                        feedbackChart.fillText('フィードバック後', width - 100, margin.top + 42);
                     }
                     
                     // 研究進展チャート
@@ -798,42 +867,100 @@
                         const canvas = progressChart.canvas;
                         const width = canvas.width;
                         const height = canvas.height;
+                        const margin = {top: 40, right: 40, bottom: 80, left: 80};
                         progressChart.clearRect(0, 0, width, height);
+                        
+                        // 背景
+                        progressChart.fillStyle = '#f8f9fa';
+                        progressChart.fillRect(0, 0, width, height);
+                        
+                        // 軸線を描画
+                        progressChart.strokeStyle = '#333';
+                        progressChart.lineWidth = 2;
+                        progressChart.beginPath();
+                        // Y軸
+                        progressChart.moveTo(margin.left, margin.top);
+                        progressChart.lineTo(margin.left, height - margin.bottom);
+                        // X軸
+                        progressChart.lineTo(width - margin.right, height - margin.bottom);
+                        progressChart.stroke();
+                        
+                        // Y軸目盛り
+                        for (let i = 0; i <= 10; i++) {
+                            const y = margin.top + (i * (height - margin.top - margin.bottom) / 10);
+                            const value = 100 - (i * 10);
+                            
+                            progressChart.strokeStyle = '#e0e0e0';
+                            progressChart.lineWidth = 1;
+                            progressChart.beginPath();
+                            progressChart.moveTo(margin.left, y);
+                            progressChart.lineTo(width - margin.right, y);
+                            progressChart.stroke();
+                            
+                            progressChart.fillStyle = '#666';
+                            progressChart.font = '11px Arial';
+                            progressChart.textAlign = 'right';
+                            progressChart.fillText(value + '%', margin.left - 10, y + 4);
+                        }
                         
                         // 研究進展データ
                         const phases = ['第0-3回', '第4-7回', '第8-11回', '第12-13回'];
                         const progress = [25, 60, 85, 100];
                         
-                        // シンプルな折れ線グラフ
+                        // 折れ線グラフ
                         progressChart.strokeStyle = '#667eea';
                         progressChart.lineWidth = 3;
                         progressChart.beginPath();
                         progress.forEach((value, i) => {
-                            const x = (i + 1) * (width / (phases.length + 1));
-                            const y = height - 50 - (value / 100) * (height - 100);
+                            const x = margin.left + (i + 1) * ((width - margin.left - margin.right) / (phases.length + 1));
+                            const y = height - margin.bottom - (value / 100) * (height - margin.top - margin.bottom);
                             if (i === 0) progressChart.moveTo(x, y);
                             else progressChart.lineTo(x, y);
                             
                             // データポイント
                             progressChart.fillStyle = '#667eea';
-                            progressChart.fillRect(x - 3, y - 3, 6, 6);
+                            progressChart.beginPath();
+                            progressChart.arc(x, y, 4, 0, 2 * Math.PI);
+                            progressChart.fill();
                             
-                            // ラベル
+                            // 値ラベル
                             progressChart.fillStyle = '#333';
                             progressChart.font = '12px Arial';
                             progressChart.textAlign = 'center';
                             progressChart.fillText(value + '%', x, y - 10);
-                            progressChart.fillText(phases[i], x, height - 20);
+                            
+                            // X軸ラベル
+                            progressChart.fillText(phases[i], x, height - margin.bottom + 20);
                         });
                         progressChart.stroke();
+                        
+                        // タイトル
+                        progressChart.fillStyle = '#333';
+                        progressChart.font = 'bold 16px Arial';
+                        progressChart.textAlign = 'center';
+                        progressChart.fillText('研究進展の軌跡', width / 2, 25);
+                        
+                        // Y軸ラベル
+                        progressChart.save();
+                        progressChart.translate(25, height / 2);
+                        progressChart.rotate(-Math.PI / 2);
+                        progressChart.font = 'bold 12px Arial';
+                        progressChart.textAlign = 'center';
+                        progressChart.fillText('進捗率 (%)', 0, 0);
+                        progressChart.restore();
+                        
+                        // X軸ラベル
+                        progressChart.font = 'bold 12px Arial';
+                        progressChart.textAlign = 'center';
+                        progressChart.fillText('研究フェーズ', width / 2, height - 15);
                     }
                     
                     // フェーズ別チャート
                     const phaseCharts = [
-                        {id: 'foundationPhaseChart', data: [15, 35, 55, 70], labels: ['第0回', '第1回', '第2回', '第3回']},
-                        {id: 'integrationPhaseChart', data: [60, 75, 88, 95], labels: ['第4回', '第5回', '第6回', '第7回']},
-                        {id: 'optimizationPhaseChart', data: [72, 85, 92, 97], labels: ['第8回', '第9回', '第10回', '第11回']},
-                        {id: 'completionPhaseChart', data: [95, 100], labels: ['第12回', '第13回']}
+                        {id: 'foundationPhaseChart', data: [15, 35, 55, 70], labels: ['第0回', '第1回', '第2回', '第3回'], title: '基盤構築フェーズ'},
+                        {id: 'integrationPhaseChart', data: [60, 75, 88, 95], labels: ['第4回', '第5回', '第6回', '第7回'], title: 'システム統合フェーズ'},
+                        {id: 'optimizationPhaseChart', data: [72, 85, 92, 97], labels: ['第8回', '第9回', '第10回', '第11回'], title: '最適化フェーズ'},
+                        {id: 'completionPhaseChart', data: [95, 100], labels: ['第12回', '第13回'], title: '完成フェーズ'}
                     ];
                     
                     phaseCharts.forEach(chart => {
@@ -843,21 +970,73 @@
                             const canvas = chartCtx.canvas;
                             const width = canvas.width;
                             const height = canvas.height;
+                            const margin = {top: 40, right: 30, bottom: 60, left: 60};
                             chartCtx.clearRect(0, 0, width, height);
                             
+                            // 背景
+                            chartCtx.fillStyle = '#f8f9fa';
+                            chartCtx.fillRect(0, 0, width, height);
+                            
+                            // 軸線
+                            chartCtx.strokeStyle = '#333';
+                            chartCtx.lineWidth = 2;
+                            chartCtx.beginPath();
+                            chartCtx.moveTo(margin.left, margin.top);
+                            chartCtx.lineTo(margin.left, height - margin.bottom);
+                            chartCtx.lineTo(width - margin.right, height - margin.bottom);
+                            chartCtx.stroke();
+                            
+                            // Y軸目盛り
+                            for (let i = 0; i <= 5; i++) {
+                                const y = margin.top + (i * (height - margin.top - margin.bottom) / 5);
+                                const value = 100 - (i * 20);
+                                
+                                chartCtx.strokeStyle = '#e0e0e0';
+                                chartCtx.lineWidth = 1;
+                                chartCtx.beginPath();
+                                chartCtx.moveTo(margin.left, y);
+                                chartCtx.lineTo(width - margin.right, y);
+                                chartCtx.stroke();
+                                
+                                chartCtx.fillStyle = '#666';
+                                chartCtx.font = '10px Arial';
+                                chartCtx.textAlign = 'right';
+                                chartCtx.fillText(value + '%', margin.left - 5, y + 3);
+                            }
+                            
+                            // 棒グラフ
+                            const barWidth = (width - margin.left - margin.right) / (chart.data.length * 1.5);
                             chart.data.forEach((value, i) => {
-                                const x = (i + 1) * (width / (chart.data.length + 1));
-                                const barHeight = (value / 100) * (height - 80);
+                                const x = margin.left + (i + 0.5) * ((width - margin.left - margin.right) / chart.data.length);
+                                const barHeight = (value / 100) * (height - margin.top - margin.bottom);
                                 
                                 chartCtx.fillStyle = '#2ecc71';
-                                chartCtx.fillRect(x - 20, height - 40 - barHeight, 40, barHeight);
+                                chartCtx.fillRect(x - barWidth/2, height - margin.bottom - barHeight, barWidth, barHeight);
                                 
+                                // 値ラベル
                                 chartCtx.fillStyle = '#333';
                                 chartCtx.font = '10px Arial';
                                 chartCtx.textAlign = 'center';
-                                chartCtx.fillText(value + '%', x, height - 45 - barHeight);
-                                chartCtx.fillText(chart.labels[i], x, height - 20);
+                                chartCtx.fillText(value + '%', x, height - margin.bottom - barHeight - 5);
+                                
+                                // X軸ラベル
+                                chartCtx.fillText(chart.labels[i], x, height - margin.bottom + 15);
                             });
+                            
+                            // タイトル
+                            chartCtx.fillStyle = '#333';
+                            chartCtx.font = 'bold 14px Arial';
+                            chartCtx.textAlign = 'center';
+                            chartCtx.fillText(chart.title, width / 2, 25);
+                            
+                            // Y軸ラベル
+                            chartCtx.save();
+                            chartCtx.translate(20, height / 2);
+                            chartCtx.rotate(-Math.PI / 2);
+                            chartCtx.font = 'bold 10px Arial';
+                            chartCtx.textAlign = 'center';
+                            chartCtx.fillText('達成率 (%)', 0, 0);
+                            chartCtx.restore();
                         }
                     });
                     
