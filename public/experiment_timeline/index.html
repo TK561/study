@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>実験段階別進捗ダッシュボード - 画像処理システム開発</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <style>
         * {
             margin: 0;
@@ -492,9 +491,27 @@
     </div>
     
     <script>
-        // 開発進捗タイムライン
-        const timelineCtx = document.getElementById('timelineChart').getContext('2d');
-        new Chart(timelineCtx, {
+        // DOMContentLoadedイベントでスクリプト実行を確実にする
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Chart.jsが読み込まれているかチェック
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded');
+                return;
+            }
+            
+            console.log('Chart.js loaded successfully');
+            
+            try {
+                // 開発進捗タイムライン
+                const timelineCtx = document.getElementById('timelineChart');
+                if (!timelineCtx) {
+                    console.error('timelineChart element not found');
+                    return;
+                }
+                console.log('Creating timeline chart...');
+                const timelineChart = timelineCtx.getContext('2d');
+                new Chart(timelineChart, {
             type: 'line',
             data: {
                 labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
@@ -1511,6 +1528,11 @@
                 }
             }
         });
+        
+            } catch (error) {
+                console.error('Error creating charts:', error);
+            }
+        }); // DOMContentLoaded終了
     </script>
 </body>
 </html>
