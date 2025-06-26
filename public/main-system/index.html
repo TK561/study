@@ -738,10 +738,58 @@
             // 実験結果タブが表示された時にグラフを再描画
             if (tabId === 'results') {
                 setTimeout(() => {
-                    drawResearchProgressChart();
-                    drawExperiment1Chart();
-                    drawExperiment2Chart();
-                    drawExperiment3Chart();
+                    if (typeof drawResearchProgressChart === 'function') drawResearchProgressChart();
+                    if (typeof drawExperiment1Chart === 'function') drawExperiment1Chart();
+                    if (typeof drawExperiment2Chart === 'function') drawExperiment2Chart();
+                    if (typeof drawExperiment3Chart === 'function') drawExperiment3Chart();
+                    
+                    // PPTXシステム性能チャート
+                    const pptxCtx = document.getElementById('pptxSystemsChart');
+                    if (pptxCtx) {
+                        const pptxChart = pptxCtx.getContext('2d');
+                        const systems = ['多層物体検出', '動的データセット', 'WordNet階層', 'リアルタイム', '自動ベンチマーク'];
+                        const performance = [98.7, 91.4, 67.3, 45.0, 99.2];
+                        const efficiency = [94.2, 86.1, 89.7, 92.5, 87.3];
+                        if (typeof drawDualAxisChart === 'function') {
+                            drawDualAxisChart(pptxChart, systems, performance, efficiency, 'Performance (%)', 'Efficiency (%)');
+                        }
+                    }
+                    
+                    // 信頼度フィードバック機構チャート
+                    const feedbackCtx = document.getElementById('confidenceFeedbackChart');
+                    if (feedbackCtx) {
+                        const feedbackChart = feedbackCtx.getContext('2d');
+                        const categories = ['低信頼度検出', 'BLIP再生成', 'WordNet再判定', '安定性確認', '結果出力'];
+                        const beforeFeedback = [68, 72, 74, 76, 78];
+                        const afterFeedback = [68, 85, 89, 92, 91];
+                        
+                        // シンプルなバーチャート描画
+                        const canvas = feedbackChart.canvas;
+                        const width = canvas.width;
+                        const height = canvas.height;
+                        feedbackChart.clearRect(0, 0, width, height);
+                        
+                        categories.forEach((category, i) => {
+                            const x = (i + 1) * (width / (categories.length + 1));
+                            const beforeHeight = (beforeFeedback[i] / 100) * (height - 100);
+                            const afterHeight = (afterFeedback[i] / 100) * (height - 100);
+                            
+                            // Before バー (赤)
+                            feedbackChart.fillStyle = '#e74c3c';
+                            feedbackChart.fillRect(x - 15, height - 50 - beforeHeight, 15, beforeHeight);
+                            
+                            // After バー (緑)
+                            feedbackChart.fillStyle = '#2ecc71';
+                            feedbackChart.fillRect(x + 5, height - 50 - afterHeight, 15, afterHeight);
+                            
+                            // ラベル
+                            feedbackChart.fillStyle = '#333';
+                            feedbackChart.font = '10px Arial';
+                            feedbackChart.textAlign = 'center';
+                            feedbackChart.fillText(beforeFeedback[i] + '%', x - 7, height - 55 - beforeHeight);
+                            feedbackChart.fillText(afterFeedback[i] + '%', x + 12, height - 55 - afterHeight);
+                        });
+                    }
                 }, 100);
             }
         }
