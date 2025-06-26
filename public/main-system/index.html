@@ -1040,12 +1040,12 @@
                         }
                     });
                     
-                    // その他のチャート
+                    // その他の実験結果チャート（棒グラフ）
                     const otherCharts = [
-                        {id: 'pascalVocChart', title: 'Pascal VOC', value: 71.2},
-                        {id: 'baselineComparisonChart', title: 'Baseline', value: 68.4},
-                        {id: 'performanceChart', title: 'Performance', value: 87.1},
-                        {id: 'scalingChart', title: 'Scaling', value: 94.8}
+                        {id: 'pascalVocChart', title: 'Pascal VOC データセット', data: [68.4, 71.2, 74.8], labels: ['ベースライン', '提案手法', '最適化後']},
+                        {id: 'baselineComparisonChart', title: 'ベースライン比較', data: [68.4, 72.1, 75.3, 78.2], labels: ['CLIP', 'ResNet', '提案手法', '改良版']},
+                        {id: 'performanceChart', title: 'パフォーマンス評価', data: [82.3, 87.1, 89.4, 91.7], labels: ['4カテゴリ', '8カテゴリ', '16カテゴリ', '32カテゴリ']},
+                        {id: 'scalingChart', title: 'スケーリング効果', data: [78.5, 85.2, 91.4, 94.8], labels: ['100件', '500件', '1000件', '2000件']}
                     ];
                     
                     otherCharts.forEach(chart => {
@@ -1055,23 +1055,87 @@
                             const canvas = chartCtx.canvas;
                             const width = canvas.width;
                             const height = canvas.height;
+                            const margin = {top: 40, right: 30, bottom: 80, left: 60};
                             chartCtx.clearRect(0, 0, width, height);
                             
-                            // シンプルな円グラフ
-                            const centerX = width / 2;
-                            const centerY = height / 2;
-                            const radius = Math.min(width, height) / 3;
+                            // 背景
+                            chartCtx.fillStyle = '#f8f9fa';
+                            chartCtx.fillRect(0, 0, width, height);
                             
+                            // 軸線
+                            chartCtx.strokeStyle = '#333';
+                            chartCtx.lineWidth = 2;
                             chartCtx.beginPath();
-                            chartCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI * (chart.value / 100));
-                            chartCtx.fillStyle = '#3498db';
-                            chartCtx.fill();
+                            chartCtx.moveTo(margin.left, margin.top);
+                            chartCtx.lineTo(margin.left, height - margin.bottom);
+                            chartCtx.lineTo(width - margin.right, height - margin.bottom);
+                            chartCtx.stroke();
                             
+                            // Y軸目盛り
+                            const maxValue = Math.max(...chart.data);
+                            const yStep = Math.ceil(maxValue / 100) * 20; // 20の倍数で区切り
+                            const yMax = Math.ceil(maxValue / yStep) * yStep;
+                            
+                            for (let i = 0; i <= 5; i++) {
+                                const y = margin.top + (i * (height - margin.top - margin.bottom) / 5);
+                                const value = yMax - (i * yMax / 5);
+                                
+                                chartCtx.strokeStyle = '#e0e0e0';
+                                chartCtx.lineWidth = 1;
+                                chartCtx.beginPath();
+                                chartCtx.moveTo(margin.left, y);
+                                chartCtx.lineTo(width - margin.right, y);
+                                chartCtx.stroke();
+                                
+                                chartCtx.fillStyle = '#666';
+                                chartCtx.font = '10px Arial';
+                                chartCtx.textAlign = 'right';
+                                chartCtx.fillText(value.toFixed(1) + '%', margin.left - 5, y + 3);
+                            }
+                            
+                            // 棒グラフ
+                            const barWidth = (width - margin.left - margin.right) / (chart.data.length * 1.5);
+                            const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12'];
+                            
+                            chart.data.forEach((value, i) => {
+                                const x = margin.left + (i + 0.5) * ((width - margin.left - margin.right) / chart.data.length);
+                                const barHeight = (value / yMax) * (height - margin.top - margin.bottom);
+                                
+                                chartCtx.fillStyle = colors[i % colors.length];
+                                chartCtx.fillRect(x - barWidth/2, height - margin.bottom - barHeight, barWidth, barHeight);
+                                
+                                // 値ラベル
+                                chartCtx.fillStyle = '#333';
+                                chartCtx.font = '10px Arial';
+                                chartCtx.textAlign = 'center';
+                                chartCtx.fillText(value.toFixed(1) + '%', x, height - margin.bottom - barHeight - 5);
+                                
+                                // X軸ラベル
+                                chartCtx.save();
+                                chartCtx.translate(x, height - margin.bottom + 15);
+                                if (chart.labels[i].length > 6) {
+                                    chartCtx.rotate(-Math.PI/6);
+                                }
+                                chartCtx.font = '9px Arial';
+                                chartCtx.textAlign = 'center';
+                                chartCtx.fillText(chart.labels[i], 0, 0);
+                                chartCtx.restore();
+                            });
+                            
+                            // タイトル
                             chartCtx.fillStyle = '#333';
-                            chartCtx.font = '14px Arial';
+                            chartCtx.font = 'bold 14px Arial';
                             chartCtx.textAlign = 'center';
-                            chartCtx.fillText(chart.title, centerX, centerY - 10);
-                            chartCtx.fillText(chart.value + '%', centerX, centerY + 10);
+                            chartCtx.fillText(chart.title, width / 2, 25);
+                            
+                            // Y軸ラベル
+                            chartCtx.save();
+                            chartCtx.translate(20, height / 2);
+                            chartCtx.rotate(-Math.PI / 2);
+                            chartCtx.font = 'bold 10px Arial';
+                            chartCtx.textAlign = 'center';
+                            chartCtx.fillText('精度 (%)', 0, 0);
+                            chartCtx.restore();
                         }
                     });
                 }, 100);
