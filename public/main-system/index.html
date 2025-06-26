@@ -230,20 +230,23 @@
             <!-- 研究概要タブ -->
             <div id="overview" class="tab-content active">
                 <div class="section">
-                    <h3>🎯 研究目的・仮説</h3>
-                    <p><strong>仮説:</strong> 「画像の意味内容に応じて特化された分類アプローチを選択することで、汎用的なアプローチよりも高い分類精度を達成できる」</p>
+                    <h3>🎯 研究目的・概要</h3>
+                    <p><strong>目的:</strong> 画像処理における色情報変更システムの開発から始まり、YOLO・BLIP・CLIP・WordNetを組み合わせた高精度な意味カテゴリベース画像分類システムの構築</p>
                     <div class="result-box">
-                        <h4>📋 研究計画</h4>
+                        <h4>📋 開発プロセス</h4>
                         <ul>
-                            <li><strong>対象:</strong> WordNetベースの意味カテゴリ分析</li>
-                            <li><strong>手法:</strong> CLIP + 特化型ラベルセット</li>
-                            <li><strong>評価:</strong> Cohen's Power Analysis</li>
-                            <li><strong>データ:</strong> 752サンプル実験計画</li>
+                            <li><strong>基盤技術:</strong> OpenCV + tkinter による画像処理システム</li>
+                            <li><strong>発展技術:</strong> YOLO物体検出 + CNN分類</li>
+                            <li><strong>最終システム:</strong> BLIP-CLIP-WordNet統合分類</li>
+                            <li><strong>データセット:</strong> 10種類の特化型データセット自動選定</li>
+                            <li><strong>デプロイ:</strong> Vercel クラウドホスティング</li>
                         </ul>
                     </div>
                     <div class="result-box">
-                        <h4>🎨 研究背景</h4>
-                        <p>従来の汎用的な画像分類アプローチでは、特定ドメインでの最適性能を達成することが困難でした。本研究では、意味カテゴリに特化した分類手法の有効性を検証します。</p>
+                        <h4>🎨 技術的特徴</h4>
+                        <p><strong>メイン機能:</strong> エクスプローラからの画像読み取り、ピクセル単位の色情報配列処理、リアルタイム画像変更、RGB/HSV対応</p>
+                        <p><strong>追加機能:</strong> YOLO物体検出、マウス選択による物体指定、BLIP自動キャプション生成、CLIP意味理解、WordNet階層分析</p>
+                        <p><strong>信頼度機構:</strong> 低信頼度検出時のBLIP再生成、確信度に基づく自動フィードバック</p>
                     </div>
                 </div>
             </div>
@@ -635,22 +638,42 @@
                     </div>
 
                     <div class="result-box">
-                        <h4>データ処理パイプライン</h4>
+                        <h4>📦 使用ライブラリ・技術スタック</h4>
                         <ul>
-                            <li><strong>前処理:</strong> 正規化、オーグメンテーション</li>
-                            <li><strong>特徴抽出:</strong> CLIP視覚エンコーダー</li>
-                            <li><strong>分類器:</strong> 階層的softmax</li>
-                            <li><strong>後処理:</strong> 信頼度スコア調整</li>
+                            <li><strong>tkinter.filedialog:</strong> エクスプローラからの画像選択、保存先指定</li>
+                            <li><strong>OpenCV (cv2):</strong> 画像処理、読み込み、表示、合成処理、トラックバー</li>
+                            <li><strong>NumPy:</strong> 画像配列処理、色変更、合成処理</li>
+                            <li><strong>threading:</strong> 複数ウィンドウの並立処理</li>
+                            <li><strong>queue:</strong> スレッド間安全通信</li>
+                            <li><strong>YOLO:</strong> 物体検出システム</li>
+                            <li><strong>BLIP:</strong> 画像キャプション自動生成</li>
+                            <li><strong>CLIP:</strong> 画像-テキスト意味理解</li>
+                            <li><strong>WordNet:</strong> 語彙階層分析</li>
                         </ul>
                     </div>
 
                     <div class="result-box">
-                        <h4>実装環境</h4>
+                        <h4>🔄 データ処理パイプライン</h4>
                         <ul>
-                            <li><strong>フレームワーク:</strong> PyTorch 1.12.0</li>
-                            <li><strong>CUDA:</strong> 11.6</li>
-                            <li><strong>メモリ:</strong> 32GB RAM, 24GB VRAM</li>
-                            <li><strong>学習時間:</strong> 約8時間 (全データセット)</li>
+                            <li><strong>Step 1:</strong> 画像選択 (日本語ファイル名対応 imread_jp())</li>
+                            <li><strong>Step 2:</strong> RGB/HSV配列データ取得</li>
+                            <li><strong>Step 3:</strong> マウスドラッグによる範囲選択 (setMouseCallback)</li>
+                            <li><strong>Step 4:</strong> ROI(Region Of Interest) 平均色計算</li>
+                            <li><strong>Step 5:</strong> スライダーによるリアルタイム色変更</li>
+                            <li><strong>Step 6:</strong> 日本語パス対応保存 (imwrite_jp)</li>
+                            <li><strong>物体検出:</strong> YOLO → CNN → BLIP → CLIP → WordNet</li>
+                        </ul>
+                    </div>
+
+                    <div class="result-box">
+                        <h4>⚙️ 実装環境・開発期間</h4>
+                        <ul>
+                            <li><strong>言語:</strong> Python</li>
+                            <li><strong>開発期間:</strong> 2025年3月17日～6月19日 (約3ヶ月)</li>
+                            <li><strong>フェーズ1:</strong> 基本画像処理 (3月17日～4月3日)</li>
+                            <li><strong>フェーズ2:</strong> YOLO物体検出追加 (4月1日～5月8日)</li>
+                            <li><strong>フェーズ3:</strong> マルチモーダル統合 (5月8日～6月12日)</li>
+                            <li><strong>フェーズ4:</strong> クラウドデプロイ (6月19日)</li>
                         </ul>
                     </div>
                 </div>
