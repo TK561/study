@@ -790,6 +790,111 @@
                             feedbackChart.fillText(afterFeedback[i] + '%', x + 12, height - 55 - afterHeight);
                         });
                     }
+                    
+                    // 研究進展チャート
+                    const progressCtx = document.getElementById('researchProgressChart');
+                    if (progressCtx) {
+                        const progressChart = progressCtx.getContext('2d');
+                        const canvas = progressChart.canvas;
+                        const width = canvas.width;
+                        const height = canvas.height;
+                        progressChart.clearRect(0, 0, width, height);
+                        
+                        // 研究進展データ
+                        const phases = ['第0-3回', '第4-7回', '第8-11回', '第12-13回'];
+                        const progress = [25, 60, 85, 100];
+                        
+                        // シンプルな折れ線グラフ
+                        progressChart.strokeStyle = '#667eea';
+                        progressChart.lineWidth = 3;
+                        progressChart.beginPath();
+                        progress.forEach((value, i) => {
+                            const x = (i + 1) * (width / (phases.length + 1));
+                            const y = height - 50 - (value / 100) * (height - 100);
+                            if (i === 0) progressChart.moveTo(x, y);
+                            else progressChart.lineTo(x, y);
+                            
+                            // データポイント
+                            progressChart.fillStyle = '#667eea';
+                            progressChart.fillRect(x - 3, y - 3, 6, 6);
+                            
+                            // ラベル
+                            progressChart.fillStyle = '#333';
+                            progressChart.font = '12px Arial';
+                            progressChart.textAlign = 'center';
+                            progressChart.fillText(value + '%', x, y - 10);
+                            progressChart.fillText(phases[i], x, height - 20);
+                        });
+                        progressChart.stroke();
+                    }
+                    
+                    // フェーズ別チャート
+                    const phaseCharts = [
+                        {id: 'foundationPhaseChart', data: [15, 35, 55, 70], labels: ['第0回', '第1回', '第2回', '第3回']},
+                        {id: 'integrationPhaseChart', data: [60, 75, 88, 95], labels: ['第4回', '第5回', '第6回', '第7回']},
+                        {id: 'optimizationPhaseChart', data: [72, 85, 92, 97], labels: ['第8回', '第9回', '第10回', '第11回']},
+                        {id: 'completionPhaseChart', data: [95, 100], labels: ['第12回', '第13回']}
+                    ];
+                    
+                    phaseCharts.forEach(chart => {
+                        const ctx = document.getElementById(chart.id);
+                        if (ctx) {
+                            const chartCtx = ctx.getContext('2d');
+                            const canvas = chartCtx.canvas;
+                            const width = canvas.width;
+                            const height = canvas.height;
+                            chartCtx.clearRect(0, 0, width, height);
+                            
+                            chart.data.forEach((value, i) => {
+                                const x = (i + 1) * (width / (chart.data.length + 1));
+                                const barHeight = (value / 100) * (height - 80);
+                                
+                                chartCtx.fillStyle = '#2ecc71';
+                                chartCtx.fillRect(x - 20, height - 40 - barHeight, 40, barHeight);
+                                
+                                chartCtx.fillStyle = '#333';
+                                chartCtx.font = '10px Arial';
+                                chartCtx.textAlign = 'center';
+                                chartCtx.fillText(value + '%', x, height - 45 - barHeight);
+                                chartCtx.fillText(chart.labels[i], x, height - 20);
+                            });
+                        }
+                    });
+                    
+                    // その他のチャート
+                    const otherCharts = [
+                        {id: 'pascalVocChart', title: 'Pascal VOC', value: 71.2},
+                        {id: 'baselineComparisonChart', title: 'Baseline', value: 68.4},
+                        {id: 'performanceChart', title: 'Performance', value: 87.1},
+                        {id: 'scalingChart', title: 'Scaling', value: 94.8}
+                    ];
+                    
+                    otherCharts.forEach(chart => {
+                        const ctx = document.getElementById(chart.id);
+                        if (ctx) {
+                            const chartCtx = ctx.getContext('2d');
+                            const canvas = chartCtx.canvas;
+                            const width = canvas.width;
+                            const height = canvas.height;
+                            chartCtx.clearRect(0, 0, width, height);
+                            
+                            // シンプルな円グラフ
+                            const centerX = width / 2;
+                            const centerY = height / 2;
+                            const radius = Math.min(width, height) / 3;
+                            
+                            chartCtx.beginPath();
+                            chartCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI * (chart.value / 100));
+                            chartCtx.fillStyle = '#3498db';
+                            chartCtx.fill();
+                            
+                            chartCtx.fillStyle = '#333';
+                            chartCtx.font = '14px Arial';
+                            chartCtx.textAlign = 'center';
+                            chartCtx.fillText(chart.title, centerX, centerY - 10);
+                            chartCtx.fillText(chart.value + '%', centerX, centerY + 10);
+                        }
+                    });
                 }, 100);
             }
         }
