@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-06-27T10:27:03.774053",
+  "actions_performed": [
+    "ファイル整理: 0件"
+  ],
+  "files_organized": [
+    "_reorganization_backup_20250627_094320/data",
+    "_reorganization_backup_20250627_094320/models",
+    "_reorganization_backup_20250627_094320/results",
+    "_reorganization_backup_20250627_094320/logs",
+    "_reorganization_backup_20250627_094320/public",
+    "_reorganization_backup_20250627_094320/sessions",
+    "_reorganization_backup_20250627_094320/backups",
+    "_reorganization_backup_20250627_094320/temp",
+    "_reorganization_backup_20250627_094320/notebooks",
+    "data",
+    "models",
+    "temp",
+    "notebooks",
+    "auto_backup_20250627_102703"
+  ],
+  "files_saved": [
+    "sessions/AUTO_SESSION_SAVE_2025-06-27.md"
+  ],
+  "backup_created": [
+    "README.md"
+  ],
+  "errors": []
+}

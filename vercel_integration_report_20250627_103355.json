@@ -1,0 +1,17 @@
+{
+  "integration_timestamp": "2025-06-27T10:33:55.635259",
+  "strategy": "subdirectory",
+  "backup_location": "/content/drive/MyDrive/research/vercel_integration_backup_20250627_103355",
+  "changes_made": [
+    "\u7d71\u5408\u6226\u7565: subdirectory",
+    "vercel.json\u8a2d\u5b9a\u66f4\u65b0",
+    "public/\u69cb\u9020\u6700\u9069\u5316",
+    "\u30e1\u30a4\u30f3\u30e9\u30f3\u30c7\u30a3\u30f3\u30b0\u30da\u30fc\u30b8\u4f5c\u6210"
+  ],
+  "next_steps": [
+    "Vercel\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u8a2d\u5b9a\u66f4\u65b0",
+    "\u30c9\u30e1\u30a4\u30f3\u8a2d\u5b9a\u5909\u66f4",
+    "\u30c7\u30d7\u30ed\u30a4\u30c6\u30b9\u30c8\u5b9f\u884c",
+    "DNS\u8a2d\u5b9a\u78ba\u8a8d"
+  ]
+}

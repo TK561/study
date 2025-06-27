@@ -1,0 +1,184 @@
+{
+  "start_time": "2025-06-27T09:43:20.186688",
+  "actions": [],
+  "moved_files": [
+    {
+      "from": "google_drive_utils.py",
+      "to": "core//google_drive_utils.py"
+    },
+    {
+      "from": "auto_organize_and_save.py",
+      "to": "core//auto_organize_and_save.py"
+    },
+    {
+      "from": ".env.colab",
+      "to": "core//.env.colab"
+    },
+    {
+      "from": "requirements.txt",
+      "to": "core//requirements.txt"
+    },
+    {
+      "from": "baseline_comparison_experiment.py",
+      "to": "experiments//baseline_comparison_experiment.py"
+    },
+    {
+      "from": "performance_optimization_experiment.py",
+      "to": "experiments//performance_optimization_experiment.py"
+    },
+    {
+      "from": "scalability_experiment.py",
+      "to": "experiments//scalability_experiment.py"
+    },
+    {
+      "from": "confidence_feedback_implementation.py",
+      "to": "experiments//confidence_feedback_implementation.py"
+    },
+    {
+      "from": "enhanced_features_implementation.py",
+      "to": "experiments//enhanced_features_implementation.py"
+    },
+    {
+      "from": "unimplemented_experiments.py",
+      "to": "experiments//unimplemented_experiments.py"
+    },
+    {
+      "from": "reorder_experiment_results.py",
+      "to": "experiments//reorder_experiment_results.py"
+    },
+    {
+      "from": "vercel_deploy_from_colab.py",
+      "to": "web_deployment//vercel_deploy_from_colab.py"
+    },
+    {
+      "from": "vercel_site_analysis.py",
+      "to": "web_deployment//vercel_site_analysis.py"
+    },
+    {
+      "from": "html_experiment_graphs.py",
+      "to": "web_deployment//html_experiment_graphs.py"
+    },
+    {
+      "from": "package.json",
+      "to": "web_deployment//package.json"
+    },
+    {
+      "from": "vercel.json",
+      "to": "web_deployment//vercel.json"
+    },
+    {
+      "from": "gdrive_integration.py",
+      "to": "cloud_integration//gdrive_integration.py"
+    },
+    {
+      "from": "migration_script.py",
+      "to": "cloud_integration//migration_script.py"
+    },
+    {
+      "from": "colab_template.ipynb",
+      "to": "cloud_integration//colab_template.ipynb"
+    },
+    {
+      "from": "README.md",
+      "to": "docs//README.md"
+    },
+    {
+      "from": "QUICK_START_GUIDE.md",
+      "to": "docs//QUICK_START_GUIDE.md"
+    },
+    {
+      "from": "GOOGLE_DRIVE_SETUP.md",
+      "to": "docs//GOOGLE_DRIVE_SETUP.md"
+    },
+    {
+      "from": "VERCEL_DEPLOYMENT_COMPLETE_GUIDE.md",
+      "to": "docs//VERCEL_DEPLOYMENT_COMPLETE_GUIDE.md"
+    },
+    {
+      "from": "CLAUDE.md",
+      "to": "docs//CLAUDE.md"
+    },
+    {
+      "from": "gemini_consultation_prompt.md",
+      "to": "docs//gemini_consultation_prompt.md"
+    },
+    {
+      "from": "baseline_experiment_results_20250626_153255.json",
+      "to": "results//baseline_experiment_results_20250626_153255.json"
+    },
+    {
+      "from": "performance_experiment_results_20250626_153411.json",
+      "to": "results//performance_experiment_results_20250626_153411.json"
+    },
+    {
+      "from": "scalability_experiment_results_20250626_153524.json",
+      "to": "results//scalability_experiment_results_20250626_153524.json"
+    },
+    {
+      "from": "auto_execution_log_20250626_003055.json",
+      "to": "results//auto_execution_log_20250626_003055.json"
+    },
+    {
+      "from": "auto_execution_log_20250626_003407.json",
+      "to": "results//auto_execution_log_20250626_003407.json"
+    },
+    {
+      "from": "auto_execution_log_20250626_005745.json",
+      "to": "results//auto_execution_log_20250626_005745.json"
+    },
+    {
+      "from": "auto_execution_log_20250626_010338.json",
+      "to": "results//auto_execution_log_20250626_010338.json"
+    },
+    {
+      "from": "auto_execution_log_20250626_024508.json",
+      "to": "results//auto_execution_log_20250626_024508.json"
+    },
+    {
+      "from": "simple_auto_monitor.log",
+      "to": "results//simple_auto_monitor.log"
+    },
+    {
+      "from": "site_improvement_suggestions.json",
+      "to": "results//site_improvement_suggestions.json"
+    },
+    {
+      "from": "WordNet-Based_Semantic_Image_Classification_Research_Presentation.pptx",
+      "to": "presentations//WordNet-Based_Semantic_Image_Classification_Research_Presentation.pptx"
+    }
+  ],
+  "deleted_files": [
+    "archive/cleanup_archive/",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@mapbox/node-pre-gyp/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@vercel/redwood/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@vercel/gatsby-plugin-vercel-builder/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@vercel/static-config/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@vercel/routing-utils/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@vercel/node/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@ts-morph/common/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/stream-to-promise/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/path-match/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/http-errors/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/minipass/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/make-dir/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/raw-body/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/execa/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/gauge/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/tar/node_modules",
+    "archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/edge-runtime/node_modules"
+  ],
+  "created_directories": [
+    "core/",
+    "experiments/",
+    "web_deployment/",
+    "cloud_integration/",
+    "docs/",
+    "presentations/"
+  ],
+  "errors": [
+    "node_modules\u524a\u9664\u5931\u6557: /content/drive/MyDrive/research/archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@mapbox/node-pre-gyp/node_modules/fs-minipass/node_modules - [Errno 2] No such file or directory: '/content/drive/MyDrive/research/archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@mapbox/node-pre-gyp/node_modules/fs-minipass/node_modules'",
+    "node_modules\u524a\u9664\u5931\u6557: /content/drive/MyDrive/research/archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@mapbox/node-pre-gyp/node_modules/minizlib/node_modules - [Errno 2] No such file or directory: '/content/drive/MyDrive/research/archive/comprehensive_cleanup_backup/previous_temp_backup/discussion-site/node_modules/@mapbox/node-pre-gyp/node_modules/minizlib/node_modules'"
+  ],
+  "end_time": "2025-06-27T09:44:31.355448"
+}

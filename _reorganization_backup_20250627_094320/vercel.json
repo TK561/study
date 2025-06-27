@@ -1,0 +1,44 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'Building static site'",
+  "outputDirectory": "public",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/main-system",
+      "destination": "/public/main-system/index.html"
+    },
+    {
+      "source": "/confidence_feedback",
+      "destination": "/public/confidence_feedback/index.html"
+    },
+    {
+      "source": "/pptx_systems",
+      "destination": "/public/pptx_systems/index.html"
+    },
+    {
+      "source": "/enhanced_features",
+      "destination": "/public/enhanced_features/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ]
+}
