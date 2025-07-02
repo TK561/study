@@ -77,7 +77,7 @@
             padding: 5px 12px;
             border-radius: 20px;
             margin: 5px;
-            font-size: 1em;
+            font-size: 0.9em;
         }
         @media (max-width: 768px) {
             .experiment-grid {
@@ -91,7 +91,7 @@
         <div class="header">
             <h1>🔬 未実装項目実験結果</h1>
             <p>ディスカッション記録から特定された4つの実験とその結果グラフ</p>
-            <p style="color: #7f8c8d; font-size: 1em;">生成日時: 2025年06月26日 01:21:05</p>
+            <p style="color: #7f8c8d; font-size: 0.9em;">生成日時: 2025年06月26日 01:21:05</p>
         </div>
 
         <div class="experiment-grid">
@@ -177,10 +177,6 @@
     </div>
 
     <script>
-        // Chart.jsデフォルトフォント設定（読みやすさ向上）
-        Chart.defaults.font.size = 14;
-        Chart.defaults.font.family = "'Segoe UI', sans-serif";
-        
         // 実験1: Pascal VOC カテゴリ別精度
         const ctx1 = document.getElementById('chart1').getContext('2d');
         new Chart(ctx1, {

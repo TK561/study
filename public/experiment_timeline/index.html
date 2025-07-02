@@ -122,7 +122,7 @@
             }
             
             .nav-links a {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 padding: 8px 15px;
             }
         }
@@ -195,7 +195,7 @@
         }
         
         .timeline-card .period {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #7f8c8d;
             margin-bottom: 10px;
             font-weight: 500;
@@ -209,7 +209,7 @@
         .timeline-card .achievements li {
             padding: 8px 0;
             border-bottom: 1px solid #ecf0f1;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         .timeline-card .achievements li:last-child {
@@ -260,7 +260,7 @@
         <div class="header">
             <h1>🚀 実験段階別進捗ダッシュボード</h1>
             <p>画像処理システム開発 - 包括的な研究成果と実験結果分析</p>
-            <p style="font-size: 1rem; opacity: 0.8;">2025年3月17日 ～ 2025年6月19日 (93日間の集中開発)</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">2025年3月17日 ～ 2025年6月19日 (93日間の集中開発)</p>
         </div>
         
         <!-- プロジェクト概要 -->
@@ -379,9 +379,6 @@
     </div>
     
     <script>
-        // Chart.jsデフォルトフォント設定（読みやすさ向上）
-        Chart.defaults.font.size = 14;
-        Chart.defaults.font.family = "'Segoe UI', sans-serif";
         
         console.log('Starting dashboard initialization...');
         
@@ -427,15 +424,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '開発進捗と機能実装数の推移',
-                                    color: '#333',
-                                    font: { size: 16 }
-                                },
-                                legend: {
-                                    labels: {
-                                        color: '#333',
-                                        font: { size: 14 }
-                                    }
+                                    text: '開発進捗と機能実装数の推移'
                                 }
                             },
                             scales: {
@@ -443,16 +432,7 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: '進捗率 / 機能数',
-                                        color: '#333'
-                                    },
-                                    ticks: {
-                                        color: '#444'
-                                    }
-                                },
-                                x: {
-                                    ticks: {
-                                        color: '#444'
+                                        text: '進捗率 / 機能数'
                                     }
                                 }
                             }
