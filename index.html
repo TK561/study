@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究プロジェクト管理システム</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .project-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .project-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .project-card p {
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        .research-highlight {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 研究プロジェクト管理システム</h1>
+            <p>Claude Code × Obsidian × NotebookLM × Vercel 統合プラットフォーム</p>
+            <div class="tech-stack">
+                <span class="tech-tag">🤖 AI研究</span>
+                <span class="tech-tag">📊 データ分析</span>
+                <span class="tech-tag">🌐 Web展開</span>
+                <span class="tech-tag">📝 知識管理</span>
+                <span class="tech-tag">🔄 自動化</span>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card research-highlight">
+                <div class="project-icon">🔬</div>
+                <h2>構造的表現ギャップ研究</h2>
+                <p>異なる表現構造間のギャップを橋渡しする適応型意味マッピングフレームワークの開発</p>
+                <a href="/discussion-site/" class="btn">研究詳細を見る</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🗂️</div>
+                <h2>WordNetベース画像分類</h2>
+                <p>WordNet階層構造を活用した意味的画像分類システム（精度87.1%達成）</p>
+                <a href="/main-system/" class="btn">システム詳細</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">📈</div>
+                <h2>実験結果・可視化</h2>
+                <p>Cohen検定力分析、データセット最適化、パフォーマンス評価結果</p>
+                <a href="/experiment_results/" class="btn">結果を見る</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">⚡</div>
+                <h2>リアルタイム処理</h2>
+                <p>動的データセット選択、多層物体検出、WebSocket統合システム</p>
+                <a href="/enhanced_features/" class="btn">機能一覧</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">📋</div>
+                <h2>研究ディスカッション</h2>
+                <p>週次ディスカッション記録、研究進捗管理、目標設定システム</p>
+                <a href="/discussion-site/" class="btn">ディスカッション</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🎯</div>
+                <h2>信頼度フィードバック</h2>
+                <p>AI予測の信頼度評価、フィードバック機構、精度向上システム</p>
+                <a href="/confidence_feedback/" class="btn">システム確認</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🤖 完全自動化システム v2.0</h3>
+            <p>ファイル整理 → 作業保存 → Vercel反映 → Obsidianルール適用</p>
+            <p><strong>最終更新:</strong> 2025年07月02日</p>
+            <p><strong>管理システム:</strong> Claude Code統合プラットフォーム</p>
+        </div>
+    </div>
+
+    <script>
+        // 簡単なアニメーション効果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

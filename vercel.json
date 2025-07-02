@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "discussion-site/index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/discussion-site/(.*)",
+      "dest": "/discussion-site/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/discussion-site/index.html"
+    }
+  ]
+}
