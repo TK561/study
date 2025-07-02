@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "@textlint-ja/preset-ai-writing": true,
+    "preset-ja-technical-writing": {
+      "sentence-length": {
+        "max": 100
+      },
+      "no-exclamation-question-mark": false,
+      "ja-no-weak-phrase": false,
+      "ja-no-successive-word": {
+        "allowOnomatopee": true
+      }
+    }
+  },
+  "filters": {
+    "comments": true,
+    "allowlist": {
+      "allow": [
+        "/\\bAI\\b/",
+        "/\\bClaude\\b/",
+        "/\\bVercel\\b/",
+        "/\\bColab\\b/",
+        "/\\bGoogle\\b/",
+        "/\\bGitHub\\b/"
+      ]
+    }
+  }
+}

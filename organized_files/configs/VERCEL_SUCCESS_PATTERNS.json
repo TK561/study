@@ -1,0 +1,91 @@
+{
+  "successful_deployments": [
+    {
+      "timestamp": "2025-07-02T02:49:00Z",
+      "deployment_url": "https://study-research.vercel.app",
+      "deployment_id": "3L5N4Ew1fye2aAR8ZWNTDbzTHLME",
+      "success_pattern": {
+        "project_structure": {
+          "output_directory": "public",
+          "vercel_json_config": {
+            "buildCommand": "echo 'Building study-research static site'",
+            "outputDirectory": "public",
+            "framework": null,
+            "cleanUrls": true,
+            "trailingSlash": false
+          },
+          "key_directories": [
+            "public/discussion-site/",
+            "public/session13_results/",
+            "public/main-system/",
+            "public/experiment_timeline/",
+            "public/enhanced_features/"
+          ]
+        },
+        "deployment_commands": [
+          "rm -rf .vercel",
+          "npx vercel --prod --yes --scope tk561s-projects",
+          "git add .",
+          "git commit -m 'deployment message'",
+          "git push origin main",
+          "npx vercel --prod"
+        ],
+        "critical_success_factors": [
+          "正しいpublic/ディレクトリ構造の維持",
+          "vercel.jsonのrewrites設定によるルーティング",
+          "既存プロジェクト(study-research)への正しいリンク",
+          "Git変更のコミット後のデプロイ実行",
+          "tk561s-projects スコープでの実行"
+        ]
+      },
+      "resolved_issues": [
+        {
+          "issue": "Session 13 content not deployed",
+          "solution": "Moved session13_results/ to public/session13_results/",
+          "root_cause": "Files in root directory instead of public/ directory"
+        },
+        {
+          "issue": "Discussion site missing Session 13 record",
+          "solution": "Added Session 13 entry with Cohen's Power Analysis findings",
+          "implementation": "Updated public/discussion-site/index.html with new discussion item"
+        }
+      ],
+      "project_details": {
+        "project_name": "study-research",
+        "custom_domain": "study-research.vercel.app",
+        "organization": "tk561s-projects",
+        "project_id": "prj_MfZa6EnN8qlBylUf2RgGlI9uQbHA",
+        "org_id": "team_kA5nnv3rcMaRsXQJ9vdYQ0nR"
+      }
+    }
+  ],
+  "deployment_checklist": [
+    "✅ public/ディレクトリに全てのコンテンツが配置されている",
+    "✅ vercel.jsonのrewrites設定が正しく設定されている", 
+    "✅ Git変更が全てコミット・プッシュされている",
+    "✅ 既存のstudy-researchプロジェクトにリンクされている",
+    "✅ --scope tk561s-projects フラグを使用している"
+  ],
+  "common_error_solutions": {
+    "project_name_error": "Use existing project name 'study-research' with correct scope",
+    "output_directory_missing": "Ensure all content is in public/ directory",
+    "routing_issues": "Check vercel.json rewrites configuration",
+    "link_issues": "Remove .vercel directory and re-link to existing project"
+  },
+  "key_urls": {
+    "main_site": "https://study-research.vercel.app",
+    "discussion_site": "https://study-research.vercel.app/discussion-site", 
+    "session13_results": "https://study-research.vercel.app/session13",
+    "cohens_power": "https://study-research.vercel.app/cohens-power"
+  },
+  "last_successful_deployment": {
+    "date": "2025-07-02",
+    "time": "11:49 JST",
+    "content_deployed": [
+      "Session 13 Cohen's Power Analysis results",
+      "Discussion site with complete 13 session records",
+      "Interactive visualization charts",
+      "Category saturation phenomenon documentation"
+    ]
+  }
+}

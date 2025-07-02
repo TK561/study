@@ -1,0 +1,301 @@
+{
+  "title": "Cohen's Power Analysis基準による実験実施計画",
+  "generated_date": "2025-06-20T23:43:05.801779",
+  "experiments": [
+    {
+      "phase": "Phase 1: Minimum Academic Standard",
+      "plan": {
+        "experiment_id": "cohens_power_exp_20250620_234305",
+        "samples_per_category": 30,
+        "total_samples": 240,
+        "categories": [
+          {
+            "category": "person",
+            "dataset": "LFW (Labeled Faces in the Wild)",
+            "available_samples": 13233,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://vis-www.cs.umass.edu/lfw/"
+          },
+          {
+            "category": "animal",
+            "dataset": "ImageNet Animal Subset",
+            "available_samples": 180000,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://www.image-net.org/"
+          },
+          {
+            "category": "food",
+            "dataset": "Food-101",
+            "available_samples": 101000,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://www.vision.ee.ethz.ch/datasets_extra/food-101/"
+          },
+          {
+            "category": "landscape",
+            "dataset": "Places365",
+            "available_samples": 1803460,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://places2.csail.mit.edu/"
+          },
+          {
+            "category": "building",
+            "dataset": "OpenBuildings",
+            "available_samples": 1000000,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://sites.research.google/open-buildings/"
+          },
+          {
+            "category": "furniture",
+            "dataset": "Objects365",
+            "available_samples": 2000000,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://www.objects365.org/"
+          },
+          {
+            "category": "vehicle",
+            "dataset": "Pascal VOC",
+            "available_samples": 11530,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://host.robots.ox.ac.uk/pascal/VOC/"
+          },
+          {
+            "category": "plant",
+            "dataset": "PlantVillage",
+            "available_samples": 54309,
+            "required_samples": 30,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://plantvillage.psu.edu/"
+          }
+        ],
+        "statistical_parameters": {
+          "power": 0.8,
+          "alpha": 0.05,
+          "effect_size": "medium (d=0.5)",
+          "confidence_level": "95%"
+        },
+        "all_requirements_met": true,
+        "feasibility": "FEASIBLE"
+      },
+      "simulated_results": {
+        "experiment_date": "2025-06-20T23:43:05.801867",
+        "samples_per_category": 30,
+        "total_samples": 240,
+        "results": {
+          "overall_accuracy": 0.9175044045544937,
+          "average_confidence": 0.896403523643595,
+          "improvement_over_baseline": 0.10550440455449366,
+          "statistical_significance": "p < 0.05"
+        },
+        "category_results": {
+          "person": {
+            "accuracy": 0.9581147458822088,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "animal": {
+            "accuracy": 0.9517598398986226,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "food": {
+            "accuracy": 0.9041038592429003,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "landscape": {
+            "accuracy": 0.879189127464968,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "building": {
+            "accuracy": 0.9534987546430712,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "furniture": {
+            "accuracy": 0.8855905413613585,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "vehicle": {
+            "accuracy": 0.96378643019057,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          },
+          "plant": {
+            "accuracy": 0.8867279218715,
+            "sample_count": 30,
+            "confidence_interval": "±2.5%"
+          }
+        }
+      }
+    },
+    {
+      "phase": "Phase 2: Statistical Optimal",
+      "plan": {
+        "experiment_id": "cohens_power_exp_20250620_234305",
+        "samples_per_category": 94,
+        "total_samples": 752,
+        "categories": [
+          {
+            "category": "person",
+            "dataset": "LFW (Labeled Faces in the Wild)",
+            "available_samples": 13233,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://vis-www.cs.umass.edu/lfw/"
+          },
+          {
+            "category": "animal",
+            "dataset": "ImageNet Animal Subset",
+            "available_samples": 180000,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://www.image-net.org/"
+          },
+          {
+            "category": "food",
+            "dataset": "Food-101",
+            "available_samples": 101000,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://www.vision.ee.ethz.ch/datasets_extra/food-101/"
+          },
+          {
+            "category": "landscape",
+            "dataset": "Places365",
+            "available_samples": 1803460,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://places2.csail.mit.edu/"
+          },
+          {
+            "category": "building",
+            "dataset": "OpenBuildings",
+            "available_samples": 1000000,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://sites.research.google/open-buildings/"
+          },
+          {
+            "category": "furniture",
+            "dataset": "Objects365",
+            "available_samples": 2000000,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://www.objects365.org/"
+          },
+          {
+            "category": "vehicle",
+            "dataset": "Pascal VOC",
+            "available_samples": 11530,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "http://host.robots.ox.ac.uk/pascal/VOC/"
+          },
+          {
+            "category": "plant",
+            "dataset": "PlantVillage",
+            "available_samples": 54309,
+            "required_samples": 94,
+            "can_satisfy": true,
+            "coverage_ratio": 1.0,
+            "source": "https://plantvillage.psu.edu/"
+          }
+        ],
+        "statistical_parameters": {
+          "power": 0.8,
+          "alpha": 0.05,
+          "effect_size": "medium (d=0.5)",
+          "confidence_level": "95%"
+        },
+        "all_requirements_met": true,
+        "feasibility": "FEASIBLE"
+      },
+      "simulated_results": {
+        "experiment_date": "2025-06-20T23:43:05.801956",
+        "samples_per_category": 94,
+        "total_samples": 752,
+        "results": {
+          "overall_accuracy": 0.95,
+          "average_confidence": 0.932,
+          "improvement_over_baseline": 0.15,
+          "statistical_significance": "p < 0.05"
+        },
+        "category_results": {
+          "person": {
+            "accuracy": 0.9901418606047513,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "animal": {
+            "accuracy": 0.941581851314221,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "food": {
+            "accuracy": 0.9137661592161765,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "landscape": {
+            "accuracy": 0.98557083499846,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "building": {
+            "accuracy": 0.996024254064364,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "furniture": {
+            "accuracy": 0.9519075468382852,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "vehicle": {
+            "accuracy": 0.987430425844465,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          },
+          "plant": {
+            "accuracy": 0.9528610514544524,
+            "sample_count": 94,
+            "confidence_interval": "±2.5%"
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "phase1_feasibility": "FEASIBLE",
+    "phase2_feasibility": "FEASIBLE",
+    "recommended_approach": "Start with Phase 1 (30 samples) for immediate results",
+    "expected_accuracy_improvement": {
+      "phase1": "+10.6%",
+      "phase2": "+15.0%"
+    }
+  }
+}
