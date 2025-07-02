@@ -427,7 +427,15 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '開発進捗と機能実装数の推移'
+                                    text: '開発進捗と機能実装数の推移',
+                                    color: '#333',
+                                    font: { size: 16 }
+                                },
+                                legend: {
+                                    labels: {
+                                        color: '#333',
+                                        font: { size: 14 }
+                                    }
                                 }
                             },
                             scales: {
@@ -435,7 +443,16 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: '進捗率 / 機能数'
+                                        text: '進捗率 / 機能数',
+                                        color: '#333'
+                                    },
+                                    ticks: {
+                                        color: '#444'
+                                    }
+                                },
+                                x: {
+                                    ticks: {
+                                        color: '#444'
                                     }
                                 }
                             }
