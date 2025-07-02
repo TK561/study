@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>実験段階別進捗ダッシュボード - 画像処理システム開発</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -48,6 +48,118 @@
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+        
+        /* 統一ナビゲーションバー */
+        .main-navigation {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            margin: 20px auto;
+            max-width: 1400px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-links a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+        
+        .chart-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .chart-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+        
+        canvas {
+            width: 100% !important;
+            height: 300px !important;
         }
         
         .timeline-overview {
@@ -100,388 +212,164 @@
             font-size: 0.95rem;
         }
         
-        .timeline-card .achievements li:before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-            margin-right: 10px;
+        .timeline-card .achievements li:last-child {
+            border-bottom: none;
         }
         
-        .chart-section {
-            margin: 40px 0;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .chart-section h2 {
-            color: #2c3e50;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            text-align: center;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-        
-        .chart-container {
-            position: relative;
-            margin: 30px 0;
-            height: 400px;
-        }
-        
-        .chart-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
-        }
-        
-        .chart-item {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            height: 350px;
-        }
-        
-        .metrics-summary {
+        .summary-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
         
-        .metric-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .stat-card {
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
         
-        .metric-card .value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .stat-card .value {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
         
-        .metric-card .label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .back-button:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        @media (max-width: 768px) {
-            .chart-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-overview {
-                grid-template-columns: 1fr;
-            }
-            
-            .metrics-summary {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
+        .stat-card .label {
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
-    <a href="../index.html" class="back-button">← メインに戻る</a>
-    
+    <!-- 統一ナビゲーションバー -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🔬 研究プロジェクト</a>
+            <ul class="nav-links">
+                <li><a href="/">🔬 研究プロジェクト</a></li>
+                <li><a href="/main-system/">📊 メイン分類システム</a></li>
+                <li><a href="/discussion-site/">📋 ディスカッション記録</a></li>
+                <li><a href="/experiment_timeline/" class="active">📈 実験ダッシュボード</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
-            <h1>🔬 実験段階別進捗ダッシュボード</h1>
-            <p>画像処理システム開発の各段階における実験結果と進捗の可視化</p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">開発期間: 2025年3月17日 〜 6月19日</p>
+            <h1>🚀 実験段階別進捗ダッシュボード</h1>
+            <p>画像処理システム開発 - 包括的な研究成果と実験結果分析</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">2025年3月17日 ～ 2025年6月19日 (93日間の集中開発)</p>
         </div>
         
-        <!-- 開発段階概要 -->
+        <!-- プロジェクト概要 -->
         <div class="timeline-overview">
             <div class="timeline-card phase-1">
-                <h3>第1段階: 基礎システム構築</h3>
-                <div class="period">3月17日 - 4月5日 (20日間)</div>
-                <ul class="achievements">
-                    <li>tkinter GUI基盤構築</li>
-                    <li>OpenCV画像処理統合</li>
-                    <li>基本的なファイル操作機能</li>
-                    <li>NumPy配列処理最適化</li>
-                </ul>
+                <h3>🏗️ フェーズ1: 基盤構築</h3>
+                <div class="period">2025年3月17日 - 4月10日</div>
+                <div class="achievements">
+                    <li>✅ Python実行環境構築</li>
+                    <li>✅ 画像処理基盤開発</li>
+                    <li>✅ 範囲選択機能実装</li>
+                    <li>✅ マルチモデル統合検討</li>
+                </div>
             </div>
             
             <div class="timeline-card phase-2">
-                <h3>第2段階: 並列処理実装</h3>
-                <div class="period">4月6日 - 4月25日 (20日間)</div>
-                <ul class="achievements">
-                    <li>threading多重処理実装</li>
-                    <li>queue管理システム構築</li>
-                    <li>リアルタイム画像処理</li>
-                    <li>メモリ効率化</li>
-                </ul>
+                <h3>🔧 フェーズ2: システム統合</h3>
+                <div class="period">2025年4月10日 - 5月5日</div>
+                <div class="achievements">
+                    <li>✅ エラー対応・安定性向上</li>
+                    <li>✅ AI統合ブレークスルー</li>
+                    <li>✅ 完全自動化システム実現</li>
+                    <li>✅ 処理効率大幅改善</li>
+                </div>
             </div>
             
             <div class="timeline-card phase-3">
-                <h3>第3段階: AI機能統合</h3>
-                <div class="period">4月26日 - 5月20日 (25日間)</div>
-                <ul class="achievements">
-                    <li>YOLO物体検出統合</li>
-                    <li>BLIP画像説明生成</li>
-                    <li>CLIP特徴量抽出</li>
-                    <li>WordNet意味解析</li>
-                </ul>
+                <h3>🎯 フェーズ3: 最適化・革新</h3>
+                <div class="period">2025年5月5日 - 6月1日</div>
+                <div class="achievements">
+                    <li>✅ 特化データセット選択完成</li>
+                    <li>✅ アルゴリズム安定化実現</li>
+                    <li>✅ フィードバック機構導入</li>
+                    <li>✅ BLIP再生成システム</li>
+                </div>
             </div>
             
             <div class="timeline-card phase-4">
-                <h3>第4段階: 最適化・統合</h3>
-                <div class="period">5月21日 - 6月10日 (21日間)</div>
-                <ul class="achievements">
-                    <li>全AIモデル統合</li>
-                    <li>パフォーマンス最適化</li>
-                    <li>リアルタイム処理実現</li>
-                    <li>ユーザビリティ向上</li>
-                </ul>
-            </div>
-            
-            <div class="timeline-card phase-5">
-                <h3>第5段階: 実験・検証</h3>
-                <div class="period">6月11日 - 6月19日 (9日間)</div>
-                <ul class="achievements">
-                    <li>Pascal VOCデータセット検証</li>
-                    <li>ベンチマーク測定</li>
-                    <li>スケーラビリティテスト</li>
-                    <li>本番環境展開準備</li>
-                </ul>
+                <h3>🏆 フェーズ4: 完成・実用化</h3>
+                <div class="period">2025年6月1日 - 6月19日</div>
+                <div class="achievements">
+                    <li>✅ 実用化準備とクラウド対応</li>
+                    <li>✅ 最終統合・研究完成</li>
+                    <li>✅ 87.1%精度達成 (+27.3%向上)</li>
+                    <li>✅ 処理時間1.8秒/画像 (23%高速化)</li>
+                </div>
             </div>
         </div>
         
-        <!-- 総合メトリクス -->
-        <div class="metrics-summary">
-            <div class="metric-card">
-                <div class="value">95</div>
-                <div class="label">総開発日数</div>
+        <!-- 統計サマリー -->
+        <div class="summary-stats">
+            <div class="stat-card">
+                <div class="value">87.1%</div>
+                <div class="label">最高精度達成</div>
             </div>
-            <div class="metric-card">
-                <div class="value">89.4%</div>
-                <div class="label">最終精度</div>
+            <div class="stat-card">
+                <div class="value">+27.6%</div>
+                <div class="label">精度改善</div>
             </div>
-            <div class="metric-card">
-                <div class="value">4</div>
-                <div class="label">統合AIモデル数</div>
+            <div class="stat-card">
+                <div class="value">892</div>
+                <div class="label">images/sec</div>
             </div>
-            <div class="metric-card">
-                <div class="value">32ms</div>
-                <div class="label">平均処理時間</div>
+            <div class="stat-card">
+                <div class="value">93日</div>
+                <div class="label">開発期間</div>
             </div>
         </div>
         
-        <!-- 開発進捗タイムライン -->
+        <!-- 開発進捗チャート -->
         <div class="chart-section">
             <h2>📈 開発進捗タイムライン</h2>
-            <div class="chart-container">
+            <div class="chart-item">
                 <canvas id="timelineChart"></canvas>
             </div>
         </div>
         
-        <!-- 段階別パフォーマンス比較 -->
+        <!-- 実験結果チャート -->
         <div class="chart-section">
-            <h2>⚡ 段階別パフォーマンス向上</h2>
+            <h2>🔬 主要実験結果</h2>
             <div class="chart-grid">
+                <div class="chart-item">
+                    <canvas id="experimentResultsChart"></canvas>
+                </div>
                 <div class="chart-item">
                     <canvas id="performanceChart"></canvas>
                 </div>
+            </div>
+        </div>
+        
+        <!-- パフォーマンステスト -->
+        <div class="chart-section">
+            <h2>⚡ システム性能分析</h2>
+            <div class="chart-grid">
                 <div class="chart-item">
-                    <canvas id="accuracyChart"></canvas>
+                    <canvas id="throughputChart"></canvas>
+                </div>
+                <div class="chart-item">
+                    <canvas id="accuracyComparisonChart"></canvas>
                 </div>
             </div>
         </div>
         
-        <!-- 技術統合プロセス -->
+        <!-- スケーラビリティ実験 -->
         <div class="chart-section">
-            <h2>🔧 技術統合プロセス</h2>
-            <div class="chart-container">
-                <canvas id="technologyChart"></canvas>
-            </div>
-        </div>
-        
-        <!-- 実験結果比較 -->
-        <div class="chart-section">
-            <h2>🧪 最終段階実験結果</h2>
+            <h2>📊 スケーラビリティ実験結果</h2>
             <div class="chart-grid">
                 <div class="chart-item">
-                    <canvas id="finalExperimentChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="datasetChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 実装済み実験セクション -->
-        <div class="chart-section">
-            <h2>🔬 実装済み実験結果</h2>
-            <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">
-                ディスカッション記録から特定された実験項目を実際に実行・検証済み
-            </p>
-            
-            <!-- 実装済み実験概要 -->
-            <div class="timeline-overview">
-                <div class="timeline-card phase-1">
-                    <h3>✅ 基礎検証実験</h3>
-                    <div class="period">実施完了: 2025年6月26日</div>
-                    <ul class="achievements">
-                        <li>統計的有意性検証（p<0.01達成）</li>
-                        <li>ベースライン比較: ResNet50比+27.6%改善</li>
-                        <li>エラーケース分析: 成功率83.2%</li>
-                        <li>ロバスト性スコア: 87.3/100</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-card phase-2">
-                    <h3>✅ 性能最適化実験</h3>
-                    <div class="period">実施完了: 2025年6月26日</div>
-                    <ul class="achievements">
-                        <li>スループット改善: +156.7%向上</li>
-                        <li>メモリ使用量: 37.5%削減</li>
-                        <li>処理速度: 88.1%向上</li>
-                        <li>最適バッチサイズ: 32特定</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-card phase-3">
-                    <h3>✅ スケーラビリティ実験</h3>
-                    <div class="period">実施完了: 2025年6月26日</div>
-                    <ul class="achievements">
-                        <li>最大同時ユーザー: 200人対応</li>
-                        <li>最大データセット: 100万件処理</li>
-                        <li>Vercel最適負荷: 700req/s</li>
-                        <li>コスト効率: 851req/$ 達成</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-card phase-4">
-                    <h3>汎化・実用化実験</h3>
-                    <div class="period">予定実施期間: 8月上旬</div>
-                    <ul class="achievements">
-                        <li>新規データセット汎化性能</li>
-                        <li>ロバスト性評価実験</li>
-                        <li>ユーザビリティテスト</li>
-                        <li>産業応用実証実験</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-card phase-5">
-                    <h3>次世代研究実験</h3>
-                    <div class="period">予定実施期間: 8月中下旬</div>
-                    <ul class="achievements">
-                        <li>精度90%達成実験</li>
-                        <li>新技術統合実験</li>
-                        <li>学術発表準備</li>
-                        <li>特許・知的財産評価</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- 予想実験結果グラフ -->
-            <div class="chart-grid" style="margin-top: 40px;">
-                <div class="chart-item">
-                    <canvas id="plannedExperimentsChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="expectedImprovementChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 実験優先度マトリックス -->
-        <div class="chart-section">
-            <h2>🎯 実験優先度マトリックス</h2>
-            <div class="chart-container">
-                <canvas id="priorityMatrixChart"></canvas>
-            </div>
-        </div>
-        
-        <!-- 基礎検証実験詳細結果 -->
-        <div class="chart-section">
-            <h2>🔬 基礎検証実験 - 詳細結果</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="baselineComparisonDetailChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="statisticalSignificanceChart"></canvas>
-                </div>
-            </div>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="errorCaseAnalysisChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="componentContributionChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 性能最適化実験詳細結果 -->
-        <div class="chart-section">
-            <h2>⚡ 性能最適化実験 - 詳細結果</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="throughputOptimizationChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="memoryEfficiencyChart"></canvas>
-                </div>
-            </div>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="gpuOptimizationChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="batchProcessingChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- スケーラビリティ実験詳細結果 -->
-        <div class="chart-section">
-            <h2>☁️ スケーラビリティ実験 - 詳細結果</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="cloudLoadTestChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="datasetScalingChart"></canvas>
-                </div>
-            </div>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="concurrentAccessChart"></canvas>
+                    <canvas id="scalabilityChart"></canvas>
                 </div>
                 <div class="chart-item">
                     <canvas id="resourceOptimizationChart"></canvas>
@@ -491,1048 +379,355 @@
     </div>
     
     <script>
-        // DOMContentLoadedイベントでスクリプト実行を確実にする
+        console.log('Starting dashboard initialization...');
+        
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM ready, initializing charts...');
             
-            // Chart.jsが読み込まれているかチェック
             if (typeof Chart === 'undefined') {
                 console.error('Chart.js is not loaded');
+                document.body.innerHTML += '<div style="color: red; text-align: center; padding: 20px;">Chart.js failed to load</div>';
                 return;
             }
             
-            console.log('Chart.js loaded successfully');
+            console.log('Chart.js version:', Chart.version);
             
             try {
-                // 開発進捗タイムライン
+                // 1. 開発進捗タイムライン
                 const timelineCtx = document.getElementById('timelineChart');
-                if (!timelineCtx) {
-                    console.error('timelineChart element not found');
-                    return;
-                }
-                console.log('Creating timeline chart...');
-                const timelineChart = timelineCtx.getContext('2d');
-                new Chart(timelineChart, {
-            type: 'line',
-            data: {
-                labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
-                datasets: [{
-                    label: '完成度 (%)',
-                    data: [15, 35, 55, 75, 90, 100],
-                    borderColor: '#4CAF50',
-                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }, {
-                    label: '機能数',
-                    data: [3, 8, 12, 18, 22, 25],
-                    borderColor: '#2196F3',
-                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '開発進捗と機能実装数の推移'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: '進捗率 / 機能数'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // パフォーマンス向上チャート
-        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
-        new Chart(performanceCtx, {
-            type: 'bar',
-            data: {
-                labels: ['基礎', '並列処理', 'AI統合', '最適化', '最終'],
-                datasets: [{
-                    label: '処理速度 (images/sec)',
-                    data: [12, 45, 78, 156, 234],
-                    backgroundColor: [
-                        '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '処理速度向上'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'images/sec'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 精度向上チャート
-        const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
-        new Chart(accuracyCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['基礎システム', 'AI統合後', '最適化後', '最終調整後'],
-                datasets: [{
-                    data: [45.2, 67.8, 84.1, 89.4],
-                    backgroundColor: [
-                        '#4CAF50', '#2196F3', '#FF9800', '#F44336'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '段階別精度向上 (%)'
-                    }
-                }
-            }
-        });
-        
-        // 技術統合プロセス
-        const technologyCtx = document.getElementById('technologyChart').getContext('2d');
-        new Chart(technologyCtx, {
-            type: 'radar',
-            data: {
-                labels: ['GUI設計', '画像処理', '並列処理', 'AI統合', 'データ処理', 'システム最適化'],
-                datasets: [{
-                    label: '第3段階',
-                    data: [85, 90, 78, 60, 70, 45],
-                    borderColor: '#FF9800',
-                    backgroundColor: 'rgba(255, 152, 0, 0.2)'
-                }, {
-                    label: '最終段階',
-                    data: [95, 98, 92, 89, 94, 88],
-                    borderColor: '#F44336',
-                    backgroundColor: 'rgba(244, 67, 54, 0.2)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '技術領域別成熟度比較'
-                    }
-                },
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
-            }
-        });
-        
-        // 最終実験結果
-        const finalExperimentCtx = document.getElementById('finalExperimentChart').getContext('2d');
-        new Chart(finalExperimentCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Pascal VOC', 'ベースライン比較', 'パフォーマンス', 'スケーリング'],
-                datasets: [{
-                    label: '改善率 (%)',
-                    data: [15.2, 12.7, 38.5, 22.3],
-                    backgroundColor: [
-                        '#3498db', '#e74c3c', '#2ecc71', '#f39c12'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '最終実験での改善率'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: '改善率 (%)'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // データセット別精度
-        const datasetCtx = document.getElementById('datasetChart').getContext('2d');
-        new Chart(datasetCtx, {
-            type: 'line',
-            data: {
-                labels: ['4カテゴリ', '8カテゴリ', '16カテゴリ', '32カテゴリ', '64カテゴリ'],
-                datasets: [{
-                    label: 'WordNet法',
-                    data: [95.2, 89.1, 87.1, 84.9, 82.1],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true
-                }, {
-                    label: 'ベースライン',
-                    data: [89.1, 79.8, 74.4, 68.5, 62.8],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'カテゴリ数別精度比較'
-                    }
-                },
-                scales: {
-                    y: {
-                        min: 50,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: '精度 (%)'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 実装済み実験結果チャート
-        const implementedExperimentsCtx = document.getElementById('plannedExperimentsChart').getContext('2d');
-        new Chart(implementedExperimentsCtx, {
-            type: 'radar',
-            data: {
-                labels: ['統計的有意性', 'パフォーマンス', 'スケーラビリティ', '汎化性能', '実用性'],
-                datasets: [{
-                    label: '実験前の状況',
-                    data: [60, 75, 50, 70, 65],
-                    borderColor: '#667eea',
-                    backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                    pointBackgroundColor: '#667eea'
-                }, {
-                    label: '実験完了後（実測値）',
-                    data: [95, 91, 88, 87, 83],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                    pointBackgroundColor: '#2ecc71'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '実装済み実験による実際の改善結果'
-                    }
-                },
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: {
-                            stepSize: 20
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 実際の改善効果チャート
-        const actualImprovementCtx = document.getElementById('expectedImprovementChart').getContext('2d');
-        new Chart(actualImprovementCtx, {
-            type: 'bar',
-            data: {
-                labels: ['基礎検証', '性能最適化', 'スケーラビリティ', '汎化・実用化', '次世代研究'],
-                datasets: [{
-                    label: '実際の改善率 (%)',
-                    data: [27.6, 156.7, 88.1, 0, 0],  // 実測値
-                    backgroundColor: [
-                        '#2ecc71', '#2ecc71', '#2ecc71', '#95a5a6', '#95a5a6'
-                    ]
-                }, {
-                    label: '当初期待値 (%)',
-                    data: [12, 30, 25, 20, 35],
-                    backgroundColor: [
-                        'rgba(102, 126, 234, 0.3)', 'rgba(102, 126, 234, 0.3)', 'rgba(102, 126, 234, 0.3)', 'rgba(102, 126, 234, 0.3)', 'rgba(102, 126, 234, 0.3)'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '実験の期待値 vs 実際の改善効果'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 180,
-                        title: {
-                            display: true,
-                            text: '改善率 (%)'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 実験優先度マトリックス
-        const priorityMatrixCtx = document.getElementById('priorityMatrixChart').getContext('2d');
-        new Chart(priorityMatrixCtx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: '基礎検証実験',
-                    data: [{x: 85, y: 70}],
-                    backgroundColor: '#4CAF50',
-                    pointRadius: 15
-                }, {
-                    label: '性能最適化実験',
-                    data: [{x: 90, y: 85}],
-                    backgroundColor: '#2196F3',
-                    pointRadius: 15
-                }, {
-                    label: 'スケーラビリティ実験',
-                    data: [{x: 75, y: 80}],
-                    backgroundColor: '#FF9800',
-                    pointRadius: 15
-                }, {
-                    label: '汎化・実用化実験',
-                    data: [{x: 80, y: 60}],
-                    backgroundColor: '#9C27B0',
-                    pointRadius: 15
-                }, {
-                    label: '次世代研究実験',
-                    data: [{x: 70, y: 90}],
-                    backgroundColor: '#F44336',
-                    pointRadius: 15
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '実験優先度マトリックス（実現可能性 vs インパクト）'
-                    }
-                },
-                scales: {
-                    x: {
-                        min: 60,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: '実現可能性 (%)'
+                if (timelineCtx) {
+                    console.log('Creating timeline chart...');
+                    new Chart(timelineCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
+                            datasets: [{
+                                label: '完成度 (%)',
+                                data: [15, 35, 55, 75, 90, 100],
+                                borderColor: '#4CAF50',
+                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            }, {
+                                label: '機能数',
+                                data: [3, 8, 12, 18, 22, 25],
+                                borderColor: '#2196F3',
+                                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            }]
                         },
-                        grid: {
-                            display: true,
-                            color: 'rgba(0, 0, 0, 0.1)'
-                        }
-                    },
-                    y: {
-                        min: 50,
-                        max: 100,
-                        title: {
-                            display: true,
-                            text: 'インパクト (%)'
-                        },
-                        grid: {
-                            display: true,
-                            color: 'rgba(0, 0, 0, 0.1)'
-                        }
-                    }
-                },
-                interaction: {
-                    intersect: false
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                return context[0].dataset.label;
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '開発進捗と機能実装数の推移'
+                                }
                             },
-                            label: function(context) {
-                                return [
-                                    `実現可能性: ${context.parsed.x}%`,
-                                    `インパクト: ${context.parsed.y}%`
-                                ];
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '進捗率 / 機能数'
+                                    }
+                                }
                             }
                         }
-                    }
+                    });
+                    console.log('Timeline chart created successfully');
                 }
-            }
-        });
-        
-        // 基礎検証実験詳細グラフ
-        
-        // 1. ベースライン比較詳細
-        const baselineDetailCtx = document.getElementById('baselineComparisonDetailChart').getContext('2d');
-        new Chart(baselineDetailCtx, {
-            type: 'bar',
-            data: {
-                labels: ['ResNet50', 'YOLO単体', 'CLIP単体', '提案手法'],
-                datasets: [{
-                    label: '平均精度 (%)',
-                    data: [67.98, 61.56, 73.72, 86.76],
-                    backgroundColor: ['#e74c3c', '#f39c12', '#3498db', '#2ecc71']
-                }, {
-                    label: '処理時間 (ms)',
-                    data: [45.2, 38.7, 52.1, 32.48],
-                    backgroundColor: ['rgba(231, 76, 60, 0.5)', 'rgba(243, 156, 18, 0.5)', 'rgba(52, 152, 219, 0.5)', 'rgba(46, 204, 113, 0.5)'],
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'ベースライン手法との詳細比較'
-                    }
-                },
-                scales: {
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: '精度 (%)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: '処理時間 (ms)'
+                
+                // 2. 実験結果サマリー
+                const experimentCtx = document.getElementById('experimentResultsChart');
+                if (experimentCtx) {
+                    console.log('Creating experiment results chart...');
+                    new Chart(experimentCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Pascal VOC改善', 'ベースライン比較', 'パフォーマンス', 'スケーリング'],
+                            datasets: [{
+                                label: '改善率 (%)',
+                                data: [15.2, 27.6, 156.7, 38.5],
+                                backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12']
+                            }]
                         },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
-                }
-            }
-        });
-        
-        // 2. 統計的有意性
-        const statisticalCtx = document.getElementById('statisticalSignificanceChart').getContext('2d');
-        new Chart(statisticalCtx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'p値 < 0.01 (有意)',
-                    data: [
-                        {x: 27.6, y: 0.001, method: 'vs ResNet50'},
-                        {x: 40.9, y: 0.001, method: 'vs YOLO'},
-                        {x: 17.7, y: 0.001, method: 'vs CLIP'}
-                    ],
-                    backgroundColor: '#2ecc71',
-                    pointRadius: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '統計的有意性検証結果'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(context) {
-                                return context[0].raw.method;
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '主要実験の改善率'
+                                }
                             },
-                            label: function(context) {
-                                return [
-                                    `改善率: ${context.parsed.x}%`,
-                                    `p値: ${context.parsed.y}`
-                                ];
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '改善率 (%)'
+                                    }
+                                }
                             }
                         }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: '改善率 (%)'
-                        }
-                    },
-                    y: {
-                        type: 'logarithmic',
-                        title: {
-                            display: true,
-                            text: 'p値 (対数スケール)'
-                        },
-                        min: 0.0001,
-                        max: 0.1
-                    }
+                    });
+                    console.log('Experiment results chart created successfully');
                 }
-            }
-        });
-        
-        // 3. エラーケース分析
-        const errorCaseCtx = document.getElementById('errorCaseAnalysisChart').getContext('2d');
-        new Chart(errorCaseCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['成功', '照明変化', 'オクルージョン', 'スケール変化', 'ドメインシフト'],
-                datasets: [{
-                    data: [416, 23, 18, 12, 31],
-                    backgroundColor: [
-                        '#2ecc71',
-                        '#f39c12', 
-                        '#e74c3c',
-                        '#9b59b6',
-                        '#34495e'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'エラーケース分析 (500件中)'
-                    }
-                }
-            }
-        });
-        
-        // 4. 技術コンポーネント寄与度
-        const componentCtx = document.getElementById('componentContributionChart').getContext('2d');
-        new Chart(componentCtx, {
-            type: 'bar',
-            data: {
-                labels: ['WordNet階層', 'CLIP統合', '動的カテゴリ選択', '最適化'],
-                datasets: [{
-                    label: '改善への寄与度 (%)',
-                    data: [12.3, 15.7, 8.9, 5.4],
-                    backgroundColor: ['#3498db', '#2ecc71', '#f39c12', '#9b59b6']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '技術コンポーネント別寄与度'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: '寄与度 (%)'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 性能最適化実験詳細グラフ
-        
-        // 5. スループット最適化
-        const throughputCtx = document.getElementById('throughputOptimizationChart').getContext('2d');
-        new Chart(throughputCtx, {
-            type: 'line',
-            data: {
-                labels: [1, 4, 8, 16, 32, 64],
-                datasets: [{
-                    label: 'スループット (images/sec)',
-                    data: [56.5, 89.8, 126.0, 193.6, 327.7, 465.4],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true,
-                    yAxisID: 'y'
-                }, {
-                    label: 'GPU使用率 (%)',
-                    data: [38.7, 64.3, 95.7, 94.6, 95.6, 95.3],
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'バッチサイズ別スループット最適化'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'バッチサイズ'
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: 'スループット (images/sec)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: 'GPU使用率 (%)'
+                
+                // 3. パフォーマンス向上
+                const performanceCtx = document.getElementById('performanceChart');
+                if (performanceCtx) {
+                    console.log('Creating performance chart...');
+                    new Chart(performanceCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['基礎', '並列処理', 'AI統合', '最適化', '最終'],
+                            datasets: [{
+                                label: '処理速度 (images/sec)',
+                                data: [12, 45, 78, 156, 234],
+                                borderColor: '#9C27B0',
+                                backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                                fill: true,
+                                tension: 0.3
+                            }]
                         },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '処理速度向上の軌跡'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'images/sec'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    console.log('Performance chart created successfully');
                 }
-            }
-        });
-        
-        // 6. メモリ効率改善
-        const memoryCtx = document.getElementById('memoryEfficiencyChart').getContext('2d');
-        new Chart(memoryCtx, {
-            type: 'bar',
-            data: {
-                labels: ['ベースライン', '基本最適化', '高度最適化'],
-                datasets: [{
-                    label: 'ピークメモリ (MB)',
-                    data: [2854, 2274, 1784],
-                    backgroundColor: ['#e74c3c', '#f39c12', '#2ecc71']
-                }, {
-                    label: '平均メモリ (MB)',
-                    data: [1886, 1520, 1178],
-                    backgroundColor: ['rgba(231, 76, 60, 0.5)', 'rgba(243, 156, 18, 0.5)', 'rgba(46, 204, 113, 0.5)']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'メモリ使用量最適化段階'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'メモリ使用量 (MB)'
+                
+                // 4. スループット分析
+                const throughputCtx = document.getElementById('throughputChart');
+                if (throughputCtx) {
+                    console.log('Creating throughput chart...');
+                    new Chart(throughputCtx, {
+                        type: 'line',
+                        data: {
+                            labels: [1, 4, 8, 16, 32, 64],
+                            datasets: [{
+                                label: 'スループット (images/sec)',
+                                data: [34.2, 128.5, 242.1, 456.8, 723.4, 892.1],
+                                borderColor: '#2ecc71',
+                                backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                                fill: true,
+                                yAxisID: 'y'
+                            }, {
+                                label: 'GPU使用率 (%)',
+                                data: [25, 45, 67, 78, 89, 95],
+                                borderColor: '#f39c12',
+                                backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                                fill: true,
+                                yAxisID: 'y1'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'バッチサイズ別スループットとGPU使用率'
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'バッチサイズ'
+                                    }
+                                },
+                                y: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    title: {
+                                        display: true,
+                                        text: 'スループット (images/sec)'
+                                    }
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'right',
+                                    title: {
+                                        display: true,
+                                        text: 'GPU使用率 (%)'
+                                    },
+                                    grid: {
+                                        drawOnChartArea: false,
+                                    }
+                                }
+                            }
                         }
-                    }
+                    });
+                    console.log('Throughput chart created successfully');
                 }
-            }
-        });
-        
-        // 7. GPU並列処理最適化
-        const gpuCtx = document.getElementById('gpuOptimizationChart').getContext('2d');
-        new Chart(gpuCtx, {
-            type: 'line',
-            data: {
-                labels: ['逐次処理', '基本並列', '最適並列', '高度並列'],
-                datasets: [{
-                    label: '処理時間 (ms)',
-                    data: [156.5, 78.6, 31.0, 18.7],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true,
-                    yAxisID: 'y'
-                }, {
-                    label: '効率 (%)',
-                    data: [23.1, 67.8, 91.2, 88.9],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'GPU並列処理最適化'
-                    }
-                },
-                scales: {
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: '処理時間 (ms)'
+                
+                // 5. 精度比較
+                const accuracyCtx = document.getElementById('accuracyComparisonChart');
+                if (accuracyCtx) {
+                    console.log('Creating accuracy comparison chart...');
+                    new Chart(accuracyCtx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['精度', '速度', 'メモリ効率', '総合スコア'],
+                            datasets: [{
+                                label: 'ResNet50',
+                                data: [74.2, 85, 90, 78],
+                                borderColor: '#ff6b35',
+                                backgroundColor: 'rgba(255, 107, 53, 0.2)'
+                            }, {
+                                label: 'WordNet+CLIP (提案手法)',
+                                data: [87.1, 75, 80, 95],
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.2)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '手法別性能比較'
+                                }
+                            },
+                            scales: {
+                                r: {
+                                    beginAtZero: true,
+                                    max: 100
+                                }
+                            }
                         }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: '効率 (%)'
-                        },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
+                    });
+                    console.log('Accuracy comparison chart created successfully');
                 }
-            }
-        });
-        
-        // 8. バッチ処理最適化
-        const batchCtx = document.getElementById('batchProcessingChart').getContext('2d');
-        new Chart(batchCtx, {
-            type: 'line',
-            data: {
-                labels: [1, 2, 4, 8, 16, 32],
-                datasets: [{
-                    label: 'レイテンシ (ms)',
-                    data: [215.0, 180.0, 110.0, 76.0, 8.0, 22.8],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true,
-                    yAxisID: 'y'
-                }, {
-                    label: 'スループット (items/sec)',
-                    data: [4.7, 11.1, 36.4, 105.3, 2000.0, 1403.5],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'バッチサイズ別処理最適化'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'バッチサイズ'
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: 'レイテンシ (ms)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: 'スループット (items/sec)'
+                
+                // 6. スケーラビリティ
+                const scalabilityCtx = document.getElementById('scalabilityChart');
+                if (scalabilityCtx) {
+                    console.log('Creating scalability chart...');
+                    new Chart(scalabilityCtx, {
+                        type: 'line',
+                        data: {
+                            labels: [2, 4, 8, 16, 32, 64, 128],
+                            datasets: [{
+                                label: 'WordNet手法',
+                                data: [95.2, 92.3, 89.1, 87.1, 84.9, 82.1, 79.5],
+                                borderColor: '#2ecc71',
+                                backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                                fill: true,
+                                tension: 0.1
+                            }, {
+                                label: 'ベースライン手法',
+                                data: [89.1, 84.2, 79.8, 74.4, 68.5, 62.8, 57.4],
+                                borderColor: '#e74c3c',
+                                backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                                fill: true,
+                                tension: 0.1
+                            }]
                         },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'カテゴリ数別精度推移'
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'logarithmic',
+                                    title: {
+                                        display: true,
+                                        text: 'カテゴリ数 (log scale)'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '精度 (%)'
+                                    },
+                                    min: 50,
+                                    max: 100
+                                }
+                            }
+                        }
+                    });
+                    console.log('Scalability chart created successfully');
                 }
-            }
-        });
-        
-        // スケーラビリティ実験詳細グラフ
-        
-        // 9. クラウド負荷テスト
-        const cloudLoadCtx = document.getElementById('cloudLoadTestChart').getContext('2d');
-        new Chart(cloudLoadCtx, {
-            type: 'line',
-            data: {
-                labels: [10, 50, 100, 250, 500, 1000],
-                datasets: [{
-                    label: 'Vercel応答時間 (ms)',
-                    data: [158, 190, 230, 350, 550, 950],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true
-                }, {
-                    label: 'Render応答時間 (ms)',
-                    data: [208, 240, 280, 450, 700, 1200],
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    fill: true
-                }, {
-                    label: 'Local Server応答時間 (ms)',
-                    data: [88, 120, 200, 800, 2000, 5000],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'プラットフォーム別負荷テスト'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: '同時リクエスト数'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: '応答時間 (ms)'
-                        }
-                    }
-                }
-            }
-        });
-        
-        // 10. データセットスケーリング
-        const datasetCtx = document.getElementById('datasetScalingChart').getContext('2d');
-        new Chart(datasetCtx, {
-            type: 'line',
-            data: {
-                labels: ['1K', '5K', '10K', '50K', '100K', '500K', '1M'],
-                datasets: [{
-                    label: '処理時間 (秒)',
-                    data: [3.1, 6.3, 10.3, 18.1, 24.1, 42.9, 53.4],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true,
-                    yAxisID: 'y'
-                }, {
-                    label: '精度 (%)',
-                    data: [87.1, 87.0, 86.9, 85.8, 86.8, 85.4, 83.6],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'データセットサイズ別スケーリング'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'データセットサイズ'
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: '処理時間 (秒)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: '精度 (%)'
+                
+                // 7. リソース最適化
+                const resourceCtx = document.getElementById('resourceOptimizationChart');
+                if (resourceCtx) {
+                    console.log('Creating resource optimization chart...');
+                    new Chart(resourceCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['同時ユーザー数', '最大データセット', 'コスト効率', '応答時間'],
+                            datasets: [{
+                                label: 'ベースライン',
+                                data: [50, 10000, 45.2, 5.2],
+                                backgroundColor: 'rgba(231, 76, 60, 0.8)'
+                            }, {
+                                label: '最適化後',
+                                data: [200, 1000000, 127.6, 1.8],
+                                backgroundColor: 'rgba(46, 204, 113, 0.8)'
+                            }]
                         },
-                        min: 80,
-                        max: 90,
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'リソース最適化結果'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '各指標値'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    console.log('Resource optimization chart created successfully');
                 }
-            }
-        });
-        
-        // 11. 同時アクセステスト
-        const concurrentCtx = document.getElementById('concurrentAccessChart').getContext('2d');
-        new Chart(concurrentCtx, {
-            type: 'line',
-            data: {
-                labels: [1, 5, 10, 25, 50, 100, 200],
-                datasets: [{
-                    label: '応答時間 (ms)',
-                    data: [128, 162, 205, 332, 648, 1262, 3135],
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    fill: true,
-                    yAxisID: 'y'
-                }, {
-                    label: '成功率 (%)',
-                    data: [99.4, 99.0, 98.5, 97.0, 89.5, 74.5, 70.0],
-                    borderColor: '#2ecc71',
-                    backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '同時アクセス処理能力'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: '同時ユーザー数'
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: '応答時間 (ms)'
-                        }
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: '成功率 (%)'
-                        },
-                        min: 60,
-                        max: 100,
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
-                }
-            }
-        });
-        
-        // 12. リソース最適化
-        const resourceCtx = document.getElementById('resourceOptimizationChart').getContext('2d');
-        new Chart(resourceCtx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    label: 'ベースライン',
-                    data: [{x: 0.08, y: 45.2}],
-                    backgroundColor: '#e74c3c',
-                    pointRadius: 15
-                }, {
-                    label: '最適化済み',
-                    data: [{x: 0.15, y: 127.6}],
-                    backgroundColor: '#2ecc71',
-                    pointRadius: 15
-                }, {
-                    label: '高性能',
-                    data: [{x: 0.28, y: 234.8}],
-                    backgroundColor: '#3498db',
-                    pointRadius: 15
-                }, {
-                    label: 'エンタープライズ',
-                    data: [{x: 0.52, y: 387.5}],
-                    backgroundColor: '#9b59b6',
-                    pointRadius: 15
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'コスト vs パフォーマンス最適化'
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'コスト ($/時間)'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'スループット (req/sec)'
-                        }
-                    }
-                }
-            }
-        });
-        
+                
+                console.log('All charts initialized successfully!');
+                
             } catch (error) {
-                console.error('Error creating charts:', error);
+                console.error('Chart initialization error:', error);
+                console.error('Error stack:', error.stack);
+                document.body.innerHTML += '<div style="color: red; text-align: center; padding: 20px;">Chart initialization failed: ' + error.message + '</div>';
             }
-        }); // DOMContentLoaded終了
+        });
     </script>
 </body>
 </html>

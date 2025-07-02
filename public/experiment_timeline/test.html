@@ -53,7 +53,7 @@
                 // テストチャート
                 const testCtx = document.getElementById('testChart');
                 if (testCtx) {
-                    new Chart(testCtx, {
+                    const testChart = new Chart(testCtx, {
                         type: 'bar',
                         data: {
                             labels: ['A', 'B', 'C', 'D'],
@@ -65,10 +65,17 @@
                         },
                         options: {
                             responsive: true,
-                            maintainAspectRatio: false
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true
+                                }
+                            }
                         }
                     });
-                    console.log('Test chart created');
+                    console.log('Test chart created successfully');
+                } else {
+                    console.error('Test chart canvas not found');
                 }
                 
                 // タイムラインチャート
