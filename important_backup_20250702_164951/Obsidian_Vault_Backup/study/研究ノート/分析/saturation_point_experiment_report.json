@@ -1,0 +1,144 @@
+{
+  "title": "特化アルゴリズム飽和点発見実験",
+  "generated_date": "2025-06-20T23:54:08.355143",
+  "hypothesis": "55±3カテゴリで性能改善が統計的に有意でなくなる",
+  "model": "f(x) = 30.0 × (1 - e^(-0.15x))",
+  "results": {
+    "phases": [
+      {
+        "phase": "Phase_0_Baseline",
+        "categories": 8,
+        "total_improvement": 20.964173642633934,
+        "marginal_utility": 0.0,
+        "is_significant": false,
+        "p_value": 0.1,
+        "new_categories": []
+      },
+      {
+        "phase": "Phase_1_Core_Expansion",
+        "categories": 16,
+        "total_improvement": 27.278461401317628,
+        "marginal_utility": 0.44043813817355826,
+        "is_significant": true,
+        "p_value": 0.01,
+        "new_categories": [
+          "medical",
+          "sports",
+          "art",
+          "technology",
+          "clothing",
+          "weather",
+          "satellite",
+          "microscopy"
+        ]
+      },
+      {
+        "phase": "Phase_2_Fine_Grained",
+        "categories": 24,
+        "total_improvement": 29.180288326581223,
+        "marginal_utility": 0.13265741792326224,
+        "is_significant": true,
+        "p_value": 0.01,
+        "new_categories": [
+          "mammal",
+          "bird",
+          "fish",
+          "electronics",
+          "home_appliance",
+          "office",
+          "outdoor",
+          "indoor"
+        ]
+      },
+      {
+        "phase": "Phase_3_Specialized_Domains",
+        "categories": 32,
+        "total_improvement": 29.7531075885294,
+        "marginal_utility": 0.03995564644570493,
+        "is_significant": false,
+        "p_value": 0.1,
+        "new_categories": [
+          "marine",
+          "aviation",
+          "automotive",
+          "pharmaceutical",
+          "industrial",
+          "agricultural",
+          "educational",
+          "entertainment"
+        ]
+      },
+      {
+        "phase": "Phase_4_Micro_Specialization",
+        "categories": 40,
+        "total_improvement": 29.925637434700008,
+        "marginal_utility": 0.012034409442655658,
+        "is_significant": false,
+        "p_value": 0.1,
+        "new_categories": [
+          "culinary",
+          "fashion",
+          "gaming",
+          "literature",
+          "music",
+          "dance",
+          "theater",
+          "cinema"
+        ]
+      },
+      {
+        "phase": "Phase_5_Ultra_Fine",
+        "categories": 50,
+        "total_improvement": 29.983407468895567,
+        "marginal_utility": 0.00268523970623491,
+        "is_significant": false,
+        "p_value": 0.1,
+        "new_categories": [
+          "texture",
+          "pattern",
+          "emotion",
+          "action",
+          "season",
+          "time",
+          "geology",
+          "astronomy",
+          "chemistry",
+          "physics"
+        ]
+      },
+      {
+        "phase": "Phase_6_Saturation_Test",
+        "categories": 64,
+        "total_improvement": 29.997968137905275,
+        "marginal_utility": 0.0003288248634305546,
+        "is_significant": false,
+        "p_value": 0.1,
+        "new_categories": [
+          "regional_cuisine",
+          "historical_artifacts",
+          "modern_art",
+          "classical_art",
+          "urban_planning",
+          "architecture_styles",
+          "musical_instruments",
+          "sports_equipment",
+          "medical_devices",
+          "laboratory_equipment",
+          "transportation_infrastructure",
+          "communication_devices",
+          "renewable_energy",
+          "traditional_crafts"
+        ]
+      }
+    ],
+    "saturation_detected": true,
+    "saturation_point": 32,
+    "theoretical_maximum": 30.0
+  },
+  "conclusion": {
+    "saturation_point": 32,
+    "maximum_improvement": "30.0%",
+    "optimal_categories": 8,
+    "recommendation": "8カテゴリでの実装を推奨（効率的な改善）"
+  }
+}
