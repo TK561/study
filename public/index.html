@@ -6,14 +6,26 @@
     <title>研究プロジェクト - 意味カテゴリベース分類システム</title>
     <style>
         :root {
+            /* スペーシング */
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
             --space-lg: 32px;
             --space-xl: 48px;
+            
+            /* カードスタイル */
             --card-radius: 15px;
             --card-shadow: 0 8px 25px rgba(0,0,0,0.1);
             --card-bg: rgba(255, 255, 255, 0.95);
+            
+            /* 色彩 - 高コントラスト重視 */
+            --primary-blue: #667eea;
+            --primary-purple: #764ba2;
+            --text-dark: #333;
+            --text-medium: #666;
+            --text-light: #999;
+            --bg-white: rgba(255,255,255,0.95);
+            --bg-light: #f8f9fa;
         }
 
         * {
@@ -191,13 +203,13 @@
         .result-value {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: var(--primary-blue);
             margin-bottom: var(--space-xs);
         }
 
         .result-label {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--text-medium);
         }
 
 
