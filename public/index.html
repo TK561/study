@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>研究プロジェクト - 意味カテゴリベース分類システム</title>
     <style>
+        :root {
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --card-radius: 15px;
+            --card-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -37,7 +48,35 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: var(--space-md);
+        }
+
+        /* 統一カードスタイル */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-lg);
+            box-shadow: var(--card-shadow);
+            margin-bottom: var(--space-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        /* 統一グリッドシステム */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        /* セクション間の統一スペース */
+        .section {
+            margin-bottom: var(--space-xl);
         }
 
         /* 統一ナビゲーションバー */
@@ -134,47 +173,52 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-menu {
-            margin: 30px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .key-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
         }
 
-        .nav-item {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .result-item {
+            text-align: center;
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--card-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
             color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            margin-bottom: var(--space-xs);
         }
 
-        .nav-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        .result-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
         }
+
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-xl) 0;
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-lg);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .project-card h2 {
@@ -206,11 +250,11 @@
         }
 
         .features {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            box-shadow: var(--card-shadow);
         }
 
         .features h3 {
@@ -306,21 +350,32 @@
     </nav>
 
     <div class="container">
-        <div class="header">
+        <!-- メインヘッダー -->
+        <section class="header section">
             <h1>🔬 研究プロジェクト</h1>
             <p>意味カテゴリベース分類システムの開発と研究記録</p>
             
-            <!-- ステータス情報 -->
-            <div class="status-info">
-                <div class="status-badge">📋 ディスカッションサイト統合完了</div>
-                <div class="last-update">
-                    📅 研究プロジェクト最終更新: <span id="lastUpdate">2025年06月25日 20:35</span>
+            <!-- 重要な成果を前面に -->
+            <div class="key-results">
+                <div class="result-item">
+                    <div class="result-value">87.1%</div>
+                    <div class="result-label">最終精度達成</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value">27.3%</div>
+                    <div class="result-label">精度向上</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-value">15ヶ月</div>
+                    <div class="result-label">研究期間</div>
                 </div>
             </div>
-            
-        </div>
+        </section>
 
-        <div class="project-grid">
+        <!-- 主要システム -->
+        <section class="section">
+            <h2 style="text-align: center; margin-bottom: var(--space-lg); color: #667eea;">🎯 主要システム</h2>
+            <div class="project-grid">
             <div class="project-card">
                 <h2>🎯 意味カテゴリベース画像分類システム</h2>
                 <div class="project-description">
@@ -359,9 +414,11 @@
                 </div>
                 <a href="/experiment_timeline/" class="btn-primary">ダッシュボードを見る</a>
             </div>
-        </div>
+            </div>
+        </section>
 
-        <div class="features">
+        <!-- システム特徴 -->
+        <section class="features section">
             <h3>🚀 システム特徴</h3>
             <div class="feature-list">
                 <div class="feature-item">
