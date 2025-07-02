@@ -1,0 +1,67 @@
+# Vercel ignore file for study-research project
+
+# Python files and scripts
+*.py
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Sessions and logs
+sessions/
+logs/
+*.log
+auto_research_log.json
+auto_execution_log_*.json
+
+# Backups
+backups/
+*_backup/
+important_backup_*/
+.vercel_backups/
+
+# Configuration files (except vercel.json)
+*.json
+!vercel.json
+!package.json
+!tsconfig.json
+
+# Documentation
+*.md
+!README.md
+
+# Git and IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Node modules (if any)
+node_modules/
+
+# Test files
+test_*
+*_test.*
+temp_*
+old_*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Other non-web files
+*.txt
+*.csv
+*.xlsx
+*.docx
+*.pptx
+
+# Colab related files
+COLAB_USAGE.md
+colab_*.py
+*_Colab.ipynb
+
+# Keep only the public directory content

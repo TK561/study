@@ -1,0 +1,19 @@
+name: Force Vercel Redeploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Trigger Vercel Deploy
+        run: |
+          echo "Forcing Vercel redeploy at $(date)"
+          # Empty commit to trigger deployment
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"

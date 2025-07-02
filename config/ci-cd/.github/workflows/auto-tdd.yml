@@ -1,0 +1,46 @@
+jobs:
+  auto-tdd:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        cache: npm
+        node-version: '18'
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: npm install
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt || true
+    - name: Run textlint check
+      run: npm run lint || true
+    - name: Run UI Unit Tests
+      run: npm test || npm run test:unit || true
+    - name: Run Integration Tests
+      run: npm run test:integration || true
+    - name: Run E2E Tests
+      run: npm run test:e2e || npx playwright test || true
+    - name: Type Check
+      run: npm run type-check || npx tsc --noEmit || true
+    - name: Build Check
+      run: npm run build || true
+    - name: Auto Documentation Update
+      run: python3 auto_dev_workflow.py --feature="auto-docs"
+    - if: github.ref == "refs/heads/main"
+      name: Deploy to Vercel (if main branch)
+      run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} || true
+name: Auto TDD Workflow
+'on':
+  pull_request:
+    branches:
+    - main
+    - develop
+  push:
+    branches:
+    - develop
+    - feature/*

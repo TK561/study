@@ -1,0 +1,18 @@
+# Research Project Quick Commands
+alias rs-status="npm run auto:status"
+alias rs-lint="npm run lint"
+alias rs-dev="npm run dev"
+alias rs-deploy="npm run deploy"
+alias rs-auto="npm run auto:dev"
+alias rs-watch="npm run textlint:watch"
+alias rs-organize="python3 auto_organize_and_save.py"
+alias rs-colab="echo 'Use Research_Colab_Simple.ipynb for main research'"
+alias rs-help="echo 'Research Commands:
+  rs-status   - Check automation status
+  rs-lint     - Run textlint check
+  rs-dev      - Start development server
+  rs-deploy   - Deploy to production
+  rs-auto     - Run auto development workflow
+  rs-watch    - Start file watcher
+  rs-organize - Run file organization
+  rs-colab    - Colab research info'"

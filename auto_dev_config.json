@@ -1,0 +1,33 @@
+{
+  "workflow_enabled": true,
+  "auto_testing": {
+    "ui_unit_tests": true,
+    "api_unit_tests": true,
+    "integration_tests": true,
+    "e2e_tests": true
+  },
+  "auto_review": {
+    "enabled": true,
+    "ai_models": [
+      "claude",
+      "gemini",
+      "openai"
+    ],
+    "review_cycles": 3
+  },
+  "auto_deployment": {
+    "lint_check": true,
+    "type_check": true,
+    "test_coverage_threshold": 80
+  },
+  "auto_documentation": {
+    "update_on_completion": true,
+    "generate_api_docs": true,
+    "update_readme": true
+  },
+  "github_integration": {
+    "auto_issue_creation": true,
+    "auto_branch_creation": true,
+    "auto_pr_creation": true
+  }
+}

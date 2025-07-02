@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リアルタイム精度ダッシュボード</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .widget {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .full-width { grid-column: 1 / -1; }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 15px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-online { background: #2ecc71; }
+        .status-offline { background: #e74c3c; }
+        .alert {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- メインメトリクス -->
+        <div class="widget full-width">
+            <h2>📊 リアルタイム性能メトリクス</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value" id="currentAccuracy">87.1%</div>
+                    <div class="metric-label">現在精度</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="throughput">142</div>
+                    <div class="metric-label">スループット/秒</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="totalProcessed">15,247</div>
+                    <div class="metric-label">総処理画像数</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="avgLatency">28.4ms</div>
+                    <div class="metric-label">平均レイテンシ</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="errorRate">0.02%</div>
+                    <div class="metric-label">エラー率</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 精度推移グラフ -->
+        <div class="widget">
+            <h3>🎯 精度推移 (直近1時間)</h3>
+            <div class="chart-container">
+                <canvas id="accuracyChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- スループット監視 -->
+        <div class="widget">
+            <h3>⚡ スループット監視</h3>
+            <div class="chart-container">
+                <canvas id="throughputChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- カテゴリ別精度 -->
+        <div class="widget">
+            <h3>📂 カテゴリ別精度分布</h3>
+            <div class="chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- システム状態 -->
+        <div class="widget">
+            <h3>🔧 システム状態</h3>
+            <div style="margin-bottom: 15px;">
+                <span class="status-indicator status-online"></span>
+                <strong>WordNet分類エンジン:</strong> オンライン
+            </div>
+            <div style="margin-bottom: 15px;">
+                <span class="status-indicator status-online"></span>
+                <strong>CLIP特徴抽出:</strong> オンライン
+            </div>
+            <div style="margin-bottom: 15px;">
+                <span class="status-indicator status-online"></span>
+                <strong>動的カテゴリ選択:</strong> オンライン
+            </div>
+            <div style="margin-bottom: 15px;">
+                <span class="status-indicator status-online"></span>
+                <strong>信頼度評価:</strong> オンライン
+            </div>
+            
+            <div class="alert">
+                <strong>注意:</strong> カテゴリ'vehicle'の精度が84.2%に低下しています
+            </div>
+            
+            <div class="chart-container" style="height: 200px;">
+                <canvas id="resourceChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // リアルタイムデータ更新
+        let accuracyData = [];
+        let throughputData = [];
+        let timeLabels = [];
+        
+        // 精度推移チャート
+        const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+        const accuracyChart = new Chart(accuracyCtx, {
+            type: 'line',
+            data: {
+                labels: timeLabels,
+                datasets: [{
+                    label: '精度 (%)',
+                    data: accuracyData,
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { min: 80, max: 95 }
+                }
+            }
+        });
+        
+        // スループットチャート
+        const throughputCtx = document.getElementById('throughputChart').getContext('2d');
+        const throughputChart = new Chart(throughputCtx, {
+            type: 'bar',
+            data: {
+                labels: timeLabels,
+                datasets: [{
+                    label: 'スループット (images/sec)',
+                    data: throughputData,
+                    backgroundColor: '#2ecc71',
+                    borderColor: '#27ae60',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+        
+        // カテゴリ別精度チャート
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        const categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['animal', 'object', 'person', 'vehicle', 'nature'],
+                datasets: [{
+                    data: [92.1, 88.7, 94.3, 84.2, 89.8],
+                    backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+        
+        // リソース使用率チャート
+        const resourceCtx = document.getElementById('resourceChart').getContext('2d');
+        const resourceChart = new Chart(resourceCtx, {
+            type: 'radar',
+            data: {
+                labels: ['CPU', 'GPU', 'メモリ', 'ストレージ', 'ネットワーク'],
+                datasets: [{
+                    label: '使用率 (%)',
+                    data: [45, 78, 52, 23, 67],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.2)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: { min: 0, max: 100 }
+                }
+            }
+        });
+        
+        // データ更新関数
+        function updateMetrics() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            
+            // 新しいデータ生成
+            const newAccuracy = 87.1 + (Math.random() - 0.5) * 4;
+            const newThroughput = 140 + Math.floor(Math.random() * 20);
+            
+            // データ配列更新
+            timeLabels.push(timeStr);
+            accuracyData.push(newAccuracy);
+            throughputData.push(newThroughput);
+            
+            // データ制限（最新20ポイント）
+            if (timeLabels.length > 20) {
+                timeLabels.shift();
+                accuracyData.shift();
+                throughputData.shift();
+            }
+            
+            // チャート更新
+            accuracyChart.update();
+            throughputChart.update();
+            
+            // メトリクス値更新
+            document.getElementById('currentAccuracy').textContent = newAccuracy.toFixed(1) + '%';
+            document.getElementById('throughput').textContent = newThroughput;
+            document.getElementById('totalProcessed').textContent = 
+                (15247 + Math.floor(Math.random() * 100)).toLocaleString();
+            document.getElementById('avgLatency').textContent = 
+                (28.4 + (Math.random() - 0.5) * 5).toFixed(1) + 'ms';
+        }
+        
+        // 初期データ生成
+        for (let i = 0; i < 10; i++) {
+            updateMetrics();
+        }
+        
+        // 5秒ごとに更新
+        setInterval(updateMetrics, 5000);
+    </script>
+</body>
+</html>

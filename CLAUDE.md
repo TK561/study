@@ -10,11 +10,15 @@ python3 auto_organize_and_save.py
 
 # 自動時間監視システム開始（毎時0分に自動実行）
 python3 start_auto_monitor.py start
+
+# ディスカッション記録更新時の自動実行（毎週木曜18時対応）
+python3 discussion_auto_updater.py
 ```
 
 ### 対応キーワード
 - **整理関連**: 「整理」「ファイル」「フォルダ」「削除」「cleanup」「organize」
 - **保存関連**: 「保存」「記録」「やったこと」「作業」「save」「記録」
+- **ディスカッション関連**: 「ディスカッション」「次回」「木曜」「18時」「セッション」「記録」
 
 ### 実行内容（固定順序）
 1. **ファイル・フォルダ整理**（第1ステップ）:
@@ -59,6 +63,41 @@ python3 start_auto_monitor.py stop
 - `sessions/AUTO_SESSION_SAVE_YYYY-MM-DD.md` - セッション記録
 - `auto_execution_log_YYYYMMDD_HHMMSS.json` - 実行ログ
 - `important_backup_YYYYMMDD_HHMMSS/` - 重要ファイルバックアップ
+
+## 📅 ディスカッション記録自動化システム
+**毎週木曜18時のディスカッション開催に対応した自動更新システム**
+
+### 🔄 自動化の流れ
+1. **新しいセッション記録追加** → `discussion-site/index.html`に手動で追加
+2. **変更検出** → 自動システムが新しいセッションを検出
+3. **次回セッション生成** → 翌週木曜18時の内容を自動生成
+4. **Git操作** → 自動コミット・プッシュ
+5. **デプロイ** → Vercelへ自動デプロイ
+
+### 基本コマンド
+```bash
+# 新しいセッション検出と次回生成
+python3 discussion_auto_updater.py
+
+# 設定確認
+python3 discussion_auto_updater.py config
+
+# 強制的に次回セッション生成
+python3 discussion_auto_updater.py force
+
+# ファイル変更監視（バックグラウンド実行）
+python3 watch_discussion_updates.py start
+```
+
+### 対応スケジュール
+- **開催日時**: 毎週木曜 18:00
+- **自動生成**: 新しいセッション記録追加時に翌週の内容を自動作成
+- **議題テンプレート**: 前回の成果に基づいて適切な次回議題を自動設定
+
+### 設定ファイル
+- `discussion_auto_config.json` - 基本設定とテンプレート
+- 最新セッション番号の追跡
+- 自動コミット・デプロイの有効/無効設定
 
 ## 🚨 Vercelデプロイメント重要事項
 **Python APIハンドラーは使用しないでください。静的HTMLサイトとしてデプロイしてください。**
