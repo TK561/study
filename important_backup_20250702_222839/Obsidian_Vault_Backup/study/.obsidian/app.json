@@ -1,0 +1,19 @@
+{
+  "legacyEditor": false,
+  "livePreview": true,
+  "showLineNumber": true,
+  "showIndentGuide": true,
+  "spellcheck": false,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showFrontmatter": true,
+  "showUnsupportedFiles": true,
+  "newFileLocation": "current",
+  "newFileFolderPath": "Daily",
+  "attachmentFolderPath": "Attachments",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "promptDelete": true,
+  "deleteOption": "trash",
+  "autoConvertHtml": true
+}

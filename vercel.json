@@ -75,6 +75,14 @@
     {
       "src": "/session13_results/(.*)",
       "dest": "/public/session13_results/$1"
+    },
+    {
+      "src": "/confidence_analysis",
+      "dest": "/public/confidence_analysis/index.html"
+    },
+    {
+      "src": "/confidence_analysis/(.*)",
+      "dest": "/public/confidence_analysis/$1"
     }
   ]
 }

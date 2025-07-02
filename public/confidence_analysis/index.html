@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>確信度分析 - ディスカッション記録ベース</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --card-radius: 15px;
+            --card-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --primary-blue: #667eea;
+            --primary-purple: #764ba2;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        /* 統一ナビゲーションバー */
+        .main-navigation {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-md);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-links a.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-xl);
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--card-shadow);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 500px;
+            margin: var(--space-md) 0;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-md);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: var(--space-xs);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .breakthrough-section {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .breakthrough-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: var(--space-md);
+        }
+
+        .breakthrough-item {
+            padding: var(--space-md);
+            margin: var(--space-sm) 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 統一ナビゲーションバー -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">🔬 研究プロジェクト</a>
+            <ul class="nav-links">
+                <li><a href="/">🔬 研究プロジェクト</a></li>
+                <li><a href="/main-system/">📊 メイン分類システム</a></li>
+                <li><a href="/discussion-site/">📋 ディスカッション記録</a></li>
+                <li><a href="/experiment_timeline/">📈 実験ダッシュボード</a></li>
+                <li><a href="/confidence_analysis/" class="active">📈 確信度分析</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>📈 確信度分析</h1>
+            <p>ディスカッション記録に基づく研究進展の定量的分析</p>
+        </div>
+
+        <!-- 主要メトリクス -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">87.1%</div>
+                <div class="metric-label">最終確信度達成</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">+42.1%</div>
+                <div class="metric-label">総合改善幅</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">89.3%</div>
+                <div class="metric-label">理論的上限値</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">13段階</div>
+                <div class="metric-label">研究フェーズ</div>
+            </div>
+        </div>
+
+        <!-- 確信度推移グラフ -->
+        <div class="chart-container">
+            <h2 class="chart-title">📊 ディスカッション別確信度推移</h2>
+            <div class="chart-wrapper">
+                <canvas id="confidenceEvolutionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- フィードバック機構効果 -->
+        <div class="chart-container">
+            <h2 class="chart-title">🔄 信頼度フィードバック機構効果分析</h2>
+            <div class="chart-wrapper">
+                <canvas id="feedbackEffectChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 動的データセット選択効果 -->
+        <div class="chart-container">
+            <h2 class="chart-title">🎯 動的データセット選択による確信度向上</h2>
+            <div class="chart-wrapper">
+                <canvas id="datasetSelectionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- ブレークスルーポイント -->
+        <div class="breakthrough-section">
+            <h2 class="breakthrough-title">🚀 主要ブレークスルーポイント</h2>
+            
+            <div class="breakthrough-item">
+                <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Phase 6 - AI統合ブレークスルー</h3>
+                <p><strong>+15.0%向上</strong> (57.8% → 72.8%)</p>
+                <p>CLIP・SAMを活用した画像認識精度の飛躍的向上</p>
+            </div>
+
+            <div class="breakthrough-item">
+                <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Phase 9 - 特化データセット完成</h3>
+                <p><strong>+12.5%向上</strong> (72.7% → 85.2%)</p>
+                <p>COCO固定から10カテゴリ特化型モデルへの戦略転換</p>
+            </div>
+
+            <div class="breakthrough-item">
+                <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Phase 11 - フィードバック機構導入</h3>
+                <p><strong>+6.9%向上</strong> (88.8% → 95.7%)</p>
+                <p>WordNet仕組み調査に基づく信頼度スコアフィードバック</p>
+            </div>
+
+            <div class="breakthrough-item">
+                <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Phase 13 - 理論的上限発見</h3>
+                <p><strong>89.3%プラトー</strong>形成</p>
+                <p>Cohen's Power分析によるカテゴリ数12での信頼度飽和現象の発見</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart.jsデフォルト設定
+        Chart.defaults.font.size = 14;
+        Chart.defaults.font.family = "'Segoe UI', sans-serif";
+
+        // 1. ディスカッション別確信度推移
+        const confidenceCtx = document.getElementById('confidenceEvolutionChart').getContext('2d');
+        new Chart(confidenceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Phase 0-3', 'Phase 4-5', 'Phase 6', 'Phase 7', 'Phase 8', 'Phase 9', 'Phase 10', 'Phase 11', 'Phase 12', 'Phase 13'],
+                datasets: [{
+                    label: '確信度推移 (%)',
+                    data: [45.0, 57.8, 72.8, 80.5, 72.7, 85.2, 88.8, 95.7, 87.8, 87.1],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#667eea',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }, {
+                    label: '理論的上限 (89.3%)',
+                    data: [89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    fill: false,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '13段階研究フェーズにおける確信度の進化',
+                        color: '#333',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#333',
+                            font: { size: 14 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '確信度 (%)',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '研究フェーズ',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. フィードバック機構効果
+        const feedbackCtx = document.getElementById('feedbackEffectChart').getContext('2d');
+        new Chart(feedbackCtx, {
+            type: 'bar',
+            data: {
+                labels: ['CLIP初期判定', 'WordNet階層マッピング', '信頼度スコア計算', 'BLIP再生成判定', 'WordNet再判定', '最終結果出力'],
+                datasets: [{
+                    label: 'フィードバック前 (%)',
+                    data: [68, 72, 74, 76, 78, 78],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 1
+                }, {
+                    label: 'フィードバック後 (%)',
+                    data: [68, 85, 89, 91, 92, 91],
+                    backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                    borderColor: '#667eea',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'フィードバック機構による各処理段階の確信度改善',
+                        color: '#333',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#333',
+                            font: { size: 14 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '確信度 (%)',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '処理段階',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555',
+                            maxRotation: 45
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. 動的データセット選択効果
+        const datasetCtx = document.getElementById('datasetSelectionChart').getContext('2d');
+        new Chart(datasetCtx, {
+            type: 'line',
+            data: {
+                labels: ['COCO固定', '特化データセット1', '特化データセット5', '特化データセット10'],
+                datasets: [{
+                    label: '確信度向上 (%)',
+                    data: [65.2, 73.4, 82.3, 87.1],
+                    borderColor: '#2ecc71',
+                    backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#2ecc71',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '動的データセット選択による確信度向上効果',
+                        color: '#333',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#333',
+                            font: { size: 14 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '確信度 (%)',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'データセット選択戦略',
+                            color: '#333',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        ticks: {
+                            color: '#555'
+                        }
+                    }
+                }
+            }
+        });
+
+        console.log('🎯 確信度分析グラフ初期化完了');
+    </script>
+</body>
+</html>
