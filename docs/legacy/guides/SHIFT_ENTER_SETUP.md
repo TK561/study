@@ -47,7 +47,40 @@ Claude Code拡張機能を使用している場合：
 }
 ```
 
-### 3. **Windows Terminal**
+### 3. **Wezterm Terminal**
+Weztermを使用している場合：
+
+#### 設定ファイル場所
+```
+~/.wezterm.lua
+```
+
+#### 設定内容
+```lua
+local wezterm = require 'wezterm'
+local config = {}
+
+-- システムベル音を有効化（Claude Codeのタスク完了通知用）
+config.audible_bell = "SystemBeep"
+
+-- Shift+Enterで改行を送信
+config.keys = {
+  {
+    key = 'Enter',
+    mods = 'SHIFT',
+    action = wezterm.action.SendString('\n')
+  },
+}
+
+return config
+```
+
+#### 設定手順
+1. `~/.wezterm.lua` ファイルを作成
+2. 上記設定をコピー&ペースト
+3. Wezterm再起動
+
+### 4. **Windows Terminal**
 Windows Terminalを使用している場合：
 
 #### settings.json設定

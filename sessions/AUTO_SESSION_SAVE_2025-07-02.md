@@ -1,72 +1,28 @@
 # 🔄 自動セッション保存 - 2025-07-02
 
 ## 📅 保存情報
-- **保存日時**: 2025年07月02日 10:09:17
+- **保存日時**: 2025年07月02日 12:09:28
 - **保存システム**: 自動整理・保存システム v1.0.0
 - **保存トリガー**: 自動実行
 
 ## 📊 Git変更状況
 ```
- M package.json
- M public/discussion-site/index.html
- M public/experiment_timeline/index.html
- M public/experiment_timeline/test.html
- M public/index.html
- M public/main-system/index.html
- M sessions/AUTO_SESSION_SAVE_2025-06-26.md
- M vercel.json
-?? .github/workflows/ai-review.yml
-?? .github/workflows/auto-tdd.yml
-?? .github/workflows/deployment.yml
-?? .github/workflows/monitoring.yml
-?? .textlintignore
-?? .textlintrc.json
-?? .vercelignore
-?? Auto_Research_Colab.ipynb
-?? COLAB_USAGE.md
-?? Colab_Research_Integration.ipynb
-?? Research_Colab_Simple.ipynb
-?? Research_Project_Colab.ipynb
-?? SIRIUS_AUTOMATION_USAGE.md
-?? TEXTLINT_AUTO_USAGE.md
-?? TEXTLINT_USAGE.md
-?? VERCEL_DEPLOYMENT_SUMMARY.md
-?? VERCEL_URL.txt
-?? auto_dev_config.json
-?? auto_dev_workflow.py
-?? auto_execution_log_20250702_095114.json
-?? auto_research_trigger.py
-?? colab_compatibility.py
-?? colab_setup.py
-?? deploy.sh
-?? github_actions_automation.py
-?? important_backup_20250702_095114/
-?? list.txt
-?? public/experiment_timeline/index_broken.html
-?? public/experiment_timeline/simple_test.html
-?? scripts/
-?? sessions/AUTO_SESSION_SAVE_2025-07-02.md
-?? setup_textlint_hooks.sh
-?? start_textlint_auto.sh
-?? textlint_auto_runner.py
-?? textlint_scheduler.py
-?? textlint_watcher.py
-?? "\347\260\241\345\215\230\347\240\224\347\251\266\345\256\237\350\241\214.py"
+ M study
 
 ```
-- **変更サマリー**: 2999行の変更
+- **変更サマリー**: 6行の変更
 
 ## 📁 今日更新されたファイル (20件)
-- `auto_dev.log` (更新: 10:06:55)
-- `auto_dev_config.json` (更新: 10:06:55)
-- `SIRIUS_AUTOMATION_USAGE.md` (更新: 10:06:11)
-- `.github/workflows/ai-review.yml` (更新: 10:05:26)
-- `.github/workflows/auto-tdd.yml` (更新: 10:05:26)
-- `.github/workflows/deployment.yml` (更新: 10:05:26)
-- `.github/workflows/monitoring.yml` (更新: 10:05:26)
-- `github_actions_automation.py` (更新: 10:05:17)
-- `package.json` (更新: 10:03:57)
-- `auto_dev_workflow.py` (更新: 10:02:45)
+- `.git/logs/refs/remotes/origin/main` (更新: 12:06:07)
+- `.git/refs/remotes/origin/main` (更新: 12:06:07)
+- `.git/COMMIT_EDITMSG` (更新: 12:05:59)
+- `.git/index` (更新: 12:05:59)
+- `.git/logs/HEAD` (更新: 12:05:59)
+- `.git/logs/refs/heads/main` (更新: 12:05:59)
+- `.git/objects/14/9b2cfcba23016423d2021158a01c91a9d35e44` (更新: 12:05:59)
+- `.git/objects/36/79d81f6663ce4f1685679071bf2c492bf7e560` (更新: 12:05:59)
+- `.git/objects/41/6e21337a21c6ff5b643e3d1628c783c5dce338` (更新: 12:05:59)
+- `.git/objects/5e/9f070cb15bf0a2af8a377dc627f262e913f8dd` (更新: 12:05:59)
 - ... 他10件
 
 ## 🔧 システム出力結果
@@ -109,7 +65,17 @@
 ## 💾 保存されたファイル
 
 ## 🗑️ 整理されたファイル
-- 🧹 auto_backup_20250702_100718
+- 🧹 .auto_coordination/locks
+- 🧹 .claude_sessions/backups
+- 🧹 automation/monitoring/core
+- 🧹 data/backups
+- 🧹 data/temp
+- 🧹 tools/maintenance/deployment
+- 🧹 tools/maintenance/research
+- 🧹 web/components
+- 🧹 .auto_coordination
+- 🧹 .claude_sessions
+- 🧹 auto_backup_20250702_120734
 
 ## 📋 次回セッション引き継ぎ事項
 - **重要ファイル**: 自動バックアップ済み
@@ -118,4 +84,4 @@
 - **作業継続**: 準備完了
 
 ---
-*自動保存システムにより生成 - 2025-07-02 10:09:17*
+*自動保存システムにより生成 - 2025-07-02 12:09:28*
