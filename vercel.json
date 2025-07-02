@@ -26,6 +26,14 @@
     {
       "source": "/results",
       "destination": "/experiment_results/index.html"
+    },
+    {
+      "source": "/session13",
+      "destination": "/session13_results/index.html"
+    },
+    {
+      "source": "/cohens-power",
+      "destination": "/session13_results/index.html"
     }
   ]
 }
