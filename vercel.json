@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "public": true,
   "builds": [
     {
       "src": "**/*",
@@ -12,8 +13,44 @@
       "dest": "/index.html"
     },
     {
+      "src": "/main-system",
+      "dest": "/main-system/index.html"
+    },
+    {
+      "src": "/main-system/(.*)",
+      "dest": "/main-system/$1"
+    },
+    {
+      "src": "/discussion-site",
+      "dest": "/discussion-site/index.html"
+    },
+    {
       "src": "/discussion-site/(.*)",
       "dest": "/discussion-site/$1"
+    },
+    {
+      "src": "/experiment_results",
+      "dest": "/experiment_results/index.html"
+    },
+    {
+      "src": "/experiment_results/(.*)",
+      "dest": "/experiment_results/$1"
+    },
+    {
+      "src": "/enhanced_features",
+      "dest": "/enhanced_features/index.html"
+    },
+    {
+      "src": "/enhanced_features/(.*)",
+      "dest": "/enhanced_features/$1"
+    },
+    {
+      "src": "/confidence_feedback",
+      "dest": "/confidence_feedback/index.html"
+    },
+    {
+      "src": "/confidence_feedback/(.*)",
+      "dest": "/confidence_feedback/$1"
     }
   ]
 }

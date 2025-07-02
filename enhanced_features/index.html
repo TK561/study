@@ -4,17 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>拡張機能ハブ | 研究支援ツール</title>
+    <!-- ナビゲーション用CSS -->
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            color: #333;
+        }
+        
+        .nav {
+            background: rgba(0,0,0,0.2);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-brand {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
         }
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 30px;
@@ -142,10 +179,11 @@
         
         <!-- ナビゲーションリンク -->
         <div class="navigation-links">
-            <a href="../" class="nav-link">🏠 メインページ</a>
-            <a href="../main-system/" class="nav-link">📊 分類システム</a>
-            <a href="../discussion-site/" class="nav-link">💬 ディスカッション</a>
-            <a href="../experiment_results/" class="nav-link">🔬 実験結果</a>
+            <a href="/" class="nav-link">🏠 メインページ</a>
+            <a href="/main-system/" class="nav-link">📊 分類システム</a>
+            <a href="/discussion-site/" class="nav-link">💬 ディスカッション</a>
+            <a href="/experiment_results/" class="nav-link">🔬 実験結果</a>
+            <a href="/confidence_feedback/" class="nav-link">🎯 信頼度フィードバック</a>
         </div>
         
         <!-- 全体統計 -->

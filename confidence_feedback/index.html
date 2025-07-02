@@ -8,19 +8,50 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0;
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
             min-height: 100vh;
-            color: #333;
-            line-height: 1.7;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .nav {
+            background: rgba(0,0,0,0.2);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-brand {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
         }
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 40px 20px;
         }
         .header {
             text-align: center;
@@ -219,6 +250,19 @@
     </style>
 </head>
 <body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">🎯 信頼度フィードバック</div>
+            <div class="nav-links">
+                <a href="/">🏠 ホーム</a>
+                <a href="/main-system/">📈 メインシステム</a>
+                <a href="/discussion-site/">💬 ディスカッション</a>
+                <a href="/experiment_results/">📊 実験結果</a>
+                <a href="/enhanced_features/">⚡ 拡張機能</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
             <h1>🔄 信頼度フィードバック機構</h1>
