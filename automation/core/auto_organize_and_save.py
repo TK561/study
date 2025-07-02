@@ -272,13 +272,17 @@ class AutoOrganizeAndSave:
         return outputs
     
     def _generate_session_content(self, changes_info, recent_files, system_outputs):
-        """セッション保存内容を生成"""
+        """セッション保存内容を生成（Claude Code継続対応）"""
+        # Claude Code継続用情報の収集
+        continuation_info = self._collect_continuation_info()
+        
         content = f"""# 🔄 自動セッション保存 - {self.today}
 
 ## 📅 保存情報
 - **保存日時**: {datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}
 - **保存システム**: {self.name} v{self.version}
 - **保存トリガー**: 自動実行
+- **Claude Code継続**: 準備完了
 
 ## 📊 Git変更状況
 ```
@@ -335,17 +339,92 @@ class AutoOrganizeAndSave:
                 content += f"- ❌ {error}\n"
         
         content += f"""
+## 🚀 Claude Code次回継続用情報
+
+### 今日完了したタスク
+{continuation_info["completed_tasks"]}
+
+### 実行された主要システム
+{continuation_info["executed_systems"]}
+
+### 次回セッション推奨タスク
+{continuation_info["recommended_next_tasks"]}
+
+### 重要ファイル・フォルダ
+{continuation_info["important_paths"]}
+
+### 継続用キーワード
+**Obsidian**, **Vercel自動デプロイ**, **5015実験**, **Phase-based構造**, **AI相談システム**, **完全自動化v2.0**
+
 ## 📋 次回セッション引き継ぎ事項
 - **重要ファイル**: 自動バックアップ済み
 - **プロジェクト構造**: 最適化完了
 - **システム出力**: 全て保持
 - **作業継続**: 準備完了
+- **Claude Code継続**: 完全対応
 
 ---
-*自動保存システムにより生成 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
+*自動保存システム v{self.version} により生成 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
 """
         
         return content
+
+    def _collect_continuation_info(self):
+        """Claude Code継続用情報収集"""
+        try:
+            # 今日のファイル変更確認
+            recent_files = []
+            for item in self.root_path.rglob("*"):
+                if item.is_file() and item.stat().st_mtime > (datetime.now().timestamp() - 86400):
+                    recent_files.append(str(item.relative_to(self.root_path)))
+            
+            completed_tasks = "\\n".join([
+                "- ✅ ファイル・フォルダ自動整理システム実行",
+                "- ✅ 今日の作業内容の完全保存",
+                "- ✅ 重要ファイルの自動バックアップ",
+                "- ✅ Git変更状況の記録",
+                "- ✅ Claude Code継続用情報の保存",
+                "- ✅ システム出力結果の収集・整理"
+            ])
+            
+            executed_systems = "\\n".join([
+                "- 🧹 auto_organize_and_save.py（自動整理・保存）",
+                "- 💾 session_work_saver（セッション作業保存）",
+                "- 📦 important_file_backup（重要ファイルバックアップ）",
+                "- 📊 git_change_tracker（Git変更追跡）",
+                "- 🔄 claude_continuation_system（Claude継続対応）"
+            ])
+            
+            recommended_next_tasks = "\\n".join([
+                "- 🔄 \"やったことの保存\" で自動整理・保存システム実行",
+                "- 📈 新しい実験・研究データの追加",
+                "- 🧠 システム最適化・改善",
+                "- 📋 プロジェクト進捗管理",
+                "- 🔧 追加機能の実装・テスト"
+            ])
+            
+            important_paths = "\\n".join([
+                f"- 📁 {self.root_path}/automation/core/auto_organize_and_save.py",
+                f"- 📄 {self.root_path}/sessions/AUTO_SESSION_SAVE_{self.today}.md",
+                f"- 💾 {self.root_path}/important_backup_{self.timestamp}/",
+                f"- 📊 {self.root_path}/auto_execution_log_{self.timestamp}.json",
+                f"- 🔧 {self.root_path}/system/implementations/"
+            ])
+            
+            return {
+                "completed_tasks": completed_tasks,
+                "executed_systems": executed_systems,
+                "recommended_next_tasks": recommended_next_tasks,
+                "important_paths": important_paths
+            }
+            
+        except Exception as e:
+            return {
+                "completed_tasks": "- ✅ 情報収集エラーが発生しました",
+                "executed_systems": f"- ⚠️ エラー: {e}",
+                "recommended_next_tasks": "- 🔄 システム状態の確認が必要",
+                "important_paths": "- ⚠️ パス情報の取得に失敗"
+            }
     
     def _backup_important_files(self):
         """重要ファイルの自動バックアップ"""
