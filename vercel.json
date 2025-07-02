@@ -3,54 +3,54 @@
   "public": true,
   "builds": [
     {
-      "src": "**/*",
+      "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/index.html"
+      "dest": "/public/index.html"
     },
     {
       "src": "/main-system",
-      "dest": "/main-system/index.html"
+      "dest": "/public/main-system/index.html"
     },
     {
       "src": "/main-system/(.*)",
-      "dest": "/main-system/$1"
+      "dest": "/public/main-system/$1"
     },
     {
       "src": "/discussion-site",
-      "dest": "/discussion-site/index.html"
+      "dest": "/public/discussion-site/index.html"
     },
     {
       "src": "/discussion-site/(.*)",
-      "dest": "/discussion-site/$1"
+      "dest": "/public/discussion-site/$1"
     },
     {
       "src": "/experiment_results",
-      "dest": "/experiment_results/index.html"
+      "dest": "/public/experiment_results/index.html"
     },
     {
       "src": "/experiment_results/(.*)",
-      "dest": "/experiment_results/$1"
+      "dest": "/public/experiment_results/$1"
     },
     {
       "src": "/enhanced_features",
-      "dest": "/enhanced_features/index.html"
+      "dest": "/public/enhanced_features/index.html"
     },
     {
       "src": "/enhanced_features/(.*)",
-      "dest": "/enhanced_features/$1"
+      "dest": "/public/enhanced_features/$1"
     },
     {
       "src": "/confidence_feedback",
-      "dest": "/confidence_feedback/index.html"
+      "dest": "/public/confidence_feedback/index.html"
     },
     {
       "src": "/confidence_feedback/(.*)",
-      "dest": "/confidence_feedback/$1"
+      "dest": "/public/confidence_feedback/$1"
     }
   ]
 }
