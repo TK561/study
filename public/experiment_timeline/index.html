@@ -307,7 +307,7 @@
                     <li>✅ 87.1%精度達成 (+27.3%向上)</li>
                     <li>✅ 処理時間1.8秒/画像 (23%高速化)</li>
                     <li>🎯 <strong>第13回: カテゴリ数最適化分析 (6/26)</strong></li>
-                    <li>🔍 信頼度飽和現象の発見</li>
+                    <li>🔍 確信度飽和現象の発見</li>
                     <li>📊 Cohen's Power Analysis実施</li>
                     <li>⚠️ 少数カテゴリの信頼性問題解明</li>
                 </div>
@@ -326,11 +326,11 @@
             </div>
             <div class="stat-card">
                 <div class="value">12</div>
-                <div class="label">信頼度飽和点</div>
+                <div class="label">確信度飽和点</div>
             </div>
             <div class="stat-card">
-                <div class="value">0.80</div>
-                <div class="label">統計的検定力</div>
+                <div class="value">0.871</div>
+                <div class="label">最高確信度</div>
             </div>
             <div class="stat-card">
                 <div class="value">94+日</div>
@@ -341,7 +341,7 @@
         <!-- 第13回の重要発見 -->
         <div style="background: linear-gradient(135deg, #ff7b7b 0%, #ff6b6b 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
             <h3 style="margin: 0; font-size: 1.3em;">🎯 第13回重要発見 (2025/6/26)</h3>
-            <p style="margin: 10px 0 0 0; font-size: 1.1em;">カテゴリ数と信頼度の飽和現象を発見 | Cohen's Power Analysis により統計的根拠を確立</p>
+            <p style="margin: 10px 0 0 0; font-size: 1.1em;">カテゴリ数と確信度の飽和現象を発見 | Cohen's Power Analysis により統計的根拠を確立</p>
             <div style="margin-top: 15px;">
                 <span style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; opacity: 0.7;">📊 詳細結果 (統合完了)</span>
             </div>
@@ -355,9 +355,9 @@
             </div>
         </div>
         
-        <!-- カテゴリ数別精度分析 -->
+        <!-- カテゴリ数別確信度分析 -->
         <div class="chart-section">
-            <h2>📊 カテゴリ数別精度推移（信頼度飽和現象）</h2>
+            <h2>📊 カテゴリ数別確信度推移（確信度飽和現象）</h2>
             <div class="chart-item">
                 <canvas id="scalabilityChart"></canvas>
             </div>
@@ -428,15 +428,15 @@
                         data: {
                             labels: [2, 4, 8, 16, 32, 64, 128],
                             datasets: [{
-                                label: 'WordNet手法',
-                                data: [95.2, 92.3, 89.1, 87.1, 84.9, 82.1, 79.5],
+                                label: 'WordNet手法 確信度',
+                                data: [0.952, 0.923, 0.891, 0.871, 0.849, 0.821, 0.795],
                                 borderColor: '#2ecc71',
                                 backgroundColor: 'rgba(46, 204, 113, 0.1)',
                                 fill: true,
                                 tension: 0.1
                             }, {
-                                label: 'ベースライン手法',
-                                data: [89.1, 84.2, 79.8, 74.4, 68.5, 62.8, 57.4],
+                                label: 'ベースライン手法 確信度',
+                                data: [0.891, 0.842, 0.798, 0.744, 0.685, 0.628, 0.574],
                                 borderColor: '#e74c3c',
                                 backgroundColor: 'rgba(231, 76, 60, 0.1)',
                                 fill: true,
@@ -449,7 +449,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'カテゴリ数別精度推移 - 信頼度飽和現象の発見'
+                                    text: 'カテゴリ数別確信度推移 - 確信度飽和現象の発見'
                                 }
                             },
                             scales: {
@@ -463,10 +463,10 @@
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '精度 (%)'
+                                        text: '確信度 (0-1)'
                                     },
-                                    min: 50,
-                                    max: 100
+                                    min: 0.5,
+                                    max: 1.0
                                 }
                             }
                         }
