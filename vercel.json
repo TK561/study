@@ -3,86 +3,86 @@
   "public": true,
   "builds": [
     {
-      "src": "public/**/*",
+      "src": "**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "/public/index.html"
+      "dest": "/index.html"
     },
     {
       "src": "/main-system",
-      "dest": "/public/main-system/index.html"
+      "dest": "/main-system/index.html"
     },
     {
       "src": "/main-system/(.*)",
-      "dest": "/public/main-system/$1"
+      "dest": "/main-system/$1"
     },
     {
       "src": "/discussion-site",
-      "dest": "/public/discussion-site/index.html"
+      "dest": "/discussion-site/index.html"
     },
     {
       "src": "/discussion-site/(.*)",
-      "dest": "/public/discussion-site/$1"
+      "dest": "/discussion-site/$1"
     },
     {
       "src": "/experiment_results",
-      "dest": "/public/experiment_results/index.html"
+      "dest": "/experiment_results/index.html"
     },
     {
       "src": "/experiment_results/(.*)",
-      "dest": "/public/experiment_results/$1"
+      "dest": "/experiment_results/$1"
     },
     {
       "src": "/enhanced_features",
-      "dest": "/public/enhanced_features/index.html"
+      "dest": "/enhanced_features/index.html"
     },
     {
       "src": "/enhanced_features/(.*)",
-      "dest": "/public/enhanced_features/$1"
+      "dest": "/enhanced_features/$1"
     },
     {
       "src": "/confidence_feedback",
-      "dest": "/public/confidence_feedback/index.html"
+      "dest": "/confidence_feedback/index.html"
     },
     {
       "src": "/confidence_feedback/(.*)",
-      "dest": "/public/confidence_feedback/$1"
+      "dest": "/confidence_feedback/$1"
     },
     {
       "src": "/experiment_timeline",
-      "dest": "/public/experiment_timeline/index.html"
+      "dest": "/experiment_timeline/index.html"
     },
     {
       "src": "/experiment_timeline/(.*)",
-      "dest": "/public/experiment_timeline/$1"
+      "dest": "/experiment_timeline/$1"
     },
     {
       "src": "/pptx_systems",
-      "dest": "/public/pptx_systems/index.html"
+      "dest": "/pptx_systems/index.html"
     },
     {
       "src": "/pptx_systems/(.*)",
-      "dest": "/public/pptx_systems/$1"
+      "dest": "/pptx_systems/$1"
     },
     {
       "src": "/session13_results",
-      "dest": "/public/session13_results/index.html"
+      "dest": "/session13_results/index.html"
     },
     {
       "src": "/session13_results/(.*)",
-      "dest": "/public/session13_results/$1"
+      "dest": "/session13_results/$1"
     },
     {
       "src": "/confidence_analysis",
-      "dest": "/public/confidence_analysis/index.html"
+      "dest": "/confidence_analysis/index.html"
     },
     {
       "src": "/confidence_analysis/(.*)",
-      "dest": "/public/confidence_analysis/$1"
+      "dest": "/confidence_analysis/$1"
     }
   ]
 }
