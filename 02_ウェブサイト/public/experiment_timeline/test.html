@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js テスト</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            height: 400px;
+        }
+        canvas {
+            max-height: 300px !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chart.js テスト</h1>
+    
+    <div class="chart-container">
+        <h2>基本テストチャート</h2>
+        <canvas id="testChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>タイムラインチャート</h2>
+        <canvas id="timelineChart"></canvas>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js not loaded');
+                document.body.innerHTML += '<p style="color: red;">Chart.js not loaded!</p>';
+                return;
+            }
+            
+            console.log('Chart.js version:', Chart.version);
+            
+            try {
+                // テストチャート
+                const testCtx = document.getElementById('testChart');
+                if (testCtx) {
+                    const testChart = new Chart(testCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['A', 'B', 'C', 'D'],
+                            datasets: [{
+                                label: 'テストデータ',
+                                data: [12, 19, 3, 5],
+                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true
+                                }
+                            }
+                        }
+                    });
+                    console.log('Test chart created successfully');
+                } else {
+                    console.error('Test chart canvas not found');
+                }
+                
+                // タイムラインチャート
+                const timelineCtx = document.getElementById('timelineChart');
+                if (timelineCtx) {
+                    new Chart(timelineCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
+                            datasets: [{
+                                label: '完成度 (%)',
+                                data: [15, 35, 55, 75, 90, 100],
+                                borderColor: '#4CAF50',
+                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: '開発進捗テスト'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '進捗率'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    console.log('Timeline chart created');
+                }
+                
+            } catch (error) {
+                console.error('Chart creation error:', error);
+                document.body.innerHTML += '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        });
+    </script>
+</body>
+</html>
