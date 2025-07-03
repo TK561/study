@@ -14,27 +14,27 @@
     },
     {
       "src": "/main-system",
-      "dest": "/main-system/index.html"
+      "dest": "/public/main-system/index.html"
     },
     {
       "src": "/main-system/(.*)",
-      "dest": "/main-system/$1"
+      "dest": "/public/main-system/$1"
     },
     {
       "src": "/discussion-site",
-      "dest": "/discussion-site/index.html"
+      "dest": "/public/discussion-site/index.html"
     },
     {
       "src": "/discussion-site/(.*)",
-      "dest": "/discussion-site/$1"
+      "dest": "/public/discussion-site/$1"
     },
     {
       "src": "/experiment_timeline",
-      "dest": "/experiment_timeline/index.html"
+      "dest": "/public/experiment_timeline/index.html"
     },
     {
       "src": "/experiment_timeline/(.*)",
-      "dest": "/experiment_timeline/$1"
+      "dest": "/public/experiment_timeline/$1"
     }
   ]
 }
