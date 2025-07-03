@@ -347,50 +347,19 @@
             </div>
         </div>
         
-        <!-- 開発進捗チャート -->
+        <!-- 精度比較分析 -->
         <div class="chart-section">
-            <h2>📈 開発進捗タイムライン</h2>
+            <h2>🎯 精度比較分析</h2>
             <div class="chart-item">
-                <canvas id="timelineChart"></canvas>
+                <canvas id="accuracyComparisonChart"></canvas>
             </div>
         </div>
         
-        <!-- 実験結果チャート -->
+        <!-- カテゴリ数別精度分析 -->
         <div class="chart-section">
-            <h2>🔬 主要実験結果</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="experimentResultsChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="performanceChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- パフォーマンステスト -->
-        <div class="chart-section">
-            <h2>⚡ システム性能分析</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="throughputChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="accuracyComparisonChart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- スケーラビリティ実験 -->
-        <div class="chart-section">
-            <h2>📊 スケーラビリティ実験結果</h2>
-            <div class="chart-grid">
-                <div class="chart-item">
-                    <canvas id="scalabilityChart"></canvas>
-                </div>
-                <div class="chart-item">
-                    <canvas id="resourceOptimizationChart"></canvas>
-                </div>
+            <h2>📊 カテゴリ数別精度推移（信頼度飽和現象）</h2>
+            <div class="chart-item">
+                <canvas id="scalabilityChart"></canvas>
             </div>
         </div>
     </div>
@@ -410,198 +379,7 @@
             console.log('Chart.js version:', Chart.version);
             
             try {
-                // 1. 開発進捗タイムライン
-                const timelineCtx = document.getElementById('timelineChart');
-                if (timelineCtx) {
-                    console.log('Creating timeline chart...');
-                    new Chart(timelineCtx, {
-                        type: 'line',
-                        data: {
-                            labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
-                            datasets: [{
-                                label: '完成度 (%)',
-                                data: [15, 35, 55, 75, 90, 100],
-                                borderColor: '#4CAF50',
-                                backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                                fill: true,
-                                tension: 0.4
-                            }, {
-                                label: '機能数',
-                                data: [3, 8, 12, 18, 22, 25],
-                                borderColor: '#2196F3',
-                                backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                                fill: true,
-                                tension: 0.4
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: '開発進捗と機能実装数の推移'
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: '進捗率 / 機能数'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Timeline chart created successfully');
-                }
-                
-                // 2. 実験結果サマリー
-                const experimentCtx = document.getElementById('experimentResultsChart');
-                if (experimentCtx) {
-                    console.log('Creating experiment results chart...');
-                    new Chart(experimentCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Pascal VOC改善', 'ベースライン比較', 'パフォーマンス', 'スケーリング'],
-                            datasets: [{
-                                label: '改善率 (%)',
-                                data: [15.2, 27.6, 156.7, 38.5],
-                                backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12']
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: '主要実験の改善率'
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: '改善率 (%)'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Experiment results chart created successfully');
-                }
-                
-                // 3. パフォーマンス向上
-                const performanceCtx = document.getElementById('performanceChart');
-                if (performanceCtx) {
-                    console.log('Creating performance chart...');
-                    new Chart(performanceCtx, {
-                        type: 'line',
-                        data: {
-                            labels: ['基礎', '並列処理', 'AI統合', '最適化', '最終'],
-                            datasets: [{
-                                label: '処理速度 (images/sec)',
-                                data: [12, 45, 78, 156, 234],
-                                borderColor: '#9C27B0',
-                                backgroundColor: 'rgba(156, 39, 176, 0.1)',
-                                fill: true,
-                                tension: 0.3
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: '処理速度向上の軌跡'
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'images/sec'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Performance chart created successfully');
-                }
-                
-                // 4. スループット分析
-                const throughputCtx = document.getElementById('throughputChart');
-                if (throughputCtx) {
-                    console.log('Creating throughput chart...');
-                    new Chart(throughputCtx, {
-                        type: 'line',
-                        data: {
-                            labels: [1, 4, 8, 16, 32, 64],
-                            datasets: [{
-                                label: 'スループット (images/sec)',
-                                data: [34.2, 128.5, 242.1, 456.8, 723.4, 892.1],
-                                borderColor: '#2ecc71',
-                                backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                                fill: true,
-                                yAxisID: 'y'
-                            }, {
-                                label: 'GPU使用率 (%)',
-                                data: [25, 45, 67, 78, 89, 95],
-                                borderColor: '#f39c12',
-                                backgroundColor: 'rgba(243, 156, 18, 0.1)',
-                                fill: true,
-                                yAxisID: 'y1'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'バッチサイズ別スループットとGPU使用率'
-                                }
-                            },
-                            scales: {
-                                x: {
-                                    title: {
-                                        display: true,
-                                        text: 'バッチサイズ'
-                                    }
-                                },
-                                y: {
-                                    type: 'linear',
-                                    display: true,
-                                    position: 'left',
-                                    title: {
-                                        display: true,
-                                        text: 'スループット (images/sec)'
-                                    }
-                                },
-                                y1: {
-                                    type: 'linear',
-                                    display: true,
-                                    position: 'right',
-                                    title: {
-                                        display: true,
-                                        text: 'GPU使用率 (%)'
-                                    },
-                                    grid: {
-                                        drawOnChartArea: false,
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Throughput chart created successfully');
-                }
-                
-                // 5. 精度比較
+                // 1. 精度比較
                 const accuracyCtx = document.getElementById('accuracyComparisonChart');
                 if (accuracyCtx) {
                     console.log('Creating accuracy comparison chart...');
@@ -641,7 +419,7 @@
                     console.log('Accuracy comparison chart created successfully');
                 }
                 
-                // 6. スケーラビリティ
+                // 2. カテゴリ数別精度推移（信頼度飽和現象）
                 const scalabilityCtx = document.getElementById('scalabilityChart');
                 if (scalabilityCtx) {
                     console.log('Creating scalability chart...');
@@ -671,7 +449,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'カテゴリ数別精度推移'
+                                    text: 'カテゴリ数別精度推移 - 信頼度飽和現象の発見'
                                 }
                             },
                             scales: {
@@ -696,46 +474,6 @@
                     console.log('Scalability chart created successfully');
                 }
                 
-                // 7. リソース最適化
-                const resourceCtx = document.getElementById('resourceOptimizationChart');
-                if (resourceCtx) {
-                    console.log('Creating resource optimization chart...');
-                    new Chart(resourceCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['同時ユーザー数', '最大データセット', 'コスト効率', '応答時間'],
-                            datasets: [{
-                                label: 'ベースライン',
-                                data: [50, 10000, 45.2, 5.2],
-                                backgroundColor: 'rgba(231, 76, 60, 0.8)'
-                            }, {
-                                label: '最適化後',
-                                data: [200, 1000000, 127.6, 1.8],
-                                backgroundColor: 'rgba(46, 204, 113, 0.8)'
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                title: {
-                                    display: true,
-                                    text: 'リソース最適化結果'
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: '各指標値'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                    console.log('Resource optimization chart created successfully');
-                }
                 
                 console.log('All charts initialized successfully!');
                 
