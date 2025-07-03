@@ -1,13 +1,5 @@
 {
   "version": 2,
-  "public": true,
-  "framework": null,
-  "builds": [
-    {
-      "src": "web/public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
     {
       "src": "/",
@@ -84,6 +76,10 @@
     {
       "src": "/confidence_analysis/(.*)",
       "dest": "/web/public/confidence_analysis/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web/public/$1"
     }
   ]
 }
