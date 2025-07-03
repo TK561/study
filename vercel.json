@@ -37,52 +37,12 @@
       "dest": "/public/experiment_results/$1"
     },
     {
-      "src": "/enhanced_features",
-      "dest": "/enhanced_features/index.html"
-    },
-    {
-      "src": "/enhanced_features/(.*)",
-      "dest": "/enhanced_features/$1"
-    },
-    {
-      "src": "/confidence_feedback",
-      "dest": "/confidence_feedback/index.html"
-    },
-    {
-      "src": "/confidence_feedback/(.*)",
-      "dest": "/confidence_feedback/$1"
-    },
-    {
       "src": "/experiment_timeline",
       "dest": "/experiment_timeline/index.html"
     },
     {
       "src": "/experiment_timeline/(.*)",
       "dest": "/experiment_timeline/$1"
-    },
-    {
-      "src": "/pptx_systems",
-      "dest": "/pptx_systems/index.html"
-    },
-    {
-      "src": "/pptx_systems/(.*)",
-      "dest": "/pptx_systems/$1"
-    },
-    {
-      "src": "/session13_results",
-      "dest": "/session13_results/index.html"
-    },
-    {
-      "src": "/session13_results/(.*)",
-      "dest": "/session13_results/$1"
-    },
-    {
-      "src": "/confidence_analysis",
-      "dest": "/confidence_analysis/index.html"
-    },
-    {
-      "src": "/confidence_analysis/(.*)",
-      "dest": "/confidence_analysis/$1"
     }
   ]
 }
