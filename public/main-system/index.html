@@ -205,24 +205,36 @@
 
             <!-- 研究概要タブ -->
             <div id="overview" class="tab-content active">
-                <div class="section">
-                    <h3>🎯 研究目的・概要</h3>
-                    <p><strong>目的:</strong> 画像処理における色情報変更システムの開発から始まり、YOLO・BLIP・CLIP・WordNetを組み合わせた高精度な意味カテゴリベース画像分類システムの構築</p>
-                    <div class="result-box">
-                        <h4>📋 開発プロセス</h4>
-                        <ul>
-                            <li><strong>基盤技術:</strong> OpenCV + tkinter による画像処理システム</li>
-                            <li><strong>発展技術:</strong> YOLO物体検出 + CNN分類</li>
-                            <li><strong>最終システム:</strong> BLIP-CLIP-WordNet統合分類</li>
-                            <li><strong>データセット:</strong> 10種類の特化型データセット自動選定</li>
-                            <li><strong>デプロイ:</strong> Vercel クラウドホスティング</li>
-                        </ul>
+                <h2>🎯 研究概要</h2>
+                
+                <div class="unified-section">
+                    <h3>研究目的</h3>
+                    <p>画像処理における色情報変更システムの開発から始まり、YOLO・BLIP・CLIP・WordNetを組み合わせた高精度な意味カテゴリベース画像分類システムの構築</p>
+                </div>
+                
+                <div class="unified-highlight-box">
+                    <h4>📋 開発プロセス</h4>
+                    <ul>
+                        <li><strong>基盤技術:</strong> OpenCV + tkinter による画像処理システム</li>
+                        <li><strong>発展技術:</strong> YOLO物体検出 + CNN分類</li>
+                        <li><strong>最終システム:</strong> BLIP-CLIP-WordNet統合分類</li>
+                        <li><strong>データセット:</strong> 10種類の特化型データセット自動選定</li>
+                        <li><strong>デプロイ:</strong> Vercel クラウドホスティング</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-info-grid">
+                    <div class="unified-info-item">
+                        <h4>🎨 メイン機能</h4>
+                        <p>エクスプローラからの画像読み取り、ピクセル単位の色情報配列処理、リアルタイム画像変更、RGB/HSV対応</p>
                     </div>
-                    <div class="result-box">
-                        <h4>🎨 技術的特徴</h4>
-                        <p><strong>メイン機能:</strong> エクスプローラからの画像読み取り、ピクセル単位の色情報配列処理、リアルタイム画像変更、RGB/HSV対応</p>
-                        <p><strong>追加機能:</strong> YOLO物体検出、マウス選択による物体指定、BLIP自動キャプション生成、CLIP意味理解、WordNet階層分析</p>
-                        <p><strong>信頼度機構:</strong> 低信頼度検出時のBLIP再生成、確信度に基づく自動フィードバック</p>
+                    <div class="unified-info-item">
+                        <h4>🔧 追加機能</h4>
+                        <p>YOLO物体検出、マウス選択による物体指定、BLIP自動キャプション生成、CLIP意味理解、WordNet階層分析</p>
+                    </div>
+                    <div class="unified-info-item">
+                        <h4>📊 信頼度機構</h4>
+                        <p>低信頼度検出時のBLIP再生成、確信度に基づく自動フィードバック</p>
                     </div>
                 </div>
             </div>
@@ -231,10 +243,29 @@
 
             <!-- 統計分析タブ -->
             <div id="analysis" class="tab-content">
-                <div class="section">
-                    <h3>📊 統計分析結果</h3>
-                    
-                    <div class="result-box">
+                <h2>📊 統計分析結果</h2>
+                
+                <div class="unified-stats">
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">1.2</span>
+                        <span class="unified-stat-label">効果サイズ</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">0.95</span>
+                        <span class="unified-stat-label">検定力</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">752</span>
+                        <span class="unified-stat-label">サンプルサイズ</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">87.1%</span>
+                        <span class="unified-stat-label">最終精度</span>
+                    </div>
+                </div>
+                
+                <div class="unified-info-grid">
+                    <div class="unified-info-item">
                         <h4>Cohen's Power Analysis</h4>
                         <ul>
                             <li><strong>効果サイズ (Cohen's d):</strong> 1.2 (大きな効果サイズ)</li>
@@ -243,8 +274,7 @@
                             <li><strong>必要サンプルサイズ:</strong> 752 (統計的に十分)</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
+                    <div class="unified-info-item">
                         <h4>信頼区間分析</h4>
                         <ul>
                             <li><strong>95%信頼区間:</strong> [85.2%, 89.0%]</li>
@@ -252,8 +282,7 @@
                             <li><strong>分散分析 (ANOVA):</strong> F(3,748) = 42.3, p &lt; 0.001</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
+                    <div class="unified-info-item">
                         <h4>交差検証結果</h4>
                         <ul>
                             <li><strong>5-fold CV:</strong> 平均精度 86.8% (±1.2%)</li>
@@ -266,10 +295,25 @@
 
             <!-- 結論タブ -->
             <div id="conclusion" class="tab-content">
-                <div class="section">
-                    <h3>🎯 結論と今後の展望</h3>
-                    
-                    <div class="result-box">
+                <h2>🎯 結論と今後の展望</h2>
+                
+                <div class="unified-stats">
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">16</span>
+                        <span class="unified-stat-label">最適カテゴリ数</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">27.3%</span>
+                        <span class="unified-stat-label">性能向上</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">23%</span>
+                        <span class="unified-stat-label">高速化</span>
+                    </div>
+                </div>
+                
+                <div class="unified-info-grid">
+                    <div class="unified-info-item">
                         <h4>主要な発見</h4>
                         <ul>
                             <li><strong>16カテゴリが最適解:</strong> 費用対効果と性能のバランス点</li>
@@ -278,8 +322,7 @@
                             <li><strong>実用化可能:</strong> 新規ドメインへの適用可能</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
+                    <div class="unified-info-item">
                         <h4>今後の研究課題</h4>
                         <ul>
                             <li><strong>動的カテゴリ調整:</strong> 入力に応じた最適カテゴリ数の自動選択</li>
@@ -288,8 +331,7 @@
                             <li><strong>多言語対応:</strong> 国際的な展開可能性</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
+                    <div class="unified-info-item">
                         <h4>社会的インパクト</h4>
                         <ul>
                             <li><strong>医療画像診断:</strong> 診断精度の向上</li>
@@ -302,56 +344,56 @@
 
             <!-- 技術詳細タブ -->
             <div id="technical" class="tab-content">
-                <div class="section">
-                    <h3>⚙️ 技術実装詳細</h3>
-                    
-                    <div class="result-box">
-                        <h4>アーキテクチャ</h4>
-                        <ul>
-                            <li><strong>基盤モデル:</strong> CLIP (ViT-B/32)</li>
-                            <li><strong>特化層:</strong> WordNet階層マッピング</li>
-                            <li><strong>最適化:</strong> AdamW (lr=1e-4)</li>
-                            <li><strong>バッチサイズ:</strong> 64 (GPU: Tesla V100)</li>
-                        </ul>
+                <h2>⚙️ 技術実装詳細</h2>
+                
+                <div class="unified-section">
+                    <h3>アーキテクチャ概要</h3>
+                    <p>基盤モデルCLIP (ViT-B/32)をベースにWordNet階層マッピングを特化層として統合した高精度画像分類システム</p>
+                </div>
+                
+                <div class="unified-stats">
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">64</span>
+                        <span class="unified-stat-label">バッチサイズ</span>
                     </div>
-
-                    <div class="result-box">
-                        <h4>📦 使用ライブラリ・技術スタック</h4>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">1e-4</span>
+                        <span class="unified-stat-label">学習率</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">9</span>
+                        <span class="unified-stat-label">主要ライブラリ</span>
+                    </div>
+                </div>
+                
+                <div class="unified-info-grid">
+                    <div class="unified-info-item">
+                        <h4>📦 主要ライブラリ</h4>
                         <ul>
-                            <li><strong>tkinter.filedialog:</strong> エクスプローラからの画像選択、保存先指定</li>
-                            <li><strong>OpenCV (cv2):</strong> 画像処理、読み込み、表示、合成処理、トラックバー</li>
-                            <li><strong>NumPy:</strong> 画像配列処理、色変更、合成処理</li>
-                            <li><strong>threading:</strong> 複数ウィンドウの並立処理</li>
-                            <li><strong>queue:</strong> スレッド間安全通信</li>
-                            <li><strong>YOLO:</strong> 物体検出システム</li>
-                            <li><strong>BLIP:</strong> 画像キャプション自動生成</li>
                             <li><strong>CLIP:</strong> 画像-テキスト意味理解</li>
                             <li><strong>WordNet:</strong> 語彙階層分析</li>
+                            <li><strong>YOLO:</strong> 物体検出システム</li>
+                            <li><strong>BLIP:</strong> 画像キャプション自動生成</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
-                        <h4>🔄 データ処理パイプライン</h4>
+                    <div class="unified-info-item">
+                        <h4>🔄 処理パイプライン</h4>
                         <ul>
-                            <li><strong>Step 1:</strong> 画像選択 (日本語ファイル名対応 imread_jp())</li>
-                            <li><strong>Step 2:</strong> RGB/HSV配列データ取得</li>
-                            <li><strong>Step 3:</strong> マウスドラッグによる範囲選択 (setMouseCallback)</li>
-                            <li><strong>Step 4:</strong> ROI(Region Of Interest) 平均色計算</li>
-                            <li><strong>Step 5:</strong> スライダーによるリアルタイム色変更</li>
-                            <li><strong>Step 6:</strong> 日本語パス対応保存 (imwrite_jp)</li>
-                            <li><strong>物体検出:</strong> YOLO → CNN → BLIP → CLIP → WordNet</li>
+                            <li><strong>Step 1:</strong> 画像選択・読み込み</li>
+                            <li><strong>Step 2:</strong> YOLO物体検出</li>
+                            <li><strong>Step 3:</strong> BLIPキャプション生成</li>
+                            <li><strong>Step 4:</strong> CLIP意味理解</li>
+                            <li><strong>Step 5:</strong> WordNet階層分析</li>
+                            <li><strong>Step 6:</strong> 結果出力</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
-                        <h4>⚙️ 実装環境・開発期間</h4>
+                    <div class="unified-info-item">
+                        <h4>⚙️ 開発情報</h4>
                         <ul>
                             <li><strong>言語:</strong> Python</li>
-                            <li><strong>開発期間:</strong> 2025年3月17日～6月19日 (約3ヶ月)</li>
-                            <li><strong>フェーズ1:</strong> 基本画像処理 (3月17日～4月3日)</li>
-                            <li><strong>フェーズ2:</strong> YOLO物体検出追加 (4月1日～5月8日)</li>
-                            <li><strong>フェーズ3:</strong> マルチモーダル統合 (5月8日～6月12日)</li>
-                            <li><strong>フェーズ4:</strong> クラウドデプロイ (6月19日)</li>
+                            <li><strong>開発期間:</strong> 3ヶ月 (2025/3-6)</li>
+                            <li><strong>GPU:</strong> Tesla V100</li>
+                            <li><strong>最適化:</strong> AdamW</li>
                         </ul>
                     </div>
                 </div>
@@ -359,10 +401,25 @@
 
             <!-- デプロイ情報タブ -->
             <div id="deployment" class="tab-content">
-                <div class="section">
-                    <h3>🚀 デプロイメント情報</h3>
-                    
-                    <div class="result-box">
+                <h2>🚀 デプロイメント情報</h2>
+                
+                <div class="unified-stats">
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">< 1.2s</span>
+                        <span class="unified-stat-label">読み込み時間</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">99.9%</span>
+                        <span class="unified-stat-label">可用性</span>
+                    </div>
+                    <div class="unified-stat">
+                        <span class="unified-stat-value">HTTPS</span>
+                        <span class="unified-stat-label">セキュリティ</span>
+                    </div>
+                </div>
+                
+                <div class="unified-info-grid">
+                    <div class="unified-info-item">
                         <h4>システム構成</h4>
                         <ul>
                             <li><strong>ホスティング:</strong> Vercel (静的サイト)</li>
@@ -371,8 +428,7 @@
                             <li><strong>バックアップ:</strong> 自動バックアップ機能</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
+                    <div class="unified-info-item">
                         <h4>AI統合システム</h4>
                         <ul>
                             <li><strong>Gemini AI:</strong> デプロイ成功率予測</li>
@@ -381,9 +437,8 @@
                             <li><strong>満足度追跡:</strong> ユーザーフィードバック</li>
                         </ul>
                     </div>
-
-                    <div class="result-box">
-                        <h4>パフォーマンス</h4>
+                    <div class="unified-info-item">
+                        <h4>パフォーマンス指標</h4>
                         <ul>
                             <li><strong>読み込み時間:</strong> < 1.2秒</li>
                             <li><strong>可用性:</strong> 99.9%</li>
