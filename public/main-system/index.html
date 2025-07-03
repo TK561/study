@@ -152,7 +152,7 @@
             border: none;
             padding: 15px 25px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #666;
             transition: all 0.3s ease;
@@ -605,7 +605,7 @@
                             feedbackChart.lineTo(width - margin.right, y);
                             feedbackChart.stroke();
                             
-                            feedbackChart.fillStyle = '#333';
+                            feedbackChart.fillStyle = '#666';
                             feedbackChart.font = '10px Arial';
                             feedbackChart.textAlign = 'right';
                             feedbackChart.fillText(value + '%', margin.left - 5, y + 3);
@@ -708,7 +708,7 @@
                             progressChart.lineTo(width - margin.right, y);
                             progressChart.stroke();
                             
-                            progressChart.fillStyle = '#333';
+                            progressChart.fillStyle = '#666';
                             progressChart.font = '11px Arial';
                             progressChart.textAlign = 'right';
                             progressChart.fillText(value + '%', margin.left - 10, y + 4);
@@ -809,7 +809,7 @@
                                 chartCtx.lineTo(width - margin.right, y);
                                 chartCtx.stroke();
                                 
-                                chartCtx.fillStyle = '#333';
+                                chartCtx.fillStyle = '#666';
                                 chartCtx.font = '10px Arial';
                                 chartCtx.textAlign = 'right';
                                 chartCtx.fillText(value + '%', margin.left - 5, y + 3);
@@ -898,7 +898,7 @@
                                 chartCtx.lineTo(width - margin.right, y);
                                 chartCtx.stroke();
                                 
-                                chartCtx.fillStyle = '#333';
+                                chartCtx.fillStyle = '#666';
                                 chartCtx.font = '10px Arial';
                                 chartCtx.textAlign = 'right';
                                 chartCtx.fillText(value.toFixed(1) + '%', margin.left - 5, y + 3);
@@ -1090,7 +1090,7 @@
             }
             
             // Y軸ラベル（数値）
-            ctx.fillStyle = '#333';
+            ctx.fillStyle = '#666';
             ctx.font = '11px Arial';
             ctx.textAlign = 'right';
             for (let i = 0; i <= 10; i++) {
@@ -1119,7 +1119,7 @@
                 ctx.fillText(dataset.confidence + '%', x + barWidth/2, y - 5);
                 
                 // X軸ラベル
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#666';
                 ctx.font = '11px Arial';
                 ctx.fillText(dataset.name, x + barWidth/2, height - margin.bottom + 30);
             });
@@ -1178,7 +1178,7 @@
                 ctx.stroke();
                 
                 // Y軸ラベル（数値）
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#666';
                 ctx.font = '11px Arial';
                 ctx.textAlign = 'right';
                 const value = 100 - (i * 10);
@@ -1234,7 +1234,7 @@
                 ctx.fillText(point.confidence + '%', x, y - 15);
                 
                 // X軸ラベル
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#666';
                 ctx.font = '10px Arial';
                 ctx.fillText(point.label, x, height - margin.bottom + 30);
             });
@@ -1364,7 +1364,7 @@
                 ctx.fill();
                 
                 // X軸ラベル
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#666';
                 ctx.font = '10px Arial';
                 ctx.textAlign = 'center';
                 ctx.fillText(point.label, x, height - margin.bottom + 30);
@@ -1464,7 +1464,7 @@
                 ctx.stroke();
                 
                 // Y軸ラベル
-                ctx.fillStyle = '#333';
+                ctx.fillStyle = '#666';
                 ctx.font = '12px Arial';
                 ctx.textAlign = 'right';
                 ctx.fillText((100 - i * 10) + '%', margin.left - 10, y + 4);

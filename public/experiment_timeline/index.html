@@ -196,7 +196,7 @@
         
         .timeline-card .period {
             font-size: 0.9rem;
-            color: #555;
+            color: #7f8c8d;
             margin-bottom: 10px;
             font-weight: 500;
         }
@@ -209,7 +209,7 @@
         .timeline-card .achievements li {
             padding: 8px 0;
             border-bottom: 1px solid #ecf0f1;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         
         .timeline-card .achievements li:last-child {
@@ -300,12 +300,16 @@
             
             <div class="timeline-card phase-4">
                 <h3>🏆 フェーズ4: 完成・実用化</h3>
-                <div class="period">2025年6月1日 - 6月19日</div>
+                <div class="period">2025年6月1日 - 6月26日</div>
                 <div class="achievements">
                     <li>✅ 実用化準備とクラウド対応</li>
                     <li>✅ 最終統合・研究完成</li>
                     <li>✅ 87.1%精度達成 (+27.3%向上)</li>
                     <li>✅ 処理時間1.8秒/画像 (23%高速化)</li>
+                    <li>🎯 <strong>第13回: カテゴリ数最適化分析 (6/26)</strong></li>
+                    <li>🔍 信頼度飽和現象の発見</li>
+                    <li>📊 Cohen's Power Analysis実施</li>
+                    <li>⚠️ 少数カテゴリの信頼性問題解明</li>
                 </div>
             </div>
         </div>
@@ -321,12 +325,25 @@
                 <div class="label">精度改善</div>
             </div>
             <div class="stat-card">
-                <div class="value">892</div>
-                <div class="label">images/sec</div>
+                <div class="value">12</div>
+                <div class="label">信頼度飽和点</div>
             </div>
             <div class="stat-card">
-                <div class="value">93日</div>
+                <div class="value">0.80</div>
+                <div class="label">統計的検定力</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">94+日</div>
                 <div class="label">開発期間</div>
+            </div>
+        </div>
+        
+        <!-- 第13回の重要発見 -->
+        <div style="background: linear-gradient(135deg, #ff7b7b 0%, #ff6b6b 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
+            <h3 style="margin: 0; font-size: 1.3em;">🎯 第13回重要発見 (2025/6/26)</h3>
+            <p style="margin: 10px 0 0 0; font-size: 1.1em;">カテゴリ数と信頼度の飽和現象を発見 | Cohen's Power Analysis により統計的根拠を確立</p>
+            <div style="margin-top: 15px;">
+                <a href="../session13_results/" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; transition: all 0.3s;">📊 詳細結果を見る</a>
             </div>
         </div>
         
@@ -379,7 +396,6 @@
     </div>
     
     <script>
-        
         console.log('Starting dashboard initialization...');
         
         document.addEventListener('DOMContentLoaded', function() {

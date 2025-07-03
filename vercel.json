@@ -1,85 +1,88 @@
 {
   "version": 2,
+  "public": true,
+  "builds": [
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
     {
       "src": "/",
-      "dest": "/web/public/index.html"
+      "dest": "/public/index.html"
     },
     {
       "src": "/main-system",
-      "dest": "/web/public/main-system/index.html"
+      "dest": "/public/main-system/index.html"
     },
     {
       "src": "/main-system/(.*)",
-      "dest": "/web/public/main-system/$1"
+      "dest": "/public/main-system/$1"
     },
     {
       "src": "/discussion-site",
-      "dest": "/web/public/discussion-site/index.html"
+      "dest": "/public/discussion-site/index.html"
     },
     {
       "src": "/discussion-site/(.*)",
-      "dest": "/web/public/discussion-site/$1"
+      "dest": "/public/discussion-site/$1"
     },
     {
       "src": "/experiment_results",
-      "dest": "/web/public/experiment_results/index.html"
+      "dest": "/public/experiment_results/index.html"
     },
     {
       "src": "/experiment_results/(.*)",
-      "dest": "/web/public/experiment_results/$1"
+      "dest": "/public/experiment_results/$1"
     },
     {
       "src": "/enhanced_features",
-      "dest": "/web/public/enhanced_features/index.html"
+      "dest": "/public/enhanced_features/index.html"
     },
     {
       "src": "/enhanced_features/(.*)",
-      "dest": "/web/public/enhanced_features/$1"
+      "dest": "/public/enhanced_features/$1"
     },
     {
       "src": "/confidence_feedback",
-      "dest": "/web/public/confidence_feedback/index.html"
+      "dest": "/public/confidence_feedback/index.html"
     },
     {
       "src": "/confidence_feedback/(.*)",
-      "dest": "/web/public/confidence_feedback/$1"
+      "dest": "/public/confidence_feedback/$1"
     },
     {
       "src": "/experiment_timeline",
-      "dest": "/web/public/experiment_timeline/index.html"
+      "dest": "/public/experiment_timeline/index.html"
     },
     {
       "src": "/experiment_timeline/(.*)",
-      "dest": "/web/public/experiment_timeline/$1"
+      "dest": "/public/experiment_timeline/$1"
     },
     {
       "src": "/pptx_systems",
-      "dest": "/web/public/pptx_systems/index.html"
+      "dest": "/public/pptx_systems/index.html"
     },
     {
       "src": "/pptx_systems/(.*)",
-      "dest": "/web/public/pptx_systems/$1"
+      "dest": "/public/pptx_systems/$1"
     },
     {
       "src": "/session13_results",
-      "dest": "/web/public/session13_results/index.html"
+      "dest": "/public/session13_results/index.html"
     },
     {
       "src": "/session13_results/(.*)",
-      "dest": "/web/public/session13_results/$1"
+      "dest": "/public/session13_results/$1"
     },
     {
       "src": "/confidence_analysis",
-      "dest": "/web/public/confidence_analysis/index.html"
+      "dest": "/public/confidence_analysis/index.html"
     },
     {
       "src": "/confidence_analysis/(.*)",
-      "dest": "/web/public/confidence_analysis/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/web/public/$1"
+      "dest": "/public/confidence_analysis/$1"
     }
   ]
 }
