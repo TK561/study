@@ -133,6 +133,23 @@ body {
     box-shadow: var(--shadow-accent);
 }
 
+/* ===== 統一ナビゲーション固定 ===== */
+/* 全ページで同じナビゲーション構造を維持 */
+.main-navigation .nav-links {
+    /* タブ切り替えやページ遷移でも変更されない固定構造 */
+    position: relative;
+    z-index: 1000;
+}
+
+/* ナビゲーション内容が変更されることを防ぐ */
+.nav-links li, .main-nav-links li {
+    flex-shrink: 0;
+}
+
+.nav-links li a, .main-nav-links li a {
+    white-space: nowrap;
+}
+
 /* ===== レスポンシブナビゲーション ===== */
 @media (max-width: 768px) {
     .nav-container {
