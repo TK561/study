@@ -302,6 +302,12 @@ body {
 .tab-content {
     display: none;
     animation: fadeIn 0.3s ease-in-out;
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    box-shadow: var(--shadow-medium);
+    margin: 20px 0;
+    min-height: 400px;
 }
 
 .tab-content.active {
@@ -311,6 +317,57 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== タブ内統一スタイル ===== */
+.tab-content h2, .tab-content h3, .tab-content h4 {
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.tab-content h2 {
+    font-size: var(--font-size-3xl);
+    border-bottom: 3px solid var(--primary-blue);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.tab-content h3 {
+    font-size: var(--font-size-2xl);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 10px;
+    margin-top: 35px;
+}
+
+.tab-content h4 {
+    font-size: var(--font-size-xl);
+    margin-top: 25px;
+}
+
+.tab-content p {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.tab-content ul, .tab-content ol {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+
+.tab-content li {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.tab-content strong {
+    color: var(--primary-blue);
+    font-weight: 600;
 }
 
 /* ===== セクション ===== */
@@ -347,6 +404,169 @@ body {
     color: #2e7d32;
     font-size: var(--font-size-xl);
     font-weight: 600;
+}
+
+.result-box p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.result-box ul, .result-box ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.result-box li {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.result-box strong {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+/* ===== 実験グリッド統一 ===== */
+.experiment-grid .experiment-card h3 {
+    color: var(--primary-blue);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 10px;
+}
+
+.experiment-card p {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+/* ===== ディスカッション固有スタイル ===== */
+.discussion-timeline {
+    margin: 20px 0;
+}
+
+.discussion-item {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-medium);
+    border-left: 5px solid var(--primary-blue);
+}
+
+.discussion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.discussion-title {
+    color: var(--primary-blue);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.discussion-date {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.achievement-badge {
+    background: var(--accent-orange);
+    color: var(--text-white);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.discussion-content {
+    margin-top: 15px;
+}
+
+.discussion-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.discussion-content li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.discussion-content li:last-child {
+    border-bottom: none;
+}
+
+.discussion-content strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* 旧スタイル互換性 */
+.discussion-phase {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-medium);
+    border-left: 5px solid var(--primary-blue);
+}
+
+.discussion-phase h3 {
+    color: var(--primary-blue);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.discussion-phase .date {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.discussion-phase .topics {
+    list-style: none;
+    padding: 0;
+}
+
+.discussion-phase .topics li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+}
+
+.discussion-phase .topics li:last-child {
+    border-bottom: none;
+}
+
+.discussion-phase .summary {
+    background: var(--bg-primary);
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    margin-top: 15px;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
 }
 
 /* ===== 特徴リスト ===== */
