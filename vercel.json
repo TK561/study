@@ -29,14 +29,6 @@
       "dest": "/discussion-site/$1"
     },
     {
-      "src": "/experiment_results",
-      "dest": "/public/experiment_results/experiment_graphs.html"
-    },
-    {
-      "src": "/experiment_results/(.*)",
-      "dest": "/public/experiment_results/$1"
-    },
-    {
       "src": "/experiment_timeline",
       "dest": "/experiment_timeline/index.html"
     },
