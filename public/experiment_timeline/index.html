@@ -323,7 +323,7 @@
                     new Chart(feedbackCtx, {
                         type: 'line',
                         data: {
-                            labels: ['CLIP初期判定', 'WordNet階層', '信頼度計算', 'BLIP再生成', 'WordNet再判定', '最終出力'],
+                            labels: [0, 1, 2, 3, 4, 5],
                             datasets: [{
                                 label: 'フィードバック前確信度',
                                 data: [0.68, 0.72, 0.74, 0.76, 0.78, 0.78],
@@ -382,15 +382,28 @@
                             },
                             scales: {
                                 x: { 
+                                    type: 'linear',
                                     beginAtZero: true,
                                     min: 0,
+                                    max: 5,
+                                    title: {
+                                        display: true,
+                                        text: '処理段階',
+                                        font: { size: 16, weight: 'bold' },
+                                        color: '#2c3e50'
+                                    },
                                     grid: {
                                         color: 'rgba(189, 195, 199, 0.3)',
                                         lineWidth: 1
                                     },
                                     ticks: {
                                         font: { size: 12, weight: '500' },
-                                        color: '#34495e'
+                                        color: '#34495e',
+                                        stepSize: 1,
+                                        callback: function(value) {
+                                            const labels = ['CLIP初期判定', 'WordNet階層', '信頼度計算', 'BLIP再生成', 'WordNet再判定', '最終出力'];
+                                            return labels[value] || '';
+                                        }
                                     }
                                 },
                                 y: { 
@@ -832,8 +845,10 @@
                             },
                             scales: {
                                 x: { 
+                                    type: 'linear',
                                     beginAtZero: true,
                                     min: 0,
+                                    max: 100,
                                     title: { 
                                         display: true, 
                                         text: 'サンプル数',
@@ -846,7 +861,8 @@
                                     },
                                     ticks: {
                                         font: { size: 14, weight: '500' },
-                                        color: '#34495e'
+                                        color: '#34495e',
+                                        stepSize: 20
                                     }
                                 },
                                 y: { 
