@@ -333,8 +333,12 @@
                 <div class="label">最高確信度</div>
             </div>
             <div class="stat-card">
-                <div class="value">94+日</div>
-                <div class="label">開発期間</div>
+                <div class="value">13回</div>
+                <div class="label">ディスカッション完了</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">+0.143</div>
+                <div class="label">15ヶ月確信度向上</div>
             </div>
         </div>
         
@@ -360,6 +364,27 @@
             <h2>📊 カテゴリ数別確信度推移（確信度飽和現象）</h2>
             <div class="chart-item">
                 <canvas id="scalabilityChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- ディスカッション進展別確信度向上 -->
+        <div class="chart-section">
+            <h2>🚀 ディスカッション進展別確信度向上</h2>
+            <div class="chart-grid">
+                <div class="chart-item">
+                    <canvas id="discussionProgressChart"></canvas>
+                </div>
+                <div class="chart-item">
+                    <canvas id="confidenceImprovementChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フィードバック機構効果 -->
+        <div class="chart-section">
+            <h2>🔄 フィードバック機構による確信度改善</h2>
+            <div class="chart-item">
+                <canvas id="feedbackEffectChart"></canvas>
             </div>
         </div>
     </div>
@@ -419,7 +444,7 @@
                     console.log('Accuracy comparison chart created successfully');
                 }
                 
-                // 2. カテゴリ数別精度推移（信頼度飽和現象）
+                // 2. カテゴリ数別確信度推移（確信度飽和現象）
                 const scalabilityCtx = document.getElementById('scalabilityChart');
                 if (scalabilityCtx) {
                     console.log('Creating scalability chart...');
@@ -474,6 +499,141 @@
                     console.log('Scalability chart created successfully');
                 }
                 
+                
+                // 3. ディスカッション進展別確信度向上
+                const discussionCtx = document.getElementById('discussionProgressChart');
+                if (discussionCtx) {
+                    console.log('Creating discussion progress chart...');
+                    new Chart(discussionCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['第8回', '第9回', '第10回', '第11回', '第12回', '第13回'],
+                            datasets: [{
+                                label: '精度確信度',
+                                data: [0.728, 0.789, 0.869, 0.853, 0.871, 0.871],
+                                borderColor: '#3498db',
+                                backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                                fill: true,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'ディスカッション回別確信度進展'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '確信度 (0-1)'
+                                    },
+                                    min: 0.7,
+                                    max: 0.9
+                                }
+                            }
+                        }
+                    });
+                    console.log('Discussion progress chart created successfully');
+                }
+                
+                // 4. 確信度改善幅
+                const improvementCtx = document.getElementById('confidenceImprovementChart');
+                if (improvementCtx) {
+                    console.log('Creating confidence improvement chart...');
+                    new Chart(improvementCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['第8→第9回', '第9→第10回', '第10→第11回', '第11→第12回', '第12→第13回'],
+                            datasets: [{
+                                label: '確信度改善幅',
+                                data: [0.061, 0.080, -0.016, 0.018, 0.000],
+                                backgroundColor: [
+                                    'rgba(46, 204, 113, 0.8)',
+                                    'rgba(46, 204, 113, 0.8)', 
+                                    'rgba(231, 76, 60, 0.8)',
+                                    'rgba(46, 204, 113, 0.8)',
+                                    'rgba(149, 165, 166, 0.8)'
+                                ],
+                                borderColor: [
+                                    '#2ecc71',
+                                    '#2ecc71',
+                                    '#e74c3c', 
+                                    '#2ecc71',
+                                    '#95a5a6'
+                                ],
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'ディスカッション間確信度改善幅'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '確信度変化量'
+                                    },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    console.log('Confidence improvement chart created successfully');
+                }
+                
+                // 5. フィードバック機構効果
+                const feedbackCtx = document.getElementById('feedbackEffectChart');
+                if (feedbackCtx) {
+                    console.log('Creating feedback effect chart...');
+                    new Chart(feedbackCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['初期確信度', 'フィードバック適用後', 'BLIP再生成後', '最終確信度'],
+                            datasets: [{
+                                label: '第11回フィードバック機構',
+                                data: [0.753, 0.820, 0.853, 0.871],
+                                borderColor: '#9b59b6',
+                                backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                                fill: true,
+                                tension: 0.3,
+                                pointBackgroundColor: '#9b59b6',
+                                pointRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'フィードバック機構による確信度段階的向上'
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: '確信度 (0-1)'
+                                    },
+                                    min: 0.75,
+                                    max: 0.88
+                                }
+                            }
+                        }
+                    });
+                    console.log('Feedback effect chart created successfully');
+                }
                 
                 console.log('All charts initialized successfully!');
                 
