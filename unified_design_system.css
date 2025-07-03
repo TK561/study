@@ -1,0 +1,460 @@
+/* ===========================================
+   WordNet画像分類システム 統一デザインシステム
+   =========================================== */
+
+/* ===== CSS変数システム ===== */
+:root {
+    /* メインカラーパレット */
+    --primary-blue: #667eea;
+    --primary-purple: #764ba2;
+    --accent-orange: #ff6b35;
+    --accent-green: #00b894;
+    --accent-yellow: #f39c12;
+    
+    /* グラデーション */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-primary-light: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    --gradient-text: linear-gradient(45deg, #667eea, #764ba2);
+    
+    /* テキストカラー階層 */
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: #999;
+    --text-white: #fff;
+    
+    /* 背景色 */
+    --bg-primary: #f8f9fa;
+    --bg-white: rgba(255, 255, 255, 0.95);
+    --bg-card: white;
+    --bg-overlay: rgba(0, 0, 0, 0.1);
+    
+    /* ボーダー・陰影 */
+    --border-light: #e0e0e0;
+    --border-primary: var(--primary-blue);
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-accent: 0 5px 15px rgba(102, 126, 234, 0.3);
+    
+    /* タイポグラフィ */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-xs: 0.8rem;
+    --font-size-sm: 0.9rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.2rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
+    
+    /* レイアウト */
+    --container-max-width: 1200px;
+    --border-radius-sm: 10px;
+    --border-radius-md: 15px;
+    --border-radius-lg: 20px;
+    --border-radius-xl: 25px;
+    
+    /* アニメーション */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===== 基本リセット ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--gradient-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* ===== 統一ナビゲーションバー ===== */
+.main-navigation {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    margin: 20px auto 30px;
+    box-shadow: var(--shadow-medium);
+    backdrop-filter: blur(10px);
+    max-width: var(--container-max-width);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.nav-links, .main-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a, .main-nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: var(--border-radius-xl);
+    transition: all var(--transition-medium);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a:hover, .main-nav-links a:hover {
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent);
+}
+
+.nav-links a.active, .main-nav-links a.active {
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    box-shadow: var(--shadow-accent);
+}
+
+/* ===== レスポンシブナビゲーション ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .nav-links, .main-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .nav-links a, .main-nav-links a {
+        font-size: var(--font-size-sm);
+        padding: 8px 15px;
+    }
+}
+
+/* ===== コンテナ ===== */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== ヘッダー ===== */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-heavy);
+}
+
+.header h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: 15px;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header p {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* ===== 統計表示 ===== */
+.stats, .stats-overview {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.stat-item, .stat-card {
+    text-align: center;
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-medium);
+    border-left: 5px solid var(--primary-blue);
+    min-width: 150px;
+}
+
+.stat-value {
+    font-size: var(--font-size-3xl);
+    font-weight: bold;
+    color: var(--primary-blue);
+    display: block;
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* ===== グリッドシステム ===== */
+.project-grid, .experiment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.project-card, .experiment-card {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    box-shadow: var(--shadow-medium);
+    transition: transform var(--transition-medium);
+}
+
+.project-card:hover, .experiment-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h2, .experiment-card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    font-size: var(--font-size-2xl);
+}
+
+/* ===== ボタンシステム ===== */
+.btn-primary, .nav-button {
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: var(--border-radius-xl);
+    font-weight: 600;
+    transition: all var(--transition-medium);
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+}
+
+.btn-primary:hover, .nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent);
+}
+
+/* ===== タブシステム ===== */
+.tab-container {
+    margin: 30px 0;
+}
+
+.tab-nav {
+    display: flex;
+    border-bottom: 3px solid var(--primary-blue);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all var(--transition-medium);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    min-width: 150px;
+}
+
+.tab-button:hover {
+    background: var(--bg-primary);
+    color: var(--primary-blue);
+}
+
+.tab-button.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+    background: var(--gradient-primary-light);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== セクション ===== */
+.section {
+    margin: 35px 0;
+    padding: 30px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+    border-left: 6px solid var(--primary-blue);
+    box-shadow: var(--shadow-light);
+}
+
+.section h3, .section-title {
+    color: var(--primary-blue);
+    margin: 0 0 25px 0;
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 10px;
+}
+
+/* ===== 結果ボックス ===== */
+.result-box {
+    background: #e8f5e8;
+    border: 2px solid var(--accent-green);
+    padding: 25px;
+    border-radius: var(--border-radius-sm);
+    margin: 25px 0;
+    box-shadow: var(--shadow-light);
+}
+
+.result-box h4 {
+    margin: 0 0 20px 0;
+    color: #2e7d32;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+/* ===== 特徴リスト ===== */
+.features {
+    background: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: var(--shadow-medium);
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    padding: 15px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+    border-left: 4px solid var(--primary-blue);
+}
+
+/* ===== チャートコンテナ ===== */
+.chart-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-sm);
+    padding: 20px;
+    box-shadow: var(--shadow-medium);
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+/* ===== フルワイド要素 ===== */
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* ===== メソドロジー ===== */
+.methodology {
+    background: var(--bg-primary);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    margin-top: 30px;
+}
+
+.methodology h3 {
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+/* ===== フッター ===== */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* ===== レスポンシブ調整 ===== */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .project-grid, .experiment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats, .stats-overview {
+        gap: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+}
+
+/* ===== アクセシビリティ対応 ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== プリント対応 ===== */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .main-navigation {
+        display: none;
+    }
+    
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+}
