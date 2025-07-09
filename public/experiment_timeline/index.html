@@ -414,7 +414,7 @@
                                     type: 'linear',
                                     title: {
                                         display: true,
-                                        text: '信頼度閾値',
+                                        text: '信頼度閾値 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.68,
@@ -423,7 +423,7 @@
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '確信度 / 精度',
+                                        text: '確信度 / 精度 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.8,
@@ -467,7 +467,7 @@
                                     type: 'linear',
                                     title: {
                                         display: true,
-                                        text: 'サンプル数/カテゴリ',
+                                        text: 'サンプル数/カテゴリ (個)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0,
@@ -476,7 +476,7 @@
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '確信度',
+                                        text: '確信度 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.8,
@@ -520,7 +520,7 @@
                                     type: 'linear',
                                     title: {
                                         display: true,
-                                        text: 'サンプル数/カテゴリ',
+                                        text: 'サンプル数/カテゴリ (個)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0,
@@ -529,7 +529,7 @@
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '統計的検出力',
+                                        text: '統計的検出力 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.4,
@@ -581,7 +581,7 @@
                                     type: 'linear',
                                     title: {
                                         display: true,
-                                        text: 'カテゴリ数',
+                                        text: 'カテゴリ数 (個)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0,
@@ -590,7 +590,7 @@
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '確信度向上率',
+                                        text: '確信度向上率 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.1,
@@ -637,7 +637,12 @@
                             },
                             scales: {
                                 x: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'カテゴリ名',
+                                        font: { size: 16, weight: 'bold' }
+                                    }
                                 },
                                 y: {
                                     title: {
@@ -697,7 +702,7 @@
                                     type: 'linear',
                                     title: {
                                         display: true,
-                                        text: 'サンプル数',
+                                        text: 'サンプル数 (個)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0,
@@ -708,7 +713,7 @@
                                     position: 'left',
                                     title: {
                                         display: true,
-                                        text: '確信度',
+                                        text: '確信度 (0.0-1.0)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0.7,
@@ -719,7 +724,7 @@
                                     position: 'right',
                                     title: {
                                         display: true,
-                                        text: '処理時間（秒）',
+                                        text: '処理時間 (秒)',
                                         font: { size: 16, weight: 'bold' }
                                     },
                                     min: 0,
