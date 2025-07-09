@@ -10,7 +10,11 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/index.html"
+      "dest": "/02_ウェブサイト/index.html"
+    },
+    {
+      "src": "/02_ウェブサイト/public/(.*)",
+      "dest": "/02_ウェブサイト/public/$1"
     },
     {
       "src": "/main-system",
