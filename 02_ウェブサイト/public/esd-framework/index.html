@@ -174,6 +174,63 @@
             color: #4caf50;
             font-weight: bold;
         }
+
+        /* タブシステム */
+        .tab-container {
+            margin: 30px 0;
+        }
+        
+        .tab-nav {
+            display: flex;
+            border-bottom: 3px solid #667eea;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+        
+        .tab-button:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+        
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -197,8 +254,19 @@
             <p>苦手分野を自動検出し、WordNetを活用した適応的学習システム</p>
         </div>
 
-        <div class="section">
-            <h2>📊 システムアーキテクチャ</h2>
+        <!-- タブナビゲーション -->
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="showTab('overview')">📊 概要</button>
+                <button class="tab-button" onclick="showTab('performance')">📈 性能</button>
+                <button class="tab-button" onclick="showTab('implementation')">💻 実装</button>
+                <button class="tab-button" onclick="showTab('future')">🚀 展望</button>
+            </div>
+
+            <!-- 概要タブ -->
+            <div id="overview" class="tab-content active">
+                <div class="section">
+                    <h2>📊 システムアーキテクチャ</h2>
             <div class="architecture-diagram">
                 <div class="flow-chart">
                     <div class="flow-item">Performance<br>Monitoring</div>
@@ -212,8 +280,10 @@
             </div>
         </div>
 
-        <div class="section">
-            <h2>🎯 主要機能</h2>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 主要機能</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>🔍 苦手カテゴリ自動検出</h3>
@@ -245,8 +315,31 @@
             </div>
         </div>
 
-        <div class="section">
-            <h2>📈 パフォーマンス改善実績</h2>
+                </div>
+
+                <div class="section">
+                    <h2>🚀 技術的革新</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>🔄 動的弱点検出</h3>
+                            <p>リアルタイムでパフォーマンスを分析し、苦手分野を即座に特定。統計的手法により信頼性の高い検出を実現。</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>🧩 意味的知識拡張</h3>
+                            <p>WordNetの階層構造を活用し、単一カテゴリから関連概念群へと学習を拡張。意味的つながりによる効果的な知識獲得。</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>🎯 適応的学習</h3>
+                            <p>メタ学習技術により、各カテゴリに最適な学習戦略を自動選択。効率的かつ効果的な追加学習を実現。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 性能タブ -->
+            <div id="performance" class="tab-content">
+                <div class="section">
+                    <h2>📈 パフォーマンス改善実績</h2>
             <div class="performance-stats">
                 <div class="stat-card">
                     <div class="stat-value">+17.4%</div>
@@ -298,8 +391,13 @@
             </table>
         </div>
 
-        <div class="section">
-            <h2>💻 実装例</h2>
+                </div>
+            </div>
+
+            <!-- 実装タブ -->
+            <div id="implementation" class="tab-content">
+                <div class="section">
+                    <h2>💻 実装例</h2>
             <div class="code-example">
                 <pre><code>class ESDFramework:
     def __init__(self, student_model, wordnet_interface):
@@ -328,8 +426,13 @@
             </div>
         </div>
 
-        <div class="section">
-            <h2>🚀 技術的革新</h2>
+                </div>
+            </div>
+
+            <!-- 展望タブ -->
+            <div id="future" class="tab-content">
+                <div class="section">
+                    <h2>📅 今後の展開</h2>
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>🔄 動的弱点検出</h3>
@@ -342,6 +445,10 @@
                 <div class="feature-card">
                     <h3>🎯 適応的学習</h3>
                     <p>メタ学習技術により、各カテゴリに最適な学習戦略を自動選択。効率的かつ効果的な追加学習を実現。</p>
+                </div>
+            </div>
+        </div>
+
                 </div>
             </div>
         </div>
@@ -370,5 +477,39 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        // タブ切り替え機能
+        function showTab(tabId) {
+            // 全てのタブコンテンツを非表示
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 全てのタブボタンを非アクティブ
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 指定されたタブを表示
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // 対応するボタンをアクティブに
+            const selectedButton = document.querySelector(`button[onclick="showTab('${tabId}')"]`);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
+        }
+        
+        // ページ読み込み時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('overview');
+        });
+    </script>
 </body>
 </html>
