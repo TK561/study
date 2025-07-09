@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>研究成果 - 意味カテゴリ画像分類システム</title>
-    <link rel="stylesheet" href="/unified_design_system.css">
+    <link rel="stylesheet" href="/02_ウェブサイト/public/unified_design_system.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -16,8 +16,6 @@
             min-height: 100vh;
             color: #333;
             line-height: 1.7;
-
-        }
         }
         .container {
             max-width: 1200px;
@@ -96,9 +94,117 @@
             border-bottom-color: #667eea;
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
         }
-        /* タブコンテンツは統一CSSで管理 */
-        /* セクションは統一CSSで管理 */
-        /* 結果ボックスは統一CSSで管理 */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .unified-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .unified-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .unified-stat {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .unified-stat:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .unified-stat-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .unified-stat-label {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .unified-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .unified-info-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .unified-info-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .unified-highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .unified-highlight-box h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .unified-highlight-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .unified-highlight-box li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .unified-highlight-box li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
         .badge {
             display: inline-block;
             background: #ff5722;
@@ -182,6 +288,7 @@
                 <li><a href="/main-system/" class="active">🎯 分類システム</a></li>
                 <li><a href="/discussion-site/">📋 ディスカッション記録</a></li>
                 <li><a href="/experiment_timeline/">📈 実験ダッシュボード</a></li>
+                <li><a href="/esd-framework/">🧠 ESDフレームワーク</a></li>
             </ul>
         </div>
     </nav>
