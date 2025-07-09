@@ -128,6 +128,107 @@
             margin-top: 5px;
         }
 
+        /* 実験結果セクション */
+        .experiment-results {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .experiment-results h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: center;
+        }
+
+        .experiment-subtitle {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .experiment-overview {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .experiment-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .exp-stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .exp-stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .exp-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .experiment-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .experiment-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .experiment-item:hover {
+            transform: translateX(5px);
+        }
+
+        .experiment-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .experiment-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .experiment-detail {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .experiment-detail strong {
+            color: #667eea;
+        }
+
         /* プロジェクトカード */
         .projects {
             display: grid;
@@ -202,46 +303,6 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
-        /* 成果セクション */
-        .achievements {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .achievements h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .achievement-item {
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
-        }
-
-        .achievement-item:hover {
-            transform: translateX(5px);
-        }
-
-        .achievement-item h4 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
         /* レスポンシブ */
         @media (max-width: 768px) {
             .nav-content {
@@ -264,6 +325,10 @@
             .projects {
                 grid-template-columns: 1fr;
             }
+
+            .experiment-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 480px) {
@@ -276,6 +341,10 @@
             }
 
             .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .experiment-stats {
                 grid-template-columns: 1fr;
             }
 
@@ -327,6 +396,119 @@
             </div>
         </header>
 
+        <!-- 実験結果セクション -->
+        <section class="experiment-results">
+            <h2>📊 最小単位実験 - 確信度分析ダッシュボード</h2>
+            <p class="experiment-subtitle">1実験 = 1パラメータ変更による段階的最適化</p>
+            
+            <div class="experiment-overview">
+                <p><strong>最小単位実験方針に基づくパラメータ探索</strong> • Cohen's Power Analysis • 信頼度フィードバック機構</p>
+                
+                <div class="experiment-stats">
+                    <div class="exp-stat">
+                        <span class="exp-stat-value">6</span>
+                        <span class="exp-stat-label">閾値実験数</span>
+                    </div>
+                    <div class="exp-stat">
+                        <span class="exp-stat-value">41</span>
+                        <span class="exp-stat-label">サンプル数実験</span>
+                    </div>
+                    <div class="exp-stat">
+                        <span class="exp-stat-value">22</span>
+                        <span class="exp-stat-label">カテゴリ数実験</span>
+                    </div>
+                    <div class="exp-stat">
+                        <span class="exp-stat-value">8</span>
+                        <span class="exp-stat-label">カテゴリ別実験</span>
+                    </div>
+                    <div class="exp-stat">
+                        <span class="exp-stat-value">5分</span>
+                        <span class="exp-stat-label">実験単位時間</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experiment-list">
+                <div class="experiment-item">
+                    <h4>🔄 実験1: 信頼度閾値パラメータスイープ実験</h4>
+                    <div class="experiment-details">
+                        <div class="experiment-detail">
+                            <strong>実験方式:</strong> 閾値0.70～0.80を0.02刻みで変更
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>各実験時間:</strong> 5分（合計30分）
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>最適値発見:</strong> 閾値0.75で最高確信度達成
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>実験進行状況:</strong> 6/6 完了
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experiment-item">
+                    <h4>📊 実験2: サンプル数段階実験 - Cohen's Power Analysis検証</h4>
+                    <div class="experiment-details">
+                        <div class="experiment-detail">
+                            <strong>実験方式:</strong> 10～50サンプル/カテゴリを1刻みで変更
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>統計的検出力:</strong> Power=0.8を30サンプルで達成
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>最適値:</strong> 45サンプルで確信度ピーク
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experiment-item">
+                    <h4>🎯 実験3: カテゴリ数最小単位実験 - 飽和現象検証</h4>
+                    <div class="experiment-details">
+                        <div class="experiment-detail">
+                            <strong>実験方式:</strong> 4～25カテゴリを1刻みで変更
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>各実験時間:</strong> 10分（合計220分）
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>飽和点発見:</strong> 20カテゴリで確信度向上率が飽和
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experiment-item">
+                    <h4>⚖️ 実験4: カテゴリ別最小単位比較実験</h4>
+                    <div class="experiment-details">
+                        <div class="experiment-detail">
+                            <strong>実験方式:</strong> 8カテゴリを個別に比較実験
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>各実験時間:</strong> 5分（合計40分）
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>最大改善:</strong> vehicleカテゴリで+25.9%向上
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experiment-item">
+                    <h4>📈 実験5: サンプル数1刻み最小単位実験</h4>
+                    <div class="experiment-details">
+                        <div class="experiment-detail">
+                            <strong>実験方式:</strong> 5～25サンプルを1刻みで変更
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>各実験時間:</strong> 5分（合計105分）
+                        </div>
+                        <div class="experiment-detail">
+                            <strong>最適値:</strong> 18サンプルで最適バランス
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- プロジェクトカード -->
         <div class="projects">
             <div class="project-card">
@@ -373,42 +555,6 @@
                 <a href="/esd-framework/" class="btn">詳細を見る</a>
             </div>
         </div>
-
-        <!-- 研究成果 -->
-        <section class="achievements">
-            <h2>🏆 研究成果</h2>
-            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem; color: #666;">
-                15ヶ月間の継続的な研究開発により、画像分類の精度を大幅に向上させました。
-                特に第14回でのESDフレームワーク導入により、システムの適応能力が飛躍的に向上しました。
-            </p>
-            
-            <div class="achievements-grid">
-                <div class="achievement-item">
-                    <h4>🎯 高精度分類</h4>
-                    <p>最終精度91.3%を達成し、従来手法を31.5%上回る性能を実現</p>
-                </div>
-                <div class="achievement-item">
-                    <h4>🔄 動的カテゴリ選択</h4>
-                    <p>WordNet階層を活用した柔軟なカテゴリ決定システム</p>
-                </div>
-                <div class="achievement-item">
-                    <h4>🧠 適応的学習</h4>
-                    <p>ESDフレームワークによる苦手分野の自動検出・改善</p>
-                </div>
-                <div class="achievement-item">
-                    <h4>📊 包括的実験</h4>
-                    <p>95日間の詳細な実験とリアルタイム監視システム</p>
-                </div>
-                <div class="achievement-item">
-                    <h4>🌐 クラウド対応</h4>
-                    <p>Vercel統合による即座のWebシステム公開</p>
-                </div>
-                <div class="achievement-item">
-                    <h4>🔍 学術的発見</h4>
-                    <p>カテゴリ数12での信頼度飽和現象の発見</p>
-                </div>
-            </div>
-        </section>
     </div>
 </body>
 </html>
