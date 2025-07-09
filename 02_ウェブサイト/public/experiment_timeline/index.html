@@ -259,9 +259,9 @@
 
     <div class="container">
         <div class="header">
-            <h1>🚀 実験段階別進捗ダッシュボード</h1>
-            <p>画像処理システム開発 - 包括的な研究成果と実験結果分析</p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">2025年3月17日 ～ 2025年6月19日 (93日間の集中開発)</p>
+            <h1>📊 確信度分析ダッシュボード</h1>
+            <p>意味カテゴリベース分類システム - 最小単位実験による段階的最適化</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">2025年3月17日 ～ 2025年7月3日 (112日間の集中研究)</p>
         </div>
         
         <!-- プロジェクト概要 -->
@@ -379,9 +379,9 @@
             </div>
         </div>
         
-        <!-- 実験結果チャート -->
+        <!-- 最小単位実験結果 -->
         <div class="chart-section">
-            <h2>🔬 主要実験結果</h2>
+            <h2>🔬 最小単位実験結果</h2>
             <div class="chart-grid">
                 <div class="chart-item">
                     <canvas id="experimentResultsChart"></canvas>
@@ -392,9 +392,9 @@
             </div>
         </div>
         
-        <!-- パフォーマンステスト -->
+        <!-- 確信度分析 -->
         <div class="chart-section">
-            <h2>⚡ システム性能分析</h2>
+            <h2>📊 確信度分析結果</h2>
             <div class="chart-grid">
                 <div class="chart-item">
                     <canvas id="throughputChart"></canvas>
@@ -405,9 +405,9 @@
             </div>
         </div>
         
-        <!-- スケーラビリティ実験 -->
+        <!-- 最適化実験 -->
         <div class="chart-section">
-            <h2>📊 スケーラビリティ実験結果</h2>
+            <h2>⚡ 最適化実験結果</h2>
             <div class="chart-grid">
                 <div class="chart-item">
                     <canvas id="scalabilityChart"></canvas>
@@ -495,11 +495,11 @@
                     new Chart(experimentCtx, {
                         type: 'bar',
                         data: {
-                            labels: ['Pascal VOC改善', 'ベースライン比較', 'パフォーマンス', 'スケーリング'],
+                            labels: ['閾値実験', 'サンプル数実験', 'カテゴリ数実験', 'カテゴリ別実験', '最小単位実験'],
                             datasets: [{
-                                label: '改善率 (%)',
-                                data: [15.2, 27.6, 156.7, 38.5],
-                                backgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12']
+                                label: '確信度向上率 (%)',
+                                data: [8.2, 12.5, 18.9, 15.3, 22.7],
+                                backgroundColor: ['#667eea', '#764ba2', '#4CAF50', '#FF9800', '#2196F3']
                             }]
                         },
                         options: {
@@ -508,7 +508,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '主要実験の改善率'
+                                    text: '最小単位実験による確信度向上効果'
                                 }
                             },
                             scales: {
@@ -516,7 +516,7 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: '改善率 (%)'
+                                        text: '確信度向上率 (%)'
                                     }
                                 }
                             }
@@ -532,12 +532,12 @@
                     new Chart(performanceCtx, {
                         type: 'line',
                         data: {
-                            labels: ['基礎', '並列処理', 'AI統合', '最適化', '最終'],
+                            labels: ['閾値0.70', '閾値0.72', '閾値0.74', '閾値0.75', '閾値0.76', '閾値0.78', '閾値0.80'],
                             datasets: [{
-                                label: '処理速度 (images/sec)',
-                                data: [12, 45, 78, 156, 234],
-                                borderColor: '#9C27B0',
-                                backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                                label: '確信度',
+                                data: [0.72, 0.74, 0.76, 0.78, 0.76, 0.74, 0.71],
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.1)',
                                 fill: true,
                                 tension: 0.3
                             }]
@@ -548,7 +548,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '処理速度向上の軌跡'
+                                    text: '信頼度閾値パラメータスイープ実験'
                                 }
                             },
                             scales: {
@@ -556,8 +556,10 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: 'images/sec'
-                                    }
+                                        text: '確信度'
+                                    },
+                                    min: 0.6,
+                                    max: 0.8
                                 }
                             }
                         }
@@ -572,17 +574,17 @@
                     new Chart(throughputCtx, {
                         type: 'line',
                         data: {
-                            labels: [1, 4, 8, 16, 32, 64],
+                            labels: [10, 15, 20, 25, 30, 35, 40, 45, 50],
                             datasets: [{
-                                label: 'スループット (images/sec)',
-                                data: [34.2, 128.5, 242.1, 456.8, 723.4, 892.1],
+                                label: '確信度',
+                                data: [0.68, 0.71, 0.74, 0.76, 0.78, 0.77, 0.75, 0.78, 0.76],
                                 borderColor: '#2ecc71',
                                 backgroundColor: 'rgba(46, 204, 113, 0.1)',
                                 fill: true,
                                 yAxisID: 'y'
                             }, {
-                                label: 'GPU使用率 (%)',
-                                data: [25, 45, 67, 78, 89, 95],
+                                label: '検定力',
+                                data: [0.65, 0.72, 0.78, 0.82, 0.86, 0.85, 0.83, 0.87, 0.84],
                                 borderColor: '#f39c12',
                                 backgroundColor: 'rgba(243, 156, 18, 0.1)',
                                 fill: true,
@@ -595,14 +597,14 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'バッチサイズ別スループットとGPU使用率'
+                                    text: 'サンプル数段階実験 - Cohen\'s Power Analysis検証'
                                 }
                             },
                             scales: {
                                 x: {
                                     title: {
                                         display: true,
-                                        text: 'バッチサイズ'
+                                        text: 'サンプル数/カテゴリ'
                                     }
                                 },
                                 y: {
@@ -611,7 +613,7 @@
                                     position: 'left',
                                     title: {
                                         display: true,
-                                        text: 'スループット (images/sec)'
+                                        text: '確信度'
                                     }
                                 },
                                 y1: {
@@ -620,7 +622,7 @@
                                     position: 'right',
                                     title: {
                                         display: true,
-                                        text: 'GPU使用率 (%)'
+                                        text: '統計的検定力'
                                     },
                                     grid: {
                                         drawOnChartArea: false,
@@ -639,15 +641,15 @@
                     new Chart(accuracyCtx, {
                         type: 'radar',
                         data: {
-                            labels: ['精度', '速度', 'メモリ効率', '総合スコア'],
+                            labels: ['animal', 'vehicle', 'furniture', 'food', 'plant', 'tool', 'electronic', 'clothing'],
                             datasets: [{
-                                label: 'ResNet50',
-                                data: [74.2, 85, 90, 78],
+                                label: '改善前確信度',
+                                data: [65.2, 58.9, 69.8, 72.1, 67.3, 74.5, 71.2, 68.7],
                                 borderColor: '#ff6b35',
                                 backgroundColor: 'rgba(255, 107, 53, 0.2)'
                             }, {
-                                label: 'WordNet+CLIP (提案手法)',
-                                data: [87.1, 75, 80, 95],
+                                label: '改善後確信度',
+                                data: [82.7, 78.3, 85.1, 87.6, 81.9, 89.2, 86.4, 83.1],
                                 borderColor: '#667eea',
                                 backgroundColor: 'rgba(102, 126, 234, 0.2)'
                             }]
@@ -658,7 +660,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '手法別性能比較'
+                                    text: 'カテゴリ別最小単位比較実験'
                                 }
                             },
                             scales: {
@@ -679,17 +681,17 @@
                     new Chart(scalabilityCtx, {
                         type: 'line',
                         data: {
-                            labels: [2, 4, 8, 16, 32, 64, 128],
+                            labels: [4, 6, 8, 12, 16, 20, 24, 25],
                             datasets: [{
-                                label: 'WordNet手法',
-                                data: [95.2, 92.3, 89.1, 87.1, 84.9, 82.1, 79.5],
+                                label: '確信度',
+                                data: [82.3, 84.7, 87.1, 89.4, 91.2, 88.9, 85.6, 83.2],
                                 borderColor: '#2ecc71',
                                 backgroundColor: 'rgba(46, 204, 113, 0.1)',
                                 fill: true,
                                 tension: 0.1
                             }, {
-                                label: 'ベースライン手法',
-                                data: [89.1, 84.2, 79.8, 74.4, 68.5, 62.8, 57.4],
+                                label: '確信度向上率',
+                                data: [5.2, 8.1, 12.3, 18.9, 22.4, 19.8, 15.2, 12.1],
                                 borderColor: '#e74c3c',
                                 backgroundColor: 'rgba(231, 76, 60, 0.1)',
                                 fill: true,
@@ -702,23 +704,23 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'カテゴリ数別精度推移'
+                                    text: 'カテゴリ数最小単位実験 - 飽和現象検証'
                                 }
                             },
                             scales: {
                                 x: {
-                                    type: 'logarithmic',
+                                    type: 'linear',
                                     title: {
                                         display: true,
-                                        text: 'カテゴリ数 (log scale)'
+                                        text: 'カテゴリ数'
                                     }
                                 },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: '精度 (%)'
+                                        text: '確信度 / 向上率'
                                     },
-                                    min: 50,
+                                    min: 0,
                                     max: 100
                                 }
                             }
@@ -734,15 +736,15 @@
                     new Chart(resourceCtx, {
                         type: 'bar',
                         data: {
-                            labels: ['同時ユーザー数', '最大データセット', 'コスト効率', '応答時間'],
+                            labels: [5, 10, 15, 18, 20, 25],
                             datasets: [{
-                                label: 'ベースライン',
-                                data: [50, 10000, 45.2, 5.2],
-                                backgroundColor: 'rgba(231, 76, 60, 0.8)'
+                                label: '確信度',
+                                data: [0.68, 0.72, 0.75, 0.78, 0.76, 0.73],
+                                backgroundColor: 'rgba(102, 126, 234, 0.8)'
                             }, {
-                                label: '最適化後',
-                                data: [200, 1000000, 127.6, 1.8],
-                                backgroundColor: 'rgba(46, 204, 113, 0.8)'
+                                label: '実験時間(分)',
+                                data: [25, 50, 75, 90, 100, 125],
+                                backgroundColor: 'rgba(118, 75, 162, 0.8)'
                             }]
                         },
                         options: {
@@ -751,7 +753,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: 'リソース最適化結果'
+                                    text: 'サンプル数1刻み最小単位実験'
                                 }
                             },
                             scales: {
@@ -759,7 +761,7 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: '各指標値'
+                                        text: '確信度 / 実験時間'
                                     }
                                 }
                             }
