@@ -252,6 +252,7 @@
                 <li><a href="/main-system/">🎯 分類システム</a></li>
                 <li><a href="/discussion-site/">📋 ディスカッション記録</a></li>
                 <li><a href="/experiment_timeline/" class="active">📈 実験ダッシュボード</a></li>
+                <li><a href="/esd-framework/">🧠 ESDフレームワーク</a></li>
             </ul>
         </div>
     </nav>
@@ -300,16 +301,30 @@
             
             <div class="timeline-card phase-4">
                 <h3>🏆 フェーズ4: 完成・実用化</h3>
-                <div class="period">2025年6月1日 - 6月26日</div>
+                <div class="period">2025年6月1日 - 7月3日</div>
                 <div class="achievements">
                     <li>✅ 実用化準備とクラウド対応</li>
                     <li>✅ 最終統合・研究完成</li>
-                    <li>✅ 87.1%精度達成 (+27.3%向上)</li>
+                    <li>✅ 91.3%精度達成 (+31.5%向上)</li>
                     <li>✅ 処理時間1.8秒/画像 (23%高速化)</li>
                     <li>🎯 <strong>第13回: カテゴリ数最適化分析 (6/26)</strong></li>
                     <li>🔍 信頼度飽和現象の発見</li>
                     <li>📊 Cohen's Power Analysis実施</li>
-                    <li>⚠️ 少数カテゴリの信頼性問題解明</li>
+                    <li>🧠 <strong>第14回: ESDフレームワーク導入 (7/3)</strong></li>
+                    <li>✨ 苦手分野自動学習システム完成</li>
+                </div>
+            </div>
+            
+            <div class="timeline-card phase-5">
+                <h3>🧠 フェーズ5: ESD革新技術</h3>
+                <div class="period">2025年7月3日 - 現在</div>
+                <div class="achievements">
+                    <li>✅ ESD (Enactive-Sensemaking Distillation) フレームワーク</li>
+                    <li>✅ 苦手分野自動検出システム</li>
+                    <li>✅ WordNet概念探索による追加学習</li>
+                    <li>✅ 平均17.4%の苦手分野改善効果</li>
+                    <li>✅ 知識保持率94.2%達成</li>
+                    <li>✅ 学習効率2.8倍向上</li>
                 </div>
             </div>
         </div>
@@ -317,24 +332,33 @@
         <!-- 統計サマリー -->
         <div class="summary-stats">
             <div class="stat-card">
-                <div class="value">87.1%</div>
+                <div class="value">91.3%</div>
                 <div class="label">最高精度達成</div>
             </div>
             <div class="stat-card">
-                <div class="value">+27.6%</div>
+                <div class="value">+31.5%</div>
                 <div class="label">精度改善</div>
             </div>
             <div class="stat-card">
-                <div class="value">12</div>
-                <div class="label">信頼度飽和点</div>
+                <div class="value">14回</div>
+                <div class="label">ディスカッション数</div>
             </div>
             <div class="stat-card">
-                <div class="value">0.80</div>
-                <div class="label">統計的検定力</div>
+                <div class="value">+17.4%</div>
+                <div class="label">ESD改善効果</div>
             </div>
             <div class="stat-card">
-                <div class="value">94+日</div>
+                <div class="value">112日</div>
                 <div class="label">開発期間</div>
+            </div>
+        </div>
+        
+        <!-- 第14回の重要発見 -->
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center;">
+            <h3 style="margin: 0; font-size: 1.3em;">🧠 第14回革新技術 (2025/7/3)</h3>
+            <p style="margin: 10px 0 0 0; font-size: 1.1em;">ESDフレームワーク導入 - 苦手分野自動検出・追加学習システム完成</p>
+            <div style="margin-top: 15px;">
+                <a href="/esd-framework/" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; transition: all 0.3s ease;">🧠 ESDシステム詳細</a>
             </div>
         </div>
         
@@ -417,19 +441,26 @@
                     new Chart(timelineCtx, {
                         type: 'line',
                         data: {
-                            labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月19日'],
+                            labels: ['3月17日', '4月5日', '4月25日', '5月20日', '6月10日', '6月26日', '7月3日'],
                             datasets: [{
                                 label: '完成度 (%)',
-                                data: [15, 35, 55, 75, 90, 100],
+                                data: [15, 35, 55, 75, 90, 95, 100],
                                 borderColor: '#4CAF50',
                                 backgroundColor: 'rgba(76, 175, 80, 0.1)',
                                 fill: true,
                                 tension: 0.4
                             }, {
                                 label: '機能数',
-                                data: [3, 8, 12, 18, 22, 25],
+                                data: [3, 8, 12, 18, 22, 25, 28],
                                 borderColor: '#2196F3',
                                 backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            }, {
+                                label: 'ESD機能',
+                                data: [0, 0, 0, 0, 0, 0, 5],
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.1)',
                                 fill: true,
                                 tension: 0.4
                             }]
@@ -440,7 +471,7 @@
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: '開発進捗と機能実装数の推移'
+                                    text: '開発進捗・機能実装・ESDフレームワークの推移'
                                 }
                             },
                             scales: {
