@@ -1,0 +1,37 @@
+{
+  "name": "Claude Code + MCP Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/.claude,target=/home/vscode/.claude,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-playwright.playwright"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install -g @playwright/mcp figma-developer-mcp",
+  "forwardPorts": [3000, 9222, 9223],
+  "portsAttributes": {
+    "9222": {
+      "label": "Playwright MCP Server"
+    },
+    "9223": {
+      "label": "Figma MCP Server"
+    }
+  },
+  "remoteUser": "vscode"
+}

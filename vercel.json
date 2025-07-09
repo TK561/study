@@ -14,27 +14,35 @@
     },
     {
       "src": "/main-system",
-      "dest": "/public/main-system/index.html"
+      "dest": "/02_ウェブサイト/public/main-system/index.html"
     },
     {
       "src": "/main-system/(.*)",
-      "dest": "/public/main-system/$1"
+      "dest": "/02_ウェブサイト/public/main-system/$1"
     },
     {
       "src": "/discussion-site",
-      "dest": "/public/discussion-site/index.html"
+      "dest": "/02_ウェブサイト/public/discussion-site/index.html"
     },
     {
       "src": "/discussion-site/(.*)",
-      "dest": "/public/discussion-site/$1"
+      "dest": "/02_ウェブサイト/public/discussion-site/$1"
     },
     {
       "src": "/experiment_timeline",
-      "dest": "/public/experiment_timeline/index.html"
+      "dest": "/02_ウェブサイト/public/experiment_timeline/index.html"
     },
     {
       "src": "/experiment_timeline/(.*)",
-      "dest": "/public/experiment_timeline/$1"
+      "dest": "/02_ウェブサイト/public/experiment_timeline/$1"
+    },
+    {
+      "src": "/esd-framework",
+      "dest": "/02_ウェブサイト/public/esd-framework/index.html"
+    },
+    {
+      "src": "/esd-framework/(.*)",
+      "dest": "/02_ウェブサイト/public/esd-framework/$1"
     }
   ]
 }

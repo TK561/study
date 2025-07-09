@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "sse",
+      "url": "http://host.docker.internal:9222/sse",
+      "description": "Playwright automation for browser interactions"
+    },
+    "figma": {
+      "type": "sse", 
+      "url": "http://host.docker.internal:9223/sse",
+      "description": "Figma design file access and analysis"
+    }
+  },
+  "settings": {
+    "projectScope": true,
+    "autoReconnect": true,
+    "timeout": 30000
+  }
+}

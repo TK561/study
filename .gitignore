@@ -1,94 +1,34 @@
-# Node.js
+# Environment variables
+.env
+
+# Node modules
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
+# Claude Code configuration
+.claude/
 
 # Logs
 *.log
-logs/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+src/styles/output.css
+src/js/bundle.js
 
 # Temporary files
 *.tmp
-temp/
-tmp/
+*.temp
+/tmp/
 
-# 環境変数・認証情報
-.env
-.env.*
-.env.local
-.env.production
-.env.development
-
-# APIキー・シークレット
-*.key
-*.pem
-*.cert
-secrets/
-credentials/
-config/secrets/
-
-# Vercel
-.vercel/
-.vercel_build_output/
-
-# セッションデータ
-session_logs/
-hourly_system/session_logs/
-
-# 個人情報・機密データ
-private/
-confidential/
-sensitive/
-
-# データベース
-*.db
-*.sqlite
-*.sqlite3
-database/
-
-# バックアップ
-*.bak
-*.backup
-backup/
-
-# Claude Code関連
-.claude_code_init.py
-.claude/
-.claude_sessions/
-.claude_master/
-.workflow_analytics/
-
-# Vercel更新履歴は保持
-!VERCEL_UPDATE_HISTORY.json
-!VERCEL_SUCCESS_PATTERNS.json
-!VERCEL_FIX_HISTORY.json
-
-# バックアップディレクトリ
-.vercel_backups/
-.html_backups/
-temp_cleanup_backup/
-
-# 自動生成設定ファイル
-.auto_update_config.json
-.vercel
+# PID files
+*.pid
+EOF < /dev/null

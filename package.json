@@ -1,0 +1,51 @@
+{
+  "name": "claude-mcp-development",
+  "version": "1.0.0",
+  "description": "Claude Code + Playwright MCP + Figma MCP development environment",
+  "main": "index.js",
+  "scripts": {
+    "start-mcp": "./scripts/start-mcp-servers.sh",
+    "stop-mcp": "./scripts/stop-mcp-servers.sh",
+    "setup-claude": "./scripts/setup-claude-mcp.sh",
+    "dev": "live-server src/",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss -i src/styles/input.css -o src/styles/output.css --watch",
+    "build:js": "esbuild src/js/main.js --bundle --outfile=src/js/bundle.js",
+    "mcp-deploy": "node scripts/mcp-vercel-deploy.js",
+    "mcp-monitor": "node scripts/mcp-vercel-monitor.js",
+    "mcp-test": "node scripts/mcp-vercel-testing.js",
+    "mcp-debug": "node scripts/mcp-vercel-debug.js",
+    "mcp-master": "node scripts/mcp-vercel-master.js",
+    "deploy-full": "node scripts/mcp-vercel-master.js deploy",
+    "deploy-monitor": "node scripts/mcp-vercel-master.js deploy --monitor",
+    "research-master": "node scripts/mcp-research-master.js",
+    "research-data": "node scripts/mcp-research-data-collector.js",
+    "research-experiment": "node scripts/mcp-research-experiment-runner.js",
+    "research-report": "node scripts/mcp-research-report-generator.js",
+    "research-full": "node scripts/mcp-research-master.js",
+    "research-deploy": "node scripts/research-vercel-integration.js",
+    "research-vercel-cycle": "node scripts/research-vercel-integration.js",
+    "organize-project": "node scripts/project-organizer.js",
+    "cleanup-duplicates": "node scripts/project-organizer.js --duplicates-only",
+    "analyze-structure": "node scripts/project-organizer.js --analyze-only"
+  },
+  "keywords": [
+    "claude-code",
+    "playwright",
+    "figma",
+    "mcp",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/mcp": "latest",
+    "esbuild": "^0.19.0",
+    "figma-developer-mcp": "latest",
+    "live-server": "^1.2.2",
+    "tailwindcss": "^3.4.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}

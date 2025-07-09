@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code + MCP デモサイト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-gray-900">Claude Code + MCP</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900">特徴</a>
+                    <a href="#demo" class="text-gray-600 hover:text-gray-900">デモ</a>
+                    <a href="#setup" class="text-gray-600 hover:text-gray-900">セットアップ</a>
+                </nav>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-600 to-purple-700 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    LPが<span class="text-yellow-400">2分</span>で完成
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Claude Code + Playwright MCP + Figma MCP<br>
+                    で実現する超高速開発フロー
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#demo" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition">
+                        デモを見る
+                    </a>
+                    <a href="#setup" class="border border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition">
+                        セットアップ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    革新的な3つの技術の融合
+                </h2>
+                <p class="text-xl text-gray-600">
+                    AI、デザイン、ブラウザ自動化が一体となった開発体験
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Claude Code</h3>
+                    <p class="text-gray-600">
+                        AIエージェントがコマンドラインから直接コード生成・実行・デバッグを行う
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h4a1 1 0 011 1v2a1 1 0 01-1 1h-1v12a2 2 0 01-2 2H6a2 2 0 01-2-2V8H3a1 1 0 01-1-1V5a1 1 0 011-1h4zM9 8v8m6-8v8"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Playwright MCP</h3>
+                    <p class="text-gray-600">
+                        ブラウザ自動化でリアルタイムプレビュー・テスト・デバッグが可能
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Figma MCP</h3>
+                    <p class="text-gray-600">
+                        Figmaデザインを直接データとして読み取り、正確な実装を生成
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    実際の開発フロー
+                </h2>
+                <p class="text-xl text-gray-600">
+                    たった2分でランディングページが完成
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-600 text-white text-sm px-3 py-1 rounded-full">Step 1</span>
+                        <span class="ml-3 text-gray-600">30秒</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">デザイン読み込み</h3>
+                    <p class="text-gray-600 mb-4">
+                        Figma MCPでデザインファイルを分析し、構造とスタイル情報を取得
+                    </p>
+                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                        <code>
+                            "Figma MCPで [URL] のデザインを分析して"
+                        </code>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-purple-600 text-white text-sm px-3 py-1 rounded-full">Step 2</span>
+                        <span class="ml-3 text-gray-600">60秒</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">コード生成</h3>
+                    <p class="text-gray-600 mb-4">
+                        AIが分析結果を基にレスポンシブなHTML/CSSを自動生成
+                    </p>
+                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                        <code>
+                            "デザインを基にTailwind CSSでLPを作成して"
+                        </code>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-600 text-white text-white text-sm px-3 py-1 rounded-full">Step 3</span>
+                        <span class="ml-3 text-gray-600">30秒</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">自動確認・調整</h3>
+                    <p class="text-gray-600 mb-4">
+                        Playwright MCPでブラウザ確認し、必要に応じて自動修正
+                    </p>
+                    <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                        <code>
+                            "ブラウザでプレビューして差分を修正"
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Section -->
+    <section id="setup" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    セットアップ手順
+                </h2>
+                <p class="text-xl text-gray-600">
+                    5分で開発環境を構築
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                        <h3 class="text-lg font-semibold mb-2">1. devcontainer環境の準備</h3>
+                        <p class="text-gray-600 mb-3">VS Codeでdevcontainerを起動</p>
+                        <div class="bg-gray-50 p-3 rounded text-sm">
+                            <code>code . # プロジェクトを開く<br>
+                            # Ctrl+Shift+P → "Dev Containers: Reopen in Container"</code>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-500">
+                        <h3 class="text-lg font-semibold mb-2">2. ホストマシンでMCPサーバー起動</h3>
+                        <p class="text-gray-600 mb-3">PlaywrightとFigmaのMCPサーバーを起動</p>
+                        <div class="bg-gray-50 p-3 rounded text-sm">
+                            <code>./scripts/start-mcp-servers.sh</code>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
+                        <h3 class="text-lg font-semibold mb-2">3. Claude CodeでMCP接続</h3>
+                        <p class="text-gray-600 mb-3">devcontainer内でMCPサーバーを登録</p>
+                        <div class="bg-gray-50 p-3 rounded text-sm">
+                            <code>./scripts/setup-claude-mcp.sh</code>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-yellow-500">
+                        <h3 class="text-lg font-semibold mb-2">4. 開発開始</h3>
+                        <p class="text-gray-600 mb-3">Claude Codeを起動して開発開始</p>
+                        <div class="bg-gray-50 p-3 rounded text-sm">
+                            <code>claude</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                今すぐ始めよう
+            </h2>
+            <p class="text-xl mb-8 opacity-90">
+                革新的な開発体験を体験してください
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://github.com/your-repo/claude-mcp-setup" class="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    GitHubで見る
+                </a>
+                <a href="#setup" class="border border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition">
+                    セットアップガイド
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Claude Code + MCP</h3>
+                    <p class="text-gray-400">
+                        AIとデザイン、ブラウザ自動化を融合した革新的開発環境
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">リンク</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Claude Code公式</a></li>
+                        <li><a href="#" class="hover:text-white">Playwright MCP</a></li>
+                        <li><a href="#" class="hover:text-white">Figma MCP</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">サポート</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">ドキュメント</a></li>
+                        <li><a href="#" class="hover:text-white">GitHub Issues</a></li>
+                        <li><a href="#" class="hover:text-white">コミュニティ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Claude Code + MCP Demo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
