@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>研究プロジェクト - 意味カテゴリベース分類システム v3</title>
-    <link rel="stylesheet" href="/unified_design_system.css">
+    <meta name="description" content="WordNet階層構造を活用した意味カテゴリベース画像分類システム - 91.3%精度達成（ESDフレームワーク導入）">
+    <title>🔬 研究プロジェクト - 意味カテゴリベース分類システム ✅</title>
+    <link rel="stylesheet" href="/02_ウェブサイト/public/unified_design_system.css">
     <style>
         * {
             margin: 0;
@@ -100,9 +101,9 @@
         }
 
         .project-card h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
         }
 
         .project-description {
@@ -112,30 +113,36 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: 25px;
             font-weight: 600;
             transition: all 0.3s ease;
-            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
 
-        .features {
+        .highlight-text {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .achievement-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 30px;
-            margin: 30px 0;
+            margin: 40px 0;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
-        .features h3 {
+        .achievement-section h2 {
             color: #667eea;
             margin-bottom: 20px;
         }
@@ -175,31 +182,37 @@
         <div class="nav-container">
             <a href="/" class="nav-logo">🔬 研究プロジェクト</a>
             <ul class="nav-links">
-                <li><a href="/">🏠 メインページ</a></li>
+                <li><a href="/" class="active">🏠 メインページ</a></li>
                 <li><a href="/main-system/">🎯 分類システム</a></li>
                 <li><a href="/discussion-site/">📋 ディスカッション記録</a></li>
                 <li><a href="/experiment_timeline/">📈 実験ダッシュボード</a></li>
+                <li><a href="/esd-framework/">🧠 ESDフレームワーク</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
         <div class="header">
-            <h1>🔬 研究プロジェクト</h1>
-            <p>意味カテゴリベース分類システムの開発と研究記録</p>
+            <h1>🔬 意味カテゴリベース分類システム</h1>
+            <p>WordNet階層構造を活用した革新的な画像分類システム<br>
+            動的なカテゴリ選択とESDフレームワークによる適応的学習を実現</p>
             
             <div class="stats">
                 <div class="stat-item">
-                    <span class="stat-value">87.1%</span>
-                    <span class="stat-label">最終精度達成</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">27.3%</span>
-                    <span class="stat-label">精度向上</span>
+                    <span class="stat-value">91.3%</span>
+                    <span class="stat-label">最終精度</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-value">15ヶ月</span>
                     <span class="stat-label">研究期間</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">14回</span>
+                    <span class="stat-label">ディスカッション</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">95日</span>
+                    <span class="stat-label">実験期間</span>
                 </div>
             </div>
         </div>
@@ -213,8 +226,8 @@
                     WordNetを活用した革新的な画像分類システム。従来の固定カテゴリから動的な意味カテゴリ選択へのパラダイムシフトを実現。
                 </div>
                 <div class="project-description">
-                    <strong>最終精度:</strong> 87.1% (27.3%向上)<br>
-                    <strong>研究期間:</strong> 15ヶ月 (13回ディスカッション)<br>
+                    <strong>最終精度:</strong> 91.3% (31.5%向上)<br>
+                    <strong>研究期間:</strong> 15ヶ月 (14回ディスカッション)<br>
                     <strong>技術統合:</strong> WordNet + CLIP + 動的カテゴリ選択
                 </div>
                 <a href="/main-system/" class="btn-primary">システムを使用する</a>
@@ -223,56 +236,71 @@
             <div class="project-card">
                 <h2>📋 研究ディスカッション記録</h2>
                 <div class="project-description">
-                    研究開発過程の詳細な記録と分析。13回のディスカッションを通じた技術発展の軌跡を追跡。
+                    研究開発過程の詳細な記録と分析。14回のディスカッションを通じた技術発展の軌跡を追跡。ESDフレームワーク導入で更なる飛躍。
                 </div>
                 <div class="project-description">
-                    <strong>新機能:</strong> AI双方向コンサルテーションシステム<br>
-                    <strong>AI支援:</strong> Gemini & Claude による研究提案<br>
-                    <strong>記録内容:</strong> 技術発展5段階の詳細分析
+                    <strong>記録期間:</strong> 2024年3月～2025年7月<br>
+                    <strong>ディスカッション回数:</strong> 14回完了<br>
+                    <strong>主要成果:</strong> 精度87.1%→91.3%への向上
                 </div>
-                <a href="/discussion-site/" class="btn-primary">記録を確認する</a>
+                <a href="/discussion-site/" class="btn-primary">記録を見る</a>
             </div>
-            
+
             <div class="project-card">
-                <h2>📈 実験段階別ダッシュボード</h2>
+                <h2>📈 実験タイムライン</h2>
                 <div class="project-description">
-                    開発の5段階における実験結果と進捗を視覚化。各段階での技術統合と性能向上を詳細に分析。
+                    95日間の詳細な実験記録とリアルタイムダッシュボード。各段階での精度向上と技術革新を視覚化。
                 </div>
                 <div class="project-description">
-                    <strong>開発期間:</strong> 95日間 (2025年3月17日〜6月19日)<br>
-                    <strong>最終精度:</strong> 89.4% (段階的向上)<br>
-                    <strong>統合技術:</strong> tkinter, OpenCV, YOLO, BLIP, CLIP, WordNet
+                    <strong>実験期間:</strong> 95日間の集中研究<br>
+                    <strong>測定項目:</strong> 精度・信頼度・処理時間<br>
+                    <strong>可視化:</strong> Chart.js統合グラフシステム
                 </div>
-                <a href="/experiment_timeline/" class="btn-primary">ダッシュボードを見る</a>
+                <a href="/experiment_timeline/" class="btn-primary">タイムラインを見る</a>
+            </div>
+
+            <div class="project-card">
+                <h2>🧠 ESDフレームワーク</h2>
+                <div class="project-description">
+                    苦手分野を自動検出してWordNetで関連概念を探索・追加学習する革新的システム。知識蒸留の新パラダイム。
+                </div>
+                <div class="project-description">
+                    <strong>性能改善:</strong> 苦手分野で平均17.4%向上<br>
+                    <strong>学習効率:</strong> 従来比2.8倍の高速化<br>
+                    <strong>知識保持:</strong> 94.2%の高い保持率
+                </div>
+                <a href="/esd-framework/" class="btn-primary">ESDシステムを見る</a>
             </div>
         </div>
 
-        <div class="features">
-            <h3>🚀 システム特徴</h3>
+        <div class="achievement-section">
+            <h2>🏆 研究成果</h2>
+            <p>15ヶ月の継続的な研究開発により、画像分類精度を大幅に向上させました。特に第14回でのESDフレームワーク導入により、苦手分野での追加学習機能を実現し、システム全体の適応能力が向上しました。</p>
+            
             <div class="feature-list">
                 <div class="feature-item">
-                    <strong>動的カテゴリ選択</strong><br>
-                    画像内容に応じて最適なカテゴリセットを自動選択
+                    <strong>🎯 高精度分類</strong><br>
+                    最終精度91.3%を達成し、従来手法を31.5%上回る性能を実現
                 </div>
                 <div class="feature-item">
-                    <strong>WordNet階層活用</strong><br>
-                    意味階層構造を活用した特化型分類
+                    <strong>🔄 動的カテゴリ選択</strong><br>
+                    WordNet階層を活用した柔軟なカテゴリ決定システム
                 </div>
                 <div class="feature-item">
-                    <strong>AI技術統合</strong><br>
-                    CLIP・SAM・BLIP等の最新AI技術の有機的統合
+                    <strong>🧠 適応的学習</strong><br>
+                    ESDフレームワークによる苦手分野の自動検出・改善
                 </div>
                 <div class="feature-item">
-                    <strong>信頼度フィードバック</strong><br>
-                    性能を自動監視し必要に応じて再処理実行
+                    <strong>📊 包括的実験</strong><br>
+                    95日間の詳細な実験とリアルタイム監視システム
                 </div>
                 <div class="feature-item">
-                    <strong>リアルタイム処理</strong><br>
-                    高速処理と即座の結果表示
+                    <strong>🌐 クラウド対応</strong><br>
+                    Vercel統合による即座のWebシステム公開
                 </div>
                 <div class="feature-item">
-                    <strong>研究支援AI</strong><br>
-                    Gemini & Claude による双方向研究相談
+                    <strong>🔍 信頼度飽和発見</strong><br>
+                    カテゴリ数12での信頼度飽和現象の学術的発見
                 </div>
             </div>
         </div>
